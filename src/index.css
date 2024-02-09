@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800;900&family=Mooli&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/*font-family: 'Gabarito', cursive;
+font-family: 'Mooli', sans-serif;
+font-family: 'Jost', sans-serif;
+font-family: 'Roboto Mono', monospace;*/
+
+* {
+  box-sizing: border-box;
+  transition: .15s all ease;
+}
+
+root {
+  --bg-color: #FFF6E0;
+  --text-color: #272829;
+  --fonts-main: 'Gabarito', cursive;
+}
+
+h1,h2,h3,h4,h5,h6,a,span,p,article {
+  margin: 0;
+  padding: 0;
+  font-family: 'Gabarito', cursive;
+}
+
+h1 { font-size: clamp(24px, 6vw, 36px); }
+h2 { font-size: clamp(20px, 5vw, 30px); }
+h3 { font-size: clamp(18px, 4.5vw, 27px); }
+h4 { font-size: clamp(16px, 4vw, 24px); }
+h5, h6, a, article { font-size: clamp(14px, .9vw, 21px); }
+p { font-size: clamp(14px, .8vw, 21px);  font-family: 'Jost', sans-serif;}
+
+
+textarea, input {
+  max-width: 100%;
+  font-size: clamp(16px, .8vw, 21px) !important;
+  font-weight: 600 !important;
+  margin-top: 14px;
+  font-family: 'Jost', sans-serif  !important;
+}
+
+.MyButton {
+  background-color: #181818 !important;
+  color: white !important;
+  font-family: 'Jost', sans-serif  !important;
+  padding: 4px 14px !important;
+  white-space: nowrap !important;
+  margin-top: 14px !important;
+}
+
+button {
+  font-family: 'Jost', sans-serif  !important;
+  white-space: nowrap;
+}
+
+:focus {
+  outline: none !important;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+a {
+  color: #383838 !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+
+
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: #272829;
+  font-family: 'Gabarito', cursive;
+}
+
+::selection {
+  background-color: rgba(12, 12, 12, 1);
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  root {
+    --bg-color: white;
+    --text-color: black;
+  }
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "index": "R-KEM-II-300",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "Blue",
+    "atBox": 10,
+    "weight": 504,
+    "JM": "sht",
+    "imageUrl": "https://a.allegroimg.com/original/11b0b4/03ee29b846318baf1dd965d0fae2/Kotwa-chemiczna-Rawplug-R-KEM-II-300-300-ml",
+    "description": "Kotwa wklejana poliestrowa bez styrenu R-KEM-II 300ml",
+    "productBy": [2, 3]
+  },
+  {
+    "index": "R-KER-II-300",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "JM": "sht",
+    "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
+    "koelner": "https://image.ceneostatic.pl/data/products/123400694/p-koelner-kotwa-chemiczna-kem-psf-300-ml.jpg",
+    "description": "Kotwa wklejana poliestrowa bez styrenu R-KER-II 300ml",
+    "productBy": [2, 3]
+  }
+]
+

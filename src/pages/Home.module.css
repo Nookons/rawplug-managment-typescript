@@ -1,0 +1,166 @@
+.Main {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100dvh - 174px);
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 24px;
+}
+
+.Menu {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 14px;
+}
+
+.List {
+    max-width: 100%;
+}
+
+hr {
+    border: 1px solid black;
+    background-color: #090909;
+}
+
+.Wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.WarehouseWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+.Item {
+    box-shadow: 0 0 5px rgba(0,0,0, 0.5);
+    padding: 14px;
+    border-radius: 4px;
+}
+
+
+
+.GoOnTop {
+    position: fixed;
+    border: 2px solid black;
+    border-radius: 1vw;
+    padding: 6px 6px 2px;
+    margin: 0;
+    bottom: 24px;
+    right: 14px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    background-color: white;
+    z-index: 3;
+}
+
+.GoOnTopActive {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.GoOnTop > svg {
+    margin: 0;
+}
+
+
+.Modal {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 52px 14px;
+    cursor: pointer;
+}
+
+.Active {
+    display: flex;
+}
+
+.ModalWrapper {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    background-color: white;
+    padding: 14px;
+    border-radius: 4px;
+}
+
+.ModalWrapper > div > div > button {
+    background-color: #090909;
+}
+
+.ModalWrapper > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    background-color: white;
+    border-radius: .5vw;
+    padding: 14px;
+    cursor: default;
+}
+
+.ModalWrapper > div > img {
+    max-width: 100%;
+}
+
+.ModalWrapper > div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 1vw;
+}
+
+.ModalWrapper > div > div > p {
+    max-width: 550px;
+}
+
+.LastItems {
+    background-color: #B7E5B4;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.Odzysk {
+    background-color: #FFFC9B;
+}
+
+.Hold {
+    background-color: #F28585;
+}
+
+.LastItems:hover {
+    box-shadow:  2px 2px 5px rgba(0,0,0, 0.5);
+}
+
+
+@media screen and (max-width: 600px) {
+    .Main {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Menu {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .Wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
