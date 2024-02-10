@@ -1,0 +1,52 @@
+.Main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 14px;
+    min-height: calc(100dvh - 87px - 87px);
+}
+
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+}
+
+.AutoCompleteWrapper {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+.AutoCompleteWrapper > div:first-child{
+    grid-area: 1 / 1 / 2 / 3;
+}
+.AutoCompleteWrapper > div:nth-child(2){
+    grid-area: 2 / 1 / 3 / 2;
+}
+.AutoCompleteWrapper > div:nth-child(3){
+    grid-area: 2 / 2 / 3 / 3;
+}
+.AutoCompleteWrapper > div:nth-child(4){
+    grid-area: 1 / 3 / 2 / 4;
+}
+.AutoCompleteWrapper > div:nth-child(5){
+    grid-area: 2 / 3 / 3 / 4;
+}
+.AutoCompleteWrapper > div:nth-child(6){
+    grid-area: 3 / 3 / 4 / 4;
+}
+
+@media screen and (max-width: 1000px){
+    .AutoCompleteWrapper {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+    }
+}

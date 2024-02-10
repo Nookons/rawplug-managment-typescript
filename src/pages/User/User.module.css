@@ -1,0 +1,39 @@
+.Main {
+    min-height: calc(100dvh - 86px - 86px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 650px;
+    padding: 50px 140px;
+    gap: 8px;
+    //background-color: #eeeeee;
+    border-radius: 14px;
+}
+
+.PasswordWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+@media screen and (max-width: 1000px){
+    .Main {
+        min-height: calc(100dvh - 86px - 140px);
+    }
+
+    .Wrapper {
+        display: flex;
+        flex-direction: column;
+        min-width: 350px;
+        padding: 50px 14px;
+        gap: 14px;
+        background-color: white;
+        border-radius: 14px;
+    }
+}

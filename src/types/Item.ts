@@ -12,7 +12,8 @@ export interface IItem {
     quantity: number,
     status: string,
     type: string,
-    userUid: string
+    userUid: string,
+    batchNumber?: number | null
 }
 
 
