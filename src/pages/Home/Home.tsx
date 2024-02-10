@@ -1,23 +1,26 @@
-import React, {FC, useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "../hooks/storeHooks";
-import {fetchItems} from "../store/reducers/itemsSlice";
-import {ICardItem, IItem} from "../types/Item";
+import React, {FC, useEffect, useState} from 'react';
+import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
+import {fetchItems} from "../../store/reducers/item/itemsSlice";
+import {ICardItem, IItem} from "../../types/Item";
 import {CircularProgress, Skeleton} from "@mui/material";
-import data from '../assets/ItemsInfo.json'
+import data from '../../assets/ItemsInfo.json'
 import {WarehouseItem} from "./WareHouseItem";
 import styles from './Home.module.css'
+import LeftMenu from "../../components/LeftMenu/LeftMenu";
+import MyButton from "../../components/MyButton/MyButton";
+import {fetchUser} from "../../store/reducers/User/userSlice";
 
 const Home: FC = () => {
     const dispatch = useAppDispatch();
 
     const {items, loading, error} = useAppSelector(state => state.items)
+    const [visible, setVisible] = useState<boolean>(false);
 
-    useEffect(() => {
-        dispatch(fetchItems())
-    }, []);
 
     return (
         <div className={styles.Main}>
+            <LeftMenu visible={visible} setVisible={setVisible} />
+            <MyButton click={() => setVisible(true)}>Menu</MyButton>
             {!loading
                 ? <div>
                     {!error

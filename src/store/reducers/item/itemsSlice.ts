@@ -1,8 +1,8 @@
-import {IItem} from "../../types/Item";
+import {IItem} from "../../../types/Item";
 import {child, get, getDatabase, ref, DatabaseReference} from "firebase/database";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../firebaseConfig";
+import {firebaseConfig} from "../../../firebaseConfig";
 
 type itemsState = {
     items: IItem[],
@@ -15,21 +15,17 @@ export const fetchItems = createAsyncThunk<IItem[], undefined, { rejectValue: st
     'items/fetchItems',
 
     async (_, {rejectWithValue}) => {
-        try {
-            // Asserting the type of 'database' as DatabaseReference
-            const app = initializeApp(firebaseConfig);
-            const database = ref(getDatabase());
-            const dbRef = child(database, 'items/');
-            const snapshot = await get(dbRef);
+        // Asserting the type of 'database' as DatabaseReference
+        const app = initializeApp(firebaseConfig);
+        const database = ref(getDatabase());
+        const dbRef = child(database, 'items/');
+        const snapshot = await get(dbRef);
 
-            if (snapshot.exists()) {
-                // Convert object to array
-                const itemsArray = Object.values(snapshot.val()) as IItem[];
-                return itemsArray;
-            } else {
-                throw new Error("No items available");
-            }
-        } catch (error) {
+        if (snapshot.exists()) {
+            // Convert object to array
+            const itemsArray = Object.values(snapshot.val()) as IItem[];
+            return itemsArray;
+        } else {
             return rejectWithValue('There was an error loading data from the server. Please try again.');
         }
     }
@@ -46,12 +42,10 @@ const itemsSlice = createSlice({
     name: 'items',
     initialState,
     reducers: {
-        /*addItem(state, action: PayloadAction<IItem>) {
+        addItem(state, action: PayloadAction<IItem>) {
             state.items.push(action.payload);
-        },
-        removeItem(state, action: PayloadAction<number>) {
-            state.items = state.items.filter(item => item.id !== action.payload);
-        }*/
+            state.error = undefined;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -70,5 +64,5 @@ const itemsSlice = createSlice({
     }
 })
 
-export const {} = itemsSlice.actions;
+export const {addItem} = itemsSlice.actions;
 export default itemsSlice.reducer;
