@@ -1,28 +1,29 @@
-import { getDatabase, ref, set } from 'firebase/database';
+import {getDatabase, ref, set} from 'firebase/database';
 import {IFormData} from "../pages/Item/AddItem";
 import dayjs from "dayjs";
 import {useAppSelector} from "../hooks/storeHooks";
 import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error; // You need to import these utility functions
+import error = Simulate.error;
+import {IStatsItem} from "../types/Item"; // You need to import these utility functions
 
 const getCurrentDate = () => {
-    const date      = dayjs().toDate().toDateString();
+    const date = dayjs().toDate().toDateString();
 
-    const HOUR      = dayjs().get('hour')
-    const MINUTES   = dayjs().get('minute')
+    const HOUR = dayjs().get('hour')
+    const MINUTES = dayjs().get('minute')
 
-    let myMinutes   = '00'
+    let myMinutes = '00'
 
     if (MINUTES.toString().length < 2) {
         myMinutes = '0' + MINUTES;
-    }else {
+    } else {
         myMinutes = MINUTES.toString()
     }
 
     return date + ' at ' + HOUR + ':' + myMinutes
 }
 
-export function getCurrentUser (user: any) {
+export function getCurrentUser(user: any) {
     const email = user.email
 
     switch (email) {
@@ -33,20 +34,7 @@ export function getCurrentUser (user: any) {
     }
 }
 
-function areAllFieldsFilled(obj: any): boolean {
-    for (const key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            const value = obj[key];
-            // Проверяем, что значение не пустое, null или undefined
-            if (value === '' || value === null || value === undefined || value === 0) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-export function onAddItem(data: IFormData | null, user: any) {
+export function onAddItem(data: IFormData | null, user: any, itemsStats: IStatsItem[]) {
     try {
         if (!user) {
             return [false, 'Please sign in that add some items...']
@@ -56,6 +44,16 @@ export function onAddItem(data: IFormData | null, user: any) {
         const id = Date.now();
         const date = getCurrentDate();
 
+        const existingItemIndex = itemsStats.findIndex(item => item.index === data?.index);
+
+        const newData = {
+            index: data.index,
+            lastChange: date,
+            pallets: existingItemIndex !== -1 ? itemsStats[existingItemIndex].pallets + 1 : 1,
+            quantity: existingItemIndex !== -1 ? itemsStats[existingItemIndex].quantity + data?.quantity : data?.quantity
+        };
+
+        set(ref(db, `itemsStats/${data.index}`), newData);
 
         const item = {
             id: id,

@@ -1,0 +1,37 @@
+.Main {
+}
+
+.WarehouseWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.Item {
+    padding: 14px;
+    border-radius: 4px;
+    background-color: rgb(195,235,233) ;
+}
+
+.LastItems {
+    border: 2px solid white;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.Odzysk {
+    background-color: #FFFC9B;
+}
+
+.Hold {
+    background-color: #F28585;
+}
+
+.LastItems:hover {
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(0,0,0, 0.5);
+}
