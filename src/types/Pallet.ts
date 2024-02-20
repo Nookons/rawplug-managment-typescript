@@ -12,15 +12,16 @@ export interface IUserPallet {
 }
 
 export interface IPallets {
-    id: number,
-    createdDate: string,
-    index: string,
-    quantity: number,
-    JM: string,
-    Created: string,
-    userUid: string,
-    PalletReceipt: string,
-    description: string,
+    id: number;
+    createdDate: string;
+    index: string;
+    quantity: number;
+    machine: string;
+    JM: string;
+    Created: string;
+    userUid: string;
+    PalletReceipt: string;
+    description: string;
 }
 
 export interface IPalletItem {

@@ -48,7 +48,6 @@ export async function onAddPlan(data: IPlan | null, user: any, forDate: Date | n
             id: id,
             createdDate: date,
             forDate: dayjs(forDate).format('YYYY-MM-DD'),
-            ready: 0,
             firstMachine: [...data.firstMachine],
             secondaryMachine: [...data.secondaryMachine],
             thirdMachine: [...data.thirdMachine],

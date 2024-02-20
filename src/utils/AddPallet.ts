@@ -30,33 +30,38 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
         }
 
         const db = getDatabase();
-        const id = Date.now();
+        const newId = Date.now();
         const date = getCurrentDate();
         const dateForPlan = dayjs().format('YYYY-MM-DD')
 
         const newItemRef = push(ref(db, 'pallets'));
         let found = false; // Переменная для отслеживания найденного соответствия
 
+        let itemToReturn = {}
+
         switch (data?.machineIndex) {
             case 'first':
                 plans.map(i => {
+                    const id = i.id
                     if (i.forDate === dateForPlan) {
-                        const id = i.id
                         i.firstMachine.map((j, index) => {
                             if (j.index === data?.index) {
                                 set(ref(db, 'plan/' + id + '/firstMachine/' + index + '/ready'), j.ready + data.quantity);
-                                set(newItemRef, {
-                                    id: id,
+                                const pallet = {
+                                    id: newId,
                                     createdDate: date,
                                     index: data ? data.index : null,
                                     quantity: data ? Number(data.quantity) : null,
+                                    machine: 'first',
                                     JM: 'sht',
                                     Created: user ? getCurrentUser(user) : null,
                                     userUid: user ? user.uid : null,
-                                    PalletReceipt: id + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
+                                    PalletReceipt: newId + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
                                     description: data ? data.description : null,
-                                });
+                                }
+                                set(newItemRef, pallet);
                                 found = true; // Устанавливаем флаг, что нашли соответствие
+                                itemToReturn = pallet
                             }
                         })
                     }
@@ -70,14 +75,15 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
                             if (j.index === data?.index) {
                                 set(ref(db, 'plan/' + id + '/secondaryMachine/' + index + '/ready'), j.ready + data.quantity);
                                 set(newItemRef, {
-                                    id: id,
+                                    id: newId,
                                     createdDate: date,
                                     index: data ? data.index : null,
                                     quantity: data ? Number(data.quantity) : null,
+                                    machine: 'secondary',
                                     JM: 'sht',
                                     Created: user ? getCurrentUser(user) : null,
                                     userUid: user ? user.uid : null,
-                                    PalletReceipt: id + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
+                                    PalletReceipt: newId + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
                                     description: data ? data.description : null,
                                 });
                                 found = true;
@@ -94,14 +100,15 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
                             if (j.index === data?.index) {
                                 set(ref(db, 'plan/' + id + '/thirdMachine/' + index + '/ready'), j.ready + data.quantity);
                                 set(newItemRef, {
-                                    id: id,
+                                    id: newId,
                                     createdDate: date,
                                     index: data ? data.index : null,
                                     quantity: data ? Number(data.quantity) : null,
+                                    machine: 'third',
                                     JM: 'sht',
                                     Created: user ? getCurrentUser(user) : null,
                                     userUid: user ? user.uid : null,
-                                    PalletReceipt: id + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
+                                    PalletReceipt: newId + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
                                     description: data ? data.description : null,
                                 });
                                 found = true;
@@ -116,7 +123,7 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
             return [false, 'This item does not need updates today'];
         }
 
-        return [true, newItemRef.key];
+        return [true, itemToReturn];
     } catch (e) {
         return [false, e];
     }

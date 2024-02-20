@@ -1,17 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import styles from './AddpAllet.module.css'
 import {Alert, Autocomplete, InputAdornment, OutlinedInput, TextField} from "@mui/material";
-import {IPalletItem, IUserPallet} from "../../types/Pallet";
-import PalletData from '../../assets/PalletsData.json'
-import MyButton from "../../components/MyButton/MyButton";
-import {useAppSelector} from "../../hooks/storeHooks";
-import {onAddPallet} from "../../utils/AddPallet";
+import {IPalletItem, IPallets, IUserPallet} from "../../../types/Pallet";
+import PalletData from '../../../assets/PalletsData.json'
+import MyButton from "../../../components/MyButton/MyButton";
+import {useAppDispatch, useAppSelector} from "../../../hooks/storeHooks";
+import {onAddPallet} from "../../../utils/AddPallet";
+import MyLoader from "../../../components/Loader/MyLoader";
+import {useNavigate} from "react-router-dom";
+import {addPallet} from "../../../store/reducers/Pallets/PalletsSlice";
+import {HOME_ROUTE} from "../../../utils/consts";
+import {changeReady} from "../../../store/reducers/Plan/PlansReducer";
 
 const AddPallet = () => {
     const {user, loading, error} = useAppSelector(state => state.user)
     const plans = useAppSelector(state => state.plans.items)
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
 
     const [responseError, setResponseError] = useState<string | null>(null);
+
+    const [myLoader, setMyLoader] = useState<boolean>(false);
 
     const machineIndex = [
         {title: 'first'},
@@ -47,18 +57,32 @@ const AddPallet = () => {
     };
 
     const onSend = async () => {
-        setResponseError('')
-        const response = await onAddPallet(formData, user, plans);
+        setMyLoader(true);
+        try {
+            setResponseError('')
+            const response = await onAddPallet(formData, user, plans);
 
-        if (!response[0]) {
-            setResponseError(response[1])
-        } else {
-            window.location.reload();
+            console.log(response);
+
+            if (!response[0]) {
+                setResponseError(response[1])
+            } else {
+                setTimeout(() => {
+                    dispatch(addPallet(response[1]))
+                    navigate(HOME_ROUTE)
+                    window.location.reload();
+                }, 500)
+            }
+        } finally {
+            setTimeout(() => {
+                setMyLoader(false)
+            }, 500)
         }
     }
 
     return (
         <div className={styles.Main}>
+            <MyLoader isVisible={myLoader} />
             <div>
                 <Autocomplete
                     freeSolo

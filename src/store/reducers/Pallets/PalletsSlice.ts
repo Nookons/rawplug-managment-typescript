@@ -42,7 +42,10 @@ const palletsSlice = createSlice({
     name: 'pallets',
     initialState,
     reducers: {
-
+        addPallet(state, action: PayloadAction<IPallets>) {
+            state.pallets.push(action.payload)
+            state.error = undefined
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -62,5 +65,5 @@ const palletsSlice = createSlice({
     }
 })
 
-export const {} = palletsSlice.actions;
+export const {addPallet} = palletsSlice.actions;
 export default palletsSlice.reducer;

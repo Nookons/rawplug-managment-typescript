@@ -4,6 +4,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../../firebaseConfig";
 import {IPlan} from "../../../types/Plans";
+import {IPallets} from "../../../types/Pallet";
 
 type plansState = {
     items: IPlan[],
@@ -46,6 +47,12 @@ const plansSlice = createSlice({
         addPlan(state, action: PayloadAction<IPlan>) {
             state.items.push(action.payload);
             state.error = undefined;
+        },
+        changeReady(state, action: PayloadAction<IPallets>) {
+            switch (action.payload.machine.toLowerCase()) {
+                case 'first' :
+                    console.log('This is first machine...')
+            }
         }
     },
     extraReducers: (builder) => {
@@ -65,5 +72,5 @@ const plansSlice = createSlice({
     }
 })
 
-export const {addPlan} = plansSlice.actions;
+export const {addPlan, changeReady} = plansSlice.actions;
 export default plansSlice.reducer;
