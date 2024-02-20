@@ -1,5 +1,5 @@
 import {getDatabase, ref, set} from 'firebase/database';
-import {IFormData} from "../pages/Item/AddItem";
+import {IFormData} from "../pages/Item/AddItem/AddItem";
 import dayjs from "dayjs";
 import {useAppSelector} from "../hooks/storeHooks";
 import {Simulate} from "react-dom/test-utils";

@@ -2,6 +2,8 @@ import React, {FC, useEffect, useState} from 'react';
 
 import {IItem} from "../../../types/Item";
 import styles from "./Warehouse.module.css";
+import {useNavigate} from "react-router-dom";
+import {ITEM_ROUTE} from "../../../utils/consts";
 
 interface WareHouseItemProps {
     card: any,
@@ -11,6 +13,8 @@ interface WareHouseItemProps {
 }
 
 export const WarehouseItem: FC<WareHouseItemProps> = ({ card, tempQta, tempPalletsQta, tempLast }) => {
+    const navigate = useNavigate();
+
     const INDEX = card.myIndex
     const JM = card.jm
 
@@ -33,6 +37,10 @@ export const WarehouseItem: FC<WareHouseItemProps> = ({ card, tempQta, tempPalle
         }
     }
 
+    const onItemClick = (id: number) => {
+        navigate(ITEM_ROUTE + '?_' + id)
+    }
+
     return (
         <div className={styles.Item}>
             <article
@@ -47,20 +55,22 @@ export const WarehouseItem: FC<WareHouseItemProps> = ({ card, tempQta, tempPalle
             <article>Pallets: ({tempPalletsQta})</article>
             <br/>
             <div style={{display: 'flex', gap: 6, flexWrap: 'wrap'}}>
-                {data.slice(0, 2).map((lastElement: IItem, index: number )=> {
+                {data.slice(0, 3).map((lastElement: IItem, index: number )=> {
 
                     const rootClasses = [styles.LastItems]
                     const response = getStatus(lastElement.status)
+
+                    console.log(lastElement);
 
                     if (response) {
                         rootClasses.push(response)
                     }
 
                     return (
-                        <div className={rootClasses.join(' ')} key={index}>
-                            <article style={{fontSize: 14}}>{lastElement.createdDate}</article>
+                        <button onClick={() => onItemClick(lastElement.id)} className={rootClasses.join(' ')} key={index}>
+                            {/*<article style={{fontSize: 14}}>{lastElement.createdDate}</article>*/}
                             <article style={{fontSize: 14}}>{lastElement.quantity} | {JM}</article>
-                        </div>
+                        </button>
                     )
                 })}
             </div>
