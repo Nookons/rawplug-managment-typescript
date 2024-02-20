@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import styles from './AddItem.module.css'
 import {useNavigate} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
-import MyButton from "../../components/MyButton/MyButton";
-import data from '../../assets/ItemsInfo.json'
-import {ICardItem, IItem} from "../../types/Item";
+import {useAppDispatch, useAppSelector} from "../../../hooks/storeHooks";
+import MyButton from "../../../components/MyButton/MyButton";
+import data from '../../../assets/ItemsInfo.json'
+import {ICardItem, IItem} from "../../../types/Item";
 import InputBlock from "./InputBlock";
-import {onAddItem} from "../../utils/AddItem";
-import {addItem} from "../../store/reducers/item/itemsSlice";
-import MyLoader from "../../components/Loader/MyLoader";
-import {HOME_ROUTE} from "../../utils/consts";
+import {onAddItem} from "../../../utils/AddItem";
+import {addItem} from "../../../store/reducers/item/itemsSlice";
+import MyLoader from "../../../components/Loader/MyLoader";
+import {HOME_ROUTE} from "../../../utils/consts";
 
 export interface IFormData {
     index: string,

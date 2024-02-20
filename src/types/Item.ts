@@ -1,5 +1,5 @@
 export interface IItem {
-    created: string,
+    Created: string,
     jm: string,
     palletReceipt: string,
     receipt: string,
