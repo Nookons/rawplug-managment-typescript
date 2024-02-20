@@ -1,6 +1,14 @@
 [
   {
-    "myIndex": "R-NOZ-16-M〵Z",
+    "myIndex": "R-NOZ-10-M〵Z",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Nozzle for products"
+  },
+  {
+    "myIndex": "R-NOZ-10-M",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "sht",
@@ -16,7 +24,47 @@
     "description": "Nozzle for products"
   },
   {
+    "myIndex": "R-NOZ-14-M",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Nozzle for products"
+  },
+  {
+    "myIndex": "R-NOZ-16-M〵Z",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Nozzle for products"
+  },
+  {
+    "myIndex": "R-NOZ-16-M",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Nozzle for products"
+  },
+  {
     "myIndex": "KRP-R-NOZ-100",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
+  },
+  {
+    "myIndex": "KRP-R-NOZ-100-Z",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
+  },
+  {
+    "myIndex": "KRP-R-NOZ-140",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "sht",
@@ -30,22 +78,6 @@
     "jm": "sht",
     "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
-  },
-  {
-    "myIndex": "R-NOZ-140-Z",
-    "type": "Nozzle",
-    "palletQta": 9000,
-    "jm": "sht",
-    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
-    "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
-  },
-  {
-    "myIndex": "R-NOZ-10-M〵Z",
-    "type": "Nozzle",
-    "palletQta": 9000,
-    "jm": "sht",
-    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
-    "description": "Nozzle for products"
   },
   {
     "myIndex": "OZ-U-255-164-295",
@@ -80,9 +112,41 @@
     "description": "Blue cartridges for products"
   },
   {
+    "myIndex": "KRP-ST-CART-310-G",
+    "type": "Cartridge",
+    "palletQta": 936,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Blue cartridges for products"
+  },
+  {
     "myIndex": "KRP-ST-CART-310",
     "type": "Cartridge",
     "palletQta": 936,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Cartridges for products"
+  },
+  {
+    "myIndex": "KRP-ST-CART-175",
+    "type": "Cartridge",
+    "palletQta": 1320,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Cartridges for products"
+  },
+  {
+    "myIndex": "KRP-ST-CART-175-B",
+    "type": "Cartridge",
+    "palletQta": 1320,
+    "jm": "sht",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Cartridges for products"
+  },
+  {
+    "myIndex": "KRP-ST-CART-175-G",
+    "type": "Cartridge",
+    "palletQta": 1320,
     "jm": "sht",
     "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
     "description": "Cartridges for products"

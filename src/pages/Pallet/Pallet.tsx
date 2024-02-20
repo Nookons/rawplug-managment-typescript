@@ -5,6 +5,11 @@ import styles from './Pallet.module.css'
 import Barcode from "react-barcode";
 import {transcode} from "buffer";
 import QRCodeSVG from "qrcode.react";
+import MyButton from "../../components/MyButton/MyButton";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import MoveUpIcon from '@mui/icons-material/MoveUp';
 
 const Pallet = () => {
     const href = window.location.href;
@@ -24,6 +29,12 @@ const Pallet = () => {
 
     return (
         <div className={styles.Main}>
+            <div style={{display: "flex", gap: 14, justifyContent: "center", margin: "14px 0"}}>
+                <MyButton><PictureAsPdfIcon/></MyButton>
+                <MyButton><MoveUpIcon/></MyButton>
+                <MyButton><EditIcon/></MyButton>
+                <MyButton><DeleteIcon/></MyButton>
+            </div>
             <div className={styles.Wrapper}>
                 <div>
                     <h5>Index: </h5>
@@ -50,8 +61,8 @@ const Pallet = () => {
                     <h5>{item?.quantity} | {item?.JM}</h5>
                 </div>
                 <div>
-                    <QRCodeSVG value={"https://rawplug-managment-typescript.vercel.app/pallet?_" + item?.id} size={256} bgColor="rgb(195,235,233)" />
-                    <Barcode value={item?.PalletReceipt} height={100} width={4} fontSize={12} background="rgb(195,235,233)"/>
+                    <QRCodeSVG value={"https://rawplug-managment-typescript.vercel.app/pallet?_" + item?.id} size={128} bgColor="rgb(195,235,233)" />
+                    <Barcode value={item?.PalletReceipt} height={75} width={3} fontSize={12} background="rgb(195,235,233)"/>
                 </div>
             </div>
         </div>

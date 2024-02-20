@@ -35,6 +35,7 @@
     background-color: rgb(195,235,233);
     padding: 14px;
     border-radius: 4px;
+    border: none;
 }
 .NeedItem:hover{
     box-shadow: 5px 5px 5px rgba(0,0,0, 0.5);
