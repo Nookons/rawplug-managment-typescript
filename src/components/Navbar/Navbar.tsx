@@ -43,7 +43,7 @@ const Navbar = () => {
 
     return (
         <div className={styles.Main}>
-            <MyLoader isVisible={isLoading} />
+            {isLoading ? <MyLoader isVisible={isLoading} /> : null}
             <div className={styles.LogoPlace} onClick={goHome}>
                 <img src={logo} alt=""/>
                 <h6>Rawplug Managment</h6>

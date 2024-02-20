@@ -16,6 +16,13 @@ export interface IItem {
     batchNumber?: number | null
 }
 
+export interface IStatsItem {
+    index: string
+    lastChange: string;
+    pallets: number;
+    quantity: number;
+}
+
 
 export interface ICardItem {
     myIndex: string,

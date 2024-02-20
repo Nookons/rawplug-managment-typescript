@@ -6,10 +6,55 @@
     "bottle": "Blue",
     "atBox": 10,
     "weight": 504,
-    "JM": "sht",
+    "jm": "sht",
     "imageUrl": "https://a.allegroimg.com/original/11b0b4/03ee29b846318baf1dd965d0fae2/Kotwa-chemiczna-Rawplug-R-KEM-II-300-300-ml",
-    "description": "Kotwa wklejana poliestrowa bez styrenu R-KEM-II 300ml",
-    "productBy": [2, 3]
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "R-KEM-II-300-GREY",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "Blue",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "imageUrl": "https://a.allegroimg.com/original/11b0b4/03ee29b846318baf1dd965d0fae2/Kotwa-chemiczna-Rawplug-R-KEM-II-300-300-ml",
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml, szara, etykieta FR [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "ELGR-KEM-300-STONE",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "Blue",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "imageUrl": "https://a.allegroimg.com/original/11b0b4/03ee29b846318baf1dd965d0fae2/Kotwa-chemiczna-Rawplug-R-KEM-II-300-300-ml",
+    "description": "Kotwa chemiczna poliestrowa R-KEM, kartridz 300ml, legallais, STONE [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
   },
   {
     "index": "R-KER-II-300",
@@ -18,11 +63,150 @@
     "bottle": "White",
     "atBox": 10,
     "weight": 504,
-    "JM": "sht",
+    "jm": "sht",
     "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
-    "koelner": "https://image.ceneostatic.pl/data/products/123400694/p-koelner-kotwa-chemiczna-kem-psf-300-ml.jpg",
-    "description": "Kotwa wklejana poliestrowa bez styrenu R-KER-II 300ml",
-    "productBy": [2, 3]
+    "description": "Kotwa chemiczna poliestrowa bez styrenu R-KER-II 300ml",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "R-KER-II-300-W",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
+    "description": "Kotwa chemiczna hybrydowa, kartridz 300ml, wersja zimowa [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "KEM-PSF-300-KOE-P",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml z zawieszka, koelner [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "KEM-PSF-300-ISO",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml, isolbau [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "R-KER-II-400",
+    "palletQta": 56,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
+    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "R-KER-II-400-S",
+    "palletQta": 56,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
+    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml, wersja letnia [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "R-KER-II-400-W",
+    "palletQta": 56,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
+    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml, wersja zimowa [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
+  },
+  {
+    "index": "R-KEX-II-600",
+    "palletQta": 56,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 7,
+    "weight": 443,
+    "jm": "sht",
+    "imageUrl": "https://rawlplug.com/media/catalog/product/cache/e189ccab0b31c93fda8162cd33135f09/0/3/034ab37833183a826c8baa31b4fd8391973b5294_1ea8f463304d88ea0ad0a3d8c4257a606ee3d604_R_KER_II_300_01_a_R.psd.webp",
+    "description": "Kotwa chemiczna epoksydowa 3:1, kartridz 600ml",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B"
+      },
+      {
+        "index": "OZ-U-255-164-295"
+      }
+    ]
   }
 ]
 

@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 
-import {IItem} from "../../types/Item";
-import styles from "./Home.module.css";
+import {IItem} from "../../../types/Item";
+import styles from "./Warehouse.module.css";
 
 interface WareHouseItemProps {
     card: any,
@@ -47,7 +47,7 @@ export const WarehouseItem: FC<WareHouseItemProps> = ({ card, tempQta, tempPalle
             <article>Pallets: ({tempPalletsQta})</article>
             <br/>
             <div style={{display: 'flex', gap: 6, flexWrap: 'wrap'}}>
-                {data.slice(0, 5).map((lastElement: IItem, index: number )=> {
+                {data.slice(0, 2).map((lastElement: IItem, index: number )=> {
 
                     const rootClasses = [styles.LastItems]
                     const response = getStatus(lastElement.status)
@@ -58,6 +58,7 @@ export const WarehouseItem: FC<WareHouseItemProps> = ({ card, tempQta, tempPalle
 
                     return (
                         <div className={rootClasses.join(' ')} key={index}>
+                            <article style={{fontSize: 14}}>{lastElement.createdDate}</article>
                             <article style={{fontSize: 14}}>{lastElement.quantity} | {JM}</article>
                         </div>
                     )

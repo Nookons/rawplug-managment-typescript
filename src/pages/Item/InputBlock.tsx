@@ -20,6 +20,7 @@ const InputBlock: FC<InputBlockProps> = ({handleInputChange, ITEM_INDEX, formDat
     const statusIndex = [
         { title: 'Available' },
         { title: 'Hold' },
+        { title: 'Odzysk' },
     ];
 
     return (

@@ -1,0 +1,12 @@
+.Main {
+    padding: 14px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.Main > div {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    gap: 14px;
+    margin-top: 14px;
+}

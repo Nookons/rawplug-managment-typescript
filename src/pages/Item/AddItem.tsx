@@ -25,6 +25,7 @@ export interface IFormData {
 
 const AddItem = () => {
     const user = useAppSelector(state => state.user.user)
+    const itemsStats = useAppSelector(state => state.items.itemsStats)
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -71,15 +72,14 @@ const AddItem = () => {
         });
     }, [formData.index]);
 
-
-    const handleInputChange = (type: string, value: IFormData) => {
+    const handleInputChange = (type: string, value: any) => {
         setFormData((prevData) => ({...prevData, [type]: value}));
     };
 
     const onAddItemClick = async () => {
         try {
             setLoader(true);
-            const response = await onAddItem(formData, user);
+            const response = await onAddItem(formData, user, itemsStats);
 
             if (response[0]) {
                 dispatch(addItem<IItem>(response[1]));
@@ -97,7 +97,7 @@ const AddItem = () => {
 
     return (
         <div className={styles.Main}>
-            <MyLoader isVisible={loader} />
+            <MyLoader isVisible={loader}/>
             <div className={styles.Wrapper}>
                 <h5 style={{marginTop: 4, color: 'red'}}>{error}</h5>
                 <InputBlock handleInputChange={handleInputChange} ITEM_INDEX={ITEM_INDEX} formData={formData}/>
@@ -105,9 +105,12 @@ const AddItem = () => {
                     <MyButton click={onAddItemClick}>Add item</MyButton>
                 </div>
                 <div>
-                    <article style={{color: "gray", margin: '4px 0'}}>From: {user ? user.email : null}</article>
-                    {formData.description ? <article
-                        style={{color: "gray", margin: '4px 0'}}>Description: {formData.description}</article> : null}
+                    <p style={{color: "gray", margin: '4px 0'}}>From: {user ? user.email : null}</p>
+                    {
+                        formData.description
+                        ? <p style={{color: "gray", margin: '4px 0'}}>Description: {formData.description}</p>
+                        : null
+                    }
                 </div>
             </div>
         </div>

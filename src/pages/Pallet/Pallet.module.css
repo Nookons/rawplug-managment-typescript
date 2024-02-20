@@ -1,0 +1,26 @@
+.Main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 14px;
+}
+
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.Wrapper > div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: rgb(195,235,233);
+    padding: 14px;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 1000px) {
+    .Wrapper > div > canvas {
+        display: none;
+    }
+}
