@@ -42,6 +42,8 @@ const AddItem = () => {
     const [isBarrel, setIsBarrel] = useState<boolean>(false);
     const [isWeight, setIsWeight] = useState<boolean>(false);
 
+    const [isLoader, setIsLoader] = useState<boolean>(false);
+
     const [barrelData, setBarrelData] = useState({
         first: 0,
         secondary: 0,
@@ -114,7 +116,7 @@ const AddItem = () => {
             const response = await onAddItem(formData, user, itemsStats);
 
             if (response[0]) {
-                dispatch(addItem<IItem>(response[1]));
+                dispatch(addItem(response[1]));
                 navigate(HOME_ROUTE)
             } else {
                 setError(response[1])
@@ -122,7 +124,10 @@ const AddItem = () => {
         } catch (error) {
             console.log(error);
         } finally {
-            setLoader(false);
+
+            setTimeout(() => {
+                setLoader(false);
+            }, 500)
         }
     };
 
