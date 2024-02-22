@@ -288,6 +288,14 @@
     "description": "Meszanka chemiczna PSF Standardowy wersja 3"
   },
   {
+    "myIndex": "Q-CMB-PSF-STAND-V3",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "imageUrl": "https://www.jonction-et-derivation-electriques.fr/WebRoot/ce_fr2/Shops/294626/6079/B824/9F31/710F/C7AE/C0A8/190E/483A/carton-R-KEM-II-300ml.jpg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
     "myIndex": "Q-C-BYK-D-142",
     "type": "Chemical",
     "palletQta": 800,
