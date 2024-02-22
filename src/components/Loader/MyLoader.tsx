@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { CircularProgress } from "@mui/material";
+import {CircularProgress, LinearProgress} from "@mui/material";
 
 interface MyLoaderProps {
     isVisible: boolean;
@@ -22,7 +22,9 @@ const MyLoader: FC<MyLoaderProps> = ({ isVisible, setLoading }) => {
                     backgroundColor: 'rgba(0,0,0, 0.5)',
                     zIndex: 2
                 }}>
-                    <CircularProgress />
+                    <div style={{padding: 24, backgroundColor: "white", borderRadius: 4}}>
+                        <CircularProgress/>
+                    </div>
                 </div>
             : null}
         </div>

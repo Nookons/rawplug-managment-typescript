@@ -15,7 +15,13 @@ import styles from './Home.module.css'
 import MyButton from "../../components/MyButton/MyButton";
 import Warehouse from "./Warehouse/Warehouse";
 import {useNavigate} from "react-router-dom";
-import {ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PLAN_ROUTE, CHECK_PLANS_ROUTE} from "../../utils/consts";
+import {
+    ADD_ITEM_ROUTE,
+    ADD_PALLET_ROUTE,
+    ADD_PLAN_ROUTE,
+    CHECK_PLANS_ROUTE,
+    ITEMS_GRID_ROUTE
+} from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
 import MyModal from "../../components/Modal/MyModal";
 import {ExpandMore} from "@mui/icons-material";
@@ -48,7 +54,7 @@ const Home: FC = () => {
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <MyButton   click={() => navigate(ADD_ITEM_ROUTE)}>Add item</MyButton>
                             <MyButton   click={() => alert('In progress...')}>Find item</MyButton>
-                            <MyButton   click={() => alert('In progress...')}>Items Grid</MyButton>
+                            <MyButton   click={() => navigate(ITEMS_GRID_ROUTE)}>Items Grid</MyButton>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={styles.Details} defaultExpanded={false}>

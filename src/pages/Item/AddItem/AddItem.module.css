@@ -8,6 +8,7 @@
 .Wrapper {
     display: flex;
     flex-direction: column;
+    gap: 14px;
     min-width: 100%;
 }
 

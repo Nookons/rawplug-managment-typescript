@@ -6,22 +6,6 @@ import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
 import {IStatsItem} from "../types/Item"; // You need to import these utility functions
 
-const getCurrentDate = () => {
-    const date = dayjs().toDate().toDateString();
-
-    const HOUR = dayjs().get('hour')
-    const MINUTES = dayjs().get('minute')
-
-    let myMinutes = '00'
-
-    if (MINUTES.toString().length < 2) {
-        myMinutes = '0' + MINUTES;
-    } else {
-        myMinutes = MINUTES.toString()
-    }
-
-    return date + ' at ' + HOUR + ':' + myMinutes
-}
 
 export function getCurrentUser(user: any) {
     const email = user.email
@@ -42,7 +26,7 @@ export function onAddItem(data: IFormData | null, user: any, itemsStats: IStatsI
 
         const db = getDatabase();
         const id = Date.now();
-        const date = getCurrentDate();
+        const date = dayjs().format('YYYY-MM-DD [at] HH:mm');
 
         const existingItemIndex = itemsStats.findIndex(item => item.index === data?.index);
 
