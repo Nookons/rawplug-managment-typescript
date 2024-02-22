@@ -126,25 +126,25 @@ const ItemsGrid = () => {
             }
         },
         {
-            field: 'Recipient',
-            headerName: 'Recipient',
-            type: 'string',
-            width: 100,
-            editable: false,
-            renderCell: (params) => {
-                const tempStatus = params.row.Recipient
-
-                return <p>{tempStatus} ≫</p>
-            }
-        },
-        {
             field: 'Sender',
             headerName: 'Sender',
             type: 'string',
             width: 100,
             editable: false,
+            renderCell: (params) => {
+                const tempStatus = params.row.Sender
+
+                return <p>{tempStatus} ≫</p>
+            }
+        },
+        {
+            field: 'Recipient',
+            headerName: 'Recipient',
+            type: 'string',
+            width: 100,
+            editable: false,
             renderCell: (params: GridValueGetterParams) => {
-                return <p>{params.row.Sender}</p>;
+                return <p>{params.row.Recipient}</p>;
             }
         },
         {
