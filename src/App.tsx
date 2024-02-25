@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter, Link} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
-import {HOME_ROUTE, SIGN_IN_ROUTE} from "./utils/consts";
-import {app} from "./firebase";
 import Navbar from "./components/Navbar/Navbar";
-import {fetchItems, fetchStats} from "./store/reducers/item/itemsSlice";
+import {fetchItems} from "./store/reducers/item/itemsSlice";
 import {fetchUser} from "./store/reducers/User/userSlice";
 import {useAppDispatch} from "./hooks/storeHooks";
 import {fetchPlans} from "./store/reducers/Plan/PlansReducer";
@@ -17,7 +15,6 @@ const App = () => {
         dispatch(fetchItems())
         dispatch(fetchUser())
         dispatch(fetchPlans())
-        dispatch(fetchStats())
         dispatch(fetchPallets())
     }, []);
 

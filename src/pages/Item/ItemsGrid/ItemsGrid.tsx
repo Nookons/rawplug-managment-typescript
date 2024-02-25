@@ -172,11 +172,11 @@ const ItemsGrid = () => {
                         initialState={{
                             pagination: {
                                 paginationModel: {
-                                    pageSize: 10,
+                                    pageSize: 12,
                                 },
                             },
                         }}
-                        pageSizeOptions={[10]}
+                        pageSizeOptions={[12]}
                         checkboxSelection={false}
                         disableRowSelectionOnClick
                     />

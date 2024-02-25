@@ -19,7 +19,7 @@ import {
     ADD_ITEM_ROUTE,
     ADD_PALLET_ROUTE,
     ADD_PLAN_ROUTE,
-    CHECK_PLANS_ROUTE,
+    CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
     ITEMS_GRID_ROUTE
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
@@ -53,7 +53,7 @@ const Home: FC = () => {
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <MyButton   click={() => navigate(ADD_ITEM_ROUTE)}>Add item</MyButton>
-                            <MyButton   click={() => alert('In progress...')}>Find item</MyButton>
+                            <MyButton   click={() => navigate(FIND_ITEM_ROUTE)}>Find item</MyButton>
                             <MyButton   click={() => navigate(ITEMS_GRID_ROUTE)}>Items Grid</MyButton>
                         </AccordionDetails>
                     </Accordion>

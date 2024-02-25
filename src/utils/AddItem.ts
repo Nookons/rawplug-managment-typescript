@@ -6,6 +6,13 @@ import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
 import {IStatsItem} from "../types/Item"; // You need to import these utility functions
 
+interface barrelData {
+    first: number,
+    secondary: number,
+    third: number,
+    four: number
+}
+
 
 export function getCurrentUser(user: any) {
     const email = user.email
@@ -18,7 +25,7 @@ export function getCurrentUser(user: any) {
     }
 }
 
-export function onAddItem(data: IFormData | null, user: any, itemsStats: IStatsItem[]) {
+export function onAddItem(data: IFormData | null, user: any, barrelData: barrelData) {
     try {
         if (!user) {
             return [false, 'Please sign in that add some items...']
@@ -28,16 +35,6 @@ export function onAddItem(data: IFormData | null, user: any, itemsStats: IStatsI
         const id = Date.now();
         const date = dayjs().format('YYYY-MM-DD [at] HH:mm');
 
-        const existingItemIndex = itemsStats.findIndex(item => item.index === data?.index);
-
-        const newData = {
-            index: data.index,
-            lastChange: date,
-            pallets: existingItemIndex !== -1 ? itemsStats[existingItemIndex].pallets + 1 : 1,
-            quantity: existingItemIndex !== -1 ? itemsStats[existingItemIndex].quantity + data?.quantity : data?.quantity
-        };
-
-        set(ref(db, `itemsStats/${data.index}`), newData);
 
         const item = {
             id: id,
@@ -54,7 +51,8 @@ export function onAddItem(data: IFormData | null, user: any, itemsStats: IStatsI
             PalletReceipt: id + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
             status: data ? data.status : null,
             description: data ? data.description : null,
-            batchNumber: data ? Number(data.batchNumber) : null
+            batchNumber: data?.type.toLowerCase() === "barrel" ? Number(data.batchNumber) : null,
+            barrel:  data?.type.toLowerCase() === "barrel" ? {...barrelData} : null
         };
 
         set(ref(db, 'items/' + id), item);

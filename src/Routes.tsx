@@ -1,5 +1,5 @@
 import {
-    ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PLAN_ROUTE, CHECK_PLANS_ROUTE,
+    ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PLAN_ROUTE, CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
     HOME_ROUTE, ITEM_ROUTE, ITEMS_GRID_ROUTE, PALLET_ROUTE,
     SIGN_IN_ROUTE,
     SIGN_UP_ROUTE,
@@ -14,6 +14,7 @@ import CheckPlans from "./pages/Plan/module/CheckPlans";
 import Pallet from "./pages/Pallet/Pallet";
 import Item from "./pages/Item/Item";
 import ItemsGrid from "./pages/Item/ItemsGrid/ItemsGrid";
+import FindItem from "./pages/Item/FindItem/FindItem";
 
 
 interface Route {
@@ -73,6 +74,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: ITEMS_GRID_ROUTE,
         Component: ItemsGrid,
+        label: 'FilmPrivate',
+    },
+    {
+        path: FIND_ITEM_ROUTE,
+        Component: FindItem,
         label: 'FilmPrivate',
     },
 ];

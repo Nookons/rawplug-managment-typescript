@@ -5,13 +5,14 @@ import {Button} from "@mui/material";
 interface MyButtonProps {
     click?: () => void; // Function type representing a click event handler
     children?: React.ReactNode; // Type representing any React node
-    props?: React.HTMLProps<HTMLButtonElement>; // Additional props for the button
+    props?: React.HTMLProps<HTMLButtonElement>;
+    disabled?: boolean// Additional props for the button
 }
 
 
-const MyButton: FC<MyButtonProps> = ({click,children, props}) => {
+const MyButton: FC<MyButtonProps> = ({click,children, props,disabled}) => {
     return (
-        <Button {...props} onClick={click} className={styles.Main}>{children}</Button>
+        <Button disabled={disabled} {...props} onClick={click} className={styles.Main}>{children}</Button>
     );
 };
 

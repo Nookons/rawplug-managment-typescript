@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Skeleton } from "@mui/material";
 import styles from './Item.module.css'; // Corrected import path
 import { IItem } from "../../types/Item";
-import {isUndefined} from "util";
+import {getMovement} from "../../utils/GetMovement";
 
 const renderSkeletonOrValue = (value: any, skeletonProps: any) => (
     value ? value : <Skeleton {...skeletonProps} />
@@ -23,31 +23,6 @@ const getSmileType = (type: string) => {
     }
 }
 
-export const getRecipient = ({Recipient}) => {
-
-    switch (Recipient) {
-        case 'PWT70':
-            return 'Mixery Prod. Chemiczna'
-        case 'PWT10':
-            return  'Truskarki'
-        case 'MSP':
-            return  'Magazyn centralny (CMD)'
-        default:
-            return  'Unknown items 😥'
-    }
-}
-export const getSender = ({Sender}) => {
-    switch (Sender) {
-        case 'MSP':
-            return 'Magazyn centralny (CMD)'
-        case 'PWT10':
-            return 'Truskarki'
-        case 'PWT70':
-            return 'Mixery Prod. Chemiczna'
-        default:
-            return 'Unknown items 😥'
-    }
-}
 
 interface SettingsItemProps {
     currentItem: IItem | undefined;
@@ -78,13 +53,13 @@ const SettingsItem: FC<SettingsItemProps> = ({ currentItem }) => { // Destructur
                 Sender:
                 <span> {renderSkeletonOrValue(currentItem?.Sender, { width: 150, height: 20 })}</span>
                 <br />
-                <span>|| Magazyn centralny (CMD)</span>
+                <span>|| {getMovement(currentItem?.Sender)}</span>
             </article>
             <article className={styles.Mark}>
                 To:
                 <span> {renderSkeletonOrValue(currentItem?.Recipient, { width: 150, height: 20 })}</span>
                 <br />
-                <span>|| Mixery Prod. Chemiczna</span>
+                <span>|| {getMovement(currentItem?.Recipient)}</span>
             </article>
         </div>
     );

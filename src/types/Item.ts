@@ -1,7 +1,7 @@
 export interface IItem {
     Created: string,
     JM: string,
-    palletReceipt: string,
+    PalletReceipt: string,
     Recipient: string,
     Sender: string,
     createdDate: string,
@@ -14,6 +14,14 @@ export interface IItem {
     type: string,
     userUid: string,
     batchNumber?: number | null
+    barrel?: IBarrelObject
+}
+
+interface IBarrelObject{
+    first: number;
+    secondary: number;
+    third: number;
+    four: number;
 }
 
 export interface IStatsItem {
