@@ -11,6 +11,7 @@ export const SIGN_UP_ROUTE: string = '/sign-up'
 export const ADD_ITEM_ROUTE: string = '/add-item'
 export const ITEM_ROUTE: string = '/item'
 export const ITEMS_GRID_ROUTE: string = '/grid-items'
+export const FIND_ITEM_ROUTE: string = '/find-item'
 
 // Pallet Route
 export const ADD_PALLET_ROUTE: string = '/add-pallet'

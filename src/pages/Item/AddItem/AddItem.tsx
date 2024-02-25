@@ -11,10 +11,11 @@ import {addItem} from "../../../store/reducers/item/itemsSlice";
 import MyLoader from "../../../components/Loader/MyLoader";
 import {HOME_ROUTE} from "../../../utils/consts";
 import {Favorite, FavoriteBorder} from "@mui/icons-material";
-import {Checkbox, InputAdornment, OutlinedInput, TextField} from "@mui/material";
+import {Alert, Checkbox, InputAdornment, OutlinedInput, TextField} from "@mui/material";
 
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
+import MyButtonLoader from "../../../components/MyButtonLoader/MyButtonLoader";
 
 export interface IFormData {
     index: string,
@@ -30,13 +31,18 @@ export interface IFormData {
 
 const AddItem = () => {
     const user = useAppSelector(state => state.user.user)
-    const itemsStats = useAppSelector(state => state.items.itemsStats)
-    const navigate = useNavigate();
+    const {items, loading} = useAppSelector(state => state.items)
+
     const dispatch = useAppDispatch();
 
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState<string>('');
-    const [ITEM_INDEX, setITEM_INDEX] = useState<{ title: string }[]>([]);
+
+
+    const [successful, setSuccessful] = useState<string | null>(null);
+
+    const [batchArray, setBatchArray] = useState<number[]>([]);
+    const [maxBatch, setMaxBatch] = useState<number>(0);
 
 
     const [isBarrel, setIsBarrel] = useState<boolean>(false);
@@ -51,6 +57,14 @@ const AddItem = () => {
         four: 0
     });
 
+    useEffect(() => {
+        items.map((element: IItem) => {
+            if (element.type.toLowerCase() === 'barrel') {
+                setBatchArray(prevState => [...prevState, Number(element.batchNumber)])
+            }
+        })
+    }, [items]);
+
 
     const [formData, setFormData] = useState<IFormData>({
         index: '',
@@ -64,19 +78,11 @@ const AddItem = () => {
         batchNumber: 0,
     });
 
-    useEffect(() => {
-        setITEM_INDEX([])
-
-        data.map((item: ICardItem) => {
-            setITEM_INDEX(prevState => [...prevState, {title: item.myIndex}])
-        })
-    }, [data]);
-
 
     useEffect(() => {
         setIsBarrel(false);
 
-        const updatedFormData = { ...formData };
+        const updatedFormData = {...formData};
 
         data.forEach((item: ICardItem) => {
             if (item.myIndex === formData.index) {
@@ -92,12 +98,10 @@ const AddItem = () => {
                     setIsBarrel(true);
                     const trim = item.myIndex.split('-');
                     updatedFormData.FromDepartment = 'PWT70';
-                    updatedFormData.batchNumber = 19555;
 
                     if (trim[1].toLowerCase() === "cmb") {
                         updatedFormData.status = 'Odzysk';
                         updatedFormData.FromDepartment = 'PWT70';
-                        updatedFormData.batchNumber = 19555;
                     }
                 }
             }
@@ -106,18 +110,29 @@ const AddItem = () => {
         setFormData(updatedFormData); // Update formData state with accumulated changes
     }, [formData.index, data]);
 
+    useEffect(() => {
+        const test = batchArray.reduce((a, b) => Math.max(a, b), 0);
+        setFormData((prevState) => ({...prevState, batchNumber: test + 1}))
+    }, [formData.index, data]);
+
     const handleInputChange = (type: string, value: any) => {
         setFormData((prevData) => ({...prevData, [type]: value}));
     };
 
     const onAddItemClick = async () => {
+        setIsLoader(true);
+
         try {
             setLoader(true);
-            const response = await onAddItem(formData, user, itemsStats);
+            const response = await onAddItem(formData, user, barrelData);
+
+
 
             if (response[0]) {
-                dispatch(addItem(response[1]));
-                navigate(HOME_ROUTE)
+                const tempItem: IItem = response[1];
+                dispatch(addItem(tempItem));
+                setSuccessful('Item ' + tempItem.index + ' successful added ')
+
             } else {
                 setError(response[1])
             }
@@ -126,7 +141,25 @@ const AddItem = () => {
         } finally {
 
             setTimeout(() => {
-                setLoader(false);
+                setSuccessful(null)
+                setIsLoader(false);
+                setBarrelData({
+                    first: 0,
+                    secondary: 0,
+                    third: 0,
+                    four: 0
+                })
+                setFormData({
+                    index: '',
+                    type: '',
+                    description: '',
+                    FromDepartment: '',
+                    JM: '',
+                    ToDepartment: '',
+                    quantity: 0,
+                    status: '',
+                    batchNumber: 0,
+                })
             }, 500)
         }
     };
@@ -144,13 +177,20 @@ const AddItem = () => {
 
     return (
         <div className={styles.Main}>
-            <MyLoader isVisible={loader}/>
             <div className={styles.Wrapper}>
+                {successful ? <Alert severity="success">{successful}</Alert> : null}
+
                 <h5 style={{marginTop: 4, color: 'red'}}>{error}</h5>
-                <InputBlock handleInputChange={handleInputChange} ITEM_INDEX={ITEM_INDEX} formData={formData}/>
+                <InputBlock handleInputChange={handleInputChange} formData={formData}/>
                 {
                     isBarrel ?
-                        <div style={{backgroundColor: "#f3f3f3", padding: 14, display: "flex", flexDirection: "column", gap: 14}}>
+                        <div style={{
+                            backgroundColor: "#f3f3f3",
+                            padding: 14,
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 14
+                        }}>
                             <div style={{display: "flex", alignItems: "center"}}>
                                 <Checkbox
                                     icon={<CallMissedOutgoingIcon/>}
@@ -159,7 +199,7 @@ const AddItem = () => {
                                     onChange={() => setIsWeight(!isWeight)}
                                 />
 
-                                <p> Please click to add weight for barrels ( Test )</p>
+                                <p> Please click to add weight for barrels </p>
                             </div>
                             {
                                 isWeight ?
@@ -218,20 +258,24 @@ const AddItem = () => {
                                 fullWidth={true}
                                 placeholder="Batch number"
                                 type={'Number'}
-                                startAdornment={<InputAdornment position="start" >🛢️ Batch:</InputAdornment>}
-                                defaultValue={Number(formData.batchNumber)}/>
+                                onChange={(event) => handleInputChange('batchNumber', Number(event.target.value))}
+                                startAdornment={<InputAdornment position="start">🛢️ Batch:</InputAdornment>}
+                                value={formData.batchNumber}
+                                defaultValue={maxBatch + 1}
+                            />
                         </div>
                         : null
                 }
                 <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: 14}}>
-                    <MyButton click={onAddItemClick}>Add item</MyButton>
+                    <MyButton disabled={isLoader} click={onAddItemClick}>{isLoader ?
+                        <MyButtonLoader/> : "Add item"}</MyButton>
                 </div>
                 <div>
                     <p style={{color: "gray", margin: '4px 0'}}>From: {user ? user.email : null}</p>
                     {
                         formData.description
-                        ? <p style={{color: "gray", margin: '4px 0'}}>Description: {formData.description}</p>
-                        : null
+                            ? <p style={{color: "gray", margin: '4px 0'}}>Description: {formData.description}</p>
+                            : null
                     }
                 </div>
             </div>

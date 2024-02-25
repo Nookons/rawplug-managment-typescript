@@ -1,5 +1,5 @@
 import {IItem, IStatsItem} from "../../../types/Item";
-import {child, get, getDatabase, ref, DatabaseReference} from "firebase/database";
+import {child, get, getDatabase, ref} from "firebase/database";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../../firebaseConfig";
@@ -16,35 +16,13 @@ export const fetchItems = createAsyncThunk<IItem[], undefined, { rejectValue: st
     'items/fetchItems',
 
     async (_, {rejectWithValue}) => {
-        // Asserting the type of 'database' as DatabaseReference
-        const app = initializeApp(firebaseConfig);
+        initializeApp(firebaseConfig);
         const database = ref(getDatabase());
         const dbRef = child(database, 'items/');
         const snapshot = await get(dbRef);
 
         if (snapshot.exists()) {
-            // Convert object to array
             const itemsArray = Object.values(snapshot.val()) as IItem[];
-            return itemsArray;
-        } else {
-            return rejectWithValue('There was an error loading data from the server. Please try again.');
-        }
-    }
-);
-
-export const fetchStats = createAsyncThunk<IStatsItem[], undefined, { rejectValue: string }>(
-    'items/fetchStats',
-
-    async (_, {rejectWithValue}) => {
-        // Asserting the type of 'database' as DatabaseReference
-        const app = initializeApp(firebaseConfig);
-        const database = ref(getDatabase());
-        const dbRef = child(database, 'itemsStats/');
-        const snapshot = await get(dbRef);
-
-        if (snapshot.exists()) {
-            // Convert object to array
-            const itemsArray = Object.values(snapshot.val()) as IStatsItem[];
             return itemsArray;
         } else {
             return rejectWithValue('There was an error loading data from the server. Please try again.');
@@ -83,20 +61,6 @@ const itemsSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
-
-            .addCase(fetchStats.pending, (state, action) => {
-                state.loading = true;
-                state.error = undefined;
-            })
-            .addCase(fetchStats.fulfilled, (state, action) => {
-                state.itemsStats = action.payload;
-                state.loading = false;
-            })
-            .addCase(fetchStats.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
-            })
-
     }
 })
 

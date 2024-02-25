@@ -1,14 +1,15 @@
 import React, {FC} from 'react';
 import styles from "./AddItem.module.css";
 import {Autocomplete, FormControl, InputAdornment, OutlinedInput, TextField} from "@mui/material";
+import data from '../../../assets/ItemsInfo.json'
+import {ICardItem, IItem} from "../../../types/Item";
 
 interface InputBlockProps {
     handleInputChange: (type: string, value: any) => void;
-    ITEM_INDEX: any[];
     formData: any;
 }
 
-const InputBlock: FC<InputBlockProps> = ({handleInputChange, ITEM_INDEX, formData}) => {
+const InputBlock: FC<InputBlockProps> = ({handleInputChange, formData}) => {
 
     const departmentsIndex = [
         { title: 'PWT10' },
@@ -30,8 +31,9 @@ const InputBlock: FC<InputBlockProps> = ({handleInputChange, ITEM_INDEX, formDat
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
-                    onChange={(event, value) => handleInputChange('index', value, event)}
-                    options={ITEM_INDEX.map((option) => option.title)}
+                    value={formData.index}
+                    onChange={(event, value) => handleInputChange('index', value)}
+                    options={data.map((option: ICardItem) => option.myIndex)}
                     renderInput={(params) => (
                         <TextField
                             {...params}

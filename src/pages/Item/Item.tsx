@@ -19,24 +19,74 @@ const Item = () => {
 
     const [target, setTarget] = useState<IItem>();
 
+    const [isBarrel, setIsBarrel] = useState<boolean>(false);
+
     const rootClasses = [styles.Main]
 
     useEffect(() => {
         const tempItem = items.find(item => item.id === Number(id))
+
+        if (tempItem?.type.toLowerCase() === 'barrel') {
+            setIsBarrel(true);
+        }
+
         setTarget(tempItem);
     }, [target, id, loading]);
 
     return (
         <div className={rootClasses.join(' ')}>
-            {/*<div ref={componentRef}>
-                <SettingsToPrint currentItem={currentItem} itemData={itemData}/>
-            </div>*/}
             <div className={styles.Wrapper}>
-                {/*<div className={styles.Preview}>
-                   <img src={itemData.imgUrl} alt=""/>
-               </div>*/}
                 <SettingsItem currentItem={target}  />
-
+                {
+                    isBarrel ?
+                        <div style={{display: "grid", gridTemplateColumns: '1fr 1fr', gap: 14, width: "100%"}}>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                border: '1px solid gray',
+                                alignItems: "center",
+                                gap: 8,
+                                padding: 8,
+                                borderRadius: 4
+                            }}>
+                                <article>1: {target?.barrel.first} {target?.JM}</article>
+                            </div>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                border: '1px solid gray',
+                                alignItems: "center",
+                                gap: 8,
+                                padding: 8,
+                                borderRadius: 4
+                            }}>
+                                <article>2: {target?.barrel.secondary} {target?.JM}</article>
+                            </div>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                border: '1px solid gray',
+                                alignItems: "center",
+                                gap: 8,
+                                padding: 8,
+                                borderRadius: 4
+                            }}>
+                                <article>3: {target?.barrel.third} {target?.JM}</article>
+                            </div>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                border: '1px solid gray',
+                                alignItems: "center",
+                                gap: 8,
+                                padding: 8,
+                                borderRadius: 4
+                            }}>
+                                <article>4: {target?.barrel.four} {target?.JM}</article>
+                            </div>
+                        </div>
+                        : null
+                }
                 <div className={styles.Actions}>
                     <div>
                         {target &&
