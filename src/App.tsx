@@ -24,7 +24,7 @@ const App = () => {
         <BrowserRouter>
             <Navbar />
             <div style={{display: 'flex', justifyContent: 'center', padding: 4, backgroundColor: '#d9d9d9',}}>
-                <p>version 0.1.2 | (18/02/2024)</p>
+                <p>version 0.1.3 | (26/02/2024)</p>
             </div>
             <AppRouter/>
         </BrowserRouter>
