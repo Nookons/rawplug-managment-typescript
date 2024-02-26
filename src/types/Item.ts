@@ -37,6 +37,7 @@ export interface ICardItem {
     type: string,
     palletQta: number,
     jm: string,
-    imageUrl: string,
+    imageUrl?: string,
     description: string,
+
 }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {IItem} from "../../types/Item";
-import {useAppSelector} from "../../hooks/storeHooks";
+import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
 import Barcode from "react-barcode";
 import MyButton from "../../components/MyButton/MyButton";
 import styles from './Item.module.css'
@@ -10,8 +10,16 @@ import PrintIcon from '@mui/icons-material/Print';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsItem from "./SettingsItem";
+import {onDeleteItem} from "../../utils/DeleteItem";
+import MyButtonLoader from "../../components/MyButtonLoader/MyButtonLoader";
+import {useNavigate} from "react-router-dom";
+import {HOME_ROUTE, ITEMS_GRID_ROUTE} from "../../utils/consts";
+import {removeItem} from "../../store/reducers/item/itemsSlice";
 
 const Item = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
     const currentURL = window.location.href;
     const id = currentURL.split('_')[1]
 
@@ -23,6 +31,8 @@ const Item = () => {
 
     const rootClasses = [styles.Main]
 
+    const [isDeleting, setIsDeleting] = useState<boolean>(false);
+
     useEffect(() => {
         const tempItem = items.find(item => item.id === Number(id))
 
@@ -32,6 +42,24 @@ const Item = () => {
 
         setTarget(tempItem);
     }, [target, id, loading]);
+
+    const onDeleteItemClick = async (id: number) => {
+        setIsDeleting(true)
+        try {
+            const response = await onDeleteItem(id)
+            if (response) {
+                setTimeout(() => {
+                    dispatch(removeItem(id))
+                    setIsDeleting(false);
+                    navigate(ITEMS_GRID_ROUTE)
+                }, 500)
+            }
+        } catch (e) {
+            console.log(e);
+            setIsDeleting(false);
+        }
+    }
+
 
     return (
         <div className={rootClasses.join(' ')}>
@@ -96,7 +124,7 @@ const Item = () => {
                         <MyButton><AssignmentTurnedInIcon/></MyButton>
                         <MyButton><PrintIcon/></MyButton>
                         <MyButton><EditIcon/></MyButton>
-                        <MyButton><DeleteIcon/></MyButton>
+                        <MyButton click={() => onDeleteItemClick(id)}>{isDeleting ? <MyButtonLoader/> :<DeleteIcon/>}</MyButton>
                     </div>
                 </div>
             </div>

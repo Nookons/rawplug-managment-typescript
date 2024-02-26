@@ -48,6 +48,10 @@ const plansSlice = createSlice({
             state.items.push(action.payload);
             state.error = undefined;
         },
+        removePlan(state, action: PayloadAction<IPlan>) {
+            state.items = state.items.filter(item => item.id !== action.payload.id)
+            state.error = undefined;
+        },
         changeReady(state, action: PayloadAction<IPallets>) {
             switch (action.payload.machine.toLowerCase()) {
                 case 'first' :
@@ -72,5 +76,5 @@ const plansSlice = createSlice({
     }
 })
 
-export const {addPlan, changeReady} = plansSlice.actions;
+export const {addPlan, removePlan, changeReady} = plansSlice.actions;
 export default plansSlice.reducer;
