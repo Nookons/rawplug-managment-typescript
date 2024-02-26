@@ -159,7 +159,7 @@ const NotEnough = () => {
 
     return (
         <div>
-            <h5>Need items for features</h5>
+            <article>Needed items for the future</article>
             <hr/>
             <div style={{display: "flex", flexDirection: "column", gap: 4}}>
                 {staysAfterPlans.map((element: any) => {
