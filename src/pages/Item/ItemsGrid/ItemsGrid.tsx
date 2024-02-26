@@ -6,7 +6,7 @@ import MyLoader from "../../../components/Loader/MyLoader";
 import {useNavigate} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
 import {IItem} from "../../../types/Item";
-import {Skeleton} from "@mui/material";
+import {Button, Skeleton, Tooltip} from "@mui/material";
 
 
 const ItemsGrid = () => {
@@ -33,8 +33,9 @@ const ItemsGrid = () => {
             width: 200,
             editable: false,
             renderCell: (params: GridValueGetterParams) => {
-                return <p onClick={() => onItemClick(params.row.id)}
-                            style={{cursor: "pointer"}}>{params.row.index}</p>;
+                return <Tooltip placement="right" title={`Open ${params.row.index}`} arrow>
+                    <Button onClick={() => navigate(ITEM_ROUTE + "?_" + params.row.id)}><p>{params.row.index}</p></Button>
+                </Tooltip>
             },
         },
         {

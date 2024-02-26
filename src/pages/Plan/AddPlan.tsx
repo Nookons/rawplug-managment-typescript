@@ -13,6 +13,7 @@ import MyLoader from "../../components/Loader/MyLoader";
 import {addPlan} from "../../store/reducers/Plan/PlansReducer";
 import {useNavigate} from "react-router-dom";
 import {CHECK_PLANS_ROUTE, HOME_ROUTE} from "../../utils/consts";
+import dayjs from "dayjs";
 
 
 const AddPlan = () => {
@@ -20,7 +21,7 @@ const AddPlan = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const [forDate, setForDate] = useState<Date | null>(null);
+    const [forDate, setForDate] = useState<Date | null>(dayjs);
     const [responseError, setResponseError] = useState<string>('');
 
     const {items, loading, error} = useAppSelector(state => state.plans)

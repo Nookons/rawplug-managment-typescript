@@ -10,10 +10,28 @@
     "description": "Kotwa chemiczna poliestrowa, kartridz 300ml [OP 10 SZT]",
     "needItem": [
       {
-        "index": "KRP-ST-CART-310-B"
+        "index": "KRP-ST-CART-310-B",
+        "quantity": 1
       },
       {
-        "index": "OZ-U-255-164-295"
+        "index": "R-NOZ-14-WMC",
+        "quantity": 2
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "KRP-ST-PISTON-B",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "Q-CM-PSF-STAND-V3",
+        "quantity": 0.425
       }
     ]
   },
@@ -25,17 +43,7 @@
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml, szara, etykieta FR [OP 10 SZT]",
-    "needItem": [
-      {
-        "index": "KRP-ST-CART-310-B",
-        "quantity": 1
-      },
-      {
-        "index": "OZ-U-255-164-295",
-        "quantity": 1
-      }
-    ]
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml, szara, etykieta FR [OP 10 SZT]"
   },
   {
     "index": "ELGR-KEM-300-STONE",
@@ -45,15 +53,7 @@
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna poliestrowa R-KEM, kartridz 300ml, legallais, STONE [OP 10 SZT]",
-    "needItem": [
-      {
-        "index": "KRP-ST-CART-310-B"
-      },
-      {
-        "index": "OZ-U-255-164-295"
-      }
-    ]
+    "description": "Kotwa chemiczna poliestrowa R-KEM, kartridz 300ml, legallais, STONE [OP 10 SZT]"
   },
   {
     "index": "R-KER-II-300",
@@ -66,10 +66,28 @@
     "description": "Kotwa chemiczna poliestrowa bez styrenu R-KER-II 300ml",
     "needItem": [
       {
-        "index": "KRP-ST-CART-310-B"
+        "index": "KRP-ST-CART-310",
+        "quantity": 1
       },
       {
-        "index": "OZ-U-255-164-295"
+        "index": "R-NOZ-14-WMC",
+        "quantity": 2
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "KRP-ST-PISTON",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "Q-CM-PSF-STAND-V3",
+        "quantity": 0.425
       }
     ]
   },
@@ -84,10 +102,28 @@
     "description": "Kotwa chemiczna hybrydowa, kartridz 300ml, wersja zimowa [OP 10 SZT]",
     "needItem": [
       {
-        "index": "KRP-ST-CART-310-B"
+        "index": "KRP-ST-CART-310",
+        "quantity": 1
       },
       {
-        "index": "OZ-U-255-164-295"
+        "index": "R-NOZ-10-M〵Z",
+        "quantity": 2
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "KRP-ST-PISTON",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "Q-CM-PSF-STAND-V3",
+        "quantity": 0.425
       }
     ]
   },
@@ -99,15 +135,7 @@
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml z zawieszka, koelner [OP 10 SZT]",
-    "needItem": [
-      {
-        "index": "KRP-ST-CART-310-B"
-      },
-      {
-        "index": "OZ-U-255-164-295"
-      }
-    ]
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml z zawieszka, koelner [OP 10 SZT]"
   },
   {
     "index": "KEM-PSF-300-ISO",
@@ -117,15 +145,7 @@
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml, isolbau [OP 10 SZT]",
-    "needItem": [
-      {
-        "index": "KRP-ST-CART-310-B"
-      },
-      {
-        "index": "OZ-U-255-164-295"
-      }
-    ]
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml, isolbau [OP 10 SZT]"
   },
   {
     "index": "R-KER-II-400",
@@ -135,15 +155,7 @@
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml [OP 10 SZT]",
-    "needItem": [
-      {
-        "index": "KRP-ST-CART-310-B"
-      },
-      {
-        "index": "OZ-U-255-164-295"
-      }
-    ]
+    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml [OP 10 SZT]"
   },
   {
     "index": "R-KER-II-400-S",
@@ -153,15 +165,7 @@
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml, wersja letnia [OP 10 SZT]",
-    "needItem": [
-      {
-        "index": "KRP-ST-CART-310-B"
-      },
-      {
-        "index": "OZ-U-255-164-295"
-      }
-    ]
+    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml, wersja letnia [OP 10 SZT]"
   },
   {
     "index": "R-KER-II-400-W",
@@ -171,15 +175,7 @@
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml, wersja zimowa [OP 10 SZT]",
-    "needItem": [
-      {
-        "index": "KRP-ST-CART-310-B"
-      },
-      {
-        "index": "OZ-U-255-164-295"
-      }
-    ]
+    "description": "Kotwa chemiczna hybrydowa, kartridz 400ml, wersja zimowa [OP 10 SZT]"
   },
   {
     "index": "R-KEX-II-600",
@@ -192,10 +188,12 @@
     "description": "Kotwa chemiczna epoksydowa 3:1, kartridz 600ml",
     "needItem": [
       {
-        "index": "KRP-ST-CART-310-B"
+        "index": "KRN-ST-CART-600CAP",
+        "quantity": 1
       },
       {
-        "index": "OZ-U-255-164-295"
+        "index": "R-NOZ-16-M〵Z",
+        "quantity": 1
       }
     ]
   }

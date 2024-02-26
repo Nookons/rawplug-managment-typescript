@@ -45,6 +45,11 @@ const itemsSlice = createSlice({
         addItem(state, action: PayloadAction<IItem>) {
             state.items.push(action.payload);
             state.error = undefined;
+        },
+        removeItem(state, action: PayloadAction<number>) {
+            console.log(action.payload);
+            state.items = state.items.filter(item => item.id !== Number(action.payload));
+            state.error = undefined;
         }
     },
     extraReducers: (builder) => {
@@ -64,5 +69,5 @@ const itemsSlice = createSlice({
     }
 })
 
-export const {addItem} = itemsSlice.actions;
+export const {addItem, removeItem} = itemsSlice.actions;
 export default itemsSlice.reducer;

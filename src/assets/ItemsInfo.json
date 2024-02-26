@@ -21,6 +21,20 @@
     "description": "Nozzle for products"
   },
   {
+    "myIndex": "R-NOZ-14-G",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "sht",
+    "description": "Nozzle for products"
+  },
+  {
+    "myIndex": "R-NOZ-14-WMC",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "sht",
+    "description": "Nozzle for products"
+  },
+  {
     "myIndex": "R-NOZ-14-M",
     "type": "Nozzle",
     "palletQta": 9000,
@@ -102,7 +116,7 @@
     "type": "Cartridge",
     "palletQta": 936,
     "jm": "sht",
-    "description": "Blue cartridges for products"
+    "description": "Gray cartridges for products"
   },
   {
     "myIndex": "KRP-ST-CART-310",

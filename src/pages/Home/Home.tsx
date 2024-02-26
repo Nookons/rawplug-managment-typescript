@@ -28,6 +28,7 @@ import {ExpandMore} from "@mui/icons-material";
 import {IPallets} from "../../types/Pallet";
 
 import tempStyles from './CurrentPlan/CurrentPlan.module.css'
+import NotEnough from "./NotEnough/NotEnough";
 
 const Home: FC = () => {
     const dispatch = useAppDispatch();
@@ -43,7 +44,7 @@ const Home: FC = () => {
         <div className={styles.Main}>
             <div style={{filter: user === null ? "blur(5px)" : "", pointerEvents: user === null ? "none": "auto"}} className={styles.div1}>
                 <Stack>
-                    <Accordion className={styles.Details} defaultExpanded={false}>
+                    <Accordion className={styles.Details} defaultExpanded={true}>
                         <AccordionSummary
                             expandIcon={<ExpandMore/>}
                             aria-controls="panel1a-content"
@@ -57,7 +58,7 @@ const Home: FC = () => {
                             <MyButton   click={() => navigate(ITEMS_GRID_ROUTE)}>Items Grid</MyButton>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion className={styles.Details} defaultExpanded={false}>
+                    <Accordion className={styles.Details} defaultExpanded={true}>
                         <AccordionSummary
                             expandIcon={<ExpandMore/>}
                             aria-controls="panel2a-content"
@@ -93,24 +94,8 @@ const Home: FC = () => {
                 <hr/>
                 <Warehouse loading={loading} error={error} items={items} />
             </div>
-            <div style={{filter: user === null ? "blur(5px)" : "", pointerEvents: user === null ? "none" : "auto"}}
-                 className={styles.div4}>
-                <p>Not enough ( Not working now... )</p>
-                <hr/>
-                <div className={tempStyles.NeedWrapper}>
-                    <div style={{backgroundColor: '#ff7373'}} className={tempStyles.NeedItem}>
-                        <h6>R-NOZ-10-M〵Z</h6>
-                        <p>4500 | 3400 📦</p>
-                    </div>
-                    <div style={{backgroundColor: '#ff7373'}} className={tempStyles.NeedItem}>
-                        <h6>OZ-U-255-164-295</h6>
-                        <p>1200 | 800 📦</p>
-                    </div>
-                    <div style={{backgroundColor: '#ff7373'}} className={tempStyles.NeedItem}>
-                        <h6>KRP-ST-PISTON</h6>
-                        <p>6500 | 2400 📦</p>
-                    </div>
-                </div>
+            <div style={{filter: user === null ? "blur(5px)" : "", pointerEvents: user === null ? "none" : "auto"}} className={styles.div4}>
+                <NotEnough />
             </div>
             <div style={{filter: user === null ? "blur(5px)" : "", pointerEvents: user === null ? "none": "auto"}} className={styles.div5}>
                 <p>Last actions</p>

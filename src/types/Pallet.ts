@@ -1,7 +1,8 @@
 import {getCurrentUser} from "../utils/AddPallet";
 
 interface INeededItem {
-    index: string;
+    index?: string;
+    quantity?: number;
 }
 
 export interface IUserPallet {
@@ -32,7 +33,7 @@ export interface IPalletItem {
     atBox: number;
     weight: number;
     jm: string;
-    imageUrl: string;
     description: string;
-    needItem: INeededItem[]
+    needItem?: INeededItem[]
+
 }

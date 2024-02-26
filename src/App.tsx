@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import Navbar from "./components/Navbar/Navbar";
@@ -11,18 +11,20 @@ import {fetchPallets} from "./store/reducers/Pallets/PalletsSlice";
 const App = () => {
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        dispatch(fetchItems())
+    const navigate = useCallback(() => {
+        dispatch(fetchItems());
         dispatch(fetchUser())
         dispatch(fetchPlans())
         dispatch(fetchPallets())
-    }, []);
+    }, [dispatch]);
+
+    navigate();
 
     return (
         <BrowserRouter>
             <Navbar />
             <div style={{display: 'flex', justifyContent: 'center', padding: 4, backgroundColor: '#d9d9d9',}}>
-                <p>version 0.1.2 | (18/02/2024)</p>
+                <p>version 0.1.3 | (26/02/2024)</p>
             </div>
             <AppRouter/>
         </BrowserRouter>
