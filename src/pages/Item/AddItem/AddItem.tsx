@@ -11,11 +11,12 @@ import {addItem} from "../../../store/reducers/item/itemsSlice";
 import MyLoader from "../../../components/Loader/MyLoader";
 import {HOME_ROUTE} from "../../../utils/consts";
 import {Favorite, FavoriteBorder} from "@mui/icons-material";
-import {Alert, Checkbox, InputAdornment, OutlinedInput, TextField} from "@mui/material";
+import {Alert, Button, Checkbox, IconButton, InputAdornment, OutlinedInput, Snackbar, TextField} from "@mui/material";
 
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
 import MyButtonLoader from "../../../components/MyButtonLoader/MyButtonLoader";
+import CloseIcon from '@mui/icons-material/Close';
 
 export interface IFormData {
     index: string,
@@ -38,8 +39,6 @@ const AddItem = () => {
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState<string>('');
 
-
-    const [successful, setSuccessful] = useState<string | null>(null);
 
     const [batchArray, setBatchArray] = useState<number[]>([]);
     const [maxBatch, setMaxBatch] = useState<number>(0);
@@ -119,6 +118,8 @@ const AddItem = () => {
         setFormData((prevData) => ({...prevData, [type]: value}));
     };
 
+    const [note, setNote] = useState<string>('');
+
     const onAddItemClick = async () => {
         setIsLoader(true);
 
@@ -131,7 +132,11 @@ const AddItem = () => {
             if (response[0]) {
                 const tempItem: IItem = response[1];
                 dispatch(addItem(tempItem));
-                setSuccessful('Item ' + tempItem.index + ' successful added ')
+
+                setTimeout(() => {
+                    setNote("✅ " + response[1].index)
+                    setOpen(true)
+                }, 500)
 
             } else {
                 setError(response[1])
@@ -141,7 +146,6 @@ const AddItem = () => {
         } finally {
 
             setTimeout(() => {
-                setSuccessful(null)
                 setIsLoader(false);
                 setBarrelData({
                     first: 0,
@@ -174,11 +178,47 @@ const AddItem = () => {
         setFormData(prevState => ({...prevState, quantity: allBarrel}))
     }, [barrelData]);
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    const action = (
+        <React.Fragment>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
+
+    const vertical = 'bottom'
+    const horizontal  = 'right'
 
     return (
         <div className={styles.Main}>
             <div className={styles.Wrapper}>
-                {successful ? <Alert severity="success">{successful}</Alert> : null}
+                <Snackbar
+                    anchorOrigin={{vertical, horizontal}}
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                    message={note}
+                    action={action}
+                />
 
                 <h5 style={{marginTop: 4, color: 'red'}}>{error}</h5>
                 <InputBlock handleInputChange={handleInputChange} formData={formData}/>
@@ -274,7 +314,11 @@ const AddItem = () => {
                     <p style={{color: "gray", margin: '4px 0'}}>From: {user ? user.email : null}</p>
                     {
                         formData.description
-                            ? <p style={{color: "gray", margin: '4px 0'}}>Description: {formData.description}</p>
+                            ?
+                            <div>
+                                <p style={{color: "gray", margin: '4px 0'}}>Type: {formData.type}</p>
+                                <p style={{color: "gray", margin: '4px 0'}}>Description: {formData.description}</p>
+                            </div>
                             : null
                     }
                 </div>

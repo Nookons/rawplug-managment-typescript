@@ -1,0 +1,27 @@
+.Main {
+    max-width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.PrintItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.5fr 0.5fr 0.5fr  1fr;
+}
+.ActiveBarrel {
+    grid-template-columns: 1fr 1fr 0.7fr 0.5fr 0.5fr 0.5fr 1fr;
+}
+.PrintItem > td{
+    border-left: 1px solid gray;
+    padding: 4px 14px;
+}
