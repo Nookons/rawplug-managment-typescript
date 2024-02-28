@@ -39,10 +39,9 @@ const SettingsItem: FC<SettingsItemProps> = ({ currentItem }) => { // Destructur
     return (
         <div className={styles.Settings}>
             <h3>Index: <span>{renderSkeletonOrValue(currentItem?.index, { width: 20, height: 20 })} {getSmileType(currentItem?.type)}</span></h3>
-            <article style={{ color: 'gray' }}>#
-                <span> {renderSkeletonOrValue(currentItem?.PalletReceipt, { width: 100, height: 20 })}</span>
+            <article style={{ color: 'gray' }}>
+                <span> {renderSkeletonOrValue(currentItem?.type.toLowerCase() === 'barrel' ? "Batch: " + currentItem?.batchNumber : "# " + currentItem?.PalletReceipt, { width: 100, height: 20 })}</span>
             </article>
-            <article style={{ color: 'gray' }}>{currentItem?.name}</article> {/* Fixed itemData to currentItem */}
             <br />
             {renderMark('Add date', currentItem?.createdDate)}
             {renderMark('Last change date', currentItem?.lastChange)}

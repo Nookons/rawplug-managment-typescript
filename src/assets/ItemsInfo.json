@@ -259,13 +259,6 @@
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-CM-PSF-STAND",
-    "type": "Barrel",
-    "palletQta": 0,
-    "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy"
-  },
-  {
     "myIndex": "Q-CM-PSF-STAND-V3",
     "type": "Barrel",
     "palletQta": 0,
@@ -273,7 +266,133 @@
     "description": "Meszanka chemiczna PSF Standardowy wersja 3"
   },
   {
+    "myIndex": "Q-CM-PSF-ZIMA",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CM-PSF-LATO",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CM-PSF-STONE",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CM-PSF-GREY",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CM-EPOXID-A",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CM-EPOXID-B",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CM-HYBRYDA-STANDART",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CM-HYBRYDA-LATO",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CM-HYBRYDA-ZIMA",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
     "myIndex": "Q-CMB-PSF-STAND-V3",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-PSF-ZIMA",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-PSF-LATO",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-PSF-STONE",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-PSF-GREY",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-EPOXID-A",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-EPOXID-B",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-HYBRYDA-STANDART",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-HYBRYDA-LATO",
+    "type": "Barrel",
+    "palletQta": 0,
+    "jm": "kg",
+    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+  },
+  {
+    "myIndex": "Q-CMB-HYBRYDA-ZIMA",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
@@ -361,7 +480,14 @@
     "type": "Barwnik",
     "palletQta": 20,
     "jm": "kg",
-    "description": "Folia do kielbasekbe DL95"
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "myIndex": "Q-C-DTINT-STONE",
+    "type": "Barwnik",
+    "palletQta": 20,
+    "jm": "kg",
+    "description": "\uD83D\uDE30"
   },
   {
     "myIndex": "Q-C-D20",
@@ -376,6 +502,20 @@
     "palletQta": 0,
     "jm": "sht",
     "description": "Label to R-KER II 300ml"
+  },
+  {
+    "myIndex": "HP-KEMPSF300ISO",
+    "type": "Label",
+    "palletQta": 0,
+    "jm": "sht",
+    "description": "Label to R-KEM-ISO II 300ml "
+  },
+  {
+    "myIndex": "HP-PROB-P-40",
+    "type": "Label",
+    "palletQta": 0,
+    "jm": "sht",
+    "description": "\uD83D\uDE30"
   },
   {
     "myIndex": "Q-ET-R-KEXII-600",
@@ -395,6 +535,13 @@
     "myIndex": "Q-C-OS30-SILO",
     "type": "Label",
     "palletQta": 1000,
+    "jm": "kg",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "myIndex": "Q-C-RHEO-EFKA-1920",
+    "type": "\uD83D\uDE30",
+    "palletQta": 560,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   }
