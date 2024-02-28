@@ -12,6 +12,15 @@
     min-width: 100%;
 }
 
+.BarrelWrapper {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 2px dashed #dadada;
+    border-radius: 8px;
+}
+
 .AutoCompleteWrapper {
     margin-top: 14px;
     display: grid;

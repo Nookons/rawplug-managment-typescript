@@ -29,7 +29,7 @@ const ItemsGrid = () => {
 
     const [revertArray, setRevertArray] = useState<IItem[]>([]);
 
-    const currentDate = dayjs().format("YYYY-MM-DD [at] HH:mm")
+    const currentDate = dayjs().format("YYYY-MM-dddd [at] HH:mm")
 
 
 
