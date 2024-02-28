@@ -224,13 +224,7 @@ const AddItem = () => {
                 <InputBlock handleInputChange={handleInputChange} formData={formData}/>
                 {
                     isBarrel ?
-                        <div style={{
-                            backgroundColor: "#f3f3f3",
-                            padding: 14,
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: 14
-                        }}>
+                        <div className={styles.BarrelWrapper} >
                             <div style={{display: "flex", alignItems: "center"}}>
                                 <Checkbox
                                     icon={<CallMissedOutgoingIcon/>}

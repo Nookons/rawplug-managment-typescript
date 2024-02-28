@@ -2,11 +2,11 @@ import React, {ReactEventHandler, useCallback, useEffect, useState} from 'react'
 import styles from './Navbar.module.css'
 import {Link, Route, useNavigate} from "react-router-dom";
 import logo from '../../assets/logo.svg'
-import {HOME_ROUTE, PROFILE_ROUTE, SIGN_IN_ROUTE} from "../../utils/consts";
+import {HOME_ROUTE, PROFILE_ROUTE, SIGN_IN_ROUTE, USER_SETTINGS_ROUTE} from "../../utils/consts";
 import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
 import {publicRoutes} from "../../Routes";
 import LoginIcon from '@mui/icons-material/Login';
-import {Skeleton} from "@mui/material";
+import {Button, Skeleton} from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {mySignOut} from "../../utils/SignOut";
@@ -23,6 +23,12 @@ const Navbar = () => {
     const goHome: ReactEventHandler<HTMLDivElement> = (event) => {
         navigate(HOME_ROUTE)
     };
+
+    useEffect(() => {
+        if (!loading && user === null) {
+            navigate(SIGN_IN_ROUTE)
+        }
+    }, [user, loading]);
 
     const logOut = async () => {
         setIsLoading(true)
@@ -44,16 +50,16 @@ const Navbar = () => {
     return (
         <div className={styles.Main}>
             {isLoading ? <MyLoader isVisible={isLoading} /> : null}
-            <div className={styles.LogoPlace} onClick={goHome}>
+            <Button className={styles.LogoPlace} onClick={goHome}>
                 <img src={logo} alt=""/>
-                <h6>Rawplug Managment</h6>
-            </div>
+                <p>Rawplug Managment</p>
+            </Button>
             <div className={styles.Wrapper}>
-                <div className={styles.NavBar}>
+                {/*<div className={styles.NavBar}>
                     {publicRoutes.map(({path, label}, index) =>
                         <Link key={index} to={path}>{label}</Link>
                     )}
-                </div>
+                </div>*/}
                 <div>
                     {loading
                         ? <Skeleton variant="circular" width={25} height={25}/>
@@ -61,7 +67,7 @@ const Navbar = () => {
                             {error
                                 ? <LoginIcon style={{cursor: "pointer"}} onClick={() => navigate(SIGN_IN_ROUTE)}/>
                                 : <div style={{display: 'flex', gap: 14}}>
-                                    <AccountCircleIcon onClick={() => alert('In progress...')} style={{cursor: "pointer"}}/>
+                                    <AccountCircleIcon onClick={() => navigate(USER_SETTINGS_ROUTE)} style={{cursor: "pointer"}}/>
                                     <LogoutIcon onClick={logOut} style={{cursor: "pointer"}}/>
                                 </div>
                             }

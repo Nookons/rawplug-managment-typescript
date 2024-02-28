@@ -3,9 +3,10 @@ export const FAVORITE_ROUTE: string = '/favorite'
 export const READY_ITEM_ROUTE: string = '/data-grid/ready-item'
 export const PROFILE_ROUTE: string = '/user'
 
-// User sign Route
+// User Route
 export const SIGN_IN_ROUTE: string = '/sign-in'
 export const SIGN_UP_ROUTE: string = '/sign-up'
+export const USER_SETTINGS_ROUTE: string = '/user-settings'
 
 // Item Route
 export const ADD_ITEM_ROUTE: string = '/add-item'

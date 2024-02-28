@@ -2,7 +2,7 @@ import {
     ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PLAN_ROUTE, CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
     HOME_ROUTE, ITEM_ROUTE, ITEMS_GRID_ROUTE, PALLET_ROUTE,
     SIGN_IN_ROUTE,
-    SIGN_UP_ROUTE,
+    SIGN_UP_ROUTE, USER_SETTINGS_ROUTE,
 } from "./utils/consts";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/User/SignIn";
@@ -15,6 +15,7 @@ import Pallet from "./pages/Pallet/Pallet";
 import Item from "./pages/Item/Item";
 import ItemsGrid from "./pages/Item/ItemsGrid/ItemsGrid";
 import FindItem from "./pages/Item/FindItem/FindItem";
+import Settings from "./pages/User/settings/Settings";
 
 
 interface Route {
@@ -79,6 +80,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: FIND_ITEM_ROUTE,
         Component: FindItem,
+        label: 'FilmPrivate',
+    },
+    {
+        path: USER_SETTINGS_ROUTE,
+        Component: Settings,
         label: 'FilmPrivate',
     },
 ];

@@ -60,9 +60,9 @@ button {
 }
 
 a {
-  color: #383838 !important;
-  font-weight: 600 !important;
+  color: #0073c5 !important;
   text-decoration: none !important;
+  padding: 4px;
 }
 
 

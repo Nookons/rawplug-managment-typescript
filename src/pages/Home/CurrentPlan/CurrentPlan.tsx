@@ -11,7 +11,7 @@ import {Alert} from "@mui/material";
 const CurrentPlan = () => {
     const {items, loading, error} = useAppSelector(state => state.plans)
 
-    const lastUpdate = dayjs().format('YYYY-MM-DD [at] HH:mm')
+    const lastUpdate = dayjs().format('dddd, MMMM DD, YYYY [at] HH:mm  ')
 
 
     return (

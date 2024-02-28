@@ -1,7 +1,7 @@
 import React, {FC, ReactEventHandler, useCallback, useEffect, useState} from 'react';
 import styles from './User.module.css';
-import { Button, TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import {Button, Link, TextField} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
 import {HOME_ROUTE, SIGN_UP_ROUTE} from "../../utils/consts";
 import logo from '../../assets/logo.svg'
@@ -67,6 +67,9 @@ const SignIn: FC = () => {
     };
 
 
+    const onFaqClick = useCallback(() => {
+        alert('Hi there! To get started, you\'ll need a team leader to create an account for you. If you\'re interested in having a profile, just have a chat with your leader at work.')
+    }, [])
 
 
     useEffect(() => {
@@ -105,7 +108,7 @@ const SignIn: FC = () => {
                     placeholder="Please leave a password here"
                 />
                 <div style={{ color: 'red', marginTop: 14 }}>{error}</div>
-                <article style={{ marginTop: 14 }}>Don't have an account? <span onClick={() => navigate(SIGN_UP_ROUTE)} style={{ color: "#7272fd", textDecoration: 'underline dotted #7272fd', cursor: 'pointer' }}>Sign up</span></article>
+                <article style={{ marginTop: 14 }}>Don't have an account? <Link onClick={onFaqClick} style={{ color: "#7272fd", textDecoration: 'underline solid #7272fd', cursor: 'pointer' }}>🙋 FAQ</Link></article>
                 <br/>
                 <MyButton click={signInClick}>Sign In</MyButton>
             </div>
