@@ -13,7 +13,7 @@ export interface IItem {
     status: string,
     type: string,
     userUid: string,
-    batchNumber?: number | null
+    batchNumber?: number
     barrel?: IBarrelObject
 }
 

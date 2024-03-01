@@ -159,11 +159,11 @@ const Grid: FC<GridProps> = ({revertArray}) => {
                 initialState={{
                     pagination: {
                         paginationModel: {
-                            pageSize: 12,
+                            pageSize: 20,
                         },
                     },
                 }}
-                pageSizeOptions={[12]}
+                pageSizeOptions={[20]}
                 checkboxSelection={false}
                 disableRowSelectionOnClick
             />
