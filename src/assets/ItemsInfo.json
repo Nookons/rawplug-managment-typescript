@@ -3,196 +3,196 @@
     "myIndex": "R-NOZ-10-M〵Z",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
     "myIndex": "R-NOZ-10-M",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
     "myIndex": "R-NOZ-14-M〵Z",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
     "myIndex": "R-NOZ-14-G",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
     "myIndex": "R-NOZ-14-WMC",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
     "myIndex": "R-NOZ-14-M",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
     "myIndex": "R-NOZ-16-M〵Z",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
     "myIndex": "R-NOZ-16-M",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
     "myIndex": "KRP-R-NOZ-100",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
     "myIndex": "KRP-R-NOZ-100-Z",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
     "myIndex": "KRP-R-NOZ-140",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
     "myIndex": "KRP-R-NOZ-140-Z",
     "type": "Nozzle",
     "palletQta": 9000,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
     "myIndex": "OZ-U-255-164-295",
     "type": "Carton",
-    "palletQta": 400,
-    "jm": "sht",
+    "palletQta": 880,
+    "jm": "Pieces",
     "description": "Packaging for Chemical injection system 255X165X295MM, 5-layer cardboard"
   },
   {
     "myIndex": "OJ-CIS-380",
     "type": "Carton",
     "palletQta": 800,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Opakowanie do chemical injection system"
   },
   {
     "myIndex": "OZ-P-1150-750",
     "type": "Carton",
     "palletQta": 1900,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Przekladki paletowe 1150 mmx750 mm"
   },
   {
     "myIndex": "KRP-ST-CART-310-B",
     "type": "Cartridge",
     "palletQta": 936,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Blue cartridges for products"
   },
   {
     "myIndex": "KRP-ST-CART-310-G",
     "type": "Cartridge",
     "palletQta": 936,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Gray cartridges for products"
   },
   {
     "myIndex": "KRP-ST-CART-310",
     "type": "Cartridge",
     "palletQta": 936,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
     "myIndex": "KRP-ST-CART-175",
     "type": "Cartridge",
     "palletQta": 1320,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
     "myIndex": "KRP-ST-CART-175-B",
     "type": "Cartridge",
     "palletQta": 1320,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
     "myIndex": "KRP-ST-CART-175-G",
     "type": "Cartridge",
     "palletQta": 1320,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
     "myIndex": "KRN-ST-CART-600CAP",
     "type": "Cartridge",
     "palletQta": 472,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Kartusz SBS 600ml bialy nylon z nakretka"
   },
   {
     "myIndex": "KRN-ST-CART-600",
     "type": "Cartridge",
     "palletQta": 472,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Kartusz SBS 600ml bialy nylon"
   },
   {
     "myIndex": "KRP-ST-PISTON-B",
     "type": "Piston blue",
     "palletQta": 15400,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Blue pistons for products"
   },
   {
     "myIndex": "KRP-ST-PISTON",
     "type": "Piston",
     "palletQta": 13200,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Pistons for products"
   },
   {
     "myIndex": "KRP-ST-CAP-WHI",
     "type": "White",
     "palletQta": 29271,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Bottle corks"
   },
   {
     "myIndex": "Q-C-CART-ZKK-385ML",
     "type": "Cartridge",
     "palletQta": 1065,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
     "myIndex": "Q-C-CART-SBS-600ML",
     "type": "Cartridge",
     "palletQta": 1224,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
@@ -290,6 +290,11 @@
     "myIndex": "Q-CM-PSF-GREY",
     "type": "Barrel",
     "palletQta": 0,
+    "movement": {
+      "from": "PWT70",
+      "to": "PWT70"
+    },
+    "status": "Available",
     "jm": "kg",
     "description": "Meszanka chemiczna PSF Standardowy wersja 3"
   },
@@ -500,35 +505,35 @@
     "myIndex": "HP-RKERII300W",
     "type": "Label",
     "palletQta": 0,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Label to R-KER II 300ml"
   },
   {
     "myIndex": "HP-KEMPSF300ISO",
     "type": "Label",
     "palletQta": 0,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Label to R-KEM-ISO II 300ml "
   },
   {
     "myIndex": "HP-PROB-P-40",
     "type": "Label",
     "palletQta": 0,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "\uD83D\uDE30"
   },
   {
     "myIndex": "Q-ET-R-KEXII-600",
     "type": "Label",
     "palletQta": 0,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Etykieta foliowa peel-off R-KEX-II-600 150x190"
   },
   {
     "myIndex": "Q-ET-RKERII300",
     "type": "Label",
     "palletQta": 0,
-    "jm": "sht",
+    "jm": "Pieces",
     "description": "Etykieta foliowa peel-off R-KER-II-300 150x190"
   },
   {

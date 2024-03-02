@@ -25,16 +25,18 @@ const getSmileType = (type: string) => {
 
 
 interface SettingsItemProps {
-    currentItem: IItem | undefined;
+    currentItem: IItem;
 }
 
-const SettingsItem: FC<SettingsItemProps> = ({ currentItem }) => { // Destructuring props
+const SettingsItem: FC<SettingsItemProps> = ({ currentItem  }) => { // Destructuring props
     const renderMark = (label: string, value: any) => (
         <article className={styles.Mark}>
             {label}:
             <span> {renderSkeletonOrValue(value, { width: 250, height: 25, variant: 'rounded' })}</span>
         </article>
     );
+
+    console.log(currentItem);
 
     return (
         <div className={styles.Settings}>
@@ -46,19 +48,19 @@ const SettingsItem: FC<SettingsItemProps> = ({ currentItem }) => { // Destructur
             {renderMark('Add date', currentItem?.createdDate)}
             {renderMark('Last change date', currentItem?.lastChange)}
             {renderMark('Created', currentItem?.Created)}
-            {renderMark('Quantity', currentItem?.quantity + ' | ' + currentItem?.JM)}
+            {renderMark('Quantity', currentItem?.quantity + ' | ' + currentItem?.jm)}
             {renderMark('Status', currentItem?.status)}
             <article className={styles.Mark}>
                 Sender:
-                <span> {renderSkeletonOrValue(currentItem?.Sender, { width: 150, height: 20 })}</span>
+                <span> {renderSkeletonOrValue(currentItem?.fromDepartment, { width: 150, height: 20 })}</span>
                 <br />
-                <span>|| {getMovement(currentItem?.Sender)}</span>
+                <span>|| {getMovement(currentItem?.fromDepartment)}</span>
             </article>
             <article className={styles.Mark}>
                 To:
-                <span> {renderSkeletonOrValue(currentItem?.Recipient, { width: 150, height: 20 })}</span>
+                <span> {renderSkeletonOrValue(currentItem?.toDepartment, { width: 150, height: 20 })}</span>
                 <br />
-                <span>|| {getMovement(currentItem?.Recipient)}</span>
+                <span>|| {getMovement(currentItem?.toDepartment)}</span>
             </article>
         </div>
     );

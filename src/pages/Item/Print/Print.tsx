@@ -10,7 +10,13 @@ const ComponentToPrint = React.forwardRef((props: any, ref) => (
     <div  ref={ref}>
         <div className={styles.Main}>
             <h5>{props.alignment}</h5>
-            <article>Print date ( {props.currentDate} )</article>
+            <article style={{color: 'gray', fontSize: 12}}>Print date ( {props.currentDate} )</article>
+            {/*<p style={{color: 'gray', fontSize: 12}}>
+                This document introduces a unique system to track barrels (called a "batch number") in a specific area.
+                It uses a combination of numbers to make it easy and quick to find a particular barrel in the accounting records.
+                In addition, each barrel has its current weight recorded,
+                which is important for keeping track of inventory and checking the quality of the contents.
+            </p>*/}
 
             {/* Добавляем уникальный ключ */}
             <TableContainer key={props.alignment} component={Paper} draggable={true} variant={"elevation"}>
