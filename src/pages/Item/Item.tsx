@@ -77,7 +77,7 @@ const Item = () => {
                                 padding: 8,
                                 borderRadius: 4
                             }}>
-                                <article>1: {target?.barrel.first} {target?.JM}</article>
+                                <article>1: {target.barrel?.first} {target?.jm}</article>
                             </div>
                             <div style={{
                                 display: "flex",
@@ -88,7 +88,7 @@ const Item = () => {
                                 padding: 8,
                                 borderRadius: 4
                             }}>
-                                <article>2: {target?.barrel.secondary} {target?.JM}</article>
+                                <article>2: {target.barrel?.secondary} {target?.jm}</article>
                             </div>
                             <div style={{
                                 display: "flex",
@@ -99,7 +99,7 @@ const Item = () => {
                                 padding: 8,
                                 borderRadius: 4
                             }}>
-                                <article>3: {target?.barrel.third} {target?.JM}</article>
+                                <article>3: {target.barrel?.third} {target?.jm}</article>
                             </div>
                             <div style={{
                                 display: "flex",
@@ -110,7 +110,7 @@ const Item = () => {
                                 padding: 8,
                                 borderRadius: 4
                             }}>
-                                <article>4: {target?.barrel.four} {target?.JM}</article>
+                                <article>4: {target.barrel?.four} {target?.jm}</article>
                             </div>
                         </div>
                         : null

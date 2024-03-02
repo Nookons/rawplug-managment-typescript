@@ -5,11 +5,11 @@ import data from '../../../assets/ItemsInfo.json'
 import {ICardItem, IItem} from "../../../types/Item";
 
 interface InputBlockProps {
-    handleInputChange: (type: string, value: any) => void;
+    onChangeDataEvent: (type: string, value: any) => void;
     formData: any;
 }
 
-const InputBlock: FC<InputBlockProps> = ({handleInputChange, formData}) => {
+const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
 
     const departmentsIndex = [
         { title: 'PWT10' },
@@ -32,7 +32,7 @@ const InputBlock: FC<InputBlockProps> = ({handleInputChange, formData}) => {
                     id="free-solo-2-demo"
                     disableClearable
                     value={formData.index}
-                    onChange={(event, value) => handleInputChange('index', value)}
+                    onChange={(event, value) => onChangeDataEvent('index', value)}
                     options={data.map((option: ICardItem) => option.myIndex)}
                     renderInput={(params) => (
                         <TextField
@@ -51,8 +51,8 @@ const InputBlock: FC<InputBlockProps> = ({handleInputChange, formData}) => {
                 freeSolo
                 id="free-solo-2-demo"
                 disableClearable
-                value={formData.FromDepartment}
-                onChange={(event, value) => handleInputChange('FromDepartment', value)}
+                value={formData.fromDepartment}
+                onChange={(event, value) => onChangeDataEvent('FromDepartment', value)}
                 options={departmentsIndex.map((option) => option.title)}
                 renderInput={(params) => (
                     <TextField
@@ -69,8 +69,8 @@ const InputBlock: FC<InputBlockProps> = ({handleInputChange, formData}) => {
                 freeSolo
                 id="free-solo-2-demo"
                 disableClearable
-                value={formData.ToDepartment}
-                onChange={(event, value) => handleInputChange('ToDepartment', value)}
+                value={formData.toDepartment}
+                onChange={(event, value) => onChangeDataEvent('ToDepartment', value)}
                 options={departmentsIndex.map((option) => option.title)}
                 renderInput={(params) => (
                     <TextField
@@ -88,7 +88,7 @@ const InputBlock: FC<InputBlockProps> = ({handleInputChange, formData}) => {
                 id="free-solo-2-demo"
                 disableClearable
                 value={formData.status}
-                onChange={(event, value) => handleInputChange('status', value)}
+                onChange={(event, value) => onChangeDataEvent('status', value)}
                 options={statusIndex.map((option) => option.title)}
                 renderInput={(params) => (
                     <TextField
@@ -107,7 +107,7 @@ const InputBlock: FC<InputBlockProps> = ({handleInputChange, formData}) => {
                     id="outlined-adornment-weight"
                     type={'Number'}
                     value={formData.quantity}
-                    onChange={(event) => handleInputChange('quantity', Number(event.target.value))}
+                    onChange={(event) => onChangeDataEvent('quantity', Number(event.target.value))}
                     endAdornment={<InputAdornment position="end">{formData.JM}</InputAdornment>}
                     aria-describedby="outlined-weight-helper-text"
                     inputProps={{

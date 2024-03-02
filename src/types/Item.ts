@@ -16,6 +16,24 @@ export interface IItem {
     batchNumber?: number
     barrel?: IBarrelObject
 }
+interface IBarrelTarget {
+    first: 0,
+    secondary: 0,
+    third: 0,
+    four: 0
+}
+export interface IAddFormData {
+    index: string;
+    type: string;
+    description: string;
+    fromDepartment: string;
+    jm: string;
+    toDepartment: string;
+    quantity: number;
+    status: string;
+    batchNumber: number;
+    barrel: IBarrelTarget
+}
 
 interface IBarrelObject{
     first: number;
@@ -32,12 +50,18 @@ export interface IStatsItem {
 }
 
 
-export interface ICardItem {
+export interface IItemTemplate {
     myIndex: string,
     type: string,
     palletQta: number,
     jm: string,
     imageUrl?: string,
     description: string,
+    movement?: IMovementTemplate
+    status?: string;
+}
 
+interface IMovementTemplate {
+    from: string;
+    to: string;
 }

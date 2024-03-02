@@ -67,13 +67,13 @@ const Grid: FC<GridProps> = ({revertArray}) => {
             }
         },
         {
-            field: 'JM',
+            field: 'jm',
             headerName: 'JM',
             type: 'string',
             width: 100,
             editable: false,
             renderCell: (params: GridValueGetterParams) => {
-                return <p>{params.row.JM}</p>;
+                return <p>{params.row.jm}</p>;
             }
         },
         {
@@ -118,25 +118,25 @@ const Grid: FC<GridProps> = ({revertArray}) => {
             }
         },
         {
-            field: 'Sender',
+            field: 'fromDepartment',
             headerName: 'Sender',
             type: 'string',
             width: 100,
             editable: false,
             renderCell: (params) => {
-                const tempStatus = params.row.Sender
+                const tempStatus = params.row.fromDepartment
 
                 return <p>{tempStatus} ≫</p>
             }
         },
         {
-            field: 'Recipient',
+            field: 'toDepartment\n',
             headerName: 'Recipient',
             type: 'string',
             width: 100,
             editable: false,
             renderCell: (params: GridValueGetterParams) => {
-                return <p>{params.row.Recipient}</p>;
+                return <p>{params.row.toDepartment}</p>;
             }
         },
         {
