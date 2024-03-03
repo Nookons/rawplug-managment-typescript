@@ -11,22 +11,19 @@ export const addItemValidation = ({items, formData}: addItemValidationProps) => 
         const isHaveBatch = items.findIndex(element => element.batchNumber === formData.batchNumber)
 
         if (isHaveBatch >= 0) {
-            const title = 'Hey there! Could you kindly double-check if the batch number has been entered correctly? It seems like it might already exist in the system.'
-            return [true, title]
+            throw new Error('batch')
         }
 
         if (formData.barrel.first > 350 || formData.barrel.secondary > 350 || formData.barrel.third > 350 || formData.barrel.four > 350) {
-            const title = 'Hey there! your barrel has a lot of weight'
-            return [true, title]
+            throw new Error('barrelWeight')
         }
 
     }
 
     if (formData.quantity < 10) {
-        const title = 'Hey there! you can not add items with ' + formData.quantity + ' ' + formData.jm
-        return [true, title]
+        throw new Error('quantity')
     }
 
     const title = 'Hey there! ' + formData.index + ' added ' + formData.quantity + ' ' + formData.jm;
-    return [false, title]
+    return title
 }

@@ -62,73 +62,26 @@ const Item = () => {
 
 
     return (
-        <div className={rootClasses.join(' ')}>
-            <div className={styles.Wrapper}>
-                <SettingsItem currentItem={target}  />
-                {
-                    isBarrel ?
-                        <div style={{display: "grid", gridTemplateColumns: '1fr 1fr', gap: 14, width: "100%"}}>
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                border: '1px solid gray',
-                                alignItems: "center",
-                                gap: 8,
-                                padding: 8,
-                                borderRadius: 4
-                            }}>
-                                <article>1: {target.barrel?.first} {target?.jm}</article>
-                            </div>
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                border: '1px solid gray',
-                                alignItems: "center",
-                                gap: 8,
-                                padding: 8,
-                                borderRadius: 4
-                            }}>
-                                <article>2: {target.barrel?.secondary} {target?.jm}</article>
-                            </div>
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                border: '1px solid gray',
-                                alignItems: "center",
-                                gap: 8,
-                                padding: 8,
-                                borderRadius: 4
-                            }}>
-                                <article>3: {target.barrel?.third} {target?.jm}</article>
-                            </div>
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                border: '1px solid gray',
-                                alignItems: "center",
-                                gap: 8,
-                                padding: 8,
-                                borderRadius: 4
-                            }}>
-                                <article>4: {target.barrel?.four} {target?.jm}</article>
-                            </div>
+        <>
+            <div className={rootClasses.join(' ')}>
+                <div className={styles.Wrapper}>
+                    <SettingsItem isBarrel={isBarrel} currentItem={target}  />
+
+                    <div className={styles.Actions}>
+                        <div>
+                            {target &&
+                                <Barcode width={3} height={50} fontSize={16} value={target.PalletReceipt}/>}
                         </div>
-                        : null
-                }
-                <div className={styles.Actions}>
-                    <div>
-                        {target &&
-                            <Barcode width={3} height={50} fontSize={16} value={target.PalletReceipt}/>}
-                    </div>
-                    <div>
-                        <MyButton><AssignmentTurnedInIcon/></MyButton>
-                        <MyButton><PrintIcon/></MyButton>
-                        <MyButton><EditIcon/></MyButton>
-                        <MyButton click={() => onDeleteItemClick(id)}>{isDeleting ? <MyButtonLoader/> :<DeleteIcon/>}</MyButton>
+                        <div>
+                            <MyButton><AssignmentTurnedInIcon/></MyButton>
+                            <MyButton><PrintIcon/></MyButton>
+                            <MyButton><EditIcon/></MyButton>
+                            <MyButton click={() => onDeleteItemClick(id)}>{isDeleting ? <MyButtonLoader/> :<DeleteIcon/>}</MyButton>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

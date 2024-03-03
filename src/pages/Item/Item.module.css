@@ -40,6 +40,17 @@
     flex-direction: column;
     gap: 14px;
 }
+.Settings > div{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.Settings > div > article{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 14px;
+}
 .Actions svg{
     max-width: 100%;
 }
@@ -79,8 +90,8 @@
     .Wrapper {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
+        justify-content: flex-start;
+        align-items: center;
         overflow: hidden;
     }
 }
