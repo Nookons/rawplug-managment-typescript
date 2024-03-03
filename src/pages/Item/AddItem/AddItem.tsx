@@ -205,7 +205,7 @@ export default function IntegrationNotistack() {
                 vertical: 'top',
                 horizontal: 'right',
             }}
-            autoHideDuration={2500}
+            autoHideDuration={5000}
             maxSnack={3}
         >
             <AddItem/>

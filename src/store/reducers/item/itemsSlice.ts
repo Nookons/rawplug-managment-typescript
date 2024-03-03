@@ -46,6 +46,25 @@ const itemsSlice = createSlice({
             state.items.push(action.payload);
             state.error = undefined;
         },
+        openItem(state, action: PayloadAction<number>) {
+            const itemIdToOpen = action.payload;
+            const itemToOpenIndex = state.items.findIndex(item => item.id === itemIdToOpen);
+
+            if (itemToOpenIndex !== -1) {
+                const updatedItem = { ...state.items[itemToOpenIndex] };
+                updatedItem.status = updatedItem.status === 'Available' ? "Hold" : "Available";
+                updatedItem.index = updatedItem.status === 'Available' ? updatedItem.index.replace('CMB', 'CM') : updatedItem.index.replace('CM', 'CMB');
+
+                const updatedItems = [...state.items];
+                updatedItems[itemToOpenIndex] = updatedItem;
+
+                return {
+                    ...state,
+                    items: updatedItems
+                };
+            }
+            return state;
+        },
         removeItem(state, action: PayloadAction<number>) {
             console.log(action.payload);
             state.items = state.items.filter(item => item.id !== Number(action.payload));
@@ -69,5 +88,5 @@ const itemsSlice = createSlice({
     }
 })
 
-export const {addItem, removeItem} = itemsSlice.actions;
+export const {addItem, openItem, removeItem} = itemsSlice.actions;
 export default itemsSlice.reducer;
