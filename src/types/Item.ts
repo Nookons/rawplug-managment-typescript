@@ -1,9 +1,9 @@
 export interface IItem {
     Created: string,
-    JM: string,
+    jm: string,
     PalletReceipt: string,
-    Recipient: string,
-    Sender: string,
+    toDepartment: string,
+    fromDepartment: string,
     createdDate: string,
     description: string,
     id: number,

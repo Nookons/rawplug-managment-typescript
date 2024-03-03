@@ -9,9 +9,8 @@ import {Alert, Backdrop, Button, CircularProgress, Snackbar} from "@mui/material
 import {SnackbarProvider, VariantType, useSnackbar} from 'notistack';
 import {addItemValidation} from "../../../utils/Items/AddItemValidation";
 import {IAddFormData} from "../../../types/Item";
-import {onAddItem} from "../../../utils/AddItem";
+import {handlingError, onAddItem} from "../../../utils/AddItem";
 import {addItem} from "../../../store/reducers/item/itemsSlice";
-
 
 
 const AddItem = () => {
@@ -59,28 +58,32 @@ const AddItem = () => {
         const largestBatch = Math.max(...newBatchArray);
         setFormData((prevState) => ({...prevState, batchNumber: largestBatch + 1}))
     }, [formData.index, items]);
-;
+    ;
 
 
     const onAddItemClick = async () => {
         setIsBatchError(false)
         setIsAdding(true)
 
-        const validation = await addItemValidation({items, formData});
 
-        setIsBatchError(validation[0])
+        try {
+            const validation    = await addItemValidation({items, formData});
+            const response      = await onAddItem(formData, user)
 
-        if (!validation[0]) {
-            const response = onAddItem(formData, user)
-            dispatch(addItem(response[1]))
-            handleClickVariant( 'success', validation[1])
-        } else {
-            handleClickVariant( 'error', validation[1])
+            if (response[0]) {
+                handleClickVariant('success', validation);
+                dispatch(addItem(response[1]))
+
+                setFormData(prevState => ({...prevState, barrel: {...prevState.barrel, first: 0, secondary: 0, third: 0, four:0}}))
+            }
+        } catch (error) {
+            const errorMessage = await handlingError({ error });
+            handleClickVariant('error', errorMessage)
+        } finally {
+            setTimeout(() => {
+                setIsAdding(false)
+            }, 250)
         }
-
-        setTimeout(() => {
-            setIsAdding(false)
-        }, 250)
     };
 
 
@@ -197,7 +200,14 @@ const AddItem = () => {
 
 export default function IntegrationNotistack() {
     return (
-        <SnackbarProvider maxSnack={3}>
+        <SnackbarProvider
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            autoHideDuration={2500}
+            maxSnack={3}
+        >
             <AddItem/>
         </SnackbarProvider>
     );

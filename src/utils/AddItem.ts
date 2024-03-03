@@ -7,6 +7,22 @@ import error = Simulate.error;
 import {IStatsItem} from "../types/Item"; // You need to import these utility functions
 
 
+export function handlingError ({error}: any ) {
+    const message = error.message;
+
+    switch (message) {
+        case "quantity":
+            return "Hey there! you can not add items with less than 10 quantity";
+        case "barrelWeight":
+            return "Hey there! your barrel has a lot of weight";
+        case "batch":
+            return "Hey there! Could you kindly double-check if the batch number has been entered correctly? It seems like it might already exist in the system.";
+        default:
+            return 'Unknown error, please contact developers'
+    }
+}
+
+
 export function onAddItem(data: IFormData, user: any) {
     try {
         if (!user) {
