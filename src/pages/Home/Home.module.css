@@ -4,7 +4,7 @@
     grid-column-gap: 8px;
     grid-row-gap: 8px;
     padding: 14px;
-    background: linear-gradient(rgb(43, 47, 60), rgb(80, 80, 85), rgb(118, 115, 112), rgb(159, 152, 139), rgb(201, 191, 168));
+    background: linear-gradient(rgb(38, 118, 104), rgb(98, 140, 114), rgb(146, 162, 124), rgb(191, 184, 133), rgb(237, 206, 143));
 }
 .Main > div{
     //box-shadow: inset 5px 5px 5px rgba(0,0,0, 0.5);

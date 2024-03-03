@@ -15,6 +15,9 @@ import MyButtonLoader from "../../components/MyButtonLoader/MyButtonLoader";
 import {useNavigate} from "react-router-dom";
 import {HOME_ROUTE, ITEMS_GRID_ROUTE} from "../../utils/consts";
 import {removeItem} from "../../store/reducers/item/itemsSlice";
+import {Alert, Backdrop, Button, CircularProgress, Tooltip} from "@mui/material";
+import {SnackbarProvider, VariantType, useSnackbar, enqueueSnackbar} from 'notistack';
+
 
 const Item = () => {
     const navigate = useNavigate();
@@ -25,64 +28,114 @@ const Item = () => {
 
     const {items, error, loading} = useAppSelector(state => state.items)
 
-    const [target, setTarget] = useState<IItem>();
-
+    const [currentItem, setCurrentItem] = useState<IItem>();
     const [isBarrel, setIsBarrel] = useState<boolean>(false);
 
-    const rootClasses = [styles.Main]
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const [isDeleting, setIsDeleting] = useState<boolean>(false);
+    const handleClickVariant = (variant: VariantType, title: string) => {
+        enqueueSnackbar(title, {variant});
+    };
 
     useEffect(() => {
-        const tempItem = items.find(item => item.id === Number(id))
+        const tempItem = items.find(el => el.id === Number(id));
 
-        if (tempItem?.type.toLowerCase() === 'barrel') {
-            setIsBarrel(true);
+        if (tempItem && tempItem.type.toLowerCase() === "barrel") {
+            setIsBarrel(true)
         }
+        setCurrentItem(tempItem);
+    }, [items, loading]);
 
-        setTarget(tempItem);
-    }, [target, id, loading]);
 
-    const onDeleteItemClick = async (id: number) => {
-        setIsDeleting(true)
+    const onDeleteItemClick = async (id: number | undefined) => {
+        setIsLoading(true)
+        const answer = prompt('Pls write ' + currentItem?.index + ' for delete')
+
+
         try {
-            const response = await onDeleteItem(id)
-            if (response) {
-                setTimeout(() => {
-                    dispatch(removeItem(id))
-                    setIsDeleting(false);
-                    navigate(ITEMS_GRID_ROUTE)
-                }, 500)
+            if (id && answer === currentItem?.index) {
+                const response = await onDeleteItem(id)
+                handleClickVariant('success', 'Item deleted')
+                dispatch(removeItem(id))
+                if (response) {
+                    setTimeout(() => {
+                        navigate(ITEMS_GRID_ROUTE)
+                    }, 250)
+                }
+            } else {
+                handleClickVariant('error', 'Not correctly input for delete, item was not delete')
             }
         } catch (e) {
             console.log(e);
-            setIsDeleting(false);
+        } finally {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 250)
         }
     }
 
 
     return (
-        <>
-            <div className={rootClasses.join(' ')}>
-                <div className={styles.Wrapper}>
-                    <SettingsItem isBarrel={isBarrel} currentItem={target}  />
-
-                    <div className={styles.Actions}>
-                        <div>
-                            {target &&
-                                <Barcode width={3} height={50} fontSize={16} value={target.PalletReceipt}/>}
+        <div style={{backgroundColor: currentItem?.status === "Available"
+                ? 'rgb(38, 118, 104)'
+                : 'rgb(207,87,66)'
+        }} className={styles.Main}>
+            <Backdrop style={{zIndex: 99}} open={isLoading}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
+            {!loading
+                ? <> {!error
+                    ?
+                    <div className={styles.Wrapper}>
+                        <div className={styles.div1}>
+                            <SettingsItem handleClickVariant={handleClickVariant} currentItem={currentItem} isBarrel={false}/>
                         </div>
-                        <div>
+                        {isBarrel
+                            ?
+                            <div className={styles.div2}>
+                                <Tooltip title="Barrel 1" arrow followCursor={true} leaveDelay={250} enterDelay={250}>
+                                    <h4>🛢️ {currentItem?.barrel?.first} kg</h4>
+                                </Tooltip>
+                                <Tooltip title="Barrel 2" arrow followCursor={true} leaveDelay={250} enterDelay={250}>
+                                    <h4>🛢️ {currentItem?.barrel?.secondary} kg</h4>
+                                </Tooltip>
+                                <Tooltip title="Barrel 3" arrow followCursor={true} leaveDelay={250} enterDelay={250}>
+                                    <h4>🛢️ {currentItem?.barrel?.third} kg</h4>
+                                </Tooltip>
+                                <Tooltip title="Barrel 4" arrow followCursor={true} leaveDelay={250} enterDelay={250}>
+                                    <h4>🛢️ {currentItem?.barrel?.four} kg</h4>
+                                </Tooltip>
+                            </div>
+                            : null
+                        }
+                        <div className={isBarrel ? styles.div3 : styles.div2}>
                             <MyButton><AssignmentTurnedInIcon/></MyButton>
                             <MyButton><PrintIcon/></MyButton>
                             <MyButton><EditIcon/></MyButton>
-                            <MyButton click={() => onDeleteItemClick(id)}>{isDeleting ? <MyButtonLoader/> :<DeleteIcon/>}</MyButton>
+                            <MyButton click={() => onDeleteItemClick(currentItem?.id)}><DeleteIcon/></MyButton>
                         </div>
                     </div>
-                </div>
-            </div>
-        </>
+                    : <Alert severity="error">{error}</Alert>
+                }</>
+                :
+                <Backdrop open={true}>
+                    <CircularProgress color="inherit"/>
+                </Backdrop>
+            }
+        </div>
     );
 };
 
-export default Item;
+export default function IntegrationNotistack() {
+    return (
+        <SnackbarProvider
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            autoHideDuration={5000}
+            maxSnack={3}>
+            <Item/>
+        </SnackbarProvider>
+    );
+}
