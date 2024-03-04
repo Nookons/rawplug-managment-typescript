@@ -29,12 +29,11 @@ import BlurCircularIcon from '@mui/icons-material/BlurCircular';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import {useAppDispatch} from "../../hooks/storeHooks";
 import {openItem} from "../../store/reducers/item/itemsSlice";
+import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
+
 
 import SyncIcon from '@mui/icons-material/Sync';
-
-const renderSkeletonOrValue = (value: any, skeletonProps: any) => (
-    value ? value : <Skeleton {...skeletonProps} />
-);
+import {VariantType} from "notistack";
 
 const getSmileType = (type: string | undefined) => {
     switch (type?.toLowerCase()) {
@@ -55,7 +54,7 @@ const getSmileType = (type: string | undefined) => {
 interface SettingsItemProps {
     currentItem: IItem | undefined;
     isBarrel: boolean;
-    handleClickVariant: (variant: string, title: string) => void;
+    handleClickVariant: (variant: VariantType, title: string) => void;
 }
 
 const SettingsItem: FC<SettingsItemProps> = ({currentItem, isBarrel, handleClickVariant}) => {
@@ -131,7 +130,7 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, isBarrel, handleClick
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell><ArrowCircleLeftIcon/> </TableCell>
+                            <TableCell><SystemUpdateAltIcon/> </TableCell>
                             <TableCell>
                                 <article>{currentItem?.toDepartment} | {getMovement(currentItem?.toDepartment)}</article>
                             </TableCell>

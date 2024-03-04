@@ -35,6 +35,8 @@ const ItemsGrid = () => {
 
     const [alignment, setAlignment] = useState('');
 
+    const [allQuantity, setAllQuantity] = useState<number>(0);
+
     useEffect(() => {
         if (items && items.length > 0) {
             const tempArray = [...items].reverse();
@@ -42,7 +44,34 @@ const ItemsGrid = () => {
         }
     }, [items, loading]);
 
-    const contentToPrint = useRef(null);
+    useEffect(() => {
+        let CM: string = '';
+        let CMB: string = '';
+
+        setAllQuantity(0)
+
+        switch (alignment) {
+            case 'EPOXID-B':
+                CM = 'Q-CM-EPOXID-B'
+                CMB = 'Q-CMB-EPOXID-B'
+                break
+            case 'EPOXID-A':
+                CM = 'Q-CM-EPOXID-A'
+                CMB = 'Q-CMB-EPOXID-A'
+                break
+            case 'PSF-STAND':
+                CM = 'Q-CM-PSF-STAND-V3'
+                CMB = 'Q-CMB-PSF-STAND-V3'
+                break
+        }
+        revertArray.map((item: IItem) => {
+            if (item.index === CM || item.index === CMB) {
+                setAllQuantity(prevQuantity => prevQuantity + item.quantity);
+            }
+        })
+    }, [alignment]);
+
+    const contentToPrint = useRef<HTMLDivElement>(null);
 
     const handlePrint = useReactToPrint({
         content: () => contentToPrint.current,
@@ -128,7 +157,7 @@ const ItemsGrid = () => {
             </div>
 
             {isPrintSelect
-                ? <ComponentToPrint ref={contentToPrint} currentDate={currentDate} items={revertArray} alignment={alignment} isShowBarrelWeight={isShowBarrelWeight} />
+                ? <ComponentToPrint ref={contentToPrint} allQuantity={allQuantity} currentDate={currentDate} items={revertArray} alignment={alignment} isShowBarrelWeight={isShowBarrelWeight} />
                 : null
             }
         </div>
