@@ -5,6 +5,8 @@ import CallMissedOutgoingIcon from "@mui/icons-material/CallMissedOutgoing";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {IFormData} from "./AddItem";
 
+import AddReactionIcon from '@mui/icons-material/AddReaction';
+
 interface BarrelProps {
     onChangeDataEvent: (type: string, value: any) => void;
     formData: IFormData;
@@ -81,6 +83,15 @@ const Barrel: FC<BarrelProps> = ({onChangeDataEvent, formData, isBatchError}) =>
                     startAdornment={<InputAdornment position="start">🛢️ Batch:</InputAdornment>}
                     value={formData.batchNumber}
                     defaultValue={formData.batchNumber + 1}
+                />
+                <OutlinedInput
+                    fullWidth={true}
+                    multiline={true}
+                    placeholder="Remarks"
+                    type={'String'}
+                    onChange={(event) => onChangeDataEvent('remarks', event.target.value)}
+                    endAdornment={<InputAdornment position="start"><AddReactionIcon /></InputAdornment>}
+                    value={formData.remarks}
                 />
             </div>
         </>

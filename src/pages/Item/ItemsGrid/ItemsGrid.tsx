@@ -8,7 +8,7 @@ import { useReactToPrint } from 'react-to-print';
 import Print from "../Print/Print";
 
 import {
-    Button, FormControlLabel, FormGroup,
+    Button, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup,
     Skeleton, Switch,
     Table,
     TableBody,
@@ -83,10 +83,10 @@ const ItemsGrid = () => {
 
 
     const handleChange = (
-        event: React.MouseEvent<HTMLElement>,
-        newAlignment: string,
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
-        setAlignment(newAlignment);
+        const tempString = event.target.value;
+        setAlignment(tempString)
     };
 
     return (
@@ -109,26 +109,65 @@ const ItemsGrid = () => {
                 isPrintSelect
                     ?
                     <div style={{margin: "14px 0", display: "flex", flexWrap: "wrap", flexDirection: "column", alignItems: "center", gap: 14}}>
-                        <ToggleButtonGroup
-                            color="primary"
-                            orientation="horizontal"
-                            size="small"
-                            value={alignment}
-                            exclusive
-                            onChange={handleChange}
-                            aria-label="Platform"
-                        >
-                            <ToggleButton value="EPOXID-A">Epoxid A</ToggleButton>
-                            <ToggleButton value="EPOXID-B">Epoxid B</ToggleButton>
-                            <ToggleButton value="PSF-STAND">PSF-STAND</ToggleButton>
-                           {/* <ToggleButton value="PSF-ZIMA">PSF-ZIMA</ToggleButton>
-                            <ToggleButton value="PSF-LATO">PSF-LATO</ToggleButton>
-                            <ToggleButton value="PSF-STONE">PSF-STONE</ToggleButton>
-                            <ToggleButton value="PSF-GREY">PSF-GREY</ToggleButton>*/}
-                            {/*<ToggleButton value="HYBRYDA-STANDART">HYBRYDA-STANDART</ToggleButton>*/}
-                            {/*<ToggleButton value="HYBRYDA-LATO">HYBRYDA-LATO</ToggleButton>
-                            <ToggleButton value="HYBRYDA-ZIMA">HYBRYDA-ZIMA</ToggleButton>*/}
-                        </ToggleButtonGroup>
+
+                            <RadioGroup
+                                row={true}
+                                value={alignment}
+                                onChange={(event) => handleChange(event)}
+                                name="radio-buttons-group"
+                            >
+                                <FormControlLabel
+                                    value="EPOXID-A"
+                                    control={<Radio/>}
+                                    label="Epoxid-A"
+                                />
+                                <FormControlLabel
+                                    value="EPOXID-B"
+                                    control={<Radio/>}
+                                    label="Epoxid-B"
+                                />
+                                <FormControlLabel
+                                    value="PSF-STAND"
+                                    control={<Radio/>}
+                                    label="PSF-STAND"
+                                />
+                                <FormControlLabel
+                                    value="PSF-LATO"
+                                    control={<Radio/>}
+                                    label="PSF-LATO"
+                                />
+                                <FormControlLabel
+                                    value="PSF-ZIMA"
+                                    control={<Radio/>}
+                                    label="PSF-ZIMA"
+                                />
+                                <FormControlLabel
+                                    value="PSF-GREY"
+                                    control={<Radio/>}
+                                    label="GREY"
+                                />
+                                <FormControlLabel
+                                    value="PSF-STONE"
+                                    control={<Radio/>}
+                                    label="STONE"
+                                />
+                                <FormControlLabel
+                                    value="HYBRYDA-STANDART"
+                                    control={<Radio/>}
+                                    label="HYBRYDA"
+                                />
+                                <FormControlLabel
+                                    value="HYBRYDA-LATO"
+                                    control={<Radio/>}
+                                    label="HYBRYDA-LATO"
+                                />
+                                <FormControlLabel
+                                    color="success"
+                                    value="HYBRYDA-ZIMA"
+                                    control={<Radio/>}
+                                    label="HYBRYDA-ZIMA"
+                                />
+                            </RadioGroup>
 
                         <MyButton click={handlePrint}>
                             <PrintIcon />

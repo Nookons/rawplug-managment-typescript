@@ -5,18 +5,22 @@ import MyButton from "../../../components/MyButton/MyButton";
 import data from '../../../assets/ItemsInfo.json'
 import InputBlock from "./InputBlock";
 import Barrel from "./Barrel";
-import {Alert, Backdrop, Button, CircularProgress, Snackbar} from "@mui/material";
+import {Alert, Backdrop, Button, CircularProgress, IconButton, Snackbar} from "@mui/material";
 import {SnackbarProvider, VariantType, useSnackbar} from 'notistack';
 import {addItemValidation} from "../../../utils/Items/AddItemValidation";
 import {IAddFormData} from "../../../types/Item";
 import {handlingError, onAddItem} from "../../../utils/AddItem";
 import {addItem} from "../../../store/reducers/item/itemsSlice";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import {useNavigate} from "react-router-dom";
 
 
 const AddItem = () => {
     const {enqueueSnackbar} = useSnackbar();
     const user = useAppSelector(state => state.user.user)
     const {items, loading, error} = useAppSelector(state => state.items)
+
+    const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
 
@@ -42,6 +46,7 @@ const AddItem = () => {
         quantity: 0,
         status: '',
         batchNumber: 0,
+        remarks: '',
         barrel: {
             first: 0,
             secondary: 0,
@@ -144,17 +149,17 @@ const AddItem = () => {
 
     useEffect(() => {
         switch (true) {
-            case formData.barrel.first > 350:
-                handleClickVariant('warning', "You barrel have more than 350 kg, you can't add this barrel ")
+            case formData.barrel.first > 375:
+                handleClickVariant('warning', "You barrel have more than 375 kg, you can't add this barrel ")
                 break;
-            case formData.barrel.secondary > 350:
-                handleClickVariant('warning', "You barrel have more than 350 kg, you can't add this barrel ")
+            case formData.barrel.secondary > 375:
+                handleClickVariant('warning', "You barrel have more than 375 kg, you can't add this barrel ")
                 break;
-            case formData.barrel.third > 350:
-                handleClickVariant('warning', "You barrel have more than 350 kg, you can't add this barrel ")
+            case formData.barrel.third > 375:
+                handleClickVariant('warning', "You barrel have more than 375 kg, you can't add this barrel ")
                 break;
-            case formData.barrel.four > 350:
-                handleClickVariant('warning', "You barrel have more than 350 kg, you can't add this barrel ")
+            case formData.barrel.four > 375:
+                handleClickVariant('warning', "You barrel have more than 375 kg, you can't add this barrel ")
                 break;
         }
         setFormData(prevState => ({
@@ -163,12 +168,23 @@ const AddItem = () => {
         }));
     }, [formData.barrel.first, formData.barrel.secondary, formData.barrel.third, formData.barrel.four]);
 
+    const onFaqClick = (url: string) => {
+        window.location.href = url;
+    }
 
     return (
         <div className={styles.Main}>
             <Backdrop open={isAdding}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
+            <>
+                <div style={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                    <article>FAQ</article>
+                    <IconButton aria-label="add">
+                            <HelpOutlineIcon color={"info"} onClick={() => onFaqClick('https://telegra.ph/Instrukcje-dotycz%C4%85ce-dodawania-towar%C3%B3w-do-systemu-Rawlplug-Management-03-08')}/>
+                    </IconButton>
+                </div>
+            </>
             <div className={styles.Wrapper}>
                 <InputBlock onChangeDataEvent={onChangeDataEvent} formData={formData}/>
                 {

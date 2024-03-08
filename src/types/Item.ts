@@ -1,20 +1,21 @@
 export interface IItem {
-    Created: string,
-    jm: string,
-    PalletReceipt: string,
-    toDepartment: string,
-    fromDepartment: string,
-    createdDate: string,
-    description: string,
-    id: number,
-    index: string,
-    lastChange?: string,
-    quantity: number,
-    status: string,
-    type: string,
-    userUid: string,
-    batchNumber?: number
-    barrel?: IBarrelObject
+    Created: string;
+    jm: string;
+    PalletReceipt: string;
+    toDepartment: string;
+    fromDepartment: string;
+    createdDate: string;
+    description: string;
+    id: number;
+    index: string;
+    lastChange?: string;
+    quantity: number;
+    status: string;
+    type: string;
+    userUid: string;
+    batchNumber?: number;
+    barrel?: IBarrelObject;
+    remarks: string;
 }
 interface IBarrelTarget {
     first: 0,
@@ -33,6 +34,7 @@ export interface IAddFormData {
     status: string;
     batchNumber: number;
     barrel: IBarrelTarget
+    remarks: string;
 }
 
 interface IBarrelObject{

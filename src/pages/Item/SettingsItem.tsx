@@ -18,7 +18,6 @@ import {getMovement} from "../../utils/GetMovement";
 import Barcode from "react-barcode";
 
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -26,10 +25,10 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import OilBarrelIcon from '@mui/icons-material/OilBarrel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BlurCircularIcon from '@mui/icons-material/BlurCircular';
-import AddTaskIcon from '@mui/icons-material/AddTask';
 import {useAppDispatch} from "../../hooks/storeHooks";
 import {openItem} from "../../store/reducers/item/itemsSlice";
 import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 
 import SyncIcon from '@mui/icons-material/Sync';
@@ -90,7 +89,7 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, isBarrel, handleClick
                     <TableBody>
                         <TableRow>
                             <TableCell><h2>{getSmileType(currentItem?.type)}</h2></TableCell>
-                            <TableCell><h4> {currentItem?.index}</h4> <p>{currentItem?.description}</p></TableCell>
+                            <TableCell><span>{currentItem?.batchNumber}</span> <h4>{currentItem?.index}</h4><p>{currentItem?.description}</p></TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell><AccessTimeFilledIcon/></TableCell>
@@ -135,6 +134,15 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, isBarrel, handleClick
                                 <article>{currentItem?.toDepartment} | {getMovement(currentItem?.toDepartment)}</article>
                             </TableCell>
                         </TableRow>
+                        {currentItem?.remarks ?
+                            <TableRow>
+                                <TableCell><BookmarkIcon/> </TableCell>
+                                <TableCell>
+                                    <article>{currentItem?.remarks}</article>
+                                </TableCell>
+                            </TableRow>
+                        : null
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>
