@@ -36,7 +36,7 @@ const SearchBatch: FC<SearchBatchProps> = ({items}) => {
     }, [inputValue, items]);
 
     return (
-        <div>
+        <div style={{minHeight: "calc(100dvh - 260px)"}}>
             <TextField
                 fullWidth={true}
                 value={inputValue}
@@ -48,12 +48,12 @@ const SearchBatch: FC<SearchBatchProps> = ({items}) => {
             />
 
             <div style={{display: "flex", flexDirection: "column", gap: 14, padding: "14px 0"}}>
-                {filteredItems.slice(0, 5).map((item: IItem, index) => (
+                {filteredItems.slice(0, 10).map((item: IItem, index) => (
                     <TableContainer style={{
                         gap: 14,
                         backgroundColor: getColorByStatus(item.status),
                     }} component={Paper}>
-                        <Table aria-label="simple table">
+                        <Table aria-label="simple table" padding={"checkbox"}>
                             {/*<TableHead>
                                 <TableRow>
                                     <TableCell>Target</TableCell>
@@ -68,58 +68,15 @@ const SearchBatch: FC<SearchBatchProps> = ({items}) => {
                                         </Tooltip>
                                     </TableCell>
                                     <TableCell>
-                                        <p>{item.PalletReceipt}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>{item.description}</p>
+                                        <p style={{padding: 14, whiteSpace: "nowrap"}}>Status: {item.status.toLowerCase() === 'available' ? '✅ ' : '⛔ '}</p>
                                     </TableCell>
                                 </TableRow>
-                                <TableRow key={index}>
+                                <TableRow>
                                     <TableCell>
-                                        <p>Date:</p>
+                                        <p style={{padding: 14, whiteSpace: "nowrap"}}>Batch number: {item.batchNumber}</p>
                                     </TableCell>
                                     <TableCell>
-                                        <p>Added: {item.createdDate}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>Last change: {item.lastChange}</p>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow key={index}>
-                                    <TableCell>
-                                        <p>Movement:</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>From: {item.Sender + ' | ' + getMovement(item.Sender)}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>To: {item.Recipient + ' | ' + getMovement(item.Recipient)} </p>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow key={index}>
-                                    <TableCell>
-                                        <p>Created by:</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>{item.Created}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>{item.userUid}</p>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow key={index}>
-                                    <TableCell>
-                                        <p>Quantity:</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>{item.quantity + ' ' + item.JM}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        {item.barrel?.first ? <p>{'1) ' + item.barrel.first + '  kg'} </p> : null}
-                                        {item.barrel?.secondary ?
-                                            <p>{'2) ' + item.barrel.secondary + '  kg'} </p> : null}
-                                        {item.barrel?.third ? <p>{'3) ' + item.barrel.third + '  kg'} </p> : null}
-                                        {item.barrel?.four ? <p>{'4) ' + item.barrel.four + '  kg'} </p> : null}
+                                        <p style={{padding: 14, whiteSpace: "nowrap"}}>Quantity: {item.quantity} kg</p>
                                     </TableCell>
                                 </TableRow>
                             </TableBody>

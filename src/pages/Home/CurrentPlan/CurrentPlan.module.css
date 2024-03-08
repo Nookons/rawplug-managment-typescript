@@ -17,7 +17,7 @@
     justify-content: center;
     padding: 14px;
     border-radius: 4px;
-    background-color: rgb(195,235,233);
+    background-color: rgb(219,241,211);
     margin-top: 14px;
 }
 .NeedWrapper {
@@ -32,7 +32,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     gap: 8px;
-    background-color: rgb(195,235,233);
+    background: rgb(219,241,211);
     padding: 14px;
     border-radius: 4px;
     border: none;

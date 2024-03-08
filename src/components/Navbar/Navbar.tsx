@@ -1,7 +1,7 @@
 import React, {ReactEventHandler, useCallback, useEffect, useState} from 'react';
 import styles from './Navbar.module.css'
 import {Link, Route, useNavigate} from "react-router-dom";
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logotype.svg'
 import {HOME_ROUTE, PROFILE_ROUTE, SIGN_IN_ROUTE, USER_SETTINGS_ROUTE} from "../../utils/consts";
 import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
 import {publicRoutes} from "../../Routes";

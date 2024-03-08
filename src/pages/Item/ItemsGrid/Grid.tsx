@@ -18,7 +18,7 @@ const Grid: FC<GridProps> = ({revertArray}) => {
         {
             field: 'index',
             headerName: 'Index',
-            width: 200,
+            width: 250,
             editable: false,
             renderCell: (params: GridValueGetterParams) => {
 
@@ -143,7 +143,7 @@ const Grid: FC<GridProps> = ({revertArray}) => {
             field: 'description',
             headerName: 'Description',
             type: 'string',
-            width: 700,
+            width: 600,
             description: 'test',
             renderCell: (params: GridValueGetterParams) => {
                 return <p>{params.row.description}</p>;

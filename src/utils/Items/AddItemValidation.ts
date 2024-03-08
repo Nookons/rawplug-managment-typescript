@@ -14,7 +14,7 @@ export const addItemValidation = ({items, formData}: addItemValidationProps) => 
             throw new Error('batch')
         }
 
-        if (formData.barrel.first > 350 || formData.barrel.secondary > 350 || formData.barrel.third > 350 || formData.barrel.four > 350) {
+        if (formData.barrel.first > 375 || formData.barrel.secondary > 375 || formData.barrel.third > 375 || formData.barrel.four > 375) {
             throw new Error('barrelWeight')
         }
 

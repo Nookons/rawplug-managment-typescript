@@ -1,10 +1,9 @@
 import {getDatabase, ref, set} from 'firebase/database';
-import {IFormData} from "../pages/Item/AddItem/AddItem";
 import dayjs from "dayjs";
 import {useAppSelector} from "../hooks/storeHooks";
 import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
-import {IStatsItem} from "../types/Item"; // You need to import these utility functions
+import {IAddFormData, IStatsItem} from "../types/Item"; // You need to import these utility functions
 
 
 export function handlingError ({error}: any ) {
@@ -23,7 +22,7 @@ export function handlingError ({error}: any ) {
 }
 
 
-export function onAddItem(data: IFormData, user: any) {
+export function onAddItem(data: IAddFormData, user: any) {
     try {
         if (!user) {
             return [false, 'Please sign in that add some items...']
@@ -41,7 +40,8 @@ export function onAddItem(data: IFormData, user: any) {
             Created: user ? user.email : null,
             userUid: user ? user.uid : null,
             PalletReceipt: id + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
-            ...data
+            ...data,
+            batchNumber: data.type.toLowerCase() === "barrel" ? data.batchNumber : null
         };
 
         set(ref(db, 'items/' + id), item);
