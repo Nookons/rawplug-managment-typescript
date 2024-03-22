@@ -13,7 +13,7 @@ import SettingsItem from "./SettingsItem";
 import {onDeleteItem} from "../../utils/DeleteItem";
 import MyButtonLoader from "../../components/MyButtonLoader/MyButtonLoader";
 import {useNavigate} from "react-router-dom";
-import {HOME_ROUTE, ITEMS_GRID_ROUTE} from "../../utils/consts";
+import {FIND_ITEM_ROUTE, HOME_ROUTE, ITEMS_GRID_ROUTE} from "../../utils/consts";
 import {removeItem} from "../../store/reducers/item/itemsSlice";
 import {Alert, Backdrop, Button, CircularProgress, Tooltip} from "@mui/material";
 import {SnackbarProvider, VariantType, useSnackbar, enqueueSnackbar} from 'notistack';
@@ -49,17 +49,17 @@ const Item = () => {
 
     const onDeleteItemClick = async (id: number | undefined) => {
         setIsLoading(true)
-        const answer = prompt('Pls write ' + currentItem?.index + ' for delete')
+        //const answer = prompt('Pls write ' + currentItem?.index + ' for delete')
 
 
         try {
-            if (id && answer === currentItem?.index) {
+            if (id) {
                 const response = await onDeleteItem(id)
                 handleClickVariant('success', 'Item deleted')
                 dispatch(removeItem(id))
                 if (response) {
                     setTimeout(() => {
-                        navigate(ITEMS_GRID_ROUTE)
+                        navigate(FIND_ITEM_ROUTE)
                     }, 250)
                 }
             } else {

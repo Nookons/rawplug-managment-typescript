@@ -9,7 +9,6 @@ import {Alert} from "@mui/material";
 
 
 const CurrentPlan = () => {
-    const {items, loading, error} = useAppSelector(state => state.plans)
 
     const lastUpdate = dayjs().format('dddd, MMMM DD, YYYY [at] HH:mm  ')
 
@@ -17,10 +16,7 @@ const CurrentPlan = () => {
     return (
         <div className={styles.Main}>
             <p>Last update: {lastUpdate}</p>
-            {error
-                ? <Alert severity="error">{error}</Alert>
-                : <MachineWrapper />
-            }
+            <MachineWrapper />
             <LastPallets />
         </div>
     );

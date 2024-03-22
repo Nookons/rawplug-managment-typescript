@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 0.3fr;
     grid-column-gap: 14px;
     grid-row-gap: 14px;
+    position: relative;
 }
 
 .div1 { grid-area: 1 / 1 / 2 / 2; }
@@ -10,15 +11,51 @@
 .div3 { grid-area: 3 / 1 / 4 / 2; }
 .div4 { grid-area: 1 / 2 / 4 / 3; }
 
+.Machine {
+    border-radius: 4px;
+    margin-top: 14px;
+}
+
 .PlanItem {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 0.7fr;
     align-items: center;
     justify-content: center;
     padding: 14px;
+    gap: 14px;
     border-radius: 4px;
     background-color: rgb(219,241,211);
     margin-top: 14px;
+    animation: startAnimSmallItem;
+    animation-duration: 0.3s;
+}
+.PlanItem:hover {
+    cursor: pointer;
+    background-color: #FFFC9B;
+}
+.PlanItemFullView{
+    background-color: #fdfdfd;
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    right: -14px;
+    bottom: -14px;
+    z-index: 1;
+    border-radius: 4px;
+    padding: 14px;
+    animation: startAnim;
+    animation-duration: 0.5s;
+}
+.PlanItemGridMenu {
+    display: grid;
+    grid-template-columns: 1fr 0.3fr;
+    gap: 14px;
+    margin-top: 14px;
+}
+.PlanItemGridMenu > div {
+    border-radius: 4px;
+    padding: 14px;
+    background-color: #eeeeee;
 }
 .NeedWrapper {
     display: flex;
@@ -41,6 +78,36 @@
     box-shadow: 5px 5px 5px rgba(0,0,0, 0.5);
     cursor: pointer;
     transform: scale(1.025);
+}
+
+@keyframes startAnim {
+    0% {
+        transform: scale(1.1);
+        height: 25%;
+    }
+    50% {
+        transform: scale(1.1);
+        height: 105%;
+    }
+    70% {
+        transform: scale(1);
+        height: 100%;
+    }
+    100% {
+        transform: scale(1);
+        height: 105%;
+    }
+}
+@keyframes startAnimSmallItem {
+    0% {
+        transform: translateX(-15px);
+    }
+    70% {
+        transform: translateX(15px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
 @media screen and (max-width: 1000px) {
