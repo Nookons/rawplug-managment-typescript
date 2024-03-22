@@ -40,11 +40,12 @@ const SearchBatch: FC<SearchBatchProps> = ({items}) => {
             <TextField
                 fullWidth={true}
                 value={inputValue}
+                type={"Number"}
                 onChange={(event) => setInputValue(event.target.value)}
                 id="outlined-basic"
                 label="Search"
                 variant="outlined"
-                placeholder="Please write pallet index here for search..."
+                placeholder="Please write batch here for search..."
             />
 
             <div style={{display: "flex", flexDirection: "column", gap: 14, padding: "14px 0"}}>

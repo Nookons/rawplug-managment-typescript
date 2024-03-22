@@ -1,9 +1,6 @@
 import {getDatabase, ref, set} from 'firebase/database';
 import dayjs from "dayjs";
-import {useAppSelector} from "../hooks/storeHooks";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
-import {IAddFormData, IStatsItem} from "../types/Item"; // You need to import these utility functions
+import {IAddFormData} from "../types/Item";
 
 
 export function handlingError ({error}: any ) {

@@ -1,27 +1,9 @@
 import { getDatabase, ref, set, push } from 'firebase/database';
-import {IFormData} from "../pages/Item/AddItem/AddItem";
 import dayjs from "dayjs";
-import {useAppSelector} from "../hooks/storeHooks";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
-import {IPalletItem, IUserPallet} from "../types/Pallet";
+import {IUserPallet} from "../types/Pallet";
 import {IPlan} from "../types/Plans";
-import {rejects} from "assert"; // You need to import these utility functions
 
-const getCurrentDate = () => {
-    return dayjs().format('YYYY-MM-DD [at] HH:mm');
-}
 
-export function getCurrentUser (user: any) {
-    const email = user.email
-
-    switch (email) {
-        case 'nookon@icloud.com':
-            return 'Kolomiiets Dmytro'
-        default:
-            return user.email
-    }
-}
 
 export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[]) {
     try {
@@ -31,7 +13,7 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
 
         const db = getDatabase();
         const newId = Date.now();
-        const date = getCurrentDate();
+        const date = dayjs().format('YYYY-MM-DD [at] HH:mm');
         const dateForPlan = dayjs().format('YYYY-MM-DD')
 
         const newItemRef = push(ref(db, 'pallets'));
@@ -54,7 +36,7 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
                                     quantity: data ? Number(data.quantity) : null,
                                     machine: 'first',
                                     JM: 'sht',
-                                    Created: user ? getCurrentUser(user) : null,
+                                    Created: user ? user.email : null,
                                     userUid: user ? user.uid : null,
                                     PalletReceipt: newId + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
                                     description: data ? data.description : null,
@@ -81,7 +63,7 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
                                     quantity: data ? Number(data.quantity) : null,
                                     machine: 'secondary',
                                     JM: 'sht',
-                                    Created: user ? getCurrentUser(user) : null,
+                                    Created: user ? user.email : null,
                                     userUid: user ? user.uid : null,
                                     PalletReceipt: newId + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
                                     description: data ? data.description : null,
@@ -106,7 +88,7 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
                                     quantity: data ? Number(data.quantity) : null,
                                     machine: 'third',
                                     JM: 'sht',
-                                    Created: user ? getCurrentUser(user) : null,
+                                    Created: user ? user.email : null,
                                     userUid: user ? user.uid : null,
                                     PalletReceipt: newId + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
                                     description: data ? data.description : null,
@@ -119,7 +101,7 @@ export function onAddPallet(data: IUserPallet | null, user: any, plans: IPlan[])
                 break;
         }
 
-        if (!found) { // Если не найдено соответствие, возвращаем false
+        if (!found) {
             return [false, 'This item does not need updates today'];
         }
 

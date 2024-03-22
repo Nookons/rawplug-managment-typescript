@@ -7,7 +7,7 @@ interface INeededItem {
 
 export interface IUserPallet {
     index: string;
-    description: string;
+    description?: string;
     quantity: number;
     machineIndex: string;
 }
