@@ -21,12 +21,7 @@ const App = () => {
         dispatch(fetchPallets())
     }, [dispatch]);
 
-
-    setInterval(() => {
-        fetchAllData();
-    }, 1000)
-
-
+    fetchAllData();
 
 
     return (
