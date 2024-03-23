@@ -84,7 +84,7 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, isBarrel, handleClick
             <Backdrop open={loading}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
-            <TableContainer style={{width: '100%'}} component={Paper}>
+            <TableContainer style={{width: '100%'}} >
                 <Table aria-label="simple table" padding={"normal"}>
                     <TableBody>
                         <TableRow>
