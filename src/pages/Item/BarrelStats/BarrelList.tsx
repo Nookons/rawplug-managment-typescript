@@ -42,7 +42,7 @@ const BarrelList: FC<BarrelListProps> = ({searchType, items}) => {
                     <article>Total weight: ({allQuantity.toLocaleString()} kg)</article>
                 </div>
             </div>
-            <TableContainer key={searchType} variant={"elevation"}>
+            <TableContainer key={searchType} component={Paper} variant={"elevation"}>
                 <Table aria-label="simple table" size={"small"} align={"left"} padding={"normal"} cellSpacing={2}
                        cellPadding={15}>
                     <TableHead>
