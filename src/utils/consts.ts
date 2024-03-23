@@ -13,6 +13,7 @@ export const ADD_ITEM_ROUTE: string = '/add-item'
 export const ITEM_ROUTE: string = '/item'
 export const ITEMS_GRID_ROUTE: string = '/grid-items'
 export const FIND_ITEM_ROUTE: string = '/find-item'
+export const BARREL_STATS_ROUTE: string = '/grid-items/barrel_stats'
 
 // Pallet Route
 export const ADD_PALLET_ROUTE: string = '/add-pallet'

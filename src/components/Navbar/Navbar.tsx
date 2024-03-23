@@ -24,11 +24,11 @@ const Navbar = () => {
         navigate(HOME_ROUTE)
     };
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (!loading && user === null) {
             navigate(SIGN_IN_ROUTE)
         }
-    }, [user, loading]);
+    }, [user, loading]);*/
 
     const logOut = async () => {
         setIsLoading(true)

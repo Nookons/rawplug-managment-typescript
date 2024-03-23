@@ -1,42 +1,24 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
-import {
-    Accordion, AccordionDetails, AccordionSummary,
-    Autocomplete,
-    Divider,
-    FormControlLabel,
-    FormGroup,
-    InputAdornment,
-    OutlinedInput, Slider, Stack,
-    Switch,
-    TextField, Typography
-} from "@mui/material";
+import {Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from "@mui/material";
 import styles from './Home.module.css'
 import MyButton from "../../components/MyButton/MyButton";
 import Warehouse from "./Warehouse/Warehouse";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {
     ADD_ITEM_ROUTE,
     ADD_PALLET_ROUTE,
-    ADD_PLAN_ROUTE,
+    ADD_PLAN_ROUTE, BARREL_STATS_ROUTE,
     CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
     ITEMS_GRID_ROUTE
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
-import MyModal from "../../components/Modal/MyModal";
 import {ExpandMore} from "@mui/icons-material";
-import {IPallets} from "../../types/Pallet";
 
-import tempStyles from './CurrentPlan/CurrentPlan.module.css'
 import NotEnough from "./NotEnough/NotEnough";
 
 const Home: FC = () => {
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate()
-
     const {items, loading, error} = useAppSelector(state => state.items)
-    const [visible, setVisible] = useState<boolean>(false);
-
     const user = useAppSelector(state => state.user.user)
 
 
@@ -53,9 +35,10 @@ const Home: FC = () => {
                             <Typography><article>Warehouse</article></Typography>
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
-                            <MyButton   click={() => navigate(ADD_ITEM_ROUTE)}>Add item</MyButton>
-                            <MyButton   click={() => navigate(FIND_ITEM_ROUTE)}>Find item</MyButton>
-                            <MyButton   click={() => navigate(ITEMS_GRID_ROUTE)}>Items Grid</MyButton>
+                            <MyButton><Link to={ADD_ITEM_ROUTE}>Add</Link></MyButton>
+                            <MyButton><Link to={FIND_ITEM_ROUTE}>Find</Link></MyButton>
+                            <MyButton><Link to={ITEMS_GRID_ROUTE}>Grid</Link></MyButton>
+                            <MyButton><Link to={BARREL_STATS_ROUTE}>Barrel</Link></MyButton>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={styles.Details} defaultExpanded={true}>
@@ -67,8 +50,8 @@ const Home: FC = () => {
                             <Typography><article>Ready production</article></Typography>
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
-                            <MyButton   click={() => navigate(ADD_PALLET_ROUTE)} >Add Pallet</MyButton>
-                            <MyButton   click={() => alert('In progress...')}>Find Pallet</MyButton>
+                            <MyButton><Link to={ADD_PALLET_ROUTE}>Add</Link></MyButton>
+                            <MyButton   click={() => alert('In progress...')}><Link>Find</Link></MyButton>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={styles.Details} defaultExpanded={false}>
@@ -80,8 +63,8 @@ const Home: FC = () => {
                             <Typography><article>Plans</article></Typography>
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
-                            <MyButton   click={() => navigate(ADD_PLAN_ROUTE)}>Add Plan</MyButton>
-                            <MyButton   click={() => navigate(CHECK_PLANS_ROUTE)}>Check Plans</MyButton>
+                            <MyButton><Link to={ADD_PLAN_ROUTE}>Add</Link></MyButton>
+                            <MyButton><Link to={CHECK_PLANS_ROUTE}>Check</Link></MyButton>
                         </AccordionDetails>
                     </Accordion>
                 </Stack>

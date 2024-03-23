@@ -1,5 +1,5 @@
 import {
-    ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PLAN_ROUTE, CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
+    ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PLAN_ROUTE, BARREL_STATS_ROUTE, CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
     HOME_ROUTE, ITEM_ROUTE, ITEMS_GRID_ROUTE, PALLET_ROUTE,
     SIGN_IN_ROUTE,
     SIGN_UP_ROUTE, USER_SETTINGS_ROUTE,
@@ -16,6 +16,7 @@ import Item from "./pages/Item/Item";
 import ItemsGrid from "./pages/Item/ItemsGrid/ItemsGrid";
 import FindItem from "./pages/Item/FindItem/FindItem";
 import Settings from "./pages/User/settings/Settings";
+import BarrelStats from "./pages/Item/BarrelStats/BarrelStats";
 
 
 interface Route {
@@ -40,51 +41,56 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: SIGN_IN_ROUTE,
         Component: SignIn,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: ADD_ITEM_ROUTE,
         Component: AddItem,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: ADD_PLAN_ROUTE,
         Component: AddPlan,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: ADD_PALLET_ROUTE,
         Component: AddPallet,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: CHECK_PLANS_ROUTE,
         Component: CheckPlans,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: PALLET_ROUTE,
         Component: Pallet,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: ITEM_ROUTE,
         Component: Item,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: ITEMS_GRID_ROUTE,
         Component: ItemsGrid,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: FIND_ITEM_ROUTE,
         Component: FindItem,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
     },
     {
         path: USER_SETTINGS_ROUTE,
         Component: Settings,
-        label: 'FilmPrivate',
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: BARREL_STATS_ROUTE,
+        Component: BarrelStats,
+        label: 'AppPrivateRoute',
     },
 ];

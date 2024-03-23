@@ -8,31 +8,15 @@ import SearchBatch from "./module/SearchBatch";
 const FindItem = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
 
-    const [isBatchSearch, setIsBatchSearch] = useState<boolean>(true);
 
     return (
         <div className={styles.Main}>
-
-            <div style={{margin: "14px 0"}}>
-                <FormGroup>
-                    <FormControlLabel
-                        control={
-                            <Switch
-                                value={isBatchSearch}
-                                onChange={() => setIsBatchSearch(!isBatchSearch)}
-                                defaultChecked={true}
-                            />
-                        }
-                        label={<p>By batch</p>}
-                    />
-                </FormGroup>
-            </div>
             {!loading
                 ?
                 <div>
                     {
                         !error
-                            ? <>{isBatchSearch ? <SearchBatch items={items} /> : <Search items={items}/>}</>
+                            ? <SearchBatch items={items} />
                             : <Alert severity="error">{error}</Alert>
                     }
                 </div>

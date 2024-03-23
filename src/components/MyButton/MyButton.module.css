@@ -3,6 +3,12 @@
     color: white !important;
 }
 
+.Main a{
+    color: white !important;
+    width: 100%;
+    font-size: 14px;
+}
+
 .Main:hover{
     box-shadow: inset 0 0 15px rgba(120, 255, 247, 0.25);
 }

@@ -1,0 +1,21 @@
+.RadioWrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+}
+
+.RadioItem {
+    margin: 0 !important;
+    padding: 4px !important;
+    border-radius: 4px !important;
+}
+.RadioItem span{
+    padding: 0 !important;
+    margin-right: 4px !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .RadioWrapper {
+        grid-template-columns: 1fr;
+    }
+}

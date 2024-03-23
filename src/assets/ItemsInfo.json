@@ -270,21 +270,21 @@
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna PSF ZIMA"
   },
   {
     "myIndex": "Q-CM-PSF-LATO",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna PSF LATO"
   },
   {
     "myIndex": "Q-CM-PSF-STONE",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna PSF STONE"
   },
   {
     "myIndex": "Q-CM-PSF-GREY",
@@ -296,42 +296,42 @@
     },
     "status": "Available",
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna PSF GREY"
   },
   {
     "myIndex": "Q-CM-EPOXID-A",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna EPOXID-A"
   },
   {
     "myIndex": "Q-CM-EPOXID-B",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna EPOXID-B"
   },
   {
     "myIndex": "Q-CM-HYBRYDA-STANDART",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna HYBRYDA STANDART"
   },
   {
     "myIndex": "Q-CM-HYBRYDA-LATO",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna HYBRYDA LATO"
   },
   {
     "myIndex": "Q-CM-HYBRYDA-ZIMA",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna HYBRYDA ZIMA"
   },
   {
     "myIndex": "Q-CMB-PSF-STAND-V3",
@@ -345,63 +345,63 @@
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna PSF ZIMA"
   },
   {
     "myIndex": "Q-CMB-PSF-LATO",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna PSF LATO"
   },
   {
     "myIndex": "Q-CMB-PSF-STONE",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna PSF STONE"
   },
   {
     "myIndex": "Q-CMB-PSF-GREY",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna PSF GREY"
   },
   {
     "myIndex": "Q-CMB-EPOXID-A",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna EPOXID-A"
   },
   {
     "myIndex": "Q-CMB-EPOXID-B",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna EPOXID-B"
   },
   {
     "myIndex": "Q-CMB-HYBRYDA-STANDART",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna HYBRYDA STANDART"
   },
   {
     "myIndex": "Q-CMB-HYBRYDA-LATO",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna HYBRYDA LATO"
   },
   {
     "myIndex": "Q-CMB-HYBRYDA-ZIMA",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Meszanka chemiczna HYBRYDA ZIMA"
   },
   {
     "myIndex": "Q-C-BYK-D-142",
