@@ -30,6 +30,7 @@ const ItemsGrid = () => {
     const currentDate = dayjs().format('dddd, MMMM DD, YYYY [at] HH:mm  ')
 
 
+    const [uniqueIndex, setUniqueIndex] = useState([]);
     const [isPrintSelect, setIsPrintSelect] = useState<boolean>(false);
     const [isShowBarrelWeight, setIsShowBarrelWeight] = useState<boolean>(false);
 
@@ -43,6 +44,19 @@ const ItemsGrid = () => {
             setRevertArray(tempArray);
         }
     }, [items, loading]);
+
+    useEffect(() => {
+        const uniqueValues = {};
+
+        items.forEach(item => {
+            if (!uniqueValues[item.index]) {
+                uniqueValues[item.index] = true;
+            }
+        });
+
+        const uniqueIndexes = Object.keys(uniqueValues);
+        setUniqueIndex(uniqueIndexes);
+    }, [items]);
 
     useEffect(() => {
         let CM: string = '';
@@ -109,64 +123,20 @@ const ItemsGrid = () => {
                 isPrintSelect
                     ?
                     <div style={{margin: "14px 0", display: "flex", flexWrap: "wrap", flexDirection: "column", alignItems: "center", gap: 14}}>
-
                             <RadioGroup
                                 row={true}
                                 value={alignment}
                                 onChange={(event) => handleChange(event)}
                                 name="radio-buttons-group"
                             >
-                                <FormControlLabel
-                                    value="EPOXID-A"
-                                    control={<Radio/>}
-                                    label="Epoxid-A"
-                                />
-                                <FormControlLabel
-                                    value="EPOXID-B"
-                                    control={<Radio/>}
-                                    label="Epoxid-B"
-                                />
-                                <FormControlLabel
-                                    value="PSF-STAND"
-                                    control={<Radio/>}
-                                    label="PSF-STAND"
-                                />
-                                <FormControlLabel
-                                    value="PSF-LATO"
-                                    control={<Radio/>}
-                                    label="PSF-LATO"
-                                />
-                                <FormControlLabel
-                                    value="PSF-ZIMA"
-                                    control={<Radio/>}
-                                    label="PSF-ZIMA"
-                                />
-                                <FormControlLabel
-                                    value="PSF-GREY"
-                                    control={<Radio/>}
-                                    label="GREY"
-                                />
-                                <FormControlLabel
-                                    value="PSF-STONE"
-                                    control={<Radio/>}
-                                    label="STONE"
-                                />
-                                <FormControlLabel
-                                    value="HYBRYDA-STANDART"
-                                    control={<Radio/>}
-                                    label="HYBRYDA"
-                                />
-                                <FormControlLabel
-                                    value="HYBRYDA-LATO"
-                                    control={<Radio/>}
-                                    label="HYBRYDA-LATO"
-                                />
-                                <FormControlLabel
-                                    color="success"
-                                    value="HYBRYDA-ZIMA"
-                                    control={<Radio/>}
-                                    label="HYBRYDA-ZIMA"
-                                />
+                                {uniqueIndex.map((el, index) => (
+                                    <FormControlLabel
+                                        value={el.slice(5)}
+                                        control={<Radio/>}
+                                        key={index}
+                                        label={el.slice(5)}
+                                    />
+                                ))}
                             </RadioGroup>
 
                         <MyButton click={handlePrint}>
