@@ -26,6 +26,8 @@ const Item = () => {
     const currentURL = window.location.href;
     const id = currentURL.split('_')[1]
 
+    const {user} = useAppSelector(state => state.user)
+
     const {items, error, loading} = useAppSelector(state => state.items)
 
     const [currentItem, setCurrentItem] = useState<IItem>();
@@ -51,6 +53,11 @@ const Item = () => {
         setIsLoading(true)
         //const answer = prompt('Pls write ' + currentItem?.index + ' for delete')
 
+        if (!user) {
+            handleClickVariant('error', "You can't delete this items")
+            setIsLoading(false)
+            return
+        }
 
         try {
             if (id) {

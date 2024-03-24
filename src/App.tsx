@@ -23,7 +23,6 @@ const App = () => {
 
     fetchAllData();
 
-
     return (
         <BrowserRouter>
             <Navbar />

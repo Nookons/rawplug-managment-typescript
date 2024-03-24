@@ -1,6 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useAppSelector} from "../../../hooks/storeHooks";
 import {
+    Alert,
+    Autocomplete,
     Backdrop,
     Button,
     ButtonGroup,
@@ -9,7 +11,7 @@ import {
     FormControlLabel,
     FormLabel,
     Radio,
-    RadioGroup
+    RadioGroup, TextField
 } from "@mui/material";
 import BarrelList from "./BarrelList";
 import styles from './BarrelStats.module.css'
@@ -18,13 +20,16 @@ const BarrelStats = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
 
     const [uniqueIndex, setUniqueIndex] = useState([]);
-    const [searchType, setSearchType] = useState('Q-CM-EPOXID-A');
+    const [searchType, setSearchType] = useState<string | null>('Q-CM-EPOXID-A');
 
 
     useEffect(() => {
         const uniqueValues = {};
 
         items.forEach(item => {
+            if (item.type.toLowerCase() !== 'barrel') {
+                return
+            }
             if (!uniqueValues[item.index]) {
                 uniqueValues[item.index] = true;
             }
@@ -35,37 +40,25 @@ const BarrelStats = () => {
     }, [items]);
 
 
-    const onChangeType = useCallback((event: HTMLDivElement.MouseEvent) => {
-        setSearchType(event.target.value)
-    }, []);
-
-    useEffect(() => {
-        console.log(searchType);
-    }, [searchType]);
-
-    if(items && !loading && !error) {
+    if (items && !loading && !error) {
         return (
-            <div style={{padding: 14, minHeight: "calc(100dvh - 170px)"}}>
-                <h5>Avialeble types:</h5> <hr/>
-                <RadioGroup
-                    aria-label="barrels"
-                    defaultValue="Q-CM-EPOXID-A"
-                    name="radio-buttons-group"
-                    className={styles.RadioWrapper}
-                >
-                    {uniqueIndex.map((el, index) => (
-                        <FormControlLabel
-                            value={el}
-                            control={<Radio color={el === searchType ? "success" : "secondary"}/>}
-                            style={{backgroundColor: el === searchType ? "#b7ffc3" : "#dde8ff"}}
-                            label={<p style={{whiteSpace: "nowrap"}}>{el}</p>}
-                            className={styles.RadioItem}
-                            labelPlacement="end"
-                            onClick={(event) => onChangeType(event)}
-                        />
-                    ))}
-                </RadioGroup>
-                <BarrelList searchType={searchType} items={items}/>
+            <div style={{padding: 14, minHeight: "calc(100dvh - 160px)"}}>
+                <Autocomplete
+                    disablePortal
+                    options={uniqueIndex}
+                    value={searchType}
+                    onChange={(event, value) => setSearchType(value)}
+                    renderInput={(params) => <TextField {...params} label="Avialeble types"/>}
+                    fullWidth={true} size={"medium"}/>
+
+                {
+                    !searchType?.length
+                        ? <div>
+                            <Alert severity="info" style={{marginTop: 14}} variant={"filled"}>You not selected any items for
+                                search</Alert>
+                        </div>
+                        : <BarrelList searchType={searchType} items={items}/>
+                }
             </div>
         );
     }

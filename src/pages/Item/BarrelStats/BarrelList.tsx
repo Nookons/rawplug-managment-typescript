@@ -35,11 +35,11 @@ const BarrelList: FC<BarrelListProps> = ({searchType, items}) => {
     return (
         <div>
             <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", margin: "14px 0", gap: 4, justifyContent: "center", alignItems: "center"}}>
-                <div style={{padding: 14, backgroundColor: "#eaeaea"}}>
+                <div style={{padding: 14, backgroundColor: "#dfffd6"}}>
                     <article>Available pallets: ({tempArray.length})</article>
                 </div>
-                <div style={{padding: 14, backgroundColor: "#eaeaea"}}>
-                    <article>Total weight: ({allQuantity.toLocaleString()} kg)</article>
+                <div style={{padding: 14, backgroundColor: "#dfffd6"}}>
+                    <article>Total: ({allQuantity.toLocaleString()} kg)</article>
                 </div>
             </div>
             <TableContainer key={searchType} component={Paper} variant={"elevation"}>

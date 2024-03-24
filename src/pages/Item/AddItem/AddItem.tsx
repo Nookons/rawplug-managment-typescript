@@ -218,7 +218,7 @@ export default function IntegrationNotistack() {
     return (
         <SnackbarProvider
             anchorOrigin={{
-                vertical: 'top',
+                vertical: 'bottom',
                 horizontal: 'right',
             }}
             autoHideDuration={5000}

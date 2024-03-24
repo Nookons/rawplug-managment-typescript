@@ -29,6 +29,7 @@ import {useAppDispatch} from "../../hooks/storeHooks";
 import {openItem} from "../../store/reducers/item/itemsSlice";
 import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import TagIcon from '@mui/icons-material/Tag';
 
 
 import SyncIcon from '@mui/icons-material/Sync';
@@ -89,50 +90,7 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, isBarrel, handleClick
                     <TableBody>
                         <TableRow>
                             <TableCell><h2>{getSmileType(currentItem?.type)}</h2></TableCell>
-                            <TableCell><span>{currentItem?.batchNumber}</span> <h4>{currentItem?.index}</h4><p>{currentItem?.description}</p></TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell><AccessTimeFilledIcon/></TableCell>
-                            <TableCell>
-                                <article>{currentItem?.createdDate}</article>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell><ManageHistoryIcon/></TableCell>
-                            <TableCell>
-                                <article>{currentItem?.lastChange}</article>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell><BlurCircularIcon/></TableCell>
-                            <TableCell>
-                                <article>{currentItem?.status} <IconButton onClick={onOpenItemClick} aria-label="add">
-                                    <SyncIcon/> </IconButton></article>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell><AccountCircleIcon/></TableCell>
-                            <TableCell>
-                                <article>{currentItem?.Created}</article>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell><AddCircleIcon/></TableCell>
-                            <TableCell>
-                                <article>{currentItem?.quantity.toLocaleString()} {currentItem?.jm}</article>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell><ArrowCircleRightIcon/> </TableCell>
-                            <TableCell>
-                                <article>{currentItem?.fromDepartment} | {getMovement(currentItem?.fromDepartment)}</article>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell><SystemUpdateAltIcon/> </TableCell>
-                            <TableCell>
-                                <article>{currentItem?.toDepartment} | {getMovement(currentItem?.toDepartment)}</article>
-                            </TableCell>
+                            <TableCell><h4>{currentItem?.index}</h4><p>{currentItem?.description}</p></TableCell>
                         </TableRow>
                         {currentItem?.remarks ?
                             <TableRow>
@@ -141,8 +99,51 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, isBarrel, handleClick
                                     <article>{currentItem?.remarks}</article>
                                 </TableCell>
                             </TableRow>
-                        : null
+                            : null
                         }
+                        <TableRow>
+                            <TableCell><TagIcon /></TableCell>
+                            <TableCell>
+                                <article style={{letterSpacing: "2.5px"}}>{currentItem?.batchNumber} <Barcode fontSize={0} height={30} value={currentItem?.batchNumber} /></article>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell><AddCircleIcon/></TableCell>
+                            <TableCell>
+                                <p>{currentItem?.quantity.toLocaleString()} {currentItem?.jm}</p>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell><BlurCircularIcon/></TableCell>
+                            <TableCell>
+                                <p>{currentItem?.status} <IconButton onClick={onOpenItemClick} aria-label="add">
+                                    <SyncIcon/> </IconButton></p>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell><AccountCircleIcon/></TableCell>
+                            <TableCell>
+                                <p>{currentItem?.Created}</p>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell><AccessTimeFilledIcon/></TableCell>
+                            <TableCell>
+                                <p>{currentItem?.createdDate}</p>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell><ArrowCircleRightIcon/> </TableCell>
+                            <TableCell>
+                                <p>{currentItem?.fromDepartment} | {getMovement(currentItem?.fromDepartment)}</p>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell><SystemUpdateAltIcon/> </TableCell>
+                            <TableCell>
+                                <p>{currentItem?.toDepartment} | {getMovement(currentItem?.toDepartment)}</p>
+                            </TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
             </TableContainer>
