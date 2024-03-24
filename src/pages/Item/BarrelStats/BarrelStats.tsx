@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import {useAppSelector} from "../../../hooks/storeHooks";
 import {
     Alert,
@@ -16,7 +16,7 @@ import {
 import BarrelList from "./BarrelList";
 import styles from './BarrelStats.module.css'
 
-const BarrelStats = () => {
+const BarrelStats: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
 
     const [uniqueIndex, setUniqueIndex] = useState([]);

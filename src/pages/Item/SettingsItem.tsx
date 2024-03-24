@@ -101,12 +101,15 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, isBarrel, handleClick
                             </TableRow>
                             : null
                         }
-                        <TableRow>
-                            <TableCell><TagIcon /></TableCell>
-                            <TableCell>
-                                <article style={{letterSpacing: "2.5px"}}>{currentItem?.batchNumber} <Barcode fontSize={0} height={30} value={currentItem?.batchNumber} /></article>
-                            </TableCell>
-                        </TableRow>
+                        {currentItem?.batchNumber
+                        ? <TableRow>
+                                <TableCell><TagIcon /></TableCell>
+                                <TableCell>
+                                    <article style={{letterSpacing: "2.5px"}}>{currentItem?.batchNumber} <Barcode fontSize={0} height={30} value={currentItem?.batchNumber} /></article>
+                                </TableCell>
+                            </TableRow>
+                        : null
+                        }
                         <TableRow>
                             <TableCell><AddCircleIcon/></TableCell>
                             <TableCell>

@@ -10,7 +10,7 @@ import {
     ADD_PALLET_ROUTE,
     ADD_PLAN_ROUTE, BARREL_STATS_ROUTE,
     CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
-    ITEMS_GRID_ROUTE
+    ITEMS_GRID_ROUTE, RECEIPT_REPORT_ROUTE
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
 import {ExpandMore} from "@mui/icons-material";
@@ -39,6 +39,7 @@ const Home: FC = () => {
                             <MyButton><Link to={FIND_ITEM_ROUTE}>Find</Link></MyButton>
                             <MyButton><Link to={ITEMS_GRID_ROUTE}>Grid</Link></MyButton>
                             <MyButton><Link to={BARREL_STATS_ROUTE}>Barrel</Link></MyButton>
+                            <MyButton><Link to={RECEIPT_REPORT_ROUTE}>Report</Link></MyButton>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={styles.Details} defaultExpanded={true}>
