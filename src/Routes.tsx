@@ -1,6 +1,6 @@
 import {
     ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PLAN_ROUTE, BARREL_STATS_ROUTE, CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
-    HOME_ROUTE, ITEM_ROUTE, ITEMS_GRID_ROUTE, PALLET_ROUTE,
+    HOME_ROUTE, ITEM_ROUTE, ITEMS_GRID_ROUTE, PALLET_ROUTE, RECEIPT_REPORT_ROUTE,
     SIGN_IN_ROUTE,
     SIGN_UP_ROUTE, USER_SETTINGS_ROUTE,
 } from "./utils/consts";
@@ -17,6 +17,7 @@ import ItemsGrid from "./pages/Item/ItemsGrid/ItemsGrid";
 import FindItem from "./pages/Item/FindItem/FindItem";
 import Settings from "./pages/User/settings/Settings";
 import BarrelStats from "./pages/Item/BarrelStats/BarrelStats";
+import ReceiptReport from "./pages/Item/ReceiptReport/ReceiptReport";
 
 
 interface Route {
@@ -91,6 +92,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: BARREL_STATS_ROUTE,
         Component: BarrelStats,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: RECEIPT_REPORT_ROUTE,
+        Component: ReceiptReport,
         label: 'AppPrivateRoute',
     },
 ];
