@@ -1,14 +1,15 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {
+    Alert,
     Autocomplete,
-    Paper,
+    Paper, Stack,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    TextField
+    TextField, Tooltip
 } from "@mui/material";
 import {useAppSelector} from "../../../hooks/storeHooks";
 import {IItem} from "../../../types/Item";
@@ -16,21 +17,26 @@ import {Link} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
 import MyButton from "../../../components/MyButton/MyButton";
 import styles from './ReceiptReport.module.css';
-import ReactDOM from 'react-dom';
-import {PDFViewer} from '@react-pdf/renderer';
 import MyPDFComponent from "./GeneratePdf";
 import {useReactToPrint} from "react-to-print";
 import PrintIcon from '@mui/icons-material/Print';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from "dayjs";
 
 
 const ReceiptReport: FC = () => {
     const {items} = useAppSelector(state => state.items);
 
+
     const [uniqUser, setUniqUser] = useState<string[]>([]);
     const [uniqDate, setUniqDate] = useState<string[]>([]);
     const [pickUser, setPickUser] = useState<string | null>(null);
-    const [pickDate, setPickDate] = useState<string | null>(null);
+    const [pickDate, setPickDate] = useState<any | null>(dayjs().format("YYYY-MM-DD"));
     const [arrayToDisplay, setArrayToDisplay] = useState<IItem[]>([]);
+
+
 
     useEffect(() => {
         const tempArrayUsers: string[] = [];
@@ -62,8 +68,7 @@ const ReceiptReport: FC = () => {
         if (pickDate) {
             const filteredByUser = items.filter(item => item.Created === pickUser);
             const filteredByDate = filteredByUser.filter(item => item.createdDate.slice(0, 10) === pickDate);
-            const filteredByDepartment = filteredByDate.filter(item => item.fromDepartment !== "PWT70");
-            setArrayToDisplay(filteredByDepartment.reverse());
+            setArrayToDisplay(filteredByDate.reverse());
         }
     }, [pickDate, pickUser, items]);
 
@@ -74,6 +79,16 @@ const ReceiptReport: FC = () => {
         onAfterPrint: () => console.log("after printing..."),
         removeAfterPrint: true,
     });
+
+    const setDate = (date) => {
+        const formattedDate = dayjs(date).format("YYYY-MM-DD");
+        setPickDate(formattedDate)
+    }
+
+    useEffect(() => {
+        console.log(arrayToDisplay);
+    }, [arrayToDisplay]);
+
 
     return (
         <div style={{padding: 14, minHeight: "calc(100dvh - 160px)", backgroundColor: "white"}}>
@@ -90,14 +105,13 @@ const ReceiptReport: FC = () => {
                     renderInput={(params) => <TextField {...params} label="User"/>}
                 />
                 {pickUser &&
-                    <Autocomplete
-                        disablePortal
-                        options={uniqDate}
-                        value={pickDate}
-                        onChange={(event, value) => setPickDate(value)}
-                        fullWidth={true}
-                        renderInput={(params) => <TextField {...params} label="Date"/>}
-                    />
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                            defaultValue={dayjs()}
+                            onChange={(date) => setDate(date)}
+                            format={"dddd, MMMM DD, YYYY"}
+                        />
+                    </LocalizationProvider>
                 }
             </div>
             {arrayToDisplay.length > 0 &&
@@ -110,7 +124,7 @@ const ReceiptReport: FC = () => {
                 </div>
 
             }
-            {arrayToDisplay.length > 0 &&
+            {arrayToDisplay.length > 0 ?
                 <TableContainer component={Paper} variant="elevation">
                     <Table aria-label="simple table" size={"small"}>
                         <TableHead>
@@ -135,6 +149,14 @@ const ReceiptReport: FC = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                :
+                <div style={{marginTop: 24}}>
+                    {pickUser &&
+                        <Alert severity={"info"} variant={"filled"}>
+                            We can't find any item for {pickDate}
+                        </Alert>
+                    }
+                </div>
             }
         </div>
     );
