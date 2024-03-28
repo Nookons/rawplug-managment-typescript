@@ -20,7 +20,7 @@ const BarrelStats: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
 
     const [uniqueIndex, setUniqueIndex] = useState([]);
-    const [searchType, setSearchType] = useState<string | null>('Q-CM-EPOXID-A');
+    const [searchType, setSearchType] = useState<string | null>(null);
 
 
     useEffect(() => {
@@ -49,7 +49,10 @@ const BarrelStats: FC = () => {
                     value={searchType}
                     onChange={(event, value) => setSearchType(value)}
                     renderInput={(params) => <TextField {...params} label="Avialeble types"/>}
-                    fullWidth={true} size={"medium"}/>
+                    fullWidth={true}
+                    size={"medium"}
+                    autoFocus={false}
+                />
 
                 {
                     !searchType?.length

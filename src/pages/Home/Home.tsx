@@ -36,9 +36,9 @@ const Home: FC = () => {
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <MyButton><Link to={ADD_ITEM_ROUTE}>Add</Link></MyButton>
-                            <MyButton><Link to={FIND_ITEM_ROUTE}>Find</Link></MyButton>
-                            <MyButton><Link to={ITEMS_GRID_ROUTE}>Grid</Link></MyButton>
-                            <MyButton><Link to={BARREL_STATS_ROUTE}>Barrel</Link></MyButton>
+                            <MyButton><Link to={FIND_ITEM_ROUTE}>Search</Link></MyButton>
+                            <MyButton><Link to={ITEMS_GRID_ROUTE}>List</Link></MyButton>
+                            <MyButton><Link to={BARREL_STATS_ROUTE}>Barrels list</Link></MyButton>
                             <MyButton><Link to={RECEIPT_REPORT_ROUTE}>Report</Link></MyButton>
                         </AccordionDetails>
                     </Accordion>

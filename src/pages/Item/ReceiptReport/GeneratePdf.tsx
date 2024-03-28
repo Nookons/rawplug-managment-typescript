@@ -7,8 +7,8 @@ import {ITEM_ROUTE} from "../../../utils/consts";
 
 interface MyPDFComponentProps {
     arrayToDisplay: IItem[];
-    pickUser: string;
-    pickDate: string;
+    pickUser: string | null;
+    pickDate: string | null;
 }
 
 const MyPDFComponent: FC<MyPDFComponentProps> = ({arrayToDisplay, pickUser, pickDate}) => {
@@ -30,7 +30,7 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({arrayToDisplay, pickUser, pick
                     <article>Total items: {arrayToDisplay.length}</article>
                 </div>
                 <TableContainer component={Paper} variant="elevation" elevation={2}>
-                    <Table aria-label="simple table" size={"small"} padding={"checkbox"}>
+                    <Table aria-label="simple table" size={"small"} padding={"normal"}>
                         <TableHead>
                             <TableRow>
                                 <TableCell><h5>N</h5></TableCell>
@@ -50,7 +50,10 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({arrayToDisplay, pickUser, pick
                                         <p style={{whiteSpace: "nowrap"}}>{el.index}</p>
                                     </TableCell>
                                     <TableCell><p>{el.createdDate.slice(10)}</p></TableCell>
-                                    <TableCell><p>{el.fromDepartment}</p></TableCell>
+                                    <TableCell><p>{
+                                        el.fromDepartment
+                                            .replace("PWT70", "PWT70 | Mixers")
+                                    }</p></TableCell>
                                     <TableCell><p style={{whiteSpace: "nowrap"}}>{el.quantity.toLocaleString()} {el.jm}</p></TableCell>
                                 </TableRow>
                             ))}

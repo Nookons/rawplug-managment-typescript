@@ -70,6 +70,7 @@ const AddItem = () => {
         setIsBatchError(false)
         setIsAdding(true)
 
+        console.log(formData);
 
         try {
             const validation    = await addItemValidation({items, formData});
