@@ -84,6 +84,13 @@
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
+    "myIndex": "X-CFS-MIXER-N",
+    "type": "Nozzle",
+    "palletQta": 48000,
+    "jm": "Pieces",
+    "description": "Mixer wyciskacza do mas nowa wersja"
+  },
+  {
     "myIndex": "OZ-U-255-164-295",
     "type": "Carton",
     "palletQta": 880,
@@ -177,7 +184,7 @@
   {
     "myIndex": "KRP-ST-CAP-WHI",
     "type": "White",
-    "palletQta": 29271,
+    "palletQta": 32952,
     "jm": "Pieces",
     "description": "Bottle corks"
   },
@@ -185,6 +192,13 @@
     "myIndex": "Q-C-CART-ZKK-385ML",
     "type": "Cartridge",
     "palletQta": 1065,
+    "jm": "Pieces",
+    "description": "Cartridges for products"
+  },
+  {
+    "myIndex": "Q-C-CART-380ML-S",
+    "type": "Cartridge",
+    "palletQta": 1944,
     "jm": "Pieces",
     "description": "Cartridges for products"
   },
@@ -549,5 +563,12 @@
     "palletQta": 560,
     "jm": "kg",
     "description": "\uD83D\uDE30"
+  },
+  {
+    "myIndex": "Q-ET-R-KEMII-300",
+    "type": "\uD83D\uDE30",
+    "palletQta": 50650,
+    "jm": "kg",
+    "description": "Etykieta foliowa peel-off R-KEM-II-300 150x190"
   }
 ]
