@@ -1,7 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {IItem} from '../../../types/Item';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-import styles from "../Print/Print.module.css";
 import {Link} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
 
@@ -54,7 +53,7 @@ const BarrelList: FC<BarrelListProps> = ({searchType, items}) => {
                         </TableRow>
                     </TableHead>
                     {tempArray.map((el, index) => (
-                        <TableBody className={styles.Wrapper}>
+                        <TableBody>
                             <TableRow>
                                 <TableCell>
                                     <article style={{whiteSpace: "nowrap"}}>

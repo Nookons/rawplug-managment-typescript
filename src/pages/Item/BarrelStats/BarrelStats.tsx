@@ -4,17 +4,10 @@ import {
     Alert,
     Autocomplete,
     Backdrop,
-    Button,
-    ButtonGroup,
     CircularProgress,
-    FormControl,
-    FormControlLabel,
-    FormLabel,
-    Radio,
-    RadioGroup, TextField
+    TextField
 } from "@mui/material";
 import BarrelList from "./BarrelList";
-import styles from './BarrelStats.module.css'
 
 const BarrelStats: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
