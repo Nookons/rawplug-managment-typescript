@@ -210,6 +210,13 @@
     "description": "Cartridges for products"
   },
   {
+    "myIndex": "Q-C-CAP-COAX-380",
+    "type": "Piston",
+    "palletQta": 24300,
+    "jm": "Pieces",
+    "description": "Piston for products"
+  },
+  {
     "myIndex": "Q-C-DOLGRAN63",
     "type": "Chemical",
     "palletQta": 1065,
