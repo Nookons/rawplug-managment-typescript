@@ -21,21 +21,21 @@
     "description": "Nozzle for products"
   },
   {
-    "myIndex": "R-NOZ-14-G",
-    "type": "Nozzle",
-    "palletQta": 9000,
-    "jm": "Pieces",
-    "description": "Nozzle for products"
-  },
-  {
-    "myIndex": "R-NOZ-14-WMC",
-    "type": "Nozzle",
-    "palletQta": 9000,
-    "jm": "Pieces",
-    "description": "Nozzle for products"
-  },
-  {
     "myIndex": "R-NOZ-14-M",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "Pieces",
+    "description": "Nozzle for products"
+  },
+  {
+    "myIndex": "Q-C-NOZ-14-G",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "Pieces",
+    "description": "Nozzle for products"
+  },
+  {
+    "myIndex": "Q-C-NOZ-14-WMC",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
