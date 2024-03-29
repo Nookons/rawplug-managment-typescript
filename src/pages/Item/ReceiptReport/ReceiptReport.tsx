@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {
     Alert,
-    Autocomplete,
+    Autocomplete, Button, Card, CardActions, CardContent, Grid,
     Paper, Stack,
     Table,
     TableBody,
@@ -9,7 +9,7 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    TextField, Tooltip
+    TextField, Tooltip, Typography
 } from "@mui/material";
 import {useAppSelector} from "../../../hooks/storeHooks";
 import {IItem} from "../../../types/Item";
@@ -20,9 +20,9 @@ import styles from './ReceiptReport.module.css';
 import MyPDFComponent from "./GeneratePdf";
 import {useReactToPrint} from "react-to-print";
 import PrintIcon from '@mui/icons-material/Print';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import dayjs from "dayjs";
 
 
@@ -35,7 +35,6 @@ const ReceiptReport: FC = () => {
     const [pickUser, setPickUser] = useState<string | null>(null);
     const [pickDate, setPickDate] = useState<any | null>(dayjs().format("YYYY-MM-DD"));
     const [arrayToDisplay, setArrayToDisplay] = useState<IItem[]>([]);
-
 
 
     useEffect(() => {
@@ -77,18 +76,13 @@ const ReceiptReport: FC = () => {
         documentTitle: pickUser + ' | ' + pickDate,
         onBeforePrint: () => console.log("before printing..."),
         onAfterPrint: () => console.log("after printing..."),
-        removeAfterPrint: true,
+        removeAfterPrint: false,
     });
 
     const setDate = (date) => {
         const formattedDate = dayjs(date).format("YYYY-MM-DD");
         setPickDate(formattedDate)
     }
-
-    useEffect(() => {
-        console.log(arrayToDisplay);
-    }, [arrayToDisplay]);
-
 
     return (
         <div style={{padding: 14, minHeight: "calc(100dvh - 160px)", backgroundColor: "white"}}>
@@ -125,30 +119,35 @@ const ReceiptReport: FC = () => {
 
             }
             {arrayToDisplay.length > 0 ?
-                <TableContainer component={Paper} variant="elevation">
-                    <Table aria-label="simple table" size={"small"}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Index</TableCell>
-                                <TableCell>Created</TableCell>
-                                <TableCell>Quantity</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {arrayToDisplay.map((el: IItem) => (
-                                <TableRow key={el.id}>
-                                    <TableCell>
-                                        <Link to={ITEM_ROUTE + "?_" + el.id}>
-                                            {el.index}
-                                        </Link>
-                                    </TableCell>
-                                    <TableCell><p>{el.createdDate.slice(10)}</p></TableCell>
-                                    <TableCell><p>{el.quantity.toLocaleString()}</p></TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <div style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 8,
+                    marginBottom: 24
+                }}
+                >
+                    {arrayToDisplay.map((el: IItem) => (
+                        <Card sx={{ minWidth: 340 }} variant={"outlined"} raised={true}>
+                            <CardContent>
+                                <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                    <Link to={ITEM_ROUTE + "?_" + el.id}>{el.index}</Link>
+                                    {el.createdDate.slice(10)}
+                                </Typography>
+                                <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                    {el.description}
+                                </Typography>
+                                <div style={{display: "flex", justifyContent: "flex-end", alignItems: "flex-end", gap: 8}}>
+                                    <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                        {el.fromDepartment}
+                                    </Typography>
+                                    <Typography variant={"h5"} marginTop={"12px"}>
+                                        {el.quantity.toLocaleString()} {el.jm}
+                                    </Typography>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
                 :
                 <div style={{marginTop: 24}}>
                     {pickUser &&
