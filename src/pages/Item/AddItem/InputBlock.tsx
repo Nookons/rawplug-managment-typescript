@@ -52,7 +52,7 @@ const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
                 id="free-solo-2-demo"
                 disableClearable
                 value={formData.fromDepartment}
-                onChange={(event, value) => onChangeDataEvent('FromDepartment', value)}
+                onChange={(event, value) => onChangeDataEvent('fromDepartment', value)}
                 options={departmentsIndex.map((option) => option.title)}
                 renderInput={(params) => (
                     <TextField
@@ -70,7 +70,7 @@ const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
                 id="free-solo-2-demo"
                 disableClearable
                 value={formData.toDepartment}
-                onChange={(event, value) => onChangeDataEvent('ToDepartment', value)}
+                onChange={(event, value) => onChangeDataEvent('toDepartment', value)}
                 options={departmentsIndex.map((option) => option.title)}
                 renderInput={(params) => (
                     <TextField

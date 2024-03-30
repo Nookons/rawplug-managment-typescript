@@ -70,8 +70,6 @@ const AddItem = () => {
         setIsBatchError(false)
         setIsAdding(true)
 
-        console.log(formData);
-
         try {
             const validation    = await addItemValidation({items, formData});
             const response      = await onAddItem(formData, user)
@@ -91,6 +89,7 @@ const AddItem = () => {
             }, 250)
         }
     };
+
 
 
     const onChangeDataEvent = useCallback((type: string, value: any) => {
