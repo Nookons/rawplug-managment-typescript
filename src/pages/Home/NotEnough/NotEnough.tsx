@@ -7,6 +7,9 @@ import palletsData from '../../../assets/PalletsData.json'
 import itemsData from '../../../assets/ItemsInfo.json'
 import {IPalletItem, IPallets} from "../../../types/Pallet";
 import {ICardItem, IItem} from "../../../types/Item";
+import {Card, CardContent, Typography} from "@mui/material";
+import {Link} from "react-router-dom";
+import {ITEM_ROUTE} from "../../../utils/consts";
 
 
 const getUpdateQuantity = (quantity: number, allQuantity: number, index: string, ready: number) => {
@@ -163,17 +166,25 @@ const NotEnough = () => {
             <hr/>
             <div style={{display: "flex", flexDirection: "column", gap: 4}}>
                 {staysAfterPlans.map((element: any) => {
+                    console.log(element);
 
                     return (
-                        <div style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            backgroundColor: element.quantity > 1000 ? "rgb(195,235,233)" : "#F28585",
-                            padding: 14
-                        }}>
-                            <article>{element.index}</article>
-                            <article>{element.quantity}</article>
-                        </div>
+                        <Card  variant={"outlined"} raised={true}>
+                            <CardContent style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "flex-end",
+                                padding: 0,
+                                margin: 8
+                            }}>
+                                <Typography fontSize={14} color="text.secondary" variant={"subtitle1"}>
+                                    {element.index}
+                                </Typography>
+                                <Typography fontSize={14} color={element.quantity < 2000 && "red"} variant={"subtitle1"}>
+                                    {element.quantity}
+                                </Typography>
+                            </CardContent>
+                        </Card>
                     )
                 })}
             </div>

@@ -44,7 +44,10 @@ const actionsSlice = createSlice({
     name: 'actions',
     initialState,
     reducers: {
-
+        addAction(state, action: PayloadAction<IAction>) {
+            state.actions.push(action.payload);
+            state.error = undefined;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -65,5 +68,5 @@ const actionsSlice = createSlice({
     }
 })
 
-export const {} = actionsSlice.actions;
+export const {addAction} = actionsSlice.actions;
 export default actionsSlice.reducer;

@@ -116,4 +116,7 @@
         flex-wrap: wrap;
         flex-direction: column;
     }
+    .div4 {
+        display: none;
+    }
 }

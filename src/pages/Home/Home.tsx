@@ -16,6 +16,7 @@ import CurrentPlan from "./CurrentPlan/CurrentPlan";
 import {ExpandMore} from "@mui/icons-material";
 
 import NotEnough from "./NotEnough/NotEnough";
+import LastActions from "./LastActions/LastActions";
 
 const Home: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
@@ -42,7 +43,7 @@ const Home: FC = () => {
                             <MyButton><Link to={RECEIPT_REPORT_ROUTE}>Report</Link></MyButton>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion className={styles.Details} defaultExpanded={true}>
+                    <Accordion className={styles.Details} defaultExpanded={false}>
                         <AccordionSummary
                             expandIcon={<ExpandMore/>}
                             aria-controls="panel2a-content"
@@ -74,7 +75,9 @@ const Home: FC = () => {
                 <CurrentPlan />
             </div>
             <div style={{filter: user === null ? "blur(5px)" : "", pointerEvents: user === null ? "none": "auto"}} className={styles.div3}>
-                <p>Warehouse</p>
+                <Typography variant="caption" display="block" gutterBottom>
+                    Warehouse | in progress...
+                </Typography>
                 <hr/>
                 <Warehouse loading={loading} error={error} items={items} />
             </div>
@@ -82,7 +85,10 @@ const Home: FC = () => {
                 <NotEnough />
             </div>
             <div style={{filter: user === null ? "blur(5px)" : "", pointerEvents: user === null ? "none": "auto"}} className={styles.div5}>
-                <p>Last actions</p>
+                <Typography variant="caption" display="block" gutterBottom>
+                    Last actions (5)
+                </Typography>
+                <LastActions />
             </div>
         </div>
     );

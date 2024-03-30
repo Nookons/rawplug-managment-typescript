@@ -1,0 +1,7 @@
+
+.Main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 14px;
+}

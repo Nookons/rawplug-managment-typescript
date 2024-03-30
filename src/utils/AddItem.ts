@@ -1,6 +1,6 @@
-import {getDatabase, ref, set} from 'firebase/database';
+import {getDatabase, push, ref, set} from 'firebase/database';
 import dayjs from "dayjs";
-import {IAddFormData} from "../types/Item";
+import {IAddFormData, IItem} from "../types/Item";
 
 
 export function handlingError ({error}: any ) {
@@ -41,9 +41,17 @@ export function onAddItem(data: IAddFormData, user: any) {
             batchNumber: data.type.toLowerCase() === "barrel" ? data.batchNumber : null
         };
 
+        const actionBody = {
+            type: 'Add item',
+            user: user.email,
+            actionTime: date,
+            item: item
+        }
+
+        push(ref(db, 'actions/'), actionBody)
         set(ref(db, 'items/' + id), item);
 
-        return [true, item];
+        return [true, item, actionBody];
     } catch (e) {
         return [false, null];
     }

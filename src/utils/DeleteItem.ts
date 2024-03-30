@@ -9,21 +9,19 @@ export const onDeleteItem = async (currentItem: any, user: any) => {
 
     try {
 
-        push(ref(db, 'removed/'), {
-            removedTime: currentTime,
-            user: user.email,
-            item: {...currentItem}
-        });
-        push(ref(db, 'actions/'), {
-            type: 'remove',
+        const tempBody = {
+            type: 'Remove',
             user: user.email,
             actionTime: currentTime,
             item: {...currentItem}
-        });
+        }
+
+        await push(ref(db, 'removed/'), {...tempBody});
+        await push(ref(db, 'actions/'), {...tempBody});
 
         await remove(itemRef);
         console.log(`Item with id ${currentItem.id} successfully deleted.`);
-        return true; // Возвращаем true в случае успешного удаления
+        return [true, tempBody]; // Возвращаем true в случае успешного удаления
     } catch (error) {
         console.error(`Error deleting item with id ${currentItem.id}:`, error);
         return false; // Возвращаем false в случае ошибки

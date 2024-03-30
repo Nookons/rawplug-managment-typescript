@@ -4,11 +4,11 @@
     grid-column-gap: 8px;
     grid-row-gap: 8px;
     padding: 14px;
-    background: linear-gradient(rgb(38, 118, 104), rgb(98, 140, 114));
     min-height: calc(100dvh - 160px);
 }
 .Main > div{
-    //box-shadow: inset 5px 5px 5px rgba(0,0,0, 0.5);
+    //border: 1px solid gray;
+    box-shadow: 0 0 5px rgba(0,0,0, 0.25);
     background-color: rgba(250, 250, 250, 1);
     border-radius: 4px;
     padding: 14px;
@@ -34,7 +34,6 @@
     grid-area: 2 / 5 / 3 / 6;
 }
 .Details {
-    background: rgb(219,241,211) !important;
 }
 .DetailsWrapper {
     display: flex;

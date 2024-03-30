@@ -35,3 +35,9 @@
     z-index: 2;
     box-shadow: 0 0 15px rgba(0,0,0, 0.5);
 }
+
+@media screen and (max-width: 500px) {
+    .Main {
+        display: none;
+    }
+}

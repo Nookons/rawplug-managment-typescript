@@ -43,7 +43,10 @@ const removedSlice = createSlice({
     name: 'removed',
     initialState,
     reducers: {
-
+        addRemoved(state, action: PayloadAction<IRemoved>) {
+            state.removed.push(action.payload);
+            state.error = undefined;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -63,5 +66,5 @@ const removedSlice = createSlice({
     }
 })
 
-export const {} = removedSlice.actions;
+export const {addRemoved} = removedSlice.actions;
 export default removedSlice.reducer;

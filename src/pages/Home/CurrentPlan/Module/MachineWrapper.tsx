@@ -18,7 +18,7 @@ const MachineWrapper = () => {
         <div>
             {loading ? (
                 <div className="skeleton">
-                    <Skeleton variant="rectangular" width={"100%"} height={550}/>
+                    <Skeleton variant="rectangular" width={"100%"} height={250}/>
                 </div>
             ) : (
                 <>
