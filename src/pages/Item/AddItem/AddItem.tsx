@@ -13,6 +13,7 @@ import {handlingError, onAddItem} from "../../../utils/AddItem";
 import {addItem} from "../../../store/reducers/item/itemsSlice";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {useNavigate} from "react-router-dom";
+import {addAction} from "../../../store/reducers/Actions/ActionsSlice";
 
 
 const AddItem = () => {
@@ -70,8 +71,6 @@ const AddItem = () => {
         setIsBatchError(false)
         setIsAdding(true)
 
-        console.log(formData);
-
         try {
             const validation    = await addItemValidation({items, formData});
             const response      = await onAddItem(formData, user)
@@ -79,6 +78,7 @@ const AddItem = () => {
             if (response[0]) {
                 handleClickVariant('success', validation);
                 dispatch(addItem(response[1]))
+                dispatch(addAction(response[2]))
 
                 setFormData(prevState => ({...prevState, barrel: {...prevState.barrel, first: 0, secondary: 0, third: 0, four:0}}))
             }
@@ -91,6 +91,7 @@ const AddItem = () => {
             }, 250)
         }
     };
+
 
 
     const onChangeDataEvent = useCallback((type: string, value: any) => {

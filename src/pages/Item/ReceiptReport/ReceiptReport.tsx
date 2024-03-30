@@ -24,6 +24,7 @@ import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import dayjs from "dayjs";
+import RemovedDisplay from "./RemovedDisplay";
 
 
 const ReceiptReport: FC = () => {
@@ -35,6 +36,8 @@ const ReceiptReport: FC = () => {
     const [pickUser, setPickUser] = useState<string | null>(null);
     const [pickDate, setPickDate] = useState<any | null>(dayjs().format("YYYY-MM-DD"));
     const [arrayToDisplay, setArrayToDisplay] = useState<IItem[]>([]);
+
+    const [removedArray, setRemovedArray] = useState<IItem[] | null>(null);
 
 
     useEffect(() => {
@@ -87,7 +90,7 @@ const ReceiptReport: FC = () => {
     return (
         <div style={{padding: 14, minHeight: "calc(100dvh - 160px)", backgroundColor: "white"}}>
             <div style={{padding: 14}} ref={contentToPrint}>
-                <MyPDFComponent pickDate={pickDate} pickUser={pickUser} arrayToDisplay={arrayToDisplay}/>
+                <MyPDFComponent removedArray={removedArray} pickDate={pickDate} pickUser={pickUser} arrayToDisplay={arrayToDisplay}/>
             </div>
             <div className={styles.InputsWrapper}>
                 <Autocomplete
@@ -108,7 +111,8 @@ const ReceiptReport: FC = () => {
                     </LocalizationProvider>
                 }
             </div>
-            {arrayToDisplay.length > 0 &&
+            {arrayToDisplay.length || removedArray?.length
+            ?
                 <div style={{margin: "14px 0", display: "flex", justifyContent: "flex-end"}}>
                     <MyButton click={() => {
                         handlePrint(null, () => contentToPrint.current);
@@ -116,47 +120,49 @@ const ReceiptReport: FC = () => {
                         <PrintIcon/>
                     </MyButton>
                 </div>
-
-            }
-            {arrayToDisplay.length > 0 ?
-                <div style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: 8,
-                    marginBottom: 24
-                }}
-                >
-                    {arrayToDisplay.map((el: IItem) => (
-                        <Card sx={{ minWidth: 340 }} variant={"outlined"} raised={true}>
-                            <CardContent>
-                                <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
-                                    <Link to={ITEM_ROUTE + "?_" + el.id}>{el.index}</Link>
-                                    {el.createdDate.slice(10)}
-                                </Typography>
-                                <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
-                                    {el.description}
-                                </Typography>
-                                <div style={{display: "flex", justifyContent: "flex-end", alignItems: "flex-end", gap: 8}}>
-                                    <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
-                                        {el.fromDepartment}
-                                    </Typography>
-                                    <Typography variant={"h5"} marginTop={"12px"}>
-                                        {el.quantity.toLocaleString()} {el.jm}
-                                    </Typography>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
-                :
+            :
                 <div style={{marginTop: 24}}>
-                    {pickUser &&
-                        <Alert severity={"info"} variant={"filled"}>
-                            We can't find any item for {pickDate}
-                        </Alert>
-                    }
+                    <Alert severity="warning">
+                        <article style={{display: "flex", gap: 8, alignItems: "center"}}>On <h6>{pickDate}</h6> and for <h5>{pickUser}</h5> we can't find any item...</article>
+                    </Alert>
                 </div>
             }
+            {arrayToDisplay.length > 0 &&
+                <div>
+                    <h5>Items at stock</h5>
+                    <hr/>
+                    <div style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 8,
+                        marginBottom: 24
+                    }}
+                    >
+                        {arrayToDisplay.map((el: IItem) => (
+                            <Card sx={{ minWidth: 340 }} variant={"outlined"} raised={true}>
+                                <CardContent>
+                                    <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                        <Link to={ITEM_ROUTE + "?_" + el.id}>{el.index}</Link>
+                                        {el.createdDate.slice(10)}
+                                    </Typography>
+                                    <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                        {el.description}
+                                    </Typography>
+                                    <div style={{display: "flex", justifyContent: "flex-end", alignItems: "flex-end", gap: 8}}>
+                                        <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                            {el.fromDepartment}
+                                        </Typography>
+                                        <Typography variant={"h5"} marginTop={"12px"}>
+                                            {el.quantity.toLocaleString()} {el.jm}
+                                        </Typography>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            }
+            <RemovedDisplay removedArray={removedArray}  setRemovedArray={setRemovedArray} pickUser={pickUser} pickDate={pickDate}/>
         </div>
     );
 };

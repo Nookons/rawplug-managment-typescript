@@ -7,6 +7,8 @@ import {fetchUser} from "./store/reducers/User/userSlice";
 import {useAppDispatch, useAppSelector} from "./hooks/storeHooks";
 import {fetchPlans} from "./store/reducers/Plan/PlansReducer";
 import {fetchPallets} from "./store/reducers/Pallets/PalletsSlice";
+import {fetchActions} from "./store/reducers/Actions/ActionsSlice";
+import {fetchRemoved} from "./store/reducers/Removed/RemovedSlice";
 
 const App = () => {
     const dispatch = useAppDispatch();
@@ -14,9 +16,11 @@ const App = () => {
 
     const fetchAllData = useCallback(() => {
         dispatch(fetchItems());
-        dispatch(fetchUser())
-        dispatch(fetchPlans())
-        dispatch(fetchPallets())
+        dispatch(fetchUser());
+        dispatch(fetchPlans());
+        dispatch(fetchPallets());
+        dispatch(fetchActions());
+        dispatch(fetchRemoved());
     }, [dispatch]);
 
     fetchAllData();

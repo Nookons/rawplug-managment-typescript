@@ -6,13 +6,20 @@ import {Link} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
 
 interface MyPDFComponentProps {
+    removedArray: IItem[];
     arrayToDisplay: IItem[];
     pickUser: string | null;
     pickDate: string | null;
 }
 
-const MyPDFComponent: FC<MyPDFComponentProps> = ({arrayToDisplay, pickUser, pickDate}) => {
-    if (arrayToDisplay) {
+const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, pickUser, pickDate}) => {
+    let total = 0;
+
+    if (removedArray && arrayToDisplay) {
+        total = arrayToDisplay.length + removedArray.length
+    }
+
+    if (arrayToDisplay && removedArray) {
         return (
             <div style={{
                 margin: 24,
@@ -27,7 +34,7 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({arrayToDisplay, pickUser, pick
                     <h5>Report details:</h5>
                     <article>Person: {pickUser}</article>
                     <article>Date: {pickDate}</article>
-                    <article>Total items: {arrayToDisplay.length}</article>
+                    <article>Total items: {total}</article>
                 </div>
                 <TableContainer component={Paper} variant="elevation" elevation={2}>
                     <Table aria-label="simple table" size={"small"} padding={"normal"}>
@@ -43,6 +50,30 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({arrayToDisplay, pickUser, pick
                         <TableBody style={{padding: "14px !important"}}>
                             {arrayToDisplay.map((el: IItem, index) => (
                                 <TableRow key={el.id}>
+                                    <TableCell>
+                                        <article>{index + 1}</article>
+                                    </TableCell>
+                                    <TableCell>
+                                        <p style={{whiteSpace: "nowrap"}}>{el.index}</p>
+                                    </TableCell>
+                                    <TableCell><p>{el.createdDate.slice(10)}</p></TableCell>
+                                    <TableCell><p>{
+                                        el.fromDepartment
+                                            .replace("PWT70", "PWT70 | Mixers")
+                                    }</p></TableCell>
+                                    <TableCell><p style={{whiteSpace: "nowrap"}}>{el.quantity.toLocaleString()} {el.jm}</p></TableCell>
+                                </TableRow>
+                            ))}
+                            {removedArray.length > 0 &&
+                                <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                padding: "8px 0"
+                            }}>🔴
+                            </div>
+                            }
+                            {removedArray.map((el: IItem, index) => (
+                                <TableRow style={{backgroundColor: "rgba(0,0,0,0.05)"}} key={el.id}>
                                     <TableCell>
                                         <article>{index + 1}</article>
                                     </TableCell>

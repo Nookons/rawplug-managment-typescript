@@ -2,9 +2,9 @@ import React, {FC, useEffect, useState} from 'react';
 import styles from "../CurrentPlan.module.css";
 import {IPallets} from "../../../../types/Pallet";
 import {useAppSelector} from "../../../../hooks/storeHooks";
-import {Alert, Skeleton} from "@mui/material";
-import {useNavigate} from "react-router-dom";
-import {PALLET_ROUTE} from "../../../../utils/consts";
+import {Alert, Card, CardContent, Skeleton, Typography} from "@mui/material";
+import {Link, useNavigate} from "react-router-dom";
+import {ITEM_ROUTE, PALLET_ROUTE} from "../../../../utils/consts";
 
 interface LastPalletsProps {
 
@@ -33,17 +33,30 @@ const LastPallets: FC<LastPalletsProps> = () => {
                     {!error
                         ?
                         <div>
-                            <p>(5) Last pallets 👩‍🔧️</p>
+                            <Typography variant="caption" display="block" gutterBottom>
+                                (5) Last pallets 👩‍🔧️
+                            </Typography>
                             <hr/>
                             <div className={styles.NeedWrapper}>
                                 {revertPallets.slice(0, 5).map((item: IPallets) => {
 
                                     return (
-                                        <button onClick={() => onPalletClick(item.id)} className={styles.NeedItem}>
-                                            <h6>{item.index}</h6>
-                                            <p>{item.createdDate} 🕑</p>
-                                            <p>{item.quantity} ({item.JM}) 📦</p>
-                                        </button>
+                                        <Card sx={{ minWidth: 240 }} variant={"outlined"} raised={true}>
+                                            <CardContent>
+                                                <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                                    <Link to={PALLET_ROUTE + "?_" + item.id}>{item.index}</Link>
+                                                    {item.createdDate.slice(10)}
+                                                </Typography>
+                                                <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                                    {item.Created}
+                                                </Typography>
+                                                <div style={{display: "flex", justifyContent: "flex-end", alignItems: "flex-end", gap: 4, flexDirection: "column"}}>
+                                                    <Typography fontSize={16} variant={"subtitle1"}>
+                                                        {item.quantity} {item.JM}
+                                                    </Typography>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
                                     )
                                 })}
                             </div>
@@ -54,7 +67,7 @@ const LastPallets: FC<LastPalletsProps> = () => {
 
                     }
                 </div>
-                : <Skeleton variant="rectangular" width={280} height={570}/>
+                : <Skeleton variant="rectangular" width={280} height={250}/>
             }
         </div>
     );

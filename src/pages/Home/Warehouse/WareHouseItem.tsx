@@ -60,8 +60,6 @@ export const WarehouseItem: FC<WareHouseItemProps> = ({ card, tempQta, tempPalle
                     const rootClasses = [styles.LastItems]
                     const response = getStatus(lastElement.status)
 
-                    console.log(lastElement);
-
                     if (response) {
                         rootClasses.push(response)
                     }
