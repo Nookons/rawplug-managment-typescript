@@ -59,9 +59,10 @@ const Item = () => {
             return
         }
 
-        try {
+        try{
             if (id) {
-                const response = await onDeleteItem(id)
+                const response = await onDeleteItem(currentItem, user)
+
                 handleClickVariant('success', 'Item deleted')
                 dispatch(removeItem(id))
                 if (response) {
