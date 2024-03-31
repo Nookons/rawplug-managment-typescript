@@ -36,7 +36,7 @@ const App = () => {
                             Nookon ™
                         </a>
                     </p>
-                    <p>version 0.1.3 | (26/02/2024)</p>
+                    <p>version 0.1.5 | (31/03/2024)</p>
                 </div>
         </BrowserRouter>
     );
