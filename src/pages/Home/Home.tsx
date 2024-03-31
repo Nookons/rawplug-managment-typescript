@@ -9,7 +9,7 @@ import {
     ADD_ITEM_ROUTE,
     ADD_PALLET_ROUTE,
     ADD_PLAN_ROUTE, BARREL_STATS_ROUTE,
-    CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
+    CHECK_PLANS_ROUTE, CREATE_ITEM_ROUTE, FIND_ITEM_ROUTE,
     ITEMS_GRID_ROUTE, RECEIPT_REPORT_ROUTE
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
@@ -41,6 +41,7 @@ const Home: FC = () => {
                             <MyButton><Link to={ITEMS_GRID_ROUTE}>List</Link></MyButton>
                             <MyButton><Link to={BARREL_STATS_ROUTE}>Barrels list</Link></MyButton>
                             <MyButton><Link to={RECEIPT_REPORT_ROUTE}>Report</Link></MyButton>
+                            <MyButton><Link to={CREATE_ITEM_ROUTE}>Create Item</Link></MyButton>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={styles.Details} defaultExpanded={false}>

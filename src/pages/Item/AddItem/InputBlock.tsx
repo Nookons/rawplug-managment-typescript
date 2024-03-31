@@ -1,39 +1,126 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styles from "./AddItem.module.css";
-import {Autocomplete, FormControl, InputAdornment, OutlinedInput, TextField} from "@mui/material";
-import data from '../../../assets/ItemsInfo.json'
-import {ICardItem, IItem} from "../../../types/Item";
+import {
+    Autocomplete,
+    Backdrop,
+    CircularProgress,
+    FormControl,
+    InputAdornment,
+    OutlinedInput,
+    TextField
+} from "@mui/material";
+import {doc, onSnapshot} from "firebase/firestore";
+import {db} from "../../../firebase";
+import {IItem, IItemTemplate} from "../../../types/Item";
 
 interface InputBlockProps {
     onChangeDataEvent: (type: string, value: any) => void;
     formData: any;
 }
 
+interface IIndexData {
+    indexArray: any[],
+    loading: false;
+    error: string | null;
+}
+
+
+function sleep(duration: number): Promise<void> {
+    return new Promise<void>((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, duration);
+    });
+}
+
 const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
+    const [open, setOpen] = React.useState(false);
+
+    const [indexData, setIndexData] = useState<IIndexData>({
+        indexArray: [],
+        loading: false,
+        error: null
+    });
 
     const departmentsIndex = [
-        { title: 'PWT10' },
-        { title: 'PWT30' },
-        { title: 'PWT70' },
-        { title: 'MSP' },
+        {title: 'PWT10'},
+        {title: 'PWT30'},
+        {title: 'PWT70'},
+        {title: 'MSP'},
     ];
 
     const statusIndex = [
-        { title: 'Available' },
-        { title: 'Hold' },
-        { title: 'Odzysk' },
+        {title: 'Available'},
+        {title: 'Hold'},
+        {title: 'Odzysk'},
     ];
+
+    const loadIndexes = async () => {
+        (async () => {
+            setIndexData((prevState) => ({...prevState, loading: true}))
+            await sleep(250);
+
+            try {
+                onSnapshot(doc(db, "departments", "PWT70"), (doc) => {
+                    setIndexData((prevState) => ({...prevState, indexArray: doc.data().itemTemplate}));
+                });
+            } catch (e) {
+                setIndexData((prevState) => ({...prevState, loading: false, error: e}))
+            } finally {
+                setIndexData((prevState) => ({...prevState, loading: false}))
+            }
+        })();
+    }
+
+
+    useEffect(() => {
+        if (!open) {
+            setIndexData((prevState) => ({...prevState, indexArray: []}))
+        }
+    }, [open]);
 
     return (
         <div className={styles.AutoCompleteWrapper}>
             <div>
                 <Autocomplete
+                    id="asynchronous-demo"
+                    open={open}
+                    onOpen={() => {
+                        setOpen(true);
+                        loadIndexes();
+                    }}
+                    onClose={() => {
+                        setOpen(false);
+                    }}
+                    getOptionLabel={(option) => option.myIndex}
+                    fullWidth={true}
+                    options={indexData.indexArray}
+                    loading={indexData.loading}
+                    loadingText={"#️⃣ loading... "}
+                    onChange={(event, value) => onChangeDataEvent('index', value?.myIndex ? value.myIndex : "")}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Index"
+                            InputProps={{
+                                ...params.InputProps,
+                                endAdornment: (
+                                    <React.Fragment>
+                                        {indexData.loading ? <CircularProgress color="inherit" size={20}/> : null}
+                                        {params.InputProps.endAdornment}
+                                    </React.Fragment>
+                                ),
+                            }}
+                        />
+                    )}
+                    />
+                {/*<Autocomplete
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
                     value={formData.index}
                     onChange={(event, value) => onChangeDataEvent('index', value)}
-                    options={data.map((option: ICardItem) => option.myIndex)}
+                    options={indexData.indexArray.map((option: IItemTemplate) => option.myIndex)}
                     renderInput={(params) => (
                         <TextField
                             {...params}
@@ -45,7 +132,7 @@ const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
                             required={true}
                         />
                     )}
-                />
+                />*/}
             </div>
             <Autocomplete
                 freeSolo

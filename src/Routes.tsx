@@ -1,12 +1,22 @@
 import {
-    ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PLAN_ROUTE, BARREL_STATS_ROUTE, CHECK_PLANS_ROUTE, FIND_ITEM_ROUTE,
-    HOME_ROUTE, ITEM_ROUTE, ITEMS_GRID_ROUTE, PALLET_ROUTE, RECEIPT_REPORT_ROUTE,
+    ADD_ITEM_ROUTE,
+    ADD_PALLET_ROUTE,
+    ADD_PLAN_ROUTE,
+    BARREL_STATS_ROUTE,
+    CHECK_PLANS_ROUTE,
+    CREATE_ITEM_ROUTE,
+    FIND_ITEM_ROUTE,
+    HOME_ROUTE,
+    ITEM_ROUTE,
+    ITEMS_GRID_ROUTE,
+    PALLET_ROUTE,
+    RECEIPT_REPORT_ROUTE,
     SIGN_IN_ROUTE,
-    SIGN_UP_ROUTE, USER_SETTINGS_ROUTE,
+    SIGN_UP_ROUTE,
+    USER_SETTINGS_ROUTE,
 } from "./utils/consts";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/User/SignIn";
-import {Add} from "@mui/icons-material";
 import AddItem from "./pages/Item/AddItem/AddItem";
 import AddPlan from "./pages/Plan/AddPlan";
 import AddPallet from "./pages/Pallet/AddPallet/AddPallet";
@@ -18,6 +28,7 @@ import FindItem from "./pages/Item/FindItem/FindItem";
 import Settings from "./pages/User/settings/Settings";
 import BarrelStats from "./pages/Item/BarrelStats/BarrelStats";
 import ReceiptReport from "./pages/Item/ReceiptReport/ReceiptReport";
+import CreateItem from "./pages/Item/CreateItem/CreateItem";
 
 
 interface Route {
@@ -97,6 +108,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: RECEIPT_REPORT_ROUTE,
         Component: ReceiptReport,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: CREATE_ITEM_ROUTE,
+        Component: CreateItem,
         label: 'AppPrivateRoute',
     },
 ];
