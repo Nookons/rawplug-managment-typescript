@@ -61,7 +61,7 @@ const UserSettingsInput = () => {
                         </TableRow>
                         <TableRow>
                             <TableCell>Work number</TableCell>
-                            <TableCell>{loadData?.workPhone.slice(0, 10git)} </TableCell>
+                            <TableCell>{loadData?.workPhone.slice(0, 10)} </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Position</TableCell>
