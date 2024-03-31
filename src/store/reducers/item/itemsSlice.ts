@@ -21,8 +21,6 @@ export const fetchItems = createAsyncThunk<IItem[], undefined, { rejectValue: st
         const dbRef = child(database, 'items/');
         const snapshot = await get(dbRef);
 
-        console.log(snapshot.exists());
-
         if (snapshot.exists()) {
             const itemsArray = Object.values(snapshot.val()) as IItem[];
             return itemsArray;

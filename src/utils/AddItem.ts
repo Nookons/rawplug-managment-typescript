@@ -44,6 +44,7 @@ export function onAddItem(data: IAddFormData, user: any) {
         const actionBody = {
             type: 'Add item',
             user: user.email,
+            userUid: user.uid,
             actionTime: date,
             item: item
         }

@@ -56,7 +56,11 @@ const userSlice = createSlice({
                 state.error = undefined;
             })
             .addCase(fetchUser.fulfilled, (state, action) => {
-                state.user = action.payload;
+                const user = {
+                    uid: action.payload.uid,
+                    email: action.payload.email
+                }
+                state.user = user;
                 state.loading = false;
             })
             .addCase(fetchUser.rejected, (state, action) => {

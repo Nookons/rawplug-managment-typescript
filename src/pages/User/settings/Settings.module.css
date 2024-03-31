@@ -1,0 +1,34 @@
+
+.Main {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+    grid-column-gap: 14px;
+    grid-row-gap: 14px;
+}
+.Main > div {
+    box-shadow: 0 0 5px rgba(0,0,0, 0.25);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 2 / 1 / 3 / 3; }
+
+.div2 > div {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+@media screen and (max-width: 750px) {
+    .Main {
+        display: flex;
+        flex-direction: column;
+    }
+}

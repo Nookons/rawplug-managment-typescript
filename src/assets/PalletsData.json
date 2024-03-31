@@ -14,7 +14,7 @@
         "quantity": 1
       },
       {
-        "index": "R-NOZ-14-WMC",
+        "index": "R-NOZ-M〵Z",
         "quantity": 2
       },
       {
@@ -32,6 +32,10 @@
       {
         "index": "Q-CM-PSF-STAND-V3",
         "quantity": 0.425
+      },
+      {
+        "index": "Q-ET-R-KEMII-300",
+        "quantity": 1
       }
     ]
   },
@@ -70,7 +74,7 @@
         "quantity": 1
       },
       {
-        "index": "R-NOZ-14-WMC",
+        "index": "R-NOZ-M",
         "quantity": 2
       },
       {
@@ -86,8 +90,12 @@
         "quantity": 1
       },
       {
-        "index": "Q-CM-PSF-STAND-V3",
+        "index": "Q-CM-HYBRYDA-STANDART",
         "quantity": 0.425
+      },
+      {
+        "index": "Q-ET-RKERII300",
+        "quantity": 1
       }
     ]
   },
