@@ -21,11 +21,8 @@ export const fetchActions = createAsyncThunk<IAction[], undefined, { rejectValue
         const dbRef = child(database, 'actions/');
         const snapshot = await get(dbRef);
 
-        console.log(snapshot.exists());
-
         if (snapshot.exists()) {
             const actionsArray = Object.values(snapshot.val()) as IAction[];
-            console.log(actionsArray);
             return actionsArray;
         } else {
             return rejectWithValue('There was an error loading data from the server. Please try again.');
@@ -56,7 +53,6 @@ const actionsSlice = createSlice({
                 state.error = undefined;
             })
             .addCase(fetchActions.fulfilled, (state, action) => {
-                console.log(action);
                 state.actions = action.payload;
                 state.loading = false;
             })

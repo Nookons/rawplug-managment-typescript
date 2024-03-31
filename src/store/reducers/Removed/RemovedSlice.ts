@@ -24,7 +24,6 @@ export const fetchRemoved = createAsyncThunk<IRemoved[], undefined, { rejectValu
 
         if (snapshot.exists()) {
             const actionsArray = Object.values(snapshot.val()) as IRemoved[];
-            console.log(actionsArray);
             return actionsArray;
         } else {
             return rejectWithValue('There was an error loading data from the server. Please try again.');

@@ -12,6 +12,7 @@ export const onDeleteItem = async (currentItem: any, user: any) => {
         const tempBody = {
             type: 'Remove',
             user: user.email,
+            userUid: user.uid,
             actionTime: currentTime,
             item: {...currentItem}
         }

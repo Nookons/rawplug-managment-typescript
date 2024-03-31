@@ -166,26 +166,28 @@ const NotEnough = () => {
             <hr/>
             <div style={{display: "flex", flexDirection: "column", gap: 4}}>
                 {staysAfterPlans.map((element: any) => {
-                    console.log(element);
 
-                    return (
-                        <Card  variant={"outlined"} raised={true}>
-                            <CardContent style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "flex-end",
-                                padding: 0,
-                                margin: 8
-                            }}>
-                                <Typography fontSize={14} color="text.secondary" variant={"subtitle1"}>
-                                    {element.index}
-                                </Typography>
-                                <Typography fontSize={14} color={element.quantity < 2000 && "red"} variant={"subtitle1"}>
-                                    {element.quantity}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    )
+                    if (element.quantity < 5000) {
+                        return (
+                            <Card  variant={"outlined"} raised={true}>
+                                <CardContent style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "flex-end",
+                                    padding: 0,
+                                    margin: 8
+                                }}>
+                                    <Typography fontSize={14} color="text.secondary" variant={"subtitle1"}>
+                                        {element.index}
+                                    </Typography>
+                                    <Typography fontSize={14} color={element.quantity < 2000 && "red"} variant={"subtitle1"}
+                                                letterSpacing={"1px"}>
+                                        {element.quantity.toLocaleString()}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        )
+                    }
                 })}
             </div>
         </div>
