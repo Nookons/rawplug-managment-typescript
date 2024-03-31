@@ -5,6 +5,9 @@ import {doc, onSnapshot, setDoc} from "firebase/firestore";
 import {db} from "../../../../firebase";
 import {useAppSelector} from "../../../../hooks/storeHooks";
 
+import data from '../../../../assets/ItemsInfo.json'
+import dayjs from "dayjs";
+
 const UserSettingsInput = () => {
     const {user, loading, error} = useAppSelector(state => state.user)
     const [loadData, setLoadData] = useState<any | null>(null);
@@ -40,6 +43,18 @@ const UserSettingsInput = () => {
 
     const onDataChange = (type: string, value: string) => {
         setInputData((prevState) => ({...prevState, [type]: value}))
+    }
+
+    const addItemsToDb = async () => {
+        try {
+            const userData = {
+                itemTemplate: [...data],
+                lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm")
+            };
+            await setDoc(doc(db, "departments", "PWT70"), userData);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
     }
 
     return (

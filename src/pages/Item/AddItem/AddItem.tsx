@@ -14,6 +14,8 @@ import {addItem} from "../../../store/reducers/item/itemsSlice";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {useNavigate} from "react-router-dom";
 import {addAction} from "../../../store/reducers/Actions/ActionsSlice";
+import {doc, onSnapshot} from "firebase/firestore";
+import {db} from "../../../firebase";
 
 
 const AddItem = () => {
@@ -27,6 +29,7 @@ const AddItem = () => {
 
     const [isBarrel, setIsBarrel] = useState<boolean>(false);
     const [isAdding, setIsAdding] = useState<boolean>(false);
+
 
 
     const handleClickVariant = (variant: VariantType, title: string) => {
@@ -95,6 +98,7 @@ const AddItem = () => {
 
 
     const onChangeDataEvent = useCallback((type: string, value: any) => {
+        console.log(value);
         if (type === "index") {
             const tempItem = data.find(el => el.myIndex === value);
             if (tempItem) {
