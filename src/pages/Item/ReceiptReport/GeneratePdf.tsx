@@ -48,46 +48,58 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, 
                             </TableRow>
                         </TableHead>
                         <TableBody style={{padding: "14px !important"}}>
-                            {arrayToDisplay.map((el: IItem, index) => (
-                                <TableRow key={el.id}>
-                                    <TableCell>
-                                        <article>{index + 1}</article>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p style={{whiteSpace: "nowrap"}}>{el.index}</p>
-                                    </TableCell>
-                                    <TableCell><p>{el.createdDate.slice(10)}</p></TableCell>
-                                    <TableCell><p>{
-                                        el.fromDepartment
-                                            .replace("PWT70", "PWT70 | Mixers")
-                                    }</p></TableCell>
-                                    <TableCell><p style={{whiteSpace: "nowrap"}}>{el.quantity.toLocaleString()} {el.jm}</p></TableCell>
-                                </TableRow>
-                            ))}
-                            {removedArray.length > 0 &&
-                                <div style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                padding: "8px 0"
-                            }}>🔴
-                            </div>
+                            {arrayToDisplay &&
+                                <>
+                                    {arrayToDisplay.map((el: IItem, index) => (
+                                        <TableRow key={el.id}>
+                                            <TableCell>
+                                                <article>{index + 1}</article>
+                                            </TableCell>
+                                            <TableCell>
+                                                <p style={{whiteSpace: "nowrap"}}>{el.index}</p>
+                                            </TableCell>
+                                            <TableCell><p>{el.createdDate.slice(10)}</p></TableCell>
+                                            <TableCell><p>{
+                                                el.fromDepartment
+                                                    .replace("PWT70", "PWT70 | Mixers")
+                                            }</p></TableCell>
+                                            <TableCell><p
+                                                style={{whiteSpace: "nowrap"}}>{el.quantity.toLocaleString()} {el.jm}</p>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </>
                             }
-                            {removedArray.map((el: IItem, index) => (
-                                <TableRow style={{backgroundColor: "rgba(0,0,0,0.05)"}} key={el.id}>
-                                    <TableCell>
-                                        <article>{index + 1}</article>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p style={{whiteSpace: "nowrap"}}>{el.index}</p>
-                                    </TableCell>
-                                    <TableCell><p>{el.createdDate.slice(10)}</p></TableCell>
-                                    <TableCell><p>{
-                                        el.fromDepartment
-                                            .replace("PWT70", "PWT70 | Mixers")
-                                    }</p></TableCell>
-                                    <TableCell><p style={{whiteSpace: "nowrap"}}>{el.quantity.toLocaleString()} {el.jm}</p></TableCell>
-                                </TableRow>
-                            ))}
+                            {removedArray &&
+                                <div style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    padding: "8px 0"
+                                }}>🔴
+                                </div>
+                            }
+                            {removedArray &&
+                                <>
+                                    {removedArray.map((el: IItem, index) => (
+                                        <TableRow style={{backgroundColor: "rgba(0,0,0,0.05)"}} key={el.id}>
+                                            <TableCell>
+                                                <article>{index + 1}</article>
+                                            </TableCell>
+                                            <TableCell>
+                                                <p style={{whiteSpace: "nowrap"}}>{el.index}</p>
+                                            </TableCell>
+                                            <TableCell><p>{el.createdDate.slice(10)}</p></TableCell>
+                                            <TableCell><p>{
+                                                el.fromDepartment
+                                                    .replace("PWT70", "PWT70 | Mixers")
+                                            }</p></TableCell>
+                                            <TableCell><p
+                                                style={{whiteSpace: "nowrap"}}>{el.quantity.toLocaleString()} {el.jm}</p>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </>
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
