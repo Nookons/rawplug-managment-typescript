@@ -19,7 +19,7 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, 
         total = arrayToDisplay.length + removedArray.length
     }
 
-    if (arrayToDisplay && removedArray) {
+    if (arrayToDisplay || removedArray) {
         return (
             <div style={{
                 margin: 24,
