@@ -36,6 +36,15 @@ interface SettingsBodyProps {
 const SettingsBody: FC<SettingsBodyProps> = ({user}) => {
     const {actions, loading, error} = useAppSelector(state => state.actions)
 
+    const [reversed, setReversed] = useState([]);
+
+    const [items, setItems] = useState(5);
+
+    useEffect(() => {
+        const reverse = [...actions].reverse();
+        setReversed(reverse)
+    }, [actions, loading])
+
     if (user) {
         return (
             <div className={styles.Main}>
@@ -47,14 +56,14 @@ const SettingsBody: FC<SettingsBodyProps> = ({user}) => {
                     <UserSettingsInput />
                 </div>
                 <div className={styles.div3}>
-                    {actions.map((el: IAction) => {
+                    {reversed.slice(0, items).map((el: IAction) => {
                         if (el.item.Created === user?.email) {
                             return (
                                 <Card sx={{ minWidth: 240 }} variant={"outlined"} raised={true}>
                                     <CardContent>
                                         <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
                                             <Link to={ITEM_ROUTE + "?_" + el.item.id}>{el.type}</Link>
-                                            {el.actionTime.slice(10)} | {el.user}
+                                            | {el.actionTime} | {el.user}
                                         </Typography>
                                         <div style={{display: "flex", justifyContent: "flex-end", alignItems: "flex-end", gap: 4, flexDirection: "column"}}>
                                             <Typography fontSize={16} color={"WindowText"} variant={"subtitle1"}>
@@ -69,6 +78,7 @@ const SettingsBody: FC<SettingsBodyProps> = ({user}) => {
                             )
                         }
                     })}
+                    <Button onClick={() => setItems(items + 5)}>Load more...</Button>
                 </div>
             </div>
         );

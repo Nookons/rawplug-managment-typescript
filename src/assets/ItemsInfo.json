@@ -169,7 +169,7 @@
   },
   {
     "myIndex": "KRP-ST-PISTON-B",
-    "type": "Piston blue",
+    "type": "Piston",
     "palletQta": 15400,
     "jm": "Pieces",
     "description": "Blue pistons for products"
@@ -311,10 +311,6 @@
     "myIndex": "Q-CM-PSF-GREY",
     "type": "Barrel",
     "palletQta": 0,
-    "movement": {
-      "from": "PWT70",
-      "to": "PWT70"
-    },
     "status": "Available",
     "jm": "kg",
     "description": "Meszanka chemiczna PSF GREY"
