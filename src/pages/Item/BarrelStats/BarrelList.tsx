@@ -63,11 +63,11 @@ const BarrelList: FC<BarrelListProps> = ({searchType, items}) => {
                                                 .replace("STANDART", "STD")}
                                         </Link></article>
                                 </TableCell>
-                                <TableCell><p
-                                    style={{whiteSpace: "nowrap"}}>{el.status.toLowerCase() === 'available' ? '✅' : '⛔'} {el.batchNumber}</p>
+                                <TableCell><article
+                                    style={{whiteSpace: "nowrap"}}>{el.status.toLowerCase() === 'available' ? '✅' : '⛔'} {el.batchNumber}</article>
                                 </TableCell>
-                                <TableCell ><p>{el.quantity.toLocaleString()} kg</p></TableCell>
-                                {offset > 1000 ? <TableCell ><p>{el.remarks}</p></TableCell> : null}
+                                <TableCell ><article>{el.quantity.toLocaleString()} kg</article></TableCell>
+                                {offset > 1000 ? <TableCell ><article>{el.remarks}</article></TableCell> : null}
                             </TableRow>
                         </TableBody>
                     ))}
