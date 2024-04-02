@@ -425,7 +425,14 @@
     "type": "Chemical",
     "palletQta": 800,
     "jm": "kg",
-    "description": "Meszanka chemiczna PSF Standardowy wersja 3"
+    "description": "Barrel on a rack"
+  },
+  {
+    "myIndex": "Q-C-BYK-D-410",
+    "type": "Chemical",
+    "palletQta": 200,
+    "jm": "kg",
+    "description": "Barrel on a rack"
   },
   {
     "myIndex": "Q-C-SOCAL-P2",
