@@ -2,13 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {doc, onSnapshot, setDoc, Timestamp} from "firebase/firestore";
 import {db} from "../../../firebase";
 import {
-    Autocomplete, Avatar,
     Backdrop,
     Button,
     Card,
     CardContent,
     CircularProgress, Fab,
-    InputAdornment,
     TextField, Typography
 } from "@mui/material";
 import styles from './CreateItem.module.css'
@@ -17,15 +15,12 @@ import {SnackbarProvider, VariantType, useSnackbar} from 'notistack';
 
 import data from "../../../assets/ItemsInfo.json"
 import {Link} from "react-router-dom";
-import {ITEM_ROUTE} from "../../../utils/consts";
 import dayjs from "dayjs";
 import {useAppSelector} from "../../../hooks/storeHooks";
-import MyButton from "../../../components/MyButton/MyButton";
 import Box from "@mui/material/Box";
 
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 import SwipeLeftIcon from '@mui/icons-material/SwipeLeft';
-import {addAction} from "../../../utils/addaction";
 
 interface IIndexData {
     oldArray: any[],
@@ -99,7 +94,6 @@ const CreateItem = () => {
                     id: Date.now()
                 }]
             };
-            await addAction("Create", user, inputData);
             await setDoc(doc(db, "departments", "NotApproved"), userData);
 
             setTimeout(() => {
@@ -126,7 +120,6 @@ const CreateItem = () => {
                 updateBy: user.email
             });
 
-            await addAction("Remove", user, item);
 
             setTimeout(() => {
                 handleClickVariant('success', "Item was success delete");
