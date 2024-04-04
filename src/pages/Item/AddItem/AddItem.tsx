@@ -15,7 +15,6 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {useNavigate} from "react-router-dom";
 import {collection, doc, getDocs, onSnapshot, setDoc} from "firebase/firestore";
 import {db} from "../../../firebase";
-import {addAction} from "../../../utils/addaction";
 import dayjs from "dayjs";
 
 
@@ -93,8 +92,6 @@ const AddItem = () => {
             if (response[0]) {
                 handleClickVariant('success', validation);
                 dispatch(addItem(response[1]))
-
-                await addAction("Add", user, response[1])
 
                 await setDoc(doc(db, "PWT70", "warehouse"), {
                     items: [...oldArray, response[1]],
