@@ -119,6 +119,13 @@
     "description": "Blue cartridges for products"
   },
   {
+    "myIndex": "Q-C-CART-345ML",
+    "type": "Cartridge",
+    "palletQta": 1000,
+    "jm": "Pieces",
+    "description": "Blue cartridges for products"
+  },
+  {
     "myIndex": "KRP-ST-CART-310-G",
     "type": "Cartridge",
     "palletQta": 936,
@@ -527,42 +534,49 @@
   },
   {
     "myIndex": "HP-RKERII300W",
-    "type": "Label",
-    "palletQta": 0,
+    "type": "Etykieta",
+    "palletQta": 1000,
     "jm": "Pieces",
-    "description": "Label to R-KER II 300ml"
+    "description": "Etykieta to R-KER II 300ml"
   },
   {
     "myIndex": "HP-KEMPSF300ISO",
-    "type": "Label",
-    "palletQta": 0,
+    "type": "Etykieta",
+    "palletQta": 1000,
     "jm": "Pieces",
-    "description": "Label to R-KEM-ISO II 300ml "
+    "description": "Etykieta to R-KEM-ISO II 300ml "
   },
   {
     "myIndex": "HP-PROB-P-40",
-    "type": "Label",
-    "palletQta": 0,
+    "type": "Etykieta",
+    "palletQta": 1000,
     "jm": "Pieces",
     "description": "\uD83D\uDE30"
   },
   {
     "myIndex": "Q-ET-R-KEXII-600",
-    "type": "Label",
-    "palletQta": 0,
+    "type": "Etykieta",
+    "palletQta": 1000,
     "jm": "Pieces",
     "description": "Etykieta foliowa peel-off R-KEX-II-600 150x190"
   },
   {
     "myIndex": "Q-ET-RKERII300",
-    "type": "Label",
-    "palletQta": 0,
+    "type": "Etykieta",
+    "palletQta": 1000,
     "jm": "Pieces",
     "description": "Etykieta foliowa peel-off R-KER-II-300 150x190"
   },
   {
+    "myIndex": "Q-ET-RKEMII410N",
+    "type": "Etykieta",
+    "palletQta": 1000,
+    "jm": "Pieces",
+    "description": "ETYKIETA FOLIOWA PEEL-OFF R-KEM-II-410 NOWY WYKROJNIK 189X164MM"
+  },
+  {
     "myIndex": "Q-C-OS30-SILO",
-    "type": "Label",
+    "type": "Etykieta",
     "palletQta": 1000,
     "jm": "kg",
     "description": "\uD83D\uDE30"

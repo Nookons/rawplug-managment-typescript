@@ -25,6 +25,7 @@ import Box from "@mui/material/Box";
 
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 import SwipeLeftIcon from '@mui/icons-material/SwipeLeft';
+import {addAction} from "../../../utils/addaction";
 
 interface IIndexData {
     oldArray: any[],
@@ -47,8 +48,8 @@ const CreateItem = () => {
 
     const [inputData, setInputData] = useState({
         jm: "",
-        myIndex: "",
-        palletQta: 0,
+        index: "",
+        quantity: 0,
         type: "",
         description: ""
     });
@@ -78,7 +79,8 @@ const CreateItem = () => {
     const addData = async () => {
         try {
             const userData = {
-                itemTemplate: [...data]
+                itemTemplate: [...data],
+                lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm")
             };
             await setDoc(doc(db, "departments", "PWT70"), userData);
         } catch (e) {
@@ -92,15 +94,17 @@ const CreateItem = () => {
         try {
             const userData = {
                 itemTemplate: [...oldData.oldArray, {...inputData,
-                    addDate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
-                    addPerson: user.email,
+                    createdTime: dayjs().format("YYYY-MM-DD [at] HH:mm"),
+                    person: user.email,
                     id: Date.now()
                 }]
             };
+            await addAction("Create", user, inputData);
             await setDoc(doc(db, "departments", "NotApproved"), userData);
+
             setTimeout(() => {
                 setIsSending(false)
-                handleClickVariant('success', inputData.myIndex + " was sent to leaders, you will be seen this item after we approved him, thanks for your work ❤️");
+                handleClickVariant('success', inputData.index + " was sent to leaders, you will be seen this item after we approved him, thanks for your work ❤️");
             }, 250)
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -112,6 +116,7 @@ const CreateItem = () => {
 
     const onRejectClick = async (id: number) => {
         const filter = oldData.oldArray.filter(item => item.id !== id)
+        const item = oldData.oldArray.filter(item => item.id === id)
         setIsSending(true)
 
         try {
@@ -120,6 +125,8 @@ const CreateItem = () => {
                 lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
                 updateBy: user.email
             });
+
+            await addAction("Remove", user, item);
 
             setTimeout(() => {
                 handleClickVariant('success', "Item was success delete");
@@ -141,6 +148,7 @@ const CreateItem = () => {
             </Backdrop>
             <Inputs inputData={inputData} setInputData={setInputData}/>
             <Button onClick={addTestItem} fullWidth={true} variant="outlined">Send</Button>
+
             {/*<Button onClick={addData} fullWidth={true} variant="outlined">Add data</Button>*/}
 
             <h5 style={{marginTop: 24}}>Not approved items</h5>
@@ -152,10 +160,10 @@ const CreateItem = () => {
             }}>
                 {oldData.oldArray.map((el, index) => (
                     <Card key={index} sx={{ minWidth: 240 }} variant={"outlined"} raised={true}>
-                        <CardContent style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
+                        <CardContent style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                             <div>
                                 <Typography color="text.secondary" variant={"subtitle1"}>
-                                    <Link>{el.myIndex} | {el.type}</Link>
+                                    <Link>{el.index} | {el.type}</Link>
                                 </Typography>
                                 <Typography fontSize={16} color="text.secondary" variant={"subtitle1"}>
                                     <article>{el.description}</article>
@@ -163,9 +171,12 @@ const CreateItem = () => {
                                 <Typography fontSize={16} color="text.secondary" variant={"subtitle1"}>
                                     {el.addDate} | {el.addPerson}
                                 </Typography>
+                                <Typography fontSize={16} color="text.secondary" variant={"subtitle1"}>
+                                    {el.quantity}
+                                </Typography>
                             </div>
                             <div>
-                                <Box style={{display: "flex", flexDirection: "column", gap: 14}} fontSize={12}>
+                                <Box style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 24}} fontSize={12}>
                                     <Fab variant="extended" size={"medium"} color={"success"}>
                                         <LibraryAddCheckIcon sx={{ mr: 1 }} />
                                         Approve

@@ -13,9 +13,10 @@ import {handlingError, onAddItem} from "../../../utils/AddItem";
 import {addItem} from "../../../store/reducers/item/itemsSlice";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {useNavigate} from "react-router-dom";
-import {addAction} from "../../../store/reducers/Actions/ActionsSlice";
-import {doc, onSnapshot} from "firebase/firestore";
+import {collection, doc, getDocs, onSnapshot, setDoc} from "firebase/firestore";
 import {db} from "../../../firebase";
+import {addAction} from "../../../utils/addaction";
+import dayjs from "dayjs";
 
 
 const AddItem = () => {
@@ -78,16 +79,35 @@ const AddItem = () => {
             const validation    = await addItemValidation({items, formData});
             const response      = await onAddItem(formData, user)
 
+            let oldArray = [];
+
+            onSnapshot(doc(db, "PWT70", "warehouse"), (doc) => {
+                if (doc.exists()) {
+                    oldArray = [...doc.data().items];
+                }
+            });
+
+            console.log(oldArray);
+
+
             if (response[0]) {
                 handleClickVariant('success', validation);
                 dispatch(addItem(response[1]))
-                dispatch(addAction(response[2]))
+
+                await addAction("Add", user, response[1])
+
+                await setDoc(doc(db, "PWT70", "warehouse"), {
+                    items: [...oldArray, response[1]],
+                    lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
+                    updateBy: user.email
+                });
 
                 setFormData(prevState => ({...prevState, barrel: {...prevState.barrel, first: 0, secondary: 0, third: 0, four:0}}))
             }
         } catch (error) {
             const errorMessage = await handlingError({ error });
             handleClickVariant('error', errorMessage)
+            handleClickVariant('error', error)
         } finally {
             setTimeout(() => {
                 setIsAdding(false)

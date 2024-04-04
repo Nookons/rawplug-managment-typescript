@@ -17,8 +17,8 @@ import {FIND_ITEM_ROUTE, HOME_ROUTE, ITEMS_GRID_ROUTE} from "../../utils/consts"
 import {removeItem} from "../../store/reducers/item/itemsSlice";
 import {Alert, Backdrop, Button, CircularProgress, Tooltip} from "@mui/material";
 import {SnackbarProvider, VariantType, useSnackbar, enqueueSnackbar} from 'notistack';
-import {addAction} from "../../store/reducers/Actions/ActionsSlice";
 import {addRemoved} from "../../store/reducers/Removed/RemovedSlice";
+import {addAction} from "../../utils/addaction";
 
 
 const Item = () => {
@@ -64,13 +64,13 @@ const Item = () => {
         try{
             if (id) {
                 const response = await onDeleteItem(currentItem, user)
-
                 handleClickVariant('success', 'Item deleted')
 
                 if (response) {
                     dispatch(removeItem(id))
-                    dispatch(addAction(response[1]))
                     dispatch(addRemoved(response[1]))
+
+                    await addAction("Remove", user, response[1])
 
                     setTimeout(() => {
                         navigate(HOME_ROUTE)

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {BrowserRouter, useNavigate} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import Navbar from "./components/Navbar/Navbar";
@@ -9,9 +9,13 @@ import {fetchPlans} from "./store/reducers/Plan/PlansReducer";
 import {fetchPallets} from "./store/reducers/Pallets/PalletsSlice";
 import {fetchActions} from "./store/reducers/Actions/ActionsSlice";
 import {fetchRemoved} from "./store/reducers/Removed/RemovedSlice";
+import {doc, onSnapshot} from "firebase/firestore";
+import {db} from "./firebase";
 
 const App = () => {
     const dispatch = useAppDispatch();
+
+    const [myVersion, setMyVersion] = useState("");
 
 
     const fetchAllData = useCallback(() => {
@@ -22,6 +26,36 @@ const App = () => {
         dispatch(fetchActions());
         dispatch(fetchRemoved());
     }, [dispatch]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                onSnapshot(doc(db, "Main", "config"), (doc) => {
+                    if (doc.exists()) {
+                        setMyVersion(doc.data().version)
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        })();
+    }, []);
+
+    useEffect(() => {
+        const localVersion = localStorage.getItem('version');
+
+        if (myVersion) {
+            if (localVersion !== myVersion) {
+                localStorage.setItem('version', myVersion)
+                alert("Hey there, we have new version app for you.We will reload this page to set update >" +
+                    "Привіт, у нас є нова версія програми для вас.Ми перезавантажимо цю сторінку, щоб встановити оновлення")
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500)
+            }
+        }
+
+    }, [myVersion]);
 
     fetchAllData();
 
@@ -36,7 +70,7 @@ const App = () => {
                             Nookon ™
                         </a>
                     </p>
-                    <p>version 0.1.5 | (31/03/2024)</p>
+                    <p>version {myVersion} | (31/03/2024)</p>
                 </div>
         </BrowserRouter>
     );

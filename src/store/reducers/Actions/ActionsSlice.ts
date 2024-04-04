@@ -3,7 +3,18 @@ import {child, get, getDatabase, ref} from "firebase/database";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../../firebaseConfig";
-import {IAction} from "../../../types/Action";
+import {doc, getDoc, onSnapshot} from "firebase/firestore";
+import {db} from "../../../firebase";
+
+
+interface IAction {
+    createTime: string;
+    id: number;
+    person: string;
+    personUid: string;
+    type: string;
+    actionItem: any;
+}
 
 type itemsState = {
     actions: IAction[],
@@ -15,17 +26,22 @@ type itemsState = {
 export const fetchActions = createAsyncThunk<IAction[], undefined, { rejectValue: string }>(
     'actions/fetchActions',
 
-    async (_, {rejectWithValue}) => {
-        initializeApp(firebaseConfig);
-        const database = ref(getDatabase());
-        const dbRef = child(database, 'actions/');
-        const snapshot = await get(dbRef);
+    async (_, { rejectWithValue }) => {
+        try {
+            let actions: IAction[] = [];
 
-        if (snapshot.exists()) {
-            const actionsArray = Object.values(snapshot.val()) as IAction[];
-            return actionsArray;
-        } else {
-            return rejectWithValue('There was an error loading data from the server. Please try again.');
+            // Using await with onSnapshot
+            await onSnapshot(doc(db, "PWT70", "actions"), (snapshot) => {
+                if (snapshot.exists()) {
+                    actions = [...snapshot.data().items as IAction[]]
+                }
+            });
+
+            console.log(actions);
+            return actions;
+        } catch (error) {
+            // Catching errors without specifying type
+            return rejectWithValue(error.message || 'Failed to fetch actions');
         }
     }
 );
@@ -41,7 +57,7 @@ const actionsSlice = createSlice({
     name: 'actions',
     initialState,
     reducers: {
-        addAction(state, action: PayloadAction<IAction>) {
+        addActionSlice(state, action: PayloadAction<IAction>) {
             state.actions.push(action.payload);
             state.error = undefined;
         },
