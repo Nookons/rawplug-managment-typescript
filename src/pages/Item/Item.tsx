@@ -18,7 +18,6 @@ import {removeItem} from "../../store/reducers/item/itemsSlice";
 import {Alert, Backdrop, Button, CircularProgress, Tooltip} from "@mui/material";
 import {SnackbarProvider, VariantType, useSnackbar, enqueueSnackbar} from 'notistack';
 import {addRemoved} from "../../store/reducers/Removed/RemovedSlice";
-import {addAction} from "../../utils/addaction";
 
 
 const Item = () => {
@@ -69,8 +68,6 @@ const Item = () => {
                 if (response) {
                     dispatch(removeItem(id))
                     dispatch(addRemoved(response[1]))
-
-                    await addAction("Remove", user, response[1])
 
                     setTimeout(() => {
                         navigate(HOME_ROUTE)
