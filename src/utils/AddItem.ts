@@ -1,6 +1,8 @@
 import {getDatabase, push, ref, set} from 'firebase/database';
 import dayjs from "dayjs";
 import {IAddFormData, IItem} from "../types/Item";
+import {doc, setDoc, getDocs, collection} from "firebase/firestore";
+import db from '../firebase'
 
 
 export function handlingError ({error}: any ) {
@@ -19,7 +21,7 @@ export function handlingError ({error}: any ) {
 }
 
 
-export function onAddItem(data: IAddFormData, user: any) {
+export async function onAddItem(data: IAddFormData, user: any) {
     try {
         if (!user) {
             return [false, 'Please sign in that add some items...']

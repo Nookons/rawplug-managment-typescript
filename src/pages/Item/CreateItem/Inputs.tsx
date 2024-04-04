@@ -13,7 +13,7 @@ const Inputs: FC<InputsProps> = ({inputData, setInputData}) => {
             <div className={styles.InputWrapper}>
                 <div className={styles.div1}>
                     <TextField
-                        onChange={(event) => setInputData((prevState) => ({...prevState, myIndex: event.target.value}))}
+                        onChange={(event) => setInputData((prevState) => ({...prevState, index: event.target.value}))}
                         fullWidth={true}
                         id="outlined-basic"
                         label="Index"
@@ -37,7 +37,7 @@ const Inputs: FC<InputsProps> = ({inputData, setInputData}) => {
                             "Zywica",
                             "Folia",
                             "Barwnik",
-                            "Label",
+                            "Etykieta",
                         ]}
                         onChange={(event, value) => setInputData((prevState) => ({...prevState, type: value}))}
                         fullWidth={true}
@@ -62,7 +62,7 @@ const Inputs: FC<InputsProps> = ({inputData, setInputData}) => {
                         label="Quantity"
                         variant="outlined"
                         type={"number"}
-                        onChange={(event) => setInputData((prevState) => ({...prevState, palletQta: event.target.value}))}
+                        onChange={(event) => setInputData((prevState) => ({...prevState, quantity: event.target.value}))}
                         InputProps={{
                             endAdornment: <InputAdornment position="start">{inputData.jm}</InputAdornment>,
                         }}
