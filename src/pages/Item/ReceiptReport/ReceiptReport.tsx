@@ -88,7 +88,7 @@ const ReceiptReport: FC = () => {
     }
 
     return (
-        <div style={{padding: 14, minHeight: "calc(100dvh - 160px)", backgroundColor: "white"}}>
+        <div style={{padding: 14, minHeight: "calc(100dvh - 160px)", backgroundColor: "white",}}>
             <div style={{padding: 14}} ref={contentToPrint}>
                 <MyPDFComponent removedArray={removedArray} pickDate={pickDate} pickUser={pickUser} arrayToDisplay={arrayToDisplay}/>
             </div>
