@@ -45,9 +45,10 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, 
                 position: "absolute",
                 top: '3vw', // Using a percentage value without defining parent's height might cause unexpected behavior.
                 left: 0,
-                right: 0
+                right: 0,
+                overflow: "hidden"
             }}>
-                <div style={{display: "grid", gridTemplateColumns: ".20fr .7fr .25fr .25fr", gap: 8, marginBottom: 24}}>
+                <div style={{display: "grid", minWidth: "1000px", gridTemplateColumns: ".20fr .7fr .25fr .25fr", gap: 8, marginBottom: 24}}>
                     <h5 style={{whiteSpace: "nowrap"}}>Report details:</h5>
                     <article style={{whiteSpace: "nowrap"}}>Person: {pickUser}</article>
                     <article style={{whiteSpace: "nowrap"}}>Date: {pickDate}</article>
