@@ -1,25 +1,6 @@
 import {getDatabase, push, ref, set} from 'firebase/database';
 import dayjs from "dayjs";
 import {IAddFormData, IItem} from "../types/Item";
-import {doc, setDoc, getDocs, collection} from "firebase/firestore";
-import db from '../firebase'
-
-
-export function handlingError ({error}: any ) {
-    const message = error.message;
-
-    switch (message) {
-        case "quantity":
-            return "Hey there! you can not add items with less than 10 quantity";
-        case "barrelWeight":
-            return "Hey there! your barrel has a lot of weight";
-        case "batch":
-            return "Hey there! Could you kindly double-check if the batch number has been entered correctly? It seems like it might already exist in the system.";
-        default:
-            return 'Unknown error, please contact developers'
-    }
-}
-
 
 export async function onAddItem(data: IAddFormData, user: any) {
     try {

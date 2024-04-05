@@ -9,7 +9,7 @@ import {
     ADD_ITEM_ROUTE,
     ADD_PALLET_ROUTE,
     ADD_PLAN_ROUTE, BARREL_STATS_ROUTE,
-    CHECK_PLANS_ROUTE, CREATE_ITEM_ROUTE, FIND_ITEM_ROUTE,
+    CHECK_PLANS_ROUTE, CREATE_ITEM_ROUTE, FIND_ITEM_ROUTE, HOME_ROUTE,
     ITEMS_GRID_ROUTE, RECEIPT_REPORT_ROUTE
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
@@ -17,6 +17,19 @@ import {ExpandMore} from "@mui/icons-material";
 
 import NotEnough from "./NotEnough/NotEnough";
 import LastActions from "./LastActions/LastActions";
+
+
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import SearchIcon from '@mui/icons-material/Search';
+import ListIcon from '@mui/icons-material/List';
+import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import WarehouseIcon from '@mui/icons-material/Warehouse';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
+import MoveUpIcon from '@mui/icons-material/MoveUp';
 
 const Home: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
@@ -33,15 +46,17 @@ const Home: FC = () => {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography><article>Warehouse</article></Typography>
+                            <Typography><article><WarehouseIcon /></article></Typography>
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
-                            <MyButton><Link to={ADD_ITEM_ROUTE}>Add</Link></MyButton>
-                            <MyButton><Link to={FIND_ITEM_ROUTE}>Search</Link></MyButton>
-                            <MyButton><Link to={ITEMS_GRID_ROUTE}>List</Link></MyButton>
-                            <MyButton><Link to={BARREL_STATS_ROUTE}>Barrels list</Link></MyButton>
-                            <MyButton><Link to={RECEIPT_REPORT_ROUTE}>Report</Link></MyButton>
-                            <MyButton><Link to={CREATE_ITEM_ROUTE}>Create Item</Link></MyButton>
+                            <MyButton><Link to={ADD_ITEM_ROUTE}><AddBoxIcon /></Link></MyButton>
+                            <MyButton><Link to={CREATE_ITEM_ROUTE}><NoteAddIcon /></Link></MyButton>
+                            <MyButton><Link to={HOME_ROUTE}><PlaylistRemoveIcon /></Link></MyButton>
+                            <MyButton><Link to={HOME_ROUTE}><MoveUpIcon /></Link></MyButton>
+                            <MyButton><Link to={FIND_ITEM_ROUTE}><SearchIcon /></Link></MyButton>
+                            <MyButton><Link to={ITEMS_GRID_ROUTE}><ListIcon /></Link></MyButton>
+                            <MyButton><Link to={BARREL_STATS_ROUTE}><FeaturedPlayListIcon /></Link></MyButton>
+                            <MyButton><Link to={RECEIPT_REPORT_ROUTE}><ReceiptLongIcon /></Link></MyButton>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={styles.Details} defaultExpanded={false}>
@@ -50,7 +65,7 @@ const Home: FC = () => {
                             aria-controls="panel2a-content"
                             id="panel2a-header"
                         >
-                            <Typography><article>Ready production</article></Typography>
+                            <Typography><article><FactCheckIcon /></article></Typography>
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <MyButton><Link to={ADD_PALLET_ROUTE}>Add</Link></MyButton>
@@ -63,7 +78,7 @@ const Home: FC = () => {
                             aria-controls="panel2a-content"
                             id="panel2a-header"
                         >
-                            <Typography><article>Plans</article></Typography>
+                            <Typography><article><PendingActionsIcon /></article></Typography>
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <MyButton><Link to={ADD_PLAN_ROUTE}>Add</Link></MyButton>
