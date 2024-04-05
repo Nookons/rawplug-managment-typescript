@@ -23,8 +23,6 @@ const AddItem = () => {
     const user = useAppSelector(state => state.user.user)
     const {items, loading, error} = useAppSelector(state => state.items)
 
-    const navigate = useNavigate();
-
     const dispatch = useAppDispatch();
 
     const [isBarrel, setIsBarrel] = useState<boolean>(false);
@@ -80,15 +78,6 @@ const AddItem = () => {
 
             let oldArray = [];
 
-            onSnapshot(doc(db, "PWT70", "warehouse"), (doc) => {
-                if (doc.exists()) {
-                    oldArray = [...doc.data().items];
-                }
-            });
-
-            console.log(oldArray);
-
-
             if (response[0]) {
                 handleClickVariant('success', validation);
                 dispatch(addItem(response[1]))
@@ -102,9 +91,7 @@ const AddItem = () => {
                 setFormData(prevState => ({...prevState, barrel: {...prevState.barrel, first: 0, secondary: 0, third: 0, four:0}}))
             }
         } catch (error) {
-            const errorMessage = await handlingError({ error });
-            handleClickVariant('error', errorMessage)
-            handleClickVariant('error', error)
+            handleClickVariant('error', error.toString())
         } finally {
             setTimeout(() => {
                 setIsAdding(false)

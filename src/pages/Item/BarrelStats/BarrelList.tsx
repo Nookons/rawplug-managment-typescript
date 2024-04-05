@@ -1,47 +1,66 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useMemo, useState} from 'react';
 import {IItem} from '../../../types/Item';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import {Link} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
 
 interface BarrelListProps {
-    searchType: string;
     items: IItem[];
+    searchTags: string[] | null;
 }
 
-const BarrelList: FC<BarrelListProps> = ({searchType, items}) => {
-    const [tempArray, setTempArray] = useState<IItem[]>([]);
-    const [allQuantity, setAllQuantity] = useState<number>(0);
-
+const BarrelList: FC<BarrelListProps> = ({items, searchTags}) => {
     let offset = window.innerWidth;
 
+    const [fullArray, setFullArray] = useState<IItem[]>([]);
+    const [totalQuantity, setTotalQuantity] = useState(0);
+
+    const [sortedArray, setSortedArray] = useState<IItem[]>([]);
+
+
+
+   const filteredAndSortedItems = (searchType: string) => {
+       const filteredItems = items.filter(el => el.index === searchType);
+       const sortedArray = [...filteredItems].sort((a, b) => b.batchNumber - a.batchNumber);
+       return sortedArray;
+   }
+
     useEffect(() => {
-        let quantitySum = 0;
-        const filteredItems = items.filter(el => el.index === searchType);
+        setFullArray([])
+        setTotalQuantity(0)
 
-        filteredItems.forEach(el => {
-            quantitySum += el.quantity;
-        });
+        if (searchTags) {
+            let temporaryArray: IItem[] = [];
 
-        const sortedArray = [...filteredItems].sort((a, b) => a.batchNumber - b.batchNumber).reverse();
+            searchTags.forEach(element => {
+                const response = filteredAndSortedItems(element)
+                temporaryArray.push(...response)
+            })
 
-        setTempArray(sortedArray);
-        setAllQuantity(quantitySum);
+            setFullArray([...temporaryArray])
+        }
+    }, [searchTags]);
 
-        console.log(filteredItems);
-    }, [searchType, items]);
+    useEffect(() => {
+        const sortedArray = fullArray.sort((a, b) => b.batchNumber - a.batchNumber);
+        setSortedArray(sortedArray);
+
+        const totalQuantity = sortedArray.reduce((sum, el) => sum + el.quantity, 0);
+        setTotalQuantity(totalQuantity);
+    }, [fullArray]);
+
 
     return (
         <div>
             <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", margin: "14px 0", gap: 4, justifyContent: "center", alignItems: "center"}}>
                 <div style={{padding: 14, backgroundColor: "#dfffd6"}}>
-                    <article>Available pallets: ({tempArray.length})</article>
+                    <article>Available pallets: ({fullArray.length})</article>
                 </div>
                 <div style={{padding: 14, backgroundColor: "#dfffd6"}}>
-                    <article>Total: ({allQuantity.toLocaleString()} kg)</article>
+                    <article>Total: ({totalQuantity} kg)</article>
                 </div>
             </div>
-            <TableContainer key={searchType} component={Paper} variant={"elevation"}>
+            <TableContainer component={Paper} variant={"elevation"}>
                 <Table aria-label="simple table" size={"small"} align={"left"} padding={"normal"} cellSpacing={2}
                        cellPadding={15}>
                     <TableHead>
@@ -52,8 +71,8 @@ const BarrelList: FC<BarrelListProps> = ({searchType, items}) => {
                             {offset > 1000 ? <TableCell ><h5>Remarks</h5></TableCell> : null}
                         </TableRow>
                     </TableHead>
-                    {tempArray.map((el, index) => (
-                        <TableBody>
+                    {sortedArray.map((el, index) => (
+                        <TableBody key={index}>
                             <TableRow>
                                 <TableCell>
                                     <article style={{whiteSpace: "nowrap"}}>

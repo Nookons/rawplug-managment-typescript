@@ -3,18 +3,18 @@ import {useAppSelector} from "../../../hooks/storeHooks";
 import {
     Alert,
     Autocomplete,
-    Backdrop,
+    Backdrop, Button,
     CircularProgress,
     TextField
 } from "@mui/material";
 import BarrelList from "./BarrelList";
+import MyButton from "../../../components/MyButton/MyButton";
 
 const BarrelStats: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
 
     const [uniqueIndex, setUniqueIndex] = useState([]);
-    const [searchType, setSearchType] = useState<string | null>(null);
-
+    const [searchTags, setSearchTags] = useState<string[]>([]);
 
     useEffect(() => {
         const uniqueValues = {};
@@ -32,42 +32,51 @@ const BarrelStats: FC = () => {
         setUniqueIndex(uniqueIndexes);
     }, [items]);
 
+    const onAllViewClick = () => {
+        setSearchTags([]);
+
+        uniqueIndex.forEach(element => {
+            setSearchTags(prevState => [...prevState, element])
+        })
+    }
+
 
     if (items && !loading && !error) {
         return (
-            <div style={{padding: 14, minHeight: "calc(100dvh - 160px)"}}>
+            <div style={{padding: 14, minHeight: "calc(100dvh - 160px)", display: "flex", flexDirection: "column", gap: 14}}>
+                <Button onClick={onAllViewClick} variant={"contained"}>View all</Button>
                 <Autocomplete
-                    disablePortal
+                    multiple
+                    limitTags={2}
+                    id="multiple-limit-tags"
                     options={uniqueIndex}
-                    value={searchType}
-                    onChange={(event, value) => setSearchType(value)}
-                    renderInput={(params) => <TextField {...params} label="Avialeble types"/>}
-                    fullWidth={true}
-                    size={"medium"}
-                    autoFocus={false}
+                    value={searchTags}
+                    onChange={(event, value) => setSearchTags(value)}
+                    getOptionLabel={(option) => <p>{option}</p>}
+                    renderInput={(params) => (
+                        <TextField {...params} label="Search tags" placeholder="Index"/>
+                    )}
                 />
 
                 {
-                    !searchType?.length
+                    !searchTags?.length
                         ? <div>
                             <Alert severity="info" style={{marginTop: 14}} variant={"filled"}>You not selected any items for
                                 search</Alert>
                         </div>
-                        : <BarrelList searchType={searchType} items={items}/>
+                        : <BarrelList searchTags={searchTags} items={items}/>
                 }
             </div>
         );
     }
 
-    if (loading) {
-        return (
-            <div style={{padding: 14, minHeight: "calc(100dvh - 157px)"}}>
-                <Backdrop open={true}>
-                    <CircularProgress color="inherit"/>
-                </Backdrop>
-            </div>
-        )
-    }
+    return (
+        <div style={{padding: 14, minHeight: "calc(100dvh - 157px)"}}>
+            <Backdrop open={true}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
+        </div>
+    )
 };
 
 export default BarrelStats;

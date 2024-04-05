@@ -16,6 +16,7 @@ const App = () => {
     const dispatch = useAppDispatch();
 
     const [myVersion, setMyVersion] = useState("");
+    const [lastUpdate, setLastUpdate] = useState("");
 
 
     const fetchAllData = useCallback(() => {
@@ -33,6 +34,7 @@ const App = () => {
                 onSnapshot(doc(db, "Main", "config"), (doc) => {
                     if (doc.exists()) {
                         setMyVersion(doc.data().version)
+                        setLastUpdate(doc.data().lastUpdate)
                     }
                 });
             } catch (error) {
@@ -70,7 +72,7 @@ const App = () => {
                             Nookon ™
                         </a>
                     </p>
-                    <p>version {myVersion} | (31/03/2024)</p>
+                    <p>version {myVersion} | ({lastUpdate})</p>
                 </div>
         </BrowserRouter>
     );
