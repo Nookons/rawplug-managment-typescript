@@ -69,6 +69,8 @@ const LastActions = () => {
             <Skeleton variant="rectangular" width={340} height={120}/>
             <Skeleton variant="rectangular" width={340} height={120}/>
             <Skeleton variant="rectangular" width={340} height={120}/>
+            <Skeleton variant="rectangular" width={340} height={120}/>
+            <Skeleton variant="rectangular" width={340} height={120}/>
         </div>
     );
 

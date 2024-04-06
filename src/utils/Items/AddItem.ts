@@ -18,7 +18,8 @@ export async function onAddItem(data: IAddFormData, user: any) {
         const item = {
             id: id,
             createdDate: date,
-            lastChange: date,
+            lastChange: "",
+            changePerson: "",
             Created: user ? user.email : null,
             userUid: user ? user.uid : null,
             PalletReceipt: id + (user ? '-' + user.uid.slice(0, 4) : "-9999"),
