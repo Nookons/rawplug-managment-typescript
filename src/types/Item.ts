@@ -9,6 +9,7 @@ export interface IItem {
     id: number;
     index: string;
     lastChange?: string;
+    changePerson?: string;
     quantity: number;
     status: string;
     type: string;

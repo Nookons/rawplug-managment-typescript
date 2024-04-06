@@ -1,137 +1,257 @@
 import React, {useEffect, useState} from 'react';
-import {IItem} from "../../types/Item";
-import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
-import Barcode from "react-barcode";
-import MyButton from "../../components/MyButton/MyButton";
 import styles from './Item.module.css'
 
-import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import SettingsItem from "./SettingsItem";
+import {Alert, Autocomplete, Backdrop, Button, CircularProgress, TextField, Tooltip} from "@mui/material";
+import {SnackbarProvider, VariantType, useSnackbar, enqueueSnackbar} from 'notistack';
+import {doc, onSnapshot, updateDoc} from "firebase/firestore"
+import {db} from "../../firebase";
+import {IItem} from "../../types/Item";
+
+import Box from '@mui/material/Box';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
 import PrintIcon from '@mui/icons-material/Print';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SettingsItem from "./SettingsItem";
-import {onDeleteItem} from "../../utils/Items/DeleteItem";
-import MyButtonLoader from "../../components/MyButtonLoader/MyButtonLoader";
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import LockIcon from '@mui/icons-material/Lock';
 import {useNavigate} from "react-router-dom";
-import {FIND_ITEM_ROUTE, HOME_ROUTE, ITEMS_GRID_ROUTE} from "../../utils/consts";
-import {removeItem} from "../../store/reducers/item/itemsSlice";
-import {Alert, Backdrop, Button, CircularProgress, Tooltip} from "@mui/material";
-import {SnackbarProvider, VariantType, useSnackbar, enqueueSnackbar} from 'notistack';
-import {addRemoved} from "../../store/reducers/Removed/RemovedSlice";
+import DeleteIcon from '@mui/icons-material/Delete';
+import {onDeleteItem} from "../../utils/Items/DeleteItem";
+import {useAppSelector} from "../../hooks/storeHooks";
+import {HOME_ROUTE} from "../../utils/consts";
+import MyModal from "../../components/Modal/MyModal";
+import MyButton from "../../components/MyButton/MyButton";
+import dayjs from "dayjs";
 
+export interface ICurrentItem {
+    loading: boolean;
+    error: string;
+    item: IItem | null;
+}
 
 const Item = () => {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
+    const {user, loading, error} = useAppSelector(state => state.user)
 
     const currentURL = window.location.href;
     const id = currentURL.split('_')[1]
 
-    const {user} = useAppSelector(state => state.user)
-
-    const {items, error, loading} = useAppSelector(state => state.items)
-
-    const [currentItem, setCurrentItem] = useState<IItem>();
-    const [isBarrel, setIsBarrel] = useState<boolean>(false);
-
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [currentItem, setCurrentItem] = useState<ICurrentItem>({loading: false, error: "", item: null,});
+    const [editModal, setEditModal] = useState(false);
 
     const handleClickVariant = (variant: VariantType, title: string) => {
         enqueueSnackbar(title, {variant});
     };
 
     useEffect(() => {
-        const tempItem = items.find(el => el.id === Number(id));
-
-        if (tempItem && tempItem.type.toLowerCase() === "barrel") {
-            setIsBarrel(true)
-        }
-        setCurrentItem(tempItem);
-    }, [items, loading]);
-
-
-    const onDeleteItemClick = async (id: number | undefined) => {
-        setIsLoading(true)
-
-        if (!user) {
-            handleClickVariant('error', "You can't delete this items")
-            setIsLoading(false)
-            return
-        }
-
-        try{
-            if (id) {
-                const response = await onDeleteItem(currentItem, user)
-                handleClickVariant('success', 'Item deleted')
-
-                if (response) {
-                    dispatch(removeItem(id))
-                    dispatch(addRemoved(response[1]))
-
-                    setTimeout(() => {
-                        navigate(HOME_ROUTE)
-                    }, 250)
+        setCurrentItem((prevState) => ({...prevState, loading: true}))
+        const unsub = onSnapshot(doc(db, "items", "item_" + id), (doc) => {
+            try {
+                if (doc.exists()) {
+                    setCurrentItem({loading: false, error: "", item: doc.data() as IItem})
+                } else {
+                    throw new Error("Document does not exist, it's look like he removed")
                 }
-            } else {
-                handleClickVariant('error', 'Not correctly input for delete, item was not delete')
+            } catch (error) {
+                handleClickVariant("error", error.toString())
+                setCurrentItem((prevState) => ({...prevState, loading: false, error: error.toString()}))
             }
-        } catch (e) {
-            console.log(e);
-        } finally {
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 250)
+        });
+    }, []);
+
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+
+    const actions = [
+        { icon: <EditIcon />, name: 'Edit' },
+        { icon: <PrintIcon />, name: 'Print' },
+        { icon: <DeleteIcon />, name: 'Remove' },
+        {
+            icon: currentItem.item?.status === "Hold" ? <LockOpenIcon /> :  <LockIcon />,
+            name: currentItem.item?.status === "Hold" ? 'Unlock' : 'Lock'
+        }
+    ];
+
+    const onChangeStatus = async (name: string) => {
+        const itemRef = doc(db, "items", "item_" + currentItem.item?.id);
+
+        switch (name) {
+            case "Lock":
+                const answer = prompt('' +
+                    'Eng: Please add a reason why you are blocking this item  ' +
+                    'UA: Будь ласка, додайте причину, чому ви блокуєте цей пункт'
+                )
+                if (answer) {
+                    try {
+                        await updateDoc(itemRef, {
+                            ...currentItem.item,
+                            remarks: answer,
+                            status: "Hold",
+                            lastChange: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm  "),
+                            changePerson: user.email
+                        });
+                        handleClickVariant("success", "Item was blocked because  " + answer)
+                    } catch (error) {
+                        handleClickVariant("error", error.toString())
+                    }
+                } else {
+                    handleClickVariant("error", "Item was not blocked cause you don't write the reason")
+                }
+                break
+            case "Unlock":
+                try {
+                    await updateDoc(itemRef, {
+                        ...currentItem.item,
+                        status: "Available",
+                        lastChange: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm  "),
+                        changePerson: user.email
+                    });
+                    handleClickVariant("success", "Item unlocked")
+                } catch (error) {
+                    handleClickVariant("error", error.toString())
+                }
+                break
+            case "Remove":
+                try {
+                    const response = await onDeleteItem(currentItem.item, user)
+                    if (response) {
+                        handleClickVariant("success", "Item was removed success")
+                        navigate(HOME_ROUTE);
+                    }
+                } catch (error) {
+                    handleClickVariant("error", error.toString())
+                }
+                break
+            case "Edit":
+                setEditModal(true)
+                break
+            default:
+                console.log("Not egual any case")
         }
     }
 
+    const [editData, setEditData] = useState({
+        quantity: 0,
+        jm: '',
+        fromDepartment: '',
+        toDepartment: '',
+    });
+
+    useEffect(() => {
+        setEditData((prevState) => ({
+            ...prevState,
+            quantity: currentItem.item?.quantity,
+            jm: currentItem.item?.jm,
+            fromDepartment: currentItem.item?.fromDepartment,
+            toDepartment: currentItem.item?.toDepartment,
+        }))
+    }, [currentItem.item]);
+
+    const onAddEditClick = async () => {
+        const itemRef = doc(db, "items", "item_" + currentItem.item?.id);
+        console.log(editData);
+
+        try {
+            await updateDoc(itemRef, {
+                ...editData,
+                lastChange: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm  "),
+                changePerson: user.email
+            });
+            handleClickVariant("success", "Item was success changed")
+            setEditModal(false)
+        } catch (error) {
+            handleClickVariant("error", error.toString())
+        }
+    }
 
     return (
-        <div style={{backgroundColor: currentItem?.status === "Available"
+        <div style={{
+            backgroundColor: currentItem.item?.status === "Available"
                 ? 'rgb(38, 118, 104)'
                 : 'rgb(207,87,66)'
         }} className={styles.Main}>
-            <Backdrop style={{zIndex: 99}} open={isLoading}>
+            <Backdrop style={{zIndex: 99}} open={currentItem.loading}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
-            {!loading
-                ? <> {!error
-                    ?
-                    <div className={styles.Wrapper}>
-                        <div className={styles.div1}>
-                            <SettingsItem handleClickVariant={handleClickVariant} currentItem={currentItem} isBarrel={false}/>
-                        </div>
-                        {isBarrel
-                            ?
-                            <div className={styles.div2}>
-                                <Tooltip title="Barrel 1" arrow followCursor={true} leaveDelay={250} enterDelay={250}>
-                                    <h4>🛢️ {currentItem?.barrel?.first} kg</h4>
-                                </Tooltip>
-                                <Tooltip title="Barrel 2" arrow followCursor={true} leaveDelay={250} enterDelay={250}>
-                                    <h4>🛢️ {currentItem?.barrel?.secondary} kg</h4>
-                                </Tooltip>
-                                <Tooltip title="Barrel 3" arrow followCursor={true} leaveDelay={250} enterDelay={250}>
-                                    <h4>🛢️ {currentItem?.barrel?.third} kg</h4>
-                                </Tooltip>
-                                <Tooltip title="Barrel 4" arrow followCursor={true} leaveDelay={250} enterDelay={250}>
-                                    <h4>🛢️ {currentItem?.barrel?.four} kg</h4>
-                                </Tooltip>
-                            </div>
-                            : null
-                        }
-                        <div className={isBarrel ? styles.div3 : styles.div2}>
-                            <MyButton><AssignmentTurnedInIcon/></MyButton>
-                            <MyButton><PrintIcon/></MyButton>
-                            <MyButton><EditIcon/></MyButton>
-                            <MyButton click={() => onDeleteItemClick(currentItem?.id)}><DeleteIcon/></MyButton>
-                        </div>
+            <MyModal isActive={editModal} setIsActive={setEditModal}>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 14
+                }}>
+                    <div style={{display: "grid", gridTemplateColumns: "1fr 0.5fr", gap: 8}}>
+                        <TextField
+                            onChange={(event) => setEditData((prevState) => ({...prevState, quantity: event.target.value}))}
+                            fullWidth={true}
+                            type={"Number"}
+                            id="outlined-basic"
+                            defaultValue={currentItem.item?.quantity}
+                            label="Quantity"
+                            variant="outlined"
+                        />
+                        <Autocomplete
+                            onChange={(event, value) => setEditData((prevState) => ({...prevState, jm: value}))}
+                            disablePortal
+                            defaultValue={currentItem.item?.jm}
+                            options={["Peaces", "kg"]}
+                            renderInput={(params) => <TextField {...params} label="Type"/>}
+                        />
                     </div>
-                    : <Alert severity="error">{error}</Alert>
-                }</>
-                :
-                <Backdrop open={true}>
-                    <CircularProgress color="inherit"/>
-                </Backdrop>
-            }
+                    <Autocomplete
+                        onChange={(event, value) => setEditData((prevState) => ({...prevState, fromDepartment: value}))}
+                        disablePortal
+                        defaultValue={currentItem.item?.fromDepartment}
+                        options={["PWT70", "PWT30", "PWT10", "MSP"]}
+                        renderInput={(params) => <TextField {...params} label="From"/>}
+                    />
+                    <Autocomplete
+                        onChange={(event, value) => setEditData((prevState) => ({...prevState, toDepartment: value}))}
+                        disablePortal
+                        defaultValue={currentItem.item?.toDepartment}
+                        options={["PWT70", "PWT30", "PWT10", "MSP"]}
+                        renderInput={(params) => <TextField {...params} label="To"/>}
+                    />
+                    <MyButton click={onAddEditClick}>Save</MyButton>
+                </div>
+            </MyModal>
+            <div className={styles.Wrapper}>
+                <SettingsItem currentItem={currentItem} handleClickVariant={handleClickVariant} />
+            </div>
+            <Box sx={{
+                position: "fixed",
+                top: 0,
+                pointerEvents: !open && 'None',
+                right: 0,
+                left: 0,
+                bottom: 0,
+                transform: 'translateZ(0px)',
+                flexGrow: 1
+            }}>
+                <Backdrop open={open} />
+                <SpeedDial
+                    ariaLabel="SpeedDial tooltip example"
+                    sx={{ position: 'absolute', bottom: 16, right: 16 }}
+                    icon={<SpeedDialIcon />}
+                    onClose={handleClose}
+                    onOpen={handleOpen}
+                    open={open}
+                >
+                    {actions.map((action) => (
+                        <SpeedDialAction
+                            key={action.name}
+                            icon={action.icon}
+                            tooltipTitle={action.name}
+                            tooltipOpen
+                            onClick={() => onChangeStatus(action.name)}
+                        />
+                    ))}
+                </SpeedDial>
+            </Box>
         </div>
     );
 };

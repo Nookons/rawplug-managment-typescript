@@ -3,13 +3,13 @@ export const getMovement = (recipient: string | undefined) => {
 
     switch (recipient) {
         case 'PWT70':
-            return 'Mixery Prod. Chemiczna'
+            return 'PWT70 | Mixery Prod. Chemiczna'
         case 'PWT30':
-            return  'Label area'
+            return  'PWT30 | Label area'
         case 'PWT10':
-            return  'Truskarki'
+            return  'PWT10 | Truskarki'
         case 'MSP':
-            return  'Magazyn centralny (CMD)'
+            return  'MSP | Magazyn centralny (CMD)'
         default:
             return  'Unknown items 😥'
     }

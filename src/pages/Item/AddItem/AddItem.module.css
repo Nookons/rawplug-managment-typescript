@@ -49,6 +49,7 @@
     grid-area: 3 / 3 / 4 / 4;
 }
 
+
 @media screen and (max-width: 1000px){
     .AutoCompleteWrapper {
         margin-top: 14px;

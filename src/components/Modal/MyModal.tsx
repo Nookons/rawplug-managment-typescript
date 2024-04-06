@@ -10,19 +10,21 @@ interface MyModalProps {
 }
 
 const MyModal: FC<MyModalProps> = ({children, title, isActive, setIsActive}) => {
-    return (
-        <div onClick={() => setIsActive(false)} className={styles.Main}>
-            <div onClick={e => e.stopPropagation()} className={styles.Wrapper}>
-                <div style={{display: "flex", alignItems: 'center', gap: 14, justifyContent: 'space-between'}}>
-                    <article>{title}</article>
-                    <MyButton click={() => setIsActive(false)}>X</MyButton>
-                </div>
-                <div style={{padding: 14}}>
-                    {children}
+    if (isActive) {
+        return (
+            <div onClick={() => setIsActive(false)} className={styles.Main}>
+                <div onClick={e => e.stopPropagation()} className={styles.Wrapper}>
+{/*                    <div style={{display: "flex", alignItems: 'center', gap: 14, justifyContent: 'space-between'}}>
+                        <article>{title}</article>
+                        <MyButton click={() => setIsActive(false)}>X</MyButton>
+                    </div>*/}
+                    <div style={{padding: 14}}>
+                        {children}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default MyModal;

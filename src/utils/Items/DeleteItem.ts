@@ -5,6 +5,7 @@ import { deleteDoc } from "firebase/firestore";
 
 export const onDeleteItem = async (currentItem: any, user: any) => {
     try {
+        const actionID = Date.now();
 
         await setDoc(doc(db, "removed", "item_" + currentItem.id), {
             person: user.email,
@@ -12,8 +13,6 @@ export const onDeleteItem = async (currentItem: any, user: any) => {
             timeStamp: dayjs().format("YYYY-MM-DD [at] HH:mm"),
             item: {...currentItem}
         });
-
-        const actionID = Date.now();
 
         await setDoc(doc(db, "actions", "action_" + actionID), {
             person: user.email,
