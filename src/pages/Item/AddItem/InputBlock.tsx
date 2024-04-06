@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import styles from "./AddItem.module.css";
 import {
+    Alert,
     Autocomplete,
     Backdrop,
     CircularProgress,
@@ -9,9 +10,11 @@ import {
     OutlinedInput,
     TextField
 } from "@mui/material";
-import {doc, onSnapshot} from "firebase/firestore";
+import {doc, onSnapshot, setDoc} from "firebase/firestore";
 import {db} from "../../../firebase";
 import {IItem, IItemTemplate} from "../../../types/Item";
+
+import data from '../../../assets/ItemsInfo.json'
 
 interface InputBlockProps {
     onChangeDataEvent: (type: string, value: any) => void;
@@ -61,11 +64,13 @@ const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
             await sleep(250);
 
             try {
-                onSnapshot(doc(db, "departments", "PWT70"), (doc) => {
-                    setIndexData((prevState) => ({...prevState, indexArray: doc.data().itemTemplate}));
+                onSnapshot(doc(db, "PWT70", "templates"), (doc) => {
+                    if (doc.exists()) {
+                        setIndexData((prevState) => ({...prevState, indexArray: doc.data().templates}));
+                    }
                 });
-            } catch (e) {
-                setIndexData((prevState) => ({...prevState, loading: false, error: e}))
+            } catch (error) {
+                setIndexData((prevState) => ({...prevState, loading: false, error: error.toString()}))
             } finally {
                 setIndexData((prevState) => ({...prevState, loading: false}))
             }
@@ -79,9 +84,11 @@ const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
         }
     }, [open]);
 
+
     return (
         <div className={styles.AutoCompleteWrapper}>
             <div>
+                {indexData.error && <Alert severity="error">{indexData.error}</Alert>}
                 <Autocomplete
                     id="asynchronous-demo"
                     open={open}
@@ -113,7 +120,7 @@ const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
                             }}
                         />
                     )}
-                    />
+                />
                 {/*<Autocomplete
                     freeSolo
                     id="free-solo-2-demo"

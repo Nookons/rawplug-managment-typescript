@@ -10,7 +10,7 @@ import PrintIcon from '@mui/icons-material/Print';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsItem from "./SettingsItem";
-import {onDeleteItem} from "../../utils/DeleteItem";
+import {onDeleteItem} from "../../utils/Items/DeleteItem";
 import MyButtonLoader from "../../components/MyButtonLoader/MyButtonLoader";
 import {useNavigate} from "react-router-dom";
 import {FIND_ITEM_ROUTE, HOME_ROUTE, ITEMS_GRID_ROUTE} from "../../utils/consts";
@@ -52,7 +52,6 @@ const Item = () => {
 
     const onDeleteItemClick = async (id: number | undefined) => {
         setIsLoading(true)
-        //const answer = prompt('Pls write ' + currentItem?.index + ' for delete')
 
         if (!user) {
             handleClickVariant('error', "You can't delete this items")

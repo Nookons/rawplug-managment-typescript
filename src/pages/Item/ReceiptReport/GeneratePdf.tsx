@@ -48,7 +48,7 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, 
                 right: 0,
                 overflow: "hidden"
             }}>
-                <div style={{display: "grid", minWidth: "1000px", gridTemplateColumns: ".20fr .7fr .25fr .25fr", gap: 8, marginBottom: 24}}>
+                <div style={{display: "grid",width: "300dpi" , gridTemplateColumns: ".20fr .7fr .25fr .25fr", gap: 8, marginBottom: 24}}>
                     <h5 style={{whiteSpace: "nowrap"}}>Report details:</h5>
                     <article style={{whiteSpace: "nowrap"}}>Person: {pickUser}</article>
                     <article style={{whiteSpace: "nowrap"}}>Date: {pickDate}</article>

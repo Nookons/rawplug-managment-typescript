@@ -167,7 +167,7 @@ const NotEnough = () => {
             <div style={{display: "flex", flexDirection: "column", gap: 4}}>
                 {staysAfterPlans.map((element: any) => {
 
-                    if (element.quantity < 5000) {
+                    if (element.quantity) {
                         return (
                             <Card  variant={"outlined"} raised={true}>
                                 <CardContent style={{
