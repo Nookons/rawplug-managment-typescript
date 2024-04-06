@@ -24,6 +24,7 @@ import {HOME_ROUTE} from "../../utils/consts";
 import MyModal from "../../components/Modal/MyModal";
 import MyButton from "../../components/MyButton/MyButton";
 import dayjs from "dayjs";
+import {UpdateItem} from "../../utils/Items/UpdateItem";
 
 export interface ICurrentItem {
     loading: boolean;
@@ -68,18 +69,16 @@ const Item = () => {
 
 
     const actions = [
-        { icon: <EditIcon />, name: 'Edit' },
-        { icon: <PrintIcon />, name: 'Print' },
-        { icon: <DeleteIcon />, name: 'Remove' },
+        {icon: <EditIcon/>, name: 'Edit'},
+        {icon: <PrintIcon/>, name: 'Print'},
+        {icon: <DeleteIcon/>, name: 'Remove'},
         {
-            icon: currentItem.item?.status === "Hold" ? <LockOpenIcon /> :  <LockIcon />,
+            icon: currentItem.item?.status === "Hold" ? <LockOpenIcon/> : <LockIcon/>,
             name: currentItem.item?.status === "Hold" ? 'Unlock' : 'Lock'
         }
     ];
 
     const onChangeStatus = async (name: string) => {
-        const itemRef = doc(db, "items", "item_" + currentItem.item?.id);
-
         switch (name) {
             case "Lock":
                 const answer = prompt('' +
@@ -88,29 +87,23 @@ const Item = () => {
                 )
                 if (answer) {
                     try {
-                        await updateDoc(itemRef, {
-                            ...currentItem.item,
-                            remarks: answer,
+                        const data = {
                             status: "Hold",
-                            lastChange: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm  "),
-                            changePerson: user.email
-                        });
+                            remarks: answer,
+                        }
+                        await UpdateItem({id, user, data})
                         handleClickVariant("success", "Item was blocked because  " + answer)
                     } catch (error) {
                         handleClickVariant("error", error.toString())
                     }
-                } else {
-                    handleClickVariant("error", "Item was not blocked cause you don't write the reason")
                 }
                 break
             case "Unlock":
                 try {
-                    await updateDoc(itemRef, {
-                        ...currentItem.item,
+                    const data = {
                         status: "Available",
-                        lastChange: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm  "),
-                        changePerson: user.email
-                    });
+                    }
+                    await UpdateItem({id, user, data})
                     handleClickVariant("success", "Item unlocked")
                 } catch (error) {
                     handleClickVariant("error", error.toString())
@@ -153,15 +146,14 @@ const Item = () => {
     }, [currentItem.item]);
 
     const onAddEditClick = async () => {
-        const itemRef = doc(db, "items", "item_" + currentItem.item?.id);
-        console.log(editData);
-
         try {
-            await updateDoc(itemRef, {
-                ...editData,
-                lastChange: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm  "),
-                changePerson: user.email
-            });
+            const data = {
+                quantity: Number(editData.quantity),
+                jm: editData.jm,
+                fromDepartment: editData.fromDepartment,
+                toDepartment: editData.toDepartment,
+            }
+            await UpdateItem({id, user, data})
             handleClickVariant("success", "Item was success changed")
             setEditModal(false)
         } catch (error) {
@@ -186,7 +178,10 @@ const Item = () => {
                 }}>
                     <div style={{display: "grid", gridTemplateColumns: "1fr 0.5fr", gap: 8}}>
                         <TextField
-                            onChange={(event) => setEditData((prevState) => ({...prevState, quantity: event.target.value}))}
+                            onChange={(event) => setEditData((prevState) => ({
+                                ...prevState,
+                                quantity: event.target.value
+                            }))}
                             fullWidth={true}
                             type={"Number"}
                             id="outlined-basic"
@@ -220,7 +215,7 @@ const Item = () => {
                 </div>
             </MyModal>
             <div className={styles.Wrapper}>
-                <SettingsItem currentItem={currentItem} handleClickVariant={handleClickVariant} />
+                <SettingsItem currentItem={currentItem} handleClickVariant={handleClickVariant}/>
             </div>
             <Box sx={{
                 position: "fixed",
@@ -232,11 +227,11 @@ const Item = () => {
                 transform: 'translateZ(0px)',
                 flexGrow: 1
             }}>
-                <Backdrop open={open} />
+                <Backdrop open={open}/>
                 <SpeedDial
                     ariaLabel="SpeedDial tooltip example"
-                    sx={{ position: 'absolute', bottom: 16, right: 16 }}
-                    icon={<SpeedDialIcon />}
+                    sx={{position: 'absolute', bottom: 16, right: 16}}
+                    icon={<SpeedDialIcon/>}
                     onClose={handleClose}
                     onOpen={handleOpen}
                     open={open}

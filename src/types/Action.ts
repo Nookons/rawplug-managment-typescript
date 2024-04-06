@@ -5,6 +5,8 @@ export interface IAction {
     person: string;
     personUid: string,
     timeStamp: string;
+    changes?: any;
+    itemId?: number;
     id: number;
     item: IItem;
 }
