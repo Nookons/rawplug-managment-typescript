@@ -21,45 +21,102 @@ const LastActions = () => {
     if (actions) {
         return (
             <div className={styles.Main}>
-                {data.slice(0, 5).map((el: IAction, index) => (
-                    <Card key={index} sx={{minWidth: 240}} variant={"outlined"} raised={true}>
-                        <CardContent>
-                            <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
-                                <Link to={ITEM_ROUTE + "?_" + el.item.id}>{el.type}</Link>
-                                {el.timeStamp.slice(10)} | {el.person}
-                            </Typography>
-                            <hr/>
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "flex-end",
-                                alignItems: "flex-end",
-                                gap: 4,
-                                flexDirection: "column"
-                            }}>
-                                <div style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 14
-                                }}>
+                {data.slice(0, 5).map((el: IAction, index) => {
+
+                    if (el.type !== "change") {
+                        return (
+                            <Card key={index} sx={{minWidth: 240}} variant={"outlined"} raised={true}>
+                                <CardContent>
+                                    <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                        <Link to={ITEM_ROUTE + "?_" + el.item.id}>{el.type}</Link>
+                                        {el.timeStamp.slice(10)} | {el.person}
+                                    </Typography>
+                                    <hr/>
                                     <div style={{
                                         display: "flex",
-                                        flexDirection: "column",
                                         justifyContent: "flex-end",
-                                        alignItems: "flex-end"
+                                        alignItems: "flex-end",
+                                        gap: 4,
+                                        flexDirection: "column"
                                     }}>
-                                        <Typography fontSize={16} color={"WindowText"} variant={"subtitle1"}>
-                                            {el.item.index}
-                                        </Typography>
-                                        <Typography fontSize={12} color={"gray"} variant={"subtitle1"}>
-                                            {el.item.quantity} {el.item.jm}
-                                        </Typography>
+                                        <div style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: 14
+                                        }}>
+                                            <div style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                justifyContent: "flex-end",
+                                                alignItems: "flex-end"
+                                            }}>
+                                                <Typography fontSize={16} color={"WindowText"} variant={"subtitle1"}>
+                                                    {el.item.index}
+                                                </Typography>
+                                                <Typography fontSize={12} color={"gray"} variant={"subtitle1"}>
+                                                    {el.item.quantity} {el.item.jm}
+                                                </Typography>
+                                            </div>
+                                            <Avatar alt="Avatar">N</Avatar>
+                                        </div>
                                     </div>
-                                    <Avatar alt="Avatar">N</Avatar>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-                ))}
+                                </CardContent>
+                            </Card>
+                        )
+                    } else {
+                        return (
+                            <Card key={index} sx={{minWidth: 240}} variant={"outlined"} raised={true}>
+                                <CardContent>
+                                    <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
+                                        <Link to={ITEM_ROUTE + "?_" + el.itemId}>{el.type}</Link>
+                                        {el.timeStamp.slice(10)} | {el.person}
+                                    </Typography>
+                                    <hr/>
+                                    <div style={{
+                                        display: "flex",
+                                        justifyContent: "flex-end",
+                                        alignItems: "flex-end",
+                                        gap: 4,
+                                        flexDirection: "column"
+                                    }}>
+                                        <div style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: 14
+                                        }}>
+                                            <div style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                justifyContent: "flex-end",
+                                                alignItems: "flex-end"
+                                            }}>
+                                                <Typography fontSize={12} color={"gray"} variant={"subtitle1"}>
+                                                    {Object.entries(el.changes).map(([key, value]) => (
+                                                        <div style={{
+                                                            display: "grid",
+                                                            gridTemplateColumns: "1fr 1fr 1fr",
+                                                            gap: 8,
+                                                            justifyContent: "center",
+                                                            backgroundColor: "rgba(0,0,0, 0.15)",
+                                                            padding: "4px 14px",
+                                                            marginBottom: 8,
+                                                            borderRadius: 4
+                                                        }} key={key}>
+                                                            <article style={{textTransform: "capitalize"}}>{key}</article>
+                                                            <article>➡️</article>
+                                                            <article>{value}</article>
+                                                        </div>
+                                                    ))}
+                                                </Typography>
+                                            </div>
+                                            <Avatar alt="Avatar">N</Avatar>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        )
+                    }
+                })}
             </div>
         );
     }
