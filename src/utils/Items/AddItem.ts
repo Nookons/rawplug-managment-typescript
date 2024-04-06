@@ -1,6 +1,8 @@
 import {getDatabase, push, ref, set} from 'firebase/database';
 import dayjs from "dayjs";
-import {IAddFormData, IItem} from "../types/Item";
+import {IAddFormData, IItem} from "../../types/Item";
+import {doc, setDoc} from "firebase/firestore";
+import {db} from "../../firebase";
 
 export async function onAddItem(data: IAddFormData, user: any) {
     try {
@@ -8,7 +10,7 @@ export async function onAddItem(data: IAddFormData, user: any) {
             return [false, 'Please sign in that add some items...']
         }
 
-        const db = getDatabase();
+        const database = getDatabase();
         const id = Date.now();
         const date = dayjs().format('YYYY-MM-DD [at] HH:mm');
 
@@ -24,18 +26,25 @@ export async function onAddItem(data: IAddFormData, user: any) {
             batchNumber: data.type.toLowerCase() === "barrel" ? data.batchNumber : null
         };
 
-        const actionBody = {
-            type: 'Add item',
-            user: user.email,
-            userUid: user.uid,
-            actionTime: date,
-            item: item
-        }
 
-        push(ref(db, 'actions/'), actionBody)
-        set(ref(db, 'items/' + id), item);
+        await setDoc(doc(db, "items", "item_" + item.id), {
+            ...item
+        });
 
-        return [true, item, actionBody];
+        const actionID = Date.now();
+
+        await setDoc(doc(db, "actions", "action_" + actionID), {
+            person: user.email,
+            personUid: user.uid,
+            id: actionID,
+            type: 'add',
+            timeStamp: dayjs().format("YYYY-MM-DD [at] HH:mm"),
+            item: {...item}
+        });
+
+        /*set(ref(db, 'items/' + id), item);*/
+
+        return [true, item];
     } catch (e) {
         return [false, null];
     }

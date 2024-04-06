@@ -5,43 +5,28 @@ import {Avatar, Card, CardContent, Skeleton, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
 import styles from './LastActions.module.css'
-import {getDownloadURL, ref} from "firebase/storage";
-import {db, storage} from "../../../firebase";
-import {addAction} from "../../../utils/addaction";
-import {doc, getDoc, onSnapshot} from "firebase/firestore";
 
 const LastActions = () => {
-    const [dataArray, setDataArray] = useState([]);
+    const {actions, loading, error} = useAppSelector(state => state.actions)
 
-
-    useEffect(() => {
-         (async () => {
-             try {
-                 onSnapshot(doc(db, "PWT70", "actions"), (doc) => {
-                     if (doc.exists()) {
-                         const reverse = [...doc.data().items].reverse();
-                         setDataArray(reverse)
-                     }
-                 });
-             } catch (error) {
-                 console.log(error);
-             }
-         })();
-     }, []);
+    const [data, setData] = useState<IAction[]>([]);
 
     useEffect(() => {
-        console.log(dataArray);
-    }, [dataArray]);
+        if (actions) {
+            const reversed = [...actions].reverse();
+            setData(reversed)
+        }
+    }, [actions, loading]);
 
-    if (dataArray) {
+    if (actions) {
         return (
             <div className={styles.Main}>
-                {dataArray.slice(0, 5).map((el: IAction, index) => (
+                {data.slice(0, 5).map((el: IAction, index) => (
                     <Card key={index} sx={{minWidth: 240}} variant={"outlined"} raised={true}>
                         <CardContent>
                             <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
-                                <Link to={ITEM_ROUTE + "?_" + el.id}>{el.type}</Link>
-                                {el.createTime.slice(10)} | {el.person}
+                                <Link to={ITEM_ROUTE + "?_" + el.item.id}>{el.type}</Link>
+                                {el.timeStamp.slice(10)} | {el.person}
                             </Typography>
                             <hr/>
                             <div style={{
@@ -63,10 +48,10 @@ const LastActions = () => {
                                         alignItems: "flex-end"
                                     }}>
                                         <Typography fontSize={16} color={"WindowText"} variant={"subtitle1"}>
-                                            {el.actionItem.index}
+                                            {el.item.index}
                                         </Typography>
                                         <Typography fontSize={12} color={"gray"} variant={"subtitle1"}>
-                                            {el.actionItem.quantity} {el.actionItem.jm}
+                                            {el.item.quantity} {el.item.jm}
                                         </Typography>
                                     </div>
                                     <Avatar alt="Avatar">N</Avatar>

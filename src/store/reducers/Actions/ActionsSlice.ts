@@ -1,9 +1,5 @@
-import {IItem, IStatsItem} from "../../../types/Item";
-import {child, get, getDatabase, ref} from "firebase/database";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../../firebaseConfig";
-import {doc, getDoc, onSnapshot} from "firebase/firestore";
+import {collection, doc, getDoc, onSnapshot, query} from "firebase/firestore";
 import {db} from "../../../firebase";
 
 
@@ -25,23 +21,23 @@ type itemsState = {
 
 export const fetchActions = createAsyncThunk<IAction[], undefined, { rejectValue: string }>(
     'actions/fetchActions',
-
     async (_, { rejectWithValue }) => {
         try {
-            let actions: IAction[] = [];
+            const q = query(collection(db, "actions"));
+            let array: IAction[] = [];
 
-            // Using await with onSnapshot
-            await onSnapshot(doc(db, "PWT70", "actions"), (snapshot) => {
-                if (snapshot.exists()) {
-                    actions = [...snapshot.data().items as IAction[]]
-                }
+            return new Promise<IAction[]>((resolve, reject) => {
+                const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                    const newArray: IAction[] = []; // Create a new array
+                    querySnapshot.forEach(doc => {
+                        newArray.push(doc.data() as IAction);
+                    });
+                    array = newArray; // Replace the old array with the new one
+                    resolve(array);
+                });
             });
-
-            console.log(actions);
-            return actions;
         } catch (error) {
-            // Catching errors without specifying type
-            return rejectWithValue(error.message || 'Failed to fetch actions');
+            return rejectWithValue('There was an error loading data from the server. Please try again.');
         }
     }
 );

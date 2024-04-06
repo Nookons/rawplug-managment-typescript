@@ -2,8 +2,9 @@ import {IItem} from "./Item";
 
 export interface IAction {
     type: string;
-    user: string;
-    userUid: string,
-    actionTime: string;
+    person: string;
+    personUid: string,
+    timeStamp: string;
+    id: number;
     item: IItem;
 }

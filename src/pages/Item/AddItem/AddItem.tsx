@@ -9,13 +9,15 @@ import {Alert, Backdrop, Button, CircularProgress, IconButton, Snackbar} from "@
 import {SnackbarProvider, VariantType, useSnackbar} from 'notistack';
 import {addItemValidation} from "../../../utils/Items/AddItemValidation";
 import {IAddFormData} from "../../../types/Item";
-import {handlingError, onAddItem} from "../../../utils/AddItem";
+import {handlingError, onAddItem} from "../../../utils/Items/AddItem";
 import {addItem} from "../../../store/reducers/item/itemsSlice";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {useNavigate} from "react-router-dom";
 import {collection, doc, getDocs, onSnapshot, setDoc} from "firebase/firestore";
 import {db} from "../../../firebase";
 import dayjs from "dayjs";
+
+import {query, where } from "firebase/firestore";
 
 
 const AddItem = () => {
@@ -65,7 +67,6 @@ const AddItem = () => {
         const largestBatch = Math.max(...newBatchArray);
         setFormData((prevState) => ({...prevState, batchNumber: largestBatch + 1}))
     }, [formData.index, items]);
-    ;
 
 
     const onAddItemClick = async () => {
@@ -76,18 +77,8 @@ const AddItem = () => {
             const validation    = await addItemValidation({items, formData});
             const response      = await onAddItem(formData, user)
 
-            let oldArray = [];
-
             if (response[0]) {
                 handleClickVariant('success', validation);
-                dispatch(addItem(response[1]))
-
-                await setDoc(doc(db, "PWT70", "warehouse"), {
-                    items: [...oldArray, response[1]],
-                    lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
-                    updateBy: user.email
-                });
-
                 setFormData(prevState => ({...prevState, barrel: {...prevState.barrel, first: 0, secondary: 0, third: 0, four:0}}))
             }
         } catch (error) {
@@ -158,29 +149,11 @@ const AddItem = () => {
     }, [formData.index]);
 
     useEffect(() => {
-        switch (true) {
-            case formData.barrel.first > 375:
-                handleClickVariant('warning', "You barrel have more than 375 kg, you can't add this barrel ")
-                break;
-            case formData.barrel.secondary > 375:
-                handleClickVariant('warning', "You barrel have more than 375 kg, you can't add this barrel ")
-                break;
-            case formData.barrel.third > 375:
-                handleClickVariant('warning', "You barrel have more than 375 kg, you can't add this barrel ")
-                break;
-            case formData.barrel.four > 375:
-                handleClickVariant('warning', "You barrel have more than 375 kg, you can't add this barrel ")
-                break;
-        }
         setFormData(prevState => ({
             ...prevState,
             quantity: formData.barrel.first + formData.barrel.secondary + formData.barrel.third + formData.barrel.four
         }));
     }, [formData.barrel.first, formData.barrel.secondary, formData.barrel.third, formData.barrel.four]);
-
-    const onFaqClick = (url: string) => {
-        window.location.href = url;
-    }
 
     return (
         <div className={styles.Main}>
@@ -188,12 +161,12 @@ const AddItem = () => {
                 <CircularProgress color="inherit"/>
             </Backdrop>
             <>
-                <div style={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                {/*<div style={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                     <article>FAQ</article>
                     <IconButton aria-label="add">
                             <HelpOutlineIcon color={"info"} onClick={() => onFaqClick('https://telegra.ph/Instrukcje-dotycz%C4%85ce-dodawania-towar%C3%B3w-do-systemu-Rawlplug-Management-03-08')}/>
                     </IconButton>
-                </div>
+                </div>*/}
             </>
             <div className={styles.Wrapper}>
                 <InputBlock onChangeDataEvent={onChangeDataEvent} formData={formData}/>

@@ -3,6 +3,8 @@ import {child, get, getDatabase, ref} from "firebase/database";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../../firebaseConfig";
+import {collection, onSnapshot, query, where} from "firebase/firestore";
+import {db} from "../../../firebase";
 
 type itemsState = {
     items: IItem[],
@@ -14,17 +16,22 @@ type itemsState = {
 
 export const fetchItems = createAsyncThunk<IItem[], undefined, { rejectValue: string }>(
     'items/fetchItems',
+    async (_, { rejectWithValue }) => {
+        try {
+            const q = query(collection(db, "items"));
+            let array: IItem[] = [];
 
-    async (_, {rejectWithValue}) => {
-        initializeApp(firebaseConfig);
-        const database = ref(getDatabase());
-        const dbRef = child(database, 'items/');
-        const snapshot = await get(dbRef);
-
-        if (snapshot.exists()) {
-            const itemsArray = Object.values(snapshot.val()) as IItem[];
-            return itemsArray;
-        } else {
+            return new Promise<IItem[]>((resolve, reject) => {
+                const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                    const newArray: IItem[] = []; // Create a new array
+                    querySnapshot.forEach(doc => {
+                        newArray.push(doc.data() as IItem);
+                    });
+                    array = newArray; // Replace the old array with the new one
+                    resolve(array);
+                });
+            });
+        } catch (error) {
             return rejectWithValue('There was an error loading data from the server. Please try again.');
         }
     }

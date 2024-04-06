@@ -162,7 +162,6 @@ const ReceiptReport: FC = () => {
                     </div>
                 </div>
             }
-            <RemovedDisplay removedArray={removedArray}  setRemovedArray={setRemovedArray} pickUser={pickUser} pickDate={pickDate}/>
         </div>
     );
 };

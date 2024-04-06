@@ -9,7 +9,7 @@ import {fetchPlans} from "./store/reducers/Plan/PlansReducer";
 import {fetchPallets} from "./store/reducers/Pallets/PalletsSlice";
 import {fetchActions} from "./store/reducers/Actions/ActionsSlice";
 import {fetchRemoved} from "./store/reducers/Removed/RemovedSlice";
-import {doc, onSnapshot} from "firebase/firestore";
+import {collection, doc, onSnapshot, query} from "firebase/firestore";
 import {db} from "./firebase";
 
 const App = () => {
@@ -27,6 +27,19 @@ const App = () => {
         dispatch(fetchActions());
         dispatch(fetchRemoved());
     }, [dispatch]);
+
+    useEffect(() => {
+        const items = query(collection(db, "items"));
+        const actions = query(collection(db, "actions"));
+
+        onSnapshot(items, (querySnapshot) => {
+            dispatch(fetchItems());
+        });
+
+        onSnapshot(actions, (querySnapshot) => {
+            dispatch(fetchActions());
+        });
+    }, []);
 
     useEffect(() => {
         (async () => {
