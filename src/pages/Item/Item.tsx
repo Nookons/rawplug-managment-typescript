@@ -32,12 +32,28 @@ export interface ICurrentItem {
     item: IItem | null;
 }
 
+const getColor = (status: string) => {
+    switch (status) {
+        case "Available":
+            return "rgb(38, 118, 104)"
+        case "Hold":
+            return "rgb(207,87,66)"
+        default:
+            return "rgb(225,225,225)"
+    }
+}
+
 const Item = () => {
     const navigate = useNavigate();
     const {user, loading, error} = useAppSelector(state => state.user)
 
-    const currentURL = window.location.href;
-    const id = currentURL.split('_')[1]
+    const currentURL    = window.location.href;
+    const id            = currentURL.split('_')[1]
+    const isRemoved     = currentURL.split('_')[2]
+
+    if (isRemoved) {
+        console.log(isRemoved);
+    }
 
     const [currentItem, setCurrentItem] = useState<ICurrentItem>({loading: false, error: "", item: null,});
     const [editModal, setEditModal] = useState(false);
@@ -162,11 +178,7 @@ const Item = () => {
     }
 
     return (
-        <div style={{
-            backgroundColor: currentItem.item?.status === "Available"
-                ? 'rgb(38, 118, 104)'
-                : 'rgb(207,87,66)'
-        }} className={styles.Main}>
+        <div style={{backgroundColor: getColor(isRemoved ? isRemoved : currentItem.item?.status)}} className={styles.Main}>
             <Backdrop style={{zIndex: 99}} open={currentItem.loading}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
@@ -215,6 +227,7 @@ const Item = () => {
                 </div>
             </MyModal>
             <div className={styles.Wrapper}>
+                {isRemoved && <Alert severity="warning" style={{marginBottom: 14}}><article>This item is deleted! It will be automatically deleted after a month</article></Alert>}
                 <SettingsItem currentItem={currentItem} handleClickVariant={handleClickVariant}/>
             </div>
             <Box sx={{

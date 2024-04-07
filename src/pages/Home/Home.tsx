@@ -10,7 +10,7 @@ import {
     ADD_PALLET_ROUTE,
     ADD_PLAN_ROUTE, BARREL_STATS_ROUTE,
     CHECK_PLANS_ROUTE, CREATE_ITEM_ROUTE, FIND_ITEM_ROUTE, HOME_ROUTE,
-    ITEMS_GRID_ROUTE, RECEIPT_REPORT_ROUTE
+    ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE, RECEIPT_REPORT_ROUTE, REMOVED_ROUTE
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
 import {ExpandMore} from "@mui/icons-material";
@@ -30,6 +30,7 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 import MoveUpIcon from '@mui/icons-material/MoveUp';
+import BlenderIcon from '@mui/icons-material/Blender';
 
 const Home: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
@@ -51,8 +52,9 @@ const Home: FC = () => {
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <MyButton><Link to={ADD_ITEM_ROUTE}><AddBoxIcon /></Link></MyButton>
                             <MyButton><Link to={CREATE_ITEM_ROUTE}><NoteAddIcon /></Link></MyButton>
-                            <MyButton><Link to={HOME_ROUTE}><PlaylistRemoveIcon /></Link></MyButton>
+                            <MyButton><Link to={REMOVED_ROUTE}><PlaylistRemoveIcon /></Link></MyButton>
                             <MyButton><Link to={HOME_ROUTE}><MoveUpIcon /></Link></MyButton>
+                            <MyButton><Link to={MIXERS_RECEIPTS_ROUTE}><BlenderIcon /></Link></MyButton>
                             <MyButton><Link to={FIND_ITEM_ROUTE}><SearchIcon /></Link></MyButton>
                             <MyButton><Link to={ITEMS_GRID_ROUTE}><ListIcon /></Link></MyButton>
                             <MyButton><Link to={BARREL_STATS_ROUTE}><FeaturedPlayListIcon /></Link></MyButton>

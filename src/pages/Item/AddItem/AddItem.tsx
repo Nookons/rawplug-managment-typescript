@@ -8,7 +8,7 @@ import Barrel from "./Barrel";
 import {Alert, Backdrop, Button, CircularProgress, IconButton, Snackbar} from "@mui/material";
 import {SnackbarProvider, VariantType, useSnackbar} from 'notistack';
 import {addItemValidation} from "../../../utils/Items/AddItemValidation";
-import {IAddFormData} from "../../../types/Item";
+import {IAddFormData, IItem, IItemTemplate} from "../../../types/Item";
 import {handlingError, onAddItem} from "../../../utils/Items/AddItem";
 import {addItem} from "../../../store/reducers/item/itemsSlice";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -90,12 +90,26 @@ const AddItem = () => {
         }
     };
 
+    const [dataTemplates, setDataTemplates] = useState<IItemTemplate[]>([]);
+
+    useEffect(() => {
+        try {
+            onSnapshot(doc(db, "PWT70", "templates"), (doc) => {
+                const data = doc.data().templates
+                setDataTemplates(data)
+            });
+        } catch (e) {
+            console.log(e)
+        }
+    }, []);
 
 
     const onChangeDataEvent = useCallback((type: string, value: any) => {
-        console.log(value);
+
         if (type === "index") {
-            const tempItem = data.find(el => el.myIndex === value);
+            const tempItem = dataTemplates.find(el => el.myIndex === value);
+            console.log(tempItem);
+
             if (tempItem) {
                 const statusCheck = tempItem.myIndex.split('-')[1];
                 const fromDepartment = tempItem.type.toLowerCase() !== 'barrel' ? 'MSP' : 'PWT70';
@@ -126,7 +140,7 @@ const AddItem = () => {
                 setFormData(prevState => ({...prevState, [type]: value}));
             }
         }
-    }, [data, setFormData]);
+    }, [dataTemplates]);
 
     useEffect(() => {
         setIsBarrel(formData.type.toLowerCase() === 'barrel');

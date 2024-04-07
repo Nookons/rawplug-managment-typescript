@@ -16,6 +16,7 @@ export const FIND_ITEM_ROUTE: string = '/find-item'
 export const BARREL_STATS_ROUTE: string = '/grid-items/barrel_stats'
 export const RECEIPT_REPORT_ROUTE: string = '/grid-items/receipt_report'
 export const CREATE_ITEM_ROUTE: string = '/create-item'
+export const REMOVED_ROUTE: string = '/grid-items/removed'
 
 // Pallet Route
 export const ADD_PALLET_ROUTE: string = '/add-pallet'
@@ -24,3 +25,6 @@ export const PALLET_ROUTE: string = '/pallet'
 //Plan Route
 export const ADD_PLAN_ROUTE: string = '/add-plan'
 export const CHECK_PLANS_ROUTE: string = '/check-plans'
+
+//Mixers Route
+export const MIXERS_RECEIPTS_ROUTE: string = '/mixers-receipts'
