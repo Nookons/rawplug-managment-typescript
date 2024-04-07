@@ -5,61 +5,93 @@ import {
     Table,
     TableRow,
     TableCell,
-    TableBody, TableContainer, Button, Tooltip
+    TableBody, TableContainer, Button, Tooltip, Autocomplete, CircularProgress, Alert
 } from "@mui/material";
 import {IItem} from "../../../../types/Item";
 import {getMovement} from "../../../../utils/GetMovement";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../../utils/consts";
+import {doc, onSnapshot} from "firebase/firestore";
+import {db} from "../../../../firebase";
 
 interface SearchProps {
     items: IItem[];
 }
 
 const getColorByStatus = (status: string) => {
-    switch (status.toLowerCase()){
+    switch (status.toLowerCase()) {
         case 'odzysk' :
             return '#FFFC9B'
         case 'hold' :
             return '#F28585'
         default:
-            return 'rgb(195,235,233)'
+            return 'rgb(243,243,243)'
     }
 }
 
 const Search: FC<SearchProps> = ({items}) => {
 
     const [inputValue, setInputValue] = useState<string>('');
-    const [filteredItems, setFilteredItems] = useState<IItem[]>(items);
+    const [indexValue, setIndexValue] = useState<string>('');
+    const [filteredItems, setFilteredItems] = useState<IItem[]>([]);
 
-    const navigate = useNavigate();
+
 
     useEffect(() => {
-        // Фильтрация элементов на основе введенного значения
-        const filtered = items.filter(item =>
-            item.PalletReceipt.toLowerCase().includes(inputValue.toLowerCase())
+        setFilteredItems([])
+
+        const filteredIndex = items.filter(item =>
+            item.index?.toString().includes(indexValue ? indexValue.toUpperCase() : '')
         );
+
+        const filtered = filteredIndex.filter(item =>
+            item.quantity?.toString().includes(inputValue)
+        );
+
         setFilteredItems(filtered);
-    }, [inputValue, items]);
+
+        console.log(filteredItems)
+    }, [inputValue, indexValue, items]);
+
+    const options = Array.from(new Set(items.map(item => item.index)));
 
     return (
-        <div>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 14,
+            marginTop: 24
+        }}>
+            <Autocomplete
+                disablePortal
+                options={options} // Access myIndex property from indexTemplate object
+                fullWidth={true}
+                onChange={(event, value) => setIndexValue(value)}
+                renderInput={(params) => <TextField {...params} label="Index" />}
+            />
             <TextField
                 fullWidth={true}
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
                 id="outlined-basic"
-                label="Search"
+                label="Search by quantity"
                 variant="outlined"
-                placeholder="Please write pallet index here for search..."
+                type={"Number"}
+                placeholder="Please write pallet quantity here for search..."
             />
 
+            {
+                filteredItems.length > 0
+                    ?   <Alert severity="info"><p>We find {filteredItems.length} items for you ❤️</p></Alert>
+                    :   <Alert severity="error"><p>This product doesn't exist 😕</p></Alert>
+            }
+
             <div style={{display: "flex", flexDirection: "column", gap: 14, padding: "14px 0"}}>
-                {filteredItems.slice(0, 5).map((item: IItem, index) => (
-                    <TableContainer style={{
+                {filteredItems.slice(0, 25).map((item: IItem, index) => (
+                    <TableContainer key={index} style={{
                         gap: 14,
                         backgroundColor: getColorByStatus(item.status),
-                    }} component={Paper}>
+                    }} component={Paper} variant={"elevation"}>
                         <Table aria-label="simple table">
                             {/*<TableHead>
                                 <TableRow>
@@ -68,65 +100,20 @@ const Search: FC<SearchProps> = ({items}) => {
                                 </TableRow>
                             </TableHead>*/}
                             <TableBody>
-                                <TableRow key={index}>
+                                <TableRow>
                                     <TableCell>
-                                        <Tooltip title={`Open ${item.index}`} arrow>
-                                            <Button onClick={() => navigate(ITEM_ROUTE + "?_" + item.id)}><p>{item.index}</p></Button>
-                                        </Tooltip>
+                                        <Link to={ITEM_ROUTE + "?_" + item.id}><h5>{item.index}</h5></Link>
                                     </TableCell>
                                     <TableCell>
-                                        <p>{item.PalletReceipt}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>{item.description}</p>
+                                        <p>{item.createdDate}</p>
                                     </TableCell>
                                 </TableRow>
-                                <TableRow key={index}>
+                                <TableRow>
                                     <TableCell>
-                                        <p>Date:</p>
+                                        <p>{item.fromDepartment}</p>
                                     </TableCell>
                                     <TableCell>
-                                        <p>Added: {item.createdDate}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>Last change: {item.lastChange}</p>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow key={index}>
-                                    <TableCell>
-                                        <p>Movement:</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>From: {item.Sender + ' | ' + getMovement(item.Sender)}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>To: {item.Recipient + ' | ' + getMovement(item.Recipient)} </p>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow key={index}>
-                                    <TableCell>
-                                        <p>Created by:</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>{item.Created}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>{item.userUid}</p>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow key={index}>
-                                    <TableCell>
-                                        <p>Quantity:</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        <p>{item.quantity + ' ' + item.JM}</p>
-                                    </TableCell>
-                                    <TableCell>
-                                        {item.barrel?.first ? <p>{'1) ' + item.barrel.first + '  kg'} </p> : null}
-                                        {item.barrel?.secondary ?
-                                            <p>{'2) ' + item.barrel.secondary + '  kg'} </p> : null}
-                                        {item.barrel?.third ? <p>{'3) ' + item.barrel.third + '  kg'} </p> : null}
-                                        {item.barrel?.four ? <p>{'4) ' + item.barrel.four + '  kg'} </p> : null}
+                                        <p>{item.quantity + ' ' + item.jm}</p>
                                     </TableCell>
                                 </TableRow>
                             </TableBody>

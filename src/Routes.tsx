@@ -8,9 +8,9 @@ import {
     FIND_ITEM_ROUTE,
     HOME_ROUTE,
     ITEM_ROUTE,
-    ITEMS_GRID_ROUTE,
+    ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE,
     PALLET_ROUTE,
-    RECEIPT_REPORT_ROUTE,
+    RECEIPT_REPORT_ROUTE, REMOVED_ROUTE,
     SIGN_IN_ROUTE,
     SIGN_UP_ROUTE,
     USER_SETTINGS_ROUTE,
@@ -29,6 +29,8 @@ import Settings from "./pages/User/settings/Settings";
 import BarrelStats from "./pages/Item/BarrelStats/BarrelStats";
 import ReceiptReport from "./pages/Item/ReceiptReport/ReceiptReport";
 import CreateItem from "./pages/Item/CreateItem/CreateItem";
+import RemovedList from "./pages/Item/RemovedList/RemovedList";
+import MixerReceipts from "./pages/Mixers/MixersReceipts/MixerReceipts";
 
 
 interface Route {
@@ -113,6 +115,16 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: CREATE_ITEM_ROUTE,
         Component: CreateItem,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: REMOVED_ROUTE,
+        Component: RemovedList,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: MIXERS_RECEIPTS_ROUTE,
+        Component: MixerReceipts,
         label: 'AppPrivateRoute',
     },
 ];

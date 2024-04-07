@@ -1,9 +1,8 @@
 import {IItem} from "./Item";
 
 export interface IRemoved {
-    removedTime: string;
-    user: string;
-    userUid: string;
-    type: string;
+    timeStamp: string;
+    person: string;
+    personUid: string;
     item: IItem;
 }

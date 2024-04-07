@@ -1,10 +1,8 @@
 import {IItem, IStatsItem} from "../../../types/Item";
-import {child, get, getDatabase, ref} from "firebase/database";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {initializeApp} from "firebase/app";
-import {firebaseConfig} from "../../../firebaseConfig";
-import {IAction} from "../../../types/Action";
 import {IRemoved} from "../../../types/Removed";
+import {collection, onSnapshot, query} from "firebase/firestore";
+import {db} from "../../../firebase";
 
 type itemsState = {
     removed: IRemoved[],
@@ -13,19 +11,24 @@ type itemsState = {
 }
 
 
-export const fetchRemoved = createAsyncThunk<IRemoved[], undefined, { rejectValue: string }>(
+export const fetchRemoved = createAsyncThunk<IItem[], undefined, { rejectValue: string }>(
     'removed/fetchRemoved',
+    async (_, { rejectWithValue }) => {
+        try {
+            const q = query(collection(db, "removed"));
+            let array: IItem[] = [];
 
-    async (_, {rejectWithValue}) => {
-        initializeApp(firebaseConfig);
-        const database = ref(getDatabase());
-        const dbRef = child(database, 'removed/');
-        const snapshot = await get(dbRef);
-
-        if (snapshot.exists()) {
-            const actionsArray = Object.values(snapshot.val()) as IRemoved[];
-            return actionsArray;
-        } else {
+            return new Promise<IItem[]>((resolve, reject) => {
+                const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                    const newArray: IItem[] = []; // Create a new array
+                    querySnapshot.forEach(doc => {
+                        newArray.push(doc.data() as IItem);
+                    });
+                    array = newArray; // Replace the old array with the new one
+                    resolve(array);
+                });
+            });
+        } catch (error) {
             return rejectWithValue('There was an error loading data from the server. Please try again.');
         }
     }

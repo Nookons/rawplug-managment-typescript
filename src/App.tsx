@@ -31,6 +31,7 @@ const App = () => {
     useEffect(() => {
         const items = query(collection(db, "items"));
         const actions = query(collection(db, "actions"));
+        const removed = query(collection(db, "removed"));
 
         onSnapshot(items, (querySnapshot) => {
             dispatch(fetchItems());
@@ -39,12 +40,16 @@ const App = () => {
         onSnapshot(actions, (querySnapshot) => {
             dispatch(fetchActions());
         });
+
+        onSnapshot(removed, (querySnapshot) => {
+            dispatch(fetchRemoved());
+        });
     }, []);
 
     useEffect(() => {
         (async () => {
             try {
-                onSnapshot(doc(db, "Main", "config"), (doc) => {
+                onSnapshot(doc(db, "main", "config"), (doc) => {
                     if (doc.exists()) {
                         setMyVersion(doc.data().version)
                         setLastUpdate(doc.data().lastUpdate)
