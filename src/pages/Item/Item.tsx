@@ -25,6 +25,8 @@ import MyModal from "../../components/Modal/MyModal";
 import MyButton from "../../components/MyButton/MyButton";
 import dayjs from "dayjs";
 import {UpdateItem} from "../../utils/Items/UpdateItem";
+import Modal from 'react-modal';
+import ConfirmationPrompt from "../../components/ConfirmationPrompt/ConfirmationPrompt";
 
 export interface ICurrentItem {
     loading: boolean;
@@ -127,10 +129,16 @@ const Item = () => {
                 break
             case "Remove":
                 try {
-                    const response = await onDeleteItem(currentItem.item, user)
-                    if (response) {
-                        handleClickVariant("success", "Item was removed success")
-                        navigate(HOME_ROUTE);
+                    const answer: string = prompt('Please write yes to remove item', '')
+
+                    if (answer.toLowerCase() === 'yes') {
+                        const response = await onDeleteItem(currentItem.item, user)
+                        if (response) {
+                            handleClickVariant("success", "Item was removed success")
+                            navigate(HOME_ROUTE);
+                        };
+                    } else {
+                        handleClickVariant("error", 'Not correctly input for remove')
                     }
                 } catch (error) {
                     handleClickVariant("error", error.toString())
