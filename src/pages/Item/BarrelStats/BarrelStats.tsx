@@ -14,7 +14,21 @@ const BarrelStats: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
 
     const [uniqueIndex, setUniqueIndex] = useState([]);
+
     const [searchTags, setSearchTags] = useState<string[]>([]);
+    const [newTags, setNewTags] = useState<string[]>([]);
+
+
+    useEffect(() => {
+        const storedSearchTags = localStorage.getItem('searchTags');
+        const temp = JSON.parse(storedSearchTags)
+
+        if (temp.length > 0 && newTags.length === 0) {
+            setNewTags(JSON.parse(storedSearchTags))
+            setSearchTags(JSON.parse(storedSearchTags))
+        }
+    }, []);
+
 
     useEffect(() => {
         const uniqueValues = {};
@@ -41,9 +55,24 @@ const BarrelStats: FC = () => {
     }
 
 
+    const test = (value: string) => {
+        setSearchTags(value)
+        setNewTags(value);
+    }
+
+    useEffect(() => {
+        localStorage.setItem('searchTags', JSON.stringify(newTags));
+    }, [newTags]);
+
     if (items && !loading && !error) {
         return (
-            <div style={{padding: 14, minHeight: "calc(100dvh - 160px)", display: "flex", flexDirection: "column", gap: 14}}>
+            <div style={{
+                padding: 14,
+                minHeight: "calc(100dvh - 160px)",
+                display: "flex",
+                flexDirection: "column",
+                gap: 14
+            }}>
                 <Button onClick={onAllViewClick} variant={"contained"}>View all</Button>
                 <Autocomplete
                     multiple
@@ -51,8 +80,8 @@ const BarrelStats: FC = () => {
                     id="multiple-limit-tags"
                     options={uniqueIndex}
                     value={searchTags}
-                    onChange={(event, value) => setSearchTags(value)}
-                    getOptionLabel={(option) => <p>{option}</p>}
+                    onChange={(event, value) => test(value)}
+                    getOptionLabel={(option) => option}
                     renderInput={(params) => (
                         <TextField {...params} label="Search tags" placeholder="Index"/>
                     )}
