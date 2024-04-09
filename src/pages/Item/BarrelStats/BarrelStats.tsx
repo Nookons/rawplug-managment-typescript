@@ -23,9 +23,11 @@ const BarrelStats: FC = () => {
         const storedSearchTags = localStorage.getItem('searchTags');
         const temp = JSON.parse(storedSearchTags)
 
-        if (temp.length > 0 && newTags.length === 0) {
-            setNewTags(JSON.parse(storedSearchTags))
-            setSearchTags(JSON.parse(storedSearchTags))
+        if (storedSearchTags) {
+            if (temp.length > 0 && newTags.length === 0) {
+                setNewTags(JSON.parse(storedSearchTags))
+                setSearchTags(JSON.parse(storedSearchTags))
+            }
         }
     }, []);
 
