@@ -47,17 +47,157 @@
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml, szara, etykieta FR [OP 10 SZT]"
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml, szara, etykieta FR [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-PISTON-B",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "HP-RKEMII300GR-FR",
+        "quantity": 1
+      },
+      {
+        "index": "R-NOZ-M〵Z",
+        "quantity": 2
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "Q-CM-PSF-STAND-V3",
+        "quantity": 0.425
+      }
+    ]
   },
   {
-    "index": "ELGR-KEM-300-STONE",
+    "index": "R-KEM-II-300-H〵LPP",
     "palletQta": 84,
     "pallet": "Euro Plus",
     "bottle": "Blue",
     "atBox": 10,
     "weight": 504,
     "jm": "sht",
-    "description": "Kotwa chemiczna poliestrowa R-KEM, kartridz 300ml, legallais, STONE [OP 10 SZT]"
+    "description": "Kotwa chemiczna poliestrowa R-KEM-II-300-H〵LPP, kartridz 300ml, [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-PISTON",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "HP-RKEMII300GR-FR",
+        "quantity": 1
+      },
+      {
+        "index": "R-NOZ-M〵Z",
+        "quantity": 1
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "Q-CM-PSF-GREY",
+        "quantity": 0.425
+      }
+    ]
+  },
+  {
+    "index": "R-KEM-II-300-STONE",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "Blue",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "description": "Kotwa wklejana poliestrowa",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-PISTON-B",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "HP-RKEMII300ST-FR",
+        "quantity": 1
+      },
+      {
+        "index": "R-NOZ-M〵Z",
+        "quantity": 2
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "Q-CM-PSF-STONE",
+        "quantity": 0.425
+      }
+    ]
+  },
+  {
+    "index": "ELGR-KEM-300-GREY",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "Blue",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "description": "Kotwa chemiczna poliestrowa ELGR-KEM-300-GREY, kartridz 300ml [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-PISTON",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "HP-ELGRKEM300GREY",
+        "quantity": 1
+      },
+      {
+        "index": "R-NOZ-M〵Z",
+        "quantity": 1
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "Q-CM-PSF-GREY",
+        "quantity": 0.425
+      }
+    ]
   },
   {
     "index": "R-KER-II-300",
@@ -70,11 +210,11 @@
     "description": "Kotwa chemiczna poliestrowa bez styrenu R-KER-II 300ml",
     "needItem": [
       {
-        "index": "KRP-ST-CART-310",
+        "index": "KRP-ST-CART-310-B",
         "quantity": 1
       },
       {
-        "index": "R-NOZ-M",
+        "index": "Q-C-NOZ-14-WMC",
         "quantity": 2
       },
       {
@@ -82,7 +222,11 @@
         "quantity": 0.1
       },
       {
-        "index": "KRP-ST-PISTON",
+        "index": "KRP-ST-PISTON-B",
+        "quantity": 1
+      },
+      {
+        "index": "Q-C-COAX-HANGER",
         "quantity": 1
       },
       {
@@ -95,6 +239,94 @@
       },
       {
         "index": "Q-ET-RKERII300",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "index": "R-KER-II-300-FR",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "description": "Kotwa chemiczna poliestrowa bez styrenu R-KER-II 300ml",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B",
+        "quantity": 1
+      },
+      {
+        "index": "Q-C-NOZ-14-WMC",
+        "quantity": 2
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "KRP-ST-PISTON-B",
+        "quantity": 1
+      },
+      {
+        "index": "Q-C-COAX-HANGER",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "Q-CM-HYBRYDA-STANDART",
+        "quantity": 0.425
+      },
+      {
+        "index": "HP-RKERII300FR",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "index": "VSE-R-KER-II-300",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "description": "Kotwa chemiczna poliestrowa bez styrenu VSE-R-KER-II 300ml",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310-B",
+        "quantity": 1
+      },
+      {
+        "index": "Q-C-NOZ-14-WMC",
+        "quantity": 2
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "KRP-ST-PISTON-B",
+        "quantity": 1
+      },
+      {
+        "index": "Q-C-COAX-HANGER",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "Q-CM-HYBRYDA-STANDART",
+        "quantity": 0.425
+      },
+      {
+        "index": "HP-VSERKERII300",
         "quantity": 1
       }
     ]
@@ -132,6 +364,46 @@
       {
         "index": "Q-CM-PSF-STAND-V3",
         "quantity": 0.425
+      }
+    ]
+  },
+  {
+    "index": "KEM-PSF-300-KOE",
+    "palletQta": 84,
+    "pallet": "Euro Plus",
+    "bottle": "White",
+    "atBox": 10,
+    "weight": 504,
+    "jm": "sht",
+    "description": "Kotwa chemiczna poliestrowa, kartridz 300ml z zawieszka, koelner [OP 10 SZT]",
+    "needItem": [
+      {
+        "index": "KRP-ST-CART-310",
+        "quantity": 1
+      },
+      {
+        "index": "R-NOZ-M〵Z",
+        "quantity": 2
+      },
+      {
+        "index": "OZ-U-255-164-295",
+        "quantity": 0.1
+      },
+      {
+        "index": "KRP-ST-PISTON",
+        "quantity": 1
+      },
+      {
+        "index": "KRP-ST-CAP-WHI",
+        "quantity": 1
+      },
+      {
+        "index": "Q-CM-PSF-STAND-V3",
+        "quantity": 0.425
+      },
+      {
+        "index": "HP-KEMPSF300KOE",
+        "quantity": 1
       }
     ]
   },
