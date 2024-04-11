@@ -15,7 +15,8 @@
 }
 
 .LastItems {
-    border: 2px solid white;
+    border: 2px solid #5d5d5d;
+    margin-right: 8px;
     padding: 8px 16px;
     cursor: pointer;
     border-radius: 4px;
@@ -37,7 +38,9 @@
 }
 
 @media screen and (max-width: 500px) {
-    .Main {
-        display: none;
+    .WarehouseWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
     }
 }

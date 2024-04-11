@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './Item.module.css'
 
 import SettingsItem from "./SettingsItem";
-import {Alert, Autocomplete, Backdrop, Button, CircularProgress, TextField, Tooltip} from "@mui/material";
+import {Alert, Autocomplete, Backdrop, Button, CircularProgress, TextField, Tooltip, Typography} from "@mui/material";
 import {SnackbarProvider, VariantType, useSnackbar, enqueueSnackbar} from 'notistack';
 import {doc, onSnapshot, updateDoc} from "firebase/firestore"
 import {db} from "../../firebase";
@@ -49,9 +49,11 @@ const Item = () => {
     const navigate = useNavigate();
     const {user, loading, error} = useAppSelector(state => state.user)
 
-    const currentURL    = window.location.href;
-    const id            = currentURL.split('_')[1]
-    const isRemoved     = currentURL.split('_')[2]
+    const currentURL = window.location.href;
+    const id = currentURL.split('_')[1]
+    const isRemoved = currentURL.split('_')[2]
+
+    const [confirmModal, setConfirmModal] = useState<boolean>(false);
 
     if (isRemoved) {
         console.log(isRemoved);
@@ -128,21 +130,7 @@ const Item = () => {
                 }
                 break
             case "Remove":
-                try {
-                    const answer: string = prompt('Please write yes to remove item', '')
-
-                    if (answer.toLowerCase() === 'yes') {
-                        const response = await onDeleteItem(currentItem.item, user)
-                        if (response) {
-                            handleClickVariant("success", "Item was removed success")
-                            navigate(HOME_ROUTE);
-                        };
-                    } else {
-                        handleClickVariant("error", 'Not correctly input for remove')
-                    }
-                } catch (error) {
-                    handleClickVariant("error", error.toString())
-                }
+                setConfirmModal(true)
                 break
             case "Edit":
                 setEditModal(true)
@@ -185,11 +173,46 @@ const Item = () => {
         }
     }
 
+    const onDelete = async () => {
+        try {
+            const response = await onDeleteItem(currentItem.item, user)
+            if (response) {
+                handleClickVariant("success", "Item was removed success")
+                navigate(HOME_ROUTE);
+            } else {
+                handleClickVariant("error", 'Not correctly input for remove')
+            }
+        } catch (error) {
+            handleClickVariant("error", error.toString())
+        }
+    }
+
+
     return (
-        <div style={{backgroundColor: getColor(isRemoved ? isRemoved : currentItem.item?.status)}} className={styles.Main}>
+        <div style={{backgroundColor: getColor(isRemoved ? isRemoved : currentItem.item?.status)}}
+             className={styles.Main}>
             <Backdrop style={{zIndex: 99}} open={currentItem.loading}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
+            <MyModal isActive={confirmModal} setIsActive={setConfirmModal}>
+                <div>
+                    <Typography variant="h5" gutterBottom component="h6" display={"inline-flex"} textAlign={"center"}>
+                        Are you sure you want to remove this item?
+                    </Typography>
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "space-around",
+                        gap: 14
+                    }}>
+                        <Button onClick={onDelete} fullWidth={true} variant="contained" sx={{my: 2}} color={"success"}>
+                            Yes
+                        </Button>
+                        <Button onClick={() => setConfirmModal(false)} fullWidth={true} variant="contained" sx={{my: 2}} color={"error"}>
+                            No
+                        </Button>
+                    </div>
+                </div>
+            </MyModal>
             <MyModal isActive={editModal} setIsActive={setEditModal}>
                 <div style={{
                     display: "flex",
@@ -235,7 +258,9 @@ const Item = () => {
                 </div>
             </MyModal>
             <div className={styles.Wrapper}>
-                {isRemoved && <Alert severity="warning" style={{marginBottom: 14}}><article>This item is deleted! It will be automatically deleted after a month</article></Alert>}
+                {isRemoved && <Alert severity="warning" style={{marginBottom: 14}}>
+                    <article>This item is deleted! It will be automatically deleted after a month</article>
+                </Alert>}
                 <SettingsItem currentItem={currentItem} handleClickVariant={handleClickVariant}/>
             </div>
             <Box sx={{

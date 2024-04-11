@@ -19,7 +19,7 @@ const Warehouse: FC<WarehouseProps> = ({loading, error, items}) => {
                     {!error
                         ?
                         <div className={styles.WarehouseWrapper}>
-                            {data.slice(0, 20).map((cardItem: ICardItem, index: number) => {
+                            {data.map((cardItem: ICardItem, index: number) => {
 
                                 let tempQta : number            = 0;
                                 let tempPalletsQta : number     = 0;
