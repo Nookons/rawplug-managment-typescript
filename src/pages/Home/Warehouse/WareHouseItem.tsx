@@ -2,8 +2,9 @@ import React, {FC, useEffect, useState} from 'react';
 
 import {IItem} from "../../../types/Item";
 import styles from "./Warehouse.module.css";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
+import {Avatar, Card, CardContent, Typography} from "@mui/material";
 
 interface WareHouseItemProps {
     card: any,
@@ -12,7 +13,7 @@ interface WareHouseItemProps {
     tempLast: IItem[]
 }
 
-export const WarehouseItem: FC<WareHouseItemProps> = ({ card, tempQta, tempPalletsQta, tempLast }) => {
+export const WarehouseItem: FC<WareHouseItemProps> = ({card, tempQta, tempPalletsQta, tempLast}) => {
     const navigate = useNavigate();
 
     const INDEX = card.myIndex
@@ -41,37 +42,33 @@ export const WarehouseItem: FC<WareHouseItemProps> = ({ card, tempQta, tempPalle
         navigate(ITEM_ROUTE + '?_' + id)
     }
 
+
     return (
-        <div className={styles.Item}>
-            <article
-                style={{
+        <Card style={{minWidth: 100}} key={INDEX} sx={{minWidth: 240}} variant={"outlined"} raised={true}>
+            <CardContent>
+                <Typography fontSize={14} variant={"subtitle1"}>
+                    {INDEX}
+                </Typography>
+         {/*       <Typography fontSize={14} color="text.secondary" variant={"subtitle1"}>
+                    {card.description}
+                </Typography>*/}
+                <hr/>
+                <div style={{
                     display: "flex",
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    gap: 14
-                }}>{INDEX}</article>
-            <hr/>
-            <article>All have: {tempQta} {JM}</article>
-            <article>Pallets: ({tempPalletsQta})</article>
-            <br/>
-            <div style={{display: 'flex', gap: 6, flexWrap: 'wrap'}}>
-                {data.slice(0, 3).map((lastElement: IItem, index: number )=> {
-
-                    const rootClasses = [styles.LastItems]
-                    const response = getStatus(lastElement.status)
-
-                    if (response) {
-                        rootClasses.push(response)
-                    }
-
-                    return (
-                        <button onClick={() => onItemClick(lastElement.id)} className={rootClasses.join(' ')} key={index}>
-                            {/*<article style={{fontSize: 14}}>{lastElement.createdDate}</article>*/}
-                            <article style={{fontSize: 14}}>{lastElement.quantity} | {JM}</article>
-                        </button>
-                    )
-                })}
-            </div>
-        </div>
+                    justifyContent: "flex-end",
+                    alignItems: "flex-start",
+                    gap: 4,
+                    flexDirection: "column"
+                }}>
+                    <Typography fontSize={14} color={"WindowText"} variant={"subtitle1"} display={"flex"}
+                                alignItems={"center"} gap={1} alignContent={"center"}>
+                        ({tempQta.toLocaleString()}) {card.jm}
+                    </Typography>
+                    <Typography fontSize={14} color={"gray"} variant={"subtitle1"}>
+                        ({tempPalletsQta}) Pallets
+                    </Typography>
+                </div>
+            </CardContent>
+        </Card>
     );
 };
