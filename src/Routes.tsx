@@ -13,7 +13,7 @@ import {
     RECEIPT_REPORT_ROUTE, REMOVED_ROUTE,
     SIGN_IN_ROUTE,
     SIGN_UP_ROUTE,
-    USER_SETTINGS_ROUTE,
+    USER_SETTINGS_ROUTE, WAREHOUSE_ROUTE,
 } from "./utils/consts";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/User/SignIn";
@@ -31,6 +31,7 @@ import ReceiptReport from "./pages/Item/ReceiptReport/ReceiptReport";
 import CreateItem from "./pages/Item/CreateItem/CreateItem";
 import RemovedList from "./pages/Item/RemovedList/RemovedList";
 import MixerReceipts from "./pages/Mixers/MixersReceipts/MixerReceipts";
+import Warehouse from "./pages/Warehouse/Warehouse";
 
 
 interface Route {
@@ -125,6 +126,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: MIXERS_RECEIPTS_ROUTE,
         Component: MixerReceipts,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: WAREHOUSE_ROUTE,
+        Component: Warehouse,
         label: 'AppPrivateRoute',
     },
 ];

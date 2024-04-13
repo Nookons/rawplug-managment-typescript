@@ -77,6 +77,8 @@ const AddItem = () => {
             const validation    = await addItemValidation({items, formData});
             const response      = await onAddItem(formData, user)
 
+            console.log(response);
+
             if (response[0]) {
                 handleClickVariant('success', validation);
                 setFormData(prevState => ({...prevState, barrel: {...prevState.barrel, first: 0, secondary: 0, third: 0, four:0}}))

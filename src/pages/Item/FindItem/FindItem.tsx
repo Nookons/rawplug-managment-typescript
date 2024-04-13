@@ -4,6 +4,7 @@ import {Alert, FormControlLabel, FormGroup, Skeleton, Switch} from "@mui/materia
 import styles from './FindItem.module.css'
 import Search from './module/Search'
 import SearchBatch from "./module/SearchBatch";
+import Warehouse from "../../Warehouse/Warehouse";
 
 const FindItem = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
@@ -22,7 +23,7 @@ const FindItem = () => {
                     </FormGroup>
                     {
                         !error
-                            ? <div>{isBatch ? <SearchBatch items={items} /> : <Search items={items} />}</div>
+                            ? <div>{isBatch ? <SearchBatch items={items} /> : <Warehouse />}</div>
                             : <Alert severity="error">{error}</Alert>
                     }
                 </div>

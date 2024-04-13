@@ -10,7 +10,7 @@ import {
     ADD_PALLET_ROUTE,
     ADD_PLAN_ROUTE, BARREL_STATS_ROUTE,
     CHECK_PLANS_ROUTE, CREATE_ITEM_ROUTE, FIND_ITEM_ROUTE, HOME_ROUTE,
-    ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE, RECEIPT_REPORT_ROUTE, REMOVED_ROUTE
+    ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE, RECEIPT_REPORT_ROUTE, REMOVED_ROUTE, WAREHOUSE_ROUTE
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
 import {ExpandMore} from "@mui/icons-material";
@@ -55,7 +55,7 @@ const Home: FC = () => {
                             <MyButton><Link to={REMOVED_ROUTE}><PlaylistRemoveIcon /></Link></MyButton>
                             <MyButton><Link to={HOME_ROUTE}><MoveUpIcon /></Link></MyButton>
                             <MyButton><Link to={MIXERS_RECEIPTS_ROUTE}><BlenderIcon /></Link></MyButton>
-                            <MyButton><Link to={FIND_ITEM_ROUTE}><SearchIcon /></Link></MyButton>
+                            <MyButton><Link to={WAREHOUSE_ROUTE}><SearchIcon /></Link></MyButton>
                             <MyButton><Link to={ITEMS_GRID_ROUTE}><ListIcon /></Link></MyButton>
                             <MyButton><Link to={BARREL_STATS_ROUTE}><FeaturedPlayListIcon /></Link></MyButton>
                             <MyButton><Link to={RECEIPT_REPORT_ROUTE}><ReceiptLongIcon /></Link></MyButton>

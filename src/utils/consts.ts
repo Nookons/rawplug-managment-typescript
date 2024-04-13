@@ -22,6 +22,9 @@ export const REMOVED_ROUTE: string = '/grid-items/removed'
 export const ADD_PALLET_ROUTE: string = '/add-pallet'
 export const PALLET_ROUTE: string = '/pallet'
 
+// Warehouse Route
+export const WAREHOUSE_ROUTE: string = '/warehouse'
+
 //Plan Route
 export const ADD_PLAN_ROUTE: string = '/add-plan'
 export const CHECK_PLANS_ROUTE: string = '/check-plans'
