@@ -12,27 +12,24 @@ import {
 import styles from './Warehouse.module.css'
 
 import SearchDisplay from "./dep/SearchDisplay";
-import AutoCompletArea from "./dep/AutoCompletArea";
 import AutoCompleteArea from "./dep/AutoCompletArea";
 
 const Warehouse = () => {
     const [data, setData] = useState<IItem[]>([]);
-    const [searchIndex, setSearchIndex] = useState<string>("");
+    const [searchIndex, setSearchIndex] = useState<string | null>("");
+    const currentURL = window.location.href;
 
     useEffect(() => {
         try {
-            const currentURL = window.location.href;
-            console.log(currentURL);
+            const index = currentURL.split("_")
+            const temp = index[1].replace("%E3%80%B5", "〵").toUpperCase()
 
-            if (currentURL !== '') {
-                const index = currentURL.split("_")
-                const temp = index[1].replace("%E3%80%B5", "〵").toUpperCase()
-                setSearchIndex(temp)
-            }
+            setSearchIndex(temp)
         } catch (error) {
             console.log(error)
         }
-    }, []);
+    }, [currentURL]);
+
 
     useEffect(() => {
         const q = query(collection(db, "items"), where("index", "==", searchIndex));
@@ -45,6 +42,9 @@ const Warehouse = () => {
         });
     }, [searchIndex]);
 
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
 
     return (
         <div className={styles.Main} >

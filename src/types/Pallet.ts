@@ -1,4 +1,4 @@
-import {getCurrentUser} from "../utils/AddPallet";
+import {getCurrentUser} from "../utils/plans/AddPallet";
 
 interface INeededItem {
     index?: string;

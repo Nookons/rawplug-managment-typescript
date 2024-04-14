@@ -9,24 +9,29 @@ import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {onDeleteItem} from "../../../utils/Items/DeleteItem";
 import {useAppSelector} from "../../../hooks/storeHooks";
-import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
+import {SnackbarProvider, VariantType, useSnackbar} from 'notistack';
 import {UpdateItem} from "../../../utils/Items/UpdateItem";
+import {addToUse} from "../../../utils/Items/AddToUse";
+import MyModal from "../../../components/Modal/MyModal";
 
 interface SearchDisplayProps {
     data: IItem[];
 }
 
 const SearchDisplay: FC<SearchDisplayProps> = ({data}) => {
-    const { enqueueSnackbar } = useSnackbar();
+    const {enqueueSnackbar} = useSnackbar();
     const {user, loading, error} = useAppSelector(state => state.user)
 
     const [backDrop, setBackDrop] = useState<boolean>(false);
+    const [selectModal, setSelectModal] = useState(false);
 
     const handleClickVariant = (variant: VariantType, title: string) => {
         enqueueSnackbar(title, {variant});
     };
 
     const [quantity, setQuantity] = useState(0);
+
+    const [selectedItem, setSelectedItem] = useState<IItem | null>(null);
 
     useEffect(() => {
         setQuantity(0);
@@ -49,14 +54,23 @@ const SearchDisplay: FC<SearchDisplayProps> = ({data}) => {
             }, 250)
         }
     }
-    const onUseClick = async (item: IItem) => {
+
+    const onSelectMachineClick = (item: IItem) => {
+        setSelectModal(true)
+        setSelectedItem(item)
+    }
+
+    const onUseClick = async (machine: string) => {
         try {
             setBackDrop(true)
-            const id = item.id
+
             const data = {
-                status: "On machine"
+                palletID: selectedItem?.id,
+                palletIndex: selectedItem?.index,
             }
-            const response = await UpdateItem({id, user, data})
+
+            await addToUse({machine, user, data})
+
             handleClickVariant('success', "item was added")
         } catch (error) {
             console.log(error)
@@ -73,6 +87,21 @@ const SearchDisplay: FC<SearchDisplayProps> = ({data}) => {
                 <Backdrop style={{zIndex: 9}} open={backDrop}>
                     <CircularProgress color="inherit"/>
                 </Backdrop>
+
+                <MyModal isActive={selectModal} setIsActive={setSelectModal}>
+                    <article>Item: {selectedItem?.id}</article>
+                    <article>Quantity: {selectedItem?.quantity}</article>
+                    <div style={{
+                        display: "flex",
+                        gap: 14,
+                        flexDirection: "column",
+                        marginTop: 14
+                    }}>
+                        <Button onClick={() => onUseClick('nap03')} fullWidth={true} variant={"contained"}>Nap-02 / Nap-03</Button>
+                        <Button fullWidth={true} variant={"contained"}>Nap-01</Button>
+                    </div>
+                </MyModal>
+
                 <div className={styles.MainInfo}>
                     <Typography variant="h6" gutterBottom component="h6">
                         ({data.length} pallets)
@@ -82,7 +111,7 @@ const SearchDisplay: FC<SearchDisplayProps> = ({data}) => {
                     </Typography>
                 </div>
                 {data.map((el: IItem) => (
-                    <Card sx={{minWidth: 340}} variant={"outlined"} raised={true}>
+                    <Card style={{backgroundColor: el.status === "On Machine" &&  "#ffd7d7"}} sx={{minWidth: 340}} variant={"outlined"} raised={true}>
                         <CardContent>
                             <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>
                                 <Link to={ITEM_ROUTE + "?_" + el.id}>{el.index} </Link>
@@ -104,18 +133,31 @@ const SearchDisplay: FC<SearchDisplayProps> = ({data}) => {
                                     {el.quantity.toLocaleString()} {el.jm}
                                 </Typography>
                             </div>
-                            <div className={styles.itemButtonGroup}>
-                                <Button onClick={() => onUseClick(el)} variant="contained" fullWidth={true} color={"success"}>
-                                    <BatterySaverIcon/> Add on use
-                                </Button>
-                                <Button variant="contained" fullWidth={true} color={"info"}>
-                                    <AddBusinessIcon/> Send to MSP
-                                </Button>
-                                <Button onClick={() => onRemove(el)} variant="contained" fullWidth={true}
-                                        color={"error"}>
-                                    <DeleteIcon/>
-                                </Button>
-                            </div>
+                            {el.status === "On Machine" &&
+                                <Alert sx={{my: 2}} severity="info"><p>This is on machine</p></Alert>
+                            }
+                            {el.status !== "On Machine" ?
+                                <div className={styles.itemButtonGroup}>
+                                    <Button onClick={() => onSelectMachineClick(el)} variant="contained"
+                                            fullWidth={true} color={"success"}>
+                                        <BatterySaverIcon/> Add on use
+                                    </Button>
+                                    <Button variant="contained" fullWidth={true} color={"info"}>
+                                        <AddBusinessIcon/> Send to MSP
+                                    </Button>
+                                    <Button onClick={() => onRemove(el)} variant="contained" fullWidth={true}
+                                            color={"error"}>
+                                        <DeleteIcon/>
+                                    </Button>
+                                </div>
+                                :
+                                <div>
+                                    <Button onClick={() => onRemove(el)} variant="contained" fullWidth={true}
+                                            color={"error"}>
+                                        <DeleteIcon/>
+                                    </Button>
+                                </div>
+                            }
                         </CardContent>
                     </Card>
                 ))}

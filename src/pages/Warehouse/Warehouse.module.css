@@ -2,6 +2,7 @@
     min-height: calc(100dvh - 190px);
     max-width: 900px;
     margin: 0 auto;
+    padding: 14px;
 }
 
 .MainInfo {

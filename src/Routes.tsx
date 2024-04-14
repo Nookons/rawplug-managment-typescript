@@ -8,7 +8,7 @@ import {
     FIND_ITEM_ROUTE,
     HOME_ROUTE,
     ITEM_ROUTE,
-    ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE,
+    ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE, NAP01_ROUTE, NAP02_ROUTE, NAP03_ROUTE,
     PALLET_ROUTE,
     RECEIPT_REPORT_ROUTE, REMOVED_ROUTE,
     SIGN_IN_ROUTE,
@@ -32,6 +32,9 @@ import CreateItem from "./pages/Item/CreateItem/CreateItem";
 import RemovedList from "./pages/Item/RemovedList/RemovedList";
 import MixerReceipts from "./pages/Mixers/MixersReceipts/MixerReceipts";
 import Warehouse from "./pages/Warehouse/Warehouse";
+import Nap01 from "./pages/Nap03/Nap03";
+import Nap03 from "./pages/Nap03/Nap03";
+import Nap02 from "./pages/Nap02/Nap02";
 
 
 interface Route {
@@ -131,6 +134,16 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: WAREHOUSE_ROUTE,
         Component: Warehouse,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: NAP02_ROUTE,
+        Component: Nap02,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: NAP03_ROUTE,
+        Component: Nap03,
         label: 'AppPrivateRoute',
     },
 ];

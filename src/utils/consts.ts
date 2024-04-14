@@ -31,3 +31,7 @@ export const CHECK_PLANS_ROUTE: string = '/check-plans'
 
 //Mixers Route
 export const MIXERS_RECEIPTS_ROUTE: string = '/mixers-receipts'
+
+//Machine Route
+export const NAP02_ROUTE: string = '/nap-02'
+export const NAP03_ROUTE: string = '/nap-03'

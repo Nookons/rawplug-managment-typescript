@@ -5,7 +5,7 @@ import {IPalletItem, IPallets, IUserPallet} from "../../../types/Pallet";
 import PalletData from '../../../assets/PalletsData.json'
 import MyButton from "../../../components/MyButton/MyButton";
 import {useAppDispatch, useAppSelector} from "../../../hooks/storeHooks";
-import {onAddPallet} from "../../../utils/AddPallet";
+import {onAddPallet} from "../../../utils/plans/AddPallet";
 import MyLoader from "../../../components/Loader/MyLoader";
 import {useNavigate} from "react-router-dom";
 import {addPallet} from "../../../store/reducers/Pallets/PalletsSlice";
