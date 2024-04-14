@@ -19,19 +19,12 @@ const App = () => {
     const [lastUpdate, setLastUpdate] = useState("");
 
 
-    const fetchAllData = useCallback(() => {
-        dispatch(fetchItems());
-        dispatch(fetchUser());
-        dispatch(fetchPlans());
-        dispatch(fetchPallets());
-        dispatch(fetchActions());
-        dispatch(fetchRemoved());
-    }, [dispatch]);
-
     useEffect(() => {
         const items = query(collection(db, "items"));
         const actions = query(collection(db, "actions"));
         const removed = query(collection(db, "removed"));
+
+        dispatch(fetchUser());
 
         onSnapshot(items, (querySnapshot) => {
             dispatch(fetchItems());
@@ -77,7 +70,6 @@ const App = () => {
 
     }, [myVersion]);
 
-    fetchAllData();
 
     return (
         <BrowserRouter>

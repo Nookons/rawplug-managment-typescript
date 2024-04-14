@@ -4,7 +4,7 @@ import styles from '../AddPlan.module.css'
 import MyButton from "../../../components/MyButton/MyButton";
 import {Popper} from "@mui/material";
 import dayjs from "dayjs";
-import {OnRemovePlan} from "../../../utils/RemovePlan";
+import {OnRemovePlan} from "../../../utils/plans/RemovePlan";
 import MyButtonLoader from "../../../components/MyButtonLoader/MyButtonLoader";
 import MyLoader from "../../../components/Loader/MyLoader";
 import {useAppDispatch} from "../../../hooks/storeHooks";

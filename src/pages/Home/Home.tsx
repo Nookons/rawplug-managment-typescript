@@ -8,9 +8,18 @@ import {Link, useNavigate} from "react-router-dom";
 import {
     ADD_ITEM_ROUTE,
     ADD_PALLET_ROUTE,
-    ADD_PLAN_ROUTE, BARREL_STATS_ROUTE,
-    CHECK_PLANS_ROUTE, CREATE_ITEM_ROUTE, FIND_ITEM_ROUTE, HOME_ROUTE,
-    ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE, RECEIPT_REPORT_ROUTE, REMOVED_ROUTE
+    ADD_PLAN_ROUTE,
+    BARREL_STATS_ROUTE,
+    CHECK_PLANS_ROUTE,
+    CREATE_ITEM_ROUTE,
+    FIND_ITEM_ROUTE,
+    HOME_ROUTE,
+    ITEMS_GRID_ROUTE,
+    MIXERS_RECEIPTS_ROUTE, NAP02_ROUTE,
+    NAP03_ROUTE,
+    RECEIPT_REPORT_ROUTE,
+    REMOVED_ROUTE,
+    WAREHOUSE_ROUTE
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
 import {ExpandMore} from "@mui/icons-material";
@@ -31,6 +40,8 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 import MoveUpIcon from '@mui/icons-material/MoveUp';
 import BlenderIcon from '@mui/icons-material/Blender';
+
+import DataThresholdingIcon from '@mui/icons-material/DataThresholding';
 
 const Home: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
@@ -53,9 +64,7 @@ const Home: FC = () => {
                             <MyButton><Link to={ADD_ITEM_ROUTE}><AddBoxIcon /></Link></MyButton>
                             <MyButton><Link to={CREATE_ITEM_ROUTE}><NoteAddIcon /></Link></MyButton>
                             <MyButton><Link to={REMOVED_ROUTE}><PlaylistRemoveIcon /></Link></MyButton>
-                            <MyButton><Link to={HOME_ROUTE}><MoveUpIcon /></Link></MyButton>
-                            <MyButton><Link to={MIXERS_RECEIPTS_ROUTE}><BlenderIcon /></Link></MyButton>
-                            <MyButton><Link to={FIND_ITEM_ROUTE}><SearchIcon /></Link></MyButton>
+                            <MyButton><Link to={WAREHOUSE_ROUTE}><SearchIcon /></Link></MyButton>
                             <MyButton><Link to={ITEMS_GRID_ROUTE}><ListIcon /></Link></MyButton>
                             <MyButton><Link to={BARREL_STATS_ROUTE}><FeaturedPlayListIcon /></Link></MyButton>
                             <MyButton><Link to={RECEIPT_REPORT_ROUTE}><ReceiptLongIcon /></Link></MyButton>
@@ -70,8 +79,21 @@ const Home: FC = () => {
                             <Typography><article><FactCheckIcon /></article></Typography>
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
-                            <MyButton><Link to={ADD_PALLET_ROUTE}>Add</Link></MyButton>
-                            <MyButton   click={() => alert('In progress...')}><Link>Find</Link></MyButton>
+                            <MyButton><Link style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 4
+                            }} to={HOME_ROUTE}><DataThresholdingIcon />01</Link></MyButton>
+                            <MyButton><Link style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 4
+                            }} to={NAP02_ROUTE}><DataThresholdingIcon />02</Link></MyButton>
+                            <MyButton><Link style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 4
+                            }} to={NAP03_ROUTE}><DataThresholdingIcon />03</Link></MyButton>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={styles.Details} defaultExpanded={false}>

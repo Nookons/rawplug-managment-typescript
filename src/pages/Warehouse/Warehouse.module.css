@@ -1,0 +1,41 @@
+.Main {
+    min-height: calc(100dvh - 190px);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 14px;
+}
+
+.MainInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    gap: 8px;
+}
+.MainInfo > h6{
+    background-color: #cdecff;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.itemWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.itemButtonGroup {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 0.25fr;
+    gap: 14px;
+}
+
+@media screen and ( max-width: 500px) {
+    .itemButtonGroup {
+        display: grid;
+        grid-template-columns: 1fr 0.5fr;
+        gap: 8px;
+    }
+    .itemButtonGroup > button:first-child {
+        grid-area: 1 / 1 / 2 / 3;
+    }
+}

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from "./AddPlan.module.css";
 import MyButton from "../../components/MyButton/MyButton";
 import Mashine from "./module/Machine";
-import {onAddPlan} from "../../utils/AddPlan";
+import {onAddPlan} from "../../utils/plans/AddPlan";
 import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';

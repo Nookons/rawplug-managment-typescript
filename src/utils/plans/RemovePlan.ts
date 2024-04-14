@@ -1,5 +1,5 @@
 import { getDatabase, ref, remove, push, update, child } from "firebase/database";
-import {IPlan} from "../types/Plans";
+import {IPlan} from "../../types/Plans";
 
 
 export function OnRemovePlan(id: number, item: IPlan): Promise<boolean> {

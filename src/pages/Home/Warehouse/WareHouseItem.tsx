@@ -3,7 +3,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {IItem} from "../../../types/Item";
 import styles from "./Warehouse.module.css";
 import {Link, useNavigate} from "react-router-dom";
-import {ITEM_ROUTE} from "../../../utils/consts";
+import {ITEM_ROUTE, WAREHOUSE_ROUTE} from "../../../utils/consts";
 import {Avatar, Card, CardContent, Typography} from "@mui/material";
 
 interface WareHouseItemProps {
@@ -47,7 +47,7 @@ export const WarehouseItem: FC<WareHouseItemProps> = ({card, tempQta, tempPallet
         <Card style={{minWidth: 100}} key={INDEX} sx={{minWidth: 240}} variant={"outlined"} raised={true}>
             <CardContent>
                 <Typography fontSize={14} variant={"subtitle1"}>
-                    {INDEX}
+                    <Link to={WAREHOUSE_ROUTE + "?_" + INDEX.toLowerCase()}>{INDEX}</Link>
                 </Typography>
          {/*       <Typography fontSize={14} color="text.secondary" variant={"subtitle1"}>
                     {card.description}

@@ -5,7 +5,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import dayjs from "dayjs";
 import {useAppSelector} from "../../../../hooks/storeHooks";
-import {onAddPallet} from "../../../../utils/AddPallet";
+import {onAddPallet} from "../../../../utils/plans/AddPallet";
 import {IPlanItems} from "../../../../types/Plans";
 
 interface FullViewProps {
@@ -102,20 +102,6 @@ const FullView:FC<FullViewProps> = ({planItem, statusView, setStatusView, nap}) 
                             marks={FullMarks}
                         />
                     </Stack>
-                </div>
-                <div style={{display: "flex", gap: 14, alignItems: "center"}}>
-                    <p>{addValue}</p>
-                    <Slider
-                        defaultValue={400}
-                        value={addValue}
-                        onChange={(e) => setAddValue(e.target.value)}
-                        step={10}
-                        max={840}
-                        aria-label="Slider"
-                    />
-                    <IconButton aria-label="add">
-                        <AddCircleIcon onClick={onAddClick}/>
-                    </IconButton>
                 </div>
             </div>
         </div>

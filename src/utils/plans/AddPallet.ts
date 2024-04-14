@@ -1,7 +1,7 @@
 import { getDatabase, ref, set, push } from 'firebase/database';
 import dayjs from "dayjs";
-import {IUserPallet} from "../types/Pallet";
-import {IPlan} from "../types/Plans";
+import {IUserPallet} from "../../types/Pallet";
+import {IPlan} from "../../types/Plans";
 
 
 

@@ -18,7 +18,7 @@ import MyButton from "../../../../components/MyButton/MyButton";
 import CancelIcon from '@mui/icons-material/Cancel';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import dayjs from "dayjs";
-import {onAddPallet} from "../../../../utils/AddPallet";
+import {onAddPallet} from "../../../../utils/plans/AddPallet";
 import {useAppSelector} from "../../../../hooks/storeHooks";
 import FullView from "./FullView";
 
@@ -30,6 +30,8 @@ interface MachineProps {
 
 
 const Machine: FC<MachineProps> = ({isReady, planItem, nap}) => {
+
+    const isRed = planItem.planQta === planItem.ready ? true : false
 
     const marks = [
         {
@@ -53,7 +55,7 @@ const Machine: FC<MachineProps> = ({isReady, planItem, nap}) => {
             {
                 !statusView
                     ?
-                    <div onClick={() => setStatusView(true)} className={styles.PlanItem}>
+                    <div style={{backgroundColor: isRed && "rgba(0,0,0, 0.25)"}} onClick={() => setStatusView(true)} className={styles.PlanItem}>
                         <div>
                             <article>{planItem.index}</article>
                         </div>
