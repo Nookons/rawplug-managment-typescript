@@ -12,29 +12,24 @@ interface MyPDFComponentProps {
     pickDate: string | null;
 }
 
+const getMixer = (from: string, type: string) => {
+
+    switch (from) {
+        case "PWT70":
+            if (type.toLowerCase() === "barrel") {
+                return "| Mixers"
+            } else {
+                return "🔄"
+            }
+        default:
+            return ""
+    }
+
+}
+
 const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, pickUser, pickDate}) => {
-    let total = 0;
+    let total = removedArray.length + arrayToDisplay.length;
 
-    const [totalArray, setTotalArray] = useState<IItem[]>([]);
-
-    useEffect(() => {
-        // Initialize totalArray with arrayToDisplay
-        setTotalArray([...arrayToDisplay]);
-    }, [arrayToDisplay]);
-
-    useEffect(() => {
-        // Add elements from removedArray to totalArray with removed: true flag
-        if (removedArray) {
-            removedArray.forEach(el => {
-                setTotalArray(prevState => ([...prevState, {...el, removed: true}]));
-            });
-        }
-    }, [removedArray]);
-
-    useEffect(() => {
-        // Log totalArray after it has been updated
-        console.log(totalArray);
-    }, [totalArray]);
 
     if (arrayToDisplay || removedArray) {
         return (
@@ -52,7 +47,7 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, 
                     <h5 style={{whiteSpace: "nowrap"}}>Report details:</h5>
                     <article style={{whiteSpace: "nowrap"}}>Person: {pickUser}</article>
                     <article style={{whiteSpace: "nowrap"}}>Date: {pickDate}</article>
-                    <article style={{whiteSpace: "nowrap"}}>Total items: {totalArray.length}</article>
+                    <article style={{whiteSpace: "nowrap"}}>Total items: {total}</article>
                 </div>
                 <TableContainer component={Paper} variant="elevation" elevation={2}>
                     <Table aria-label="simple table" size={"small"} padding={"normal"}>
@@ -69,8 +64,8 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, 
                         </TableHead>
                         <TableBody
                             style={{padding: "14px !important"}}> {/* Using inline styles with !important might not be a good practice. */}
-                            {totalArray.map((el: IItem, index) => (
-                                <TableRow style={{backgroundColor: el.removed && "#eeeeee"}} key={el.id}>
+                            {arrayToDisplay.map((el: IItem, index) => (
+                                <TableRow  key={el.id}>
                                     <TableCell>
                                         <article>{index + 1}</article>
                                         {/* Using <article> tag here is not semantically correct. */}
@@ -78,11 +73,24 @@ const MyPDFComponent: FC<MyPDFComponentProps> = ({removedArray, arrayToDisplay, 
                                     <TableCell>
                                         <p style={{whiteSpace: "nowrap"}}>{el.index}</p>
                                     </TableCell>
-                                    <TableCell><p>{el.createdDate.slice(10)}</p></TableCell>
-                                    <TableCell><p>{
-                                        el.fromDepartment
-                                            .replace("PWT70", "PWT70 | Mixers")
-                                    }</p></TableCell>
+                                    <TableCell><p>{el.createdDate}</p></TableCell>
+                                    <TableCell><p>{el.fromDepartment} {getMixer(el.fromDepartment, el.type)}</p></TableCell>
+                                    <TableCell><p
+                                        style={{whiteSpace: "nowrap"}}>{el.quantity.toLocaleString()} {el.jm}</p>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                            {removedArray.map((el: IItem, index) => (
+                                <TableRow style={{backgroundColor: "rgba(0,0,0, 0.05)"}}  key={el.id}>
+                                    <TableCell>
+                                        <article>{index + 1}</article>
+                                        {/* Using <article> tag here is not semantically correct. */}
+                                    </TableCell>
+                                    <TableCell>
+                                        <p style={{whiteSpace: "nowrap"}}>{el.index}</p>
+                                    </TableCell>
+                                    <TableCell><p>{el.createdDate}</p></TableCell>
+                                    <TableCell><p>{el.fromDepartment} {getMixer(el.fromDepartment, el.type)}</p></TableCell>
                                     <TableCell><p
                                         style={{whiteSpace: "nowrap"}}>{el.quantity.toLocaleString()} {el.jm}</p>
                                     </TableCell>
