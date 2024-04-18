@@ -71,6 +71,8 @@ const BarrelStats: FC = () => {
             <div style={{
                 padding: 14,
                 minHeight: "calc(100dvh - 160px)",
+                maxWidth: 1200,
+                margin: "0 auto",
                 display: "flex",
                 flexDirection: "column",
                 gap: 14

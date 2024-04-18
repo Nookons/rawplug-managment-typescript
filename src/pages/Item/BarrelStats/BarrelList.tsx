@@ -9,6 +9,17 @@ interface BarrelListProps {
     searchTags: string[] | null;
 }
 
+const getStatus = (status: string) => {
+    switch (status) {
+        case "Available":
+            return "✅"
+        case "Hold":
+            return "⛔"
+        default:
+            return "⚠️"
+    }
+}
+
 const BarrelList: FC<BarrelListProps> = ({items, searchTags}) => {
     let offset = window.innerWidth;
 
@@ -18,12 +29,11 @@ const BarrelList: FC<BarrelListProps> = ({items, searchTags}) => {
     const [sortedArray, setSortedArray] = useState<IItem[]>([]);
 
 
-
-   const filteredAndSortedItems = (searchType: string) => {
-       const filteredItems = items.filter(el => el.index === searchType);
-       const sortedArray = [...filteredItems].sort((a, b) => b.batchNumber - a.batchNumber);
-       return sortedArray;
-   }
+    const filteredAndSortedItems = (searchType: string) => {
+        const filteredItems = items.filter(el => el.index === searchType);
+        const sortedArray = [...filteredItems].sort((a, b) => b.batchNumber - a.batchNumber);
+        return sortedArray;
+    }
 
     useEffect(() => {
         setFullArray([])
@@ -52,7 +62,14 @@ const BarrelList: FC<BarrelListProps> = ({items, searchTags}) => {
 
     return (
         <div>
-            <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", margin: "14px 0", gap: 4, justifyContent: "center", alignItems: "center"}}>
+            <div style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                margin: "14px 0",
+                gap: 4,
+                justifyContent: "center",
+                alignItems: "center"
+            }}>
                 <div style={{padding: 14, backgroundColor: "#dfffd6"}}>
                     <article>Available pallets: ({fullArray.length})</article>
                 </div>
@@ -68,28 +85,33 @@ const BarrelList: FC<BarrelListProps> = ({items, searchTags}) => {
                             <TableCell><h5>Index</h5></TableCell>
                             <TableCell><h5>Batch</h5></TableCell>
                             <TableCell><h5>Quantity</h5></TableCell>
-                            {offset > 1000 ? <TableCell ><h5>Remarks</h5></TableCell> : null}
+                            {offset > 1000 ? <TableCell><h5>Remarks</h5></TableCell> : null}
                         </TableRow>
                     </TableHead>
-                    {sortedArray.map((el, index) => (
-                        <TableBody key={index}>
-                            <TableRow>
+                    <TableBody>
+                        {sortedArray.map((el, index) => (
+                            <TableRow style={{backgroundColor: el.quantity < 800 && "rgba(255,213,0,0.25)"}} key={index}>
                                 <TableCell>
                                     <article style={{whiteSpace: "nowrap"}}>
-                                        <Link to={ITEM_ROUTE + "?_" + el.id} >
+                                        <Link to={ITEM_ROUTE + "?_" + el.id}>
                                             {el.index.slice(5)
                                                 .replace('HYBRYDA', "HYB")
                                                 .replace("STANDART", "STD")}
                                         </Link></article>
                                 </TableCell>
-                                <TableCell><article
-                                    style={{whiteSpace: "nowrap"}}>{el.status.toLowerCase() === 'available' ? '✅' : '⛔'} {el.batchNumber}</article>
+                                <TableCell>
+                                    <article
+                                        style={{whiteSpace: "nowrap"}}>{getStatus(el.status)} {el.batchNumber} {el.quantity < 800 && "🔄 "}</article>
                                 </TableCell>
-                                <TableCell ><article>{el.quantity.toLocaleString()} kg</article></TableCell>
-                                {offset > 1000 ? <TableCell ><article>{el.remarks}</article></TableCell> : null}
+                                <TableCell>
+                                    <article>{el.quantity.toLocaleString()} kg</article>
+                                </TableCell>
+                                {offset > 1000 ? <TableCell>
+                                    <article>{el.remarks}</article>
+                                </TableCell> : null}
                             </TableRow>
-                        </TableBody>
-                    ))}
+                        ))}
+                    </TableBody>
                 </Table>
             </TableContainer>
         </div>

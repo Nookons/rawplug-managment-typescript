@@ -14,9 +14,11 @@ const AutoCompleteArea:FC <AutoCompleteAreaProps> = ({searchIndex, setSearchInde
     const {items, loading, error} = useAppSelector(state => state.items)
     const options = Array.from(new Set(items.map(item => item.index)));
 
-    const setSearch = (value: string | null) => {
-        navigation("?_" + value)
-        setSearchIndex(value)
+    const setSearch = (value: string) => {
+        if (value?.length) {
+            navigation("?_" + value)
+            setSearchIndex(value)
+        }
     }
 
     return (
