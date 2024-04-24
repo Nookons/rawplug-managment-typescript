@@ -17,7 +17,7 @@ const CurrentPlan = () => {
     return (
         <div className={styles.Main}>
             <div className={styles.PieStyles}>
-                <h5>Cartridges (310 ml)</h5>
+                <h5>Cartridges</h5>
                 <hr/>
                 <CartridgePie />
             </div>
@@ -25,6 +25,11 @@ const CurrentPlan = () => {
                 <h5>Nozzles</h5>
                 <hr/>
                 <PistonsPie />
+            </div>
+            <div className={styles.PieStyles}>
+                <h5>Barrels</h5>
+                <hr/>
+                <BarrelsPie />
             </div>
         </div>
     );

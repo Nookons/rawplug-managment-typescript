@@ -6,40 +6,46 @@ import {useAppSelector} from '../../../../hooks/storeHooks';
 const BarrelsPie = () => {
     const {items, loading, error} = useAppSelector(state => state.items);
 
-
-    const [psfQuantityData, setPsfQuantityData] = useState<any[]>([]);
+    const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
-        setPsfQuantityData([])
+        // Создаем объект для сопоставления уникальных индексов с общими значениями
+        const indexTotals = [];
 
+        // Проходим по каждому элементу в массиве items
         items.forEach((el: IItem) => {
-            if (el.type.toLowerCase() === "barrel") {
-                setPsfQuantityData(prevState => ([...prevState,
-                    {
-                        stack: el.createdDate,
-                        label: el.index,
-                        data: [el.quantity]
-                    }
-                ]))
+            // Проверяем, является ли элемент картриджем
+            if (el.type === "Barrel") {
+                // Ищем индекс элемента в массиве indexTotals
+                const index = indexTotals.findIndex(item => item.label === el.index
+                    .replace("Q-CM-", "")
+                    .replace("Q-CMB-", "")
+                );
+
+                // Если индекс не найден, добавляем новый объект в массив
+                if (index === -1) {
+                    indexTotals.push({
+                        label: el.index
+                            .replace("Q-CM-", "")
+                            .replace("Q-CMB-", ""),
+                        value: el.quantity
+                    });
+                } else {
+                    // Если индекс найден, увеличиваем значение для этого индекса
+                    indexTotals[index].value += el.quantity;
+                }
             }
-        })
+        });
+
+        setData(indexTotals)
     }, [items, loading]);
 
-    useEffect(() => {
-        console.log(psfQuantityData);
-    }, [psfQuantityData]);
-
     return (
-        <div>
-            <div>
-                <h6>PSF</h6>
-                <hr/>
-                <BarChart
-                    series={psfQuantityData}
-                    height={350}
-                />
-            </div>
-        </div>
+        <BarChart
+            xAxis={[{scaleType: 'band', data: data.map(el => el.label)}]} // Преобразуем массив данных с помощью map
+            series={[{data: data.map(el => el.value)}]} // Передаем данные для серии. Предполагается, что data содержит объекты с полями label и value
+            height={400}
+        />
     );
 };
 
