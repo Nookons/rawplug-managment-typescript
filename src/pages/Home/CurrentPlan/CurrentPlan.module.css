@@ -6,9 +6,9 @@
     position: relative;
 }
 
-/*.Main > div:last-child {
+.Main > div:last-child {
     grid-area: 2 / 1 / 3 / 3;
-}*/
+}
 
 
 

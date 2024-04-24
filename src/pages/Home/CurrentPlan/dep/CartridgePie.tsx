@@ -1,67 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import { PieChart } from '@mui/x-charts';
-import { IItem } from '../../../../types/Item';
-import { useAppSelector } from '../../../../hooks/storeHooks';
+import React, {useEffect, useState} from 'react';
+import {PieChart, pieArcLabelClasses, LineChart, BarChart} from '@mui/x-charts';
+import {IItem} from '../../../../types/Item';
+import {useAppSelector} from '../../../../hooks/storeHooks';
 
 const CartridgePie = () => {
-    const { items, loading, error } = useAppSelector(state => state.items);
+    const {items, loading, error} = useAppSelector(state => state.items);
 
-    const [blueCartridge, setBlueCartridge] = useState<number>(0);
-    const [whiteCartridge, setWhiteCartridge] = useState<number>(0);
-    const [grayCartridge, setGrayCartridge] = useState<number>(0);
+    const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
-        let blueCount = 0;
-        let whiteCount = 0;
-        let grayCount = 0;
+        // Создаем объект для сопоставления уникальных индексов с общими значениями
+        const indexTotals = [];
 
+        // Проходим по каждому элементу в массиве items
         items.forEach((el: IItem) => {
-            switch (el.index) {
-                case 'KRP-ST-CART-310-B':
-                    blueCount += el.quantity;
-                    break;
-                case 'KRP-ST-CART-310':
-                    whiteCount += el.quantity;
-                    break;
-                case 'KRP-ST-CART-310-G':
-                    grayCount += el.quantity;
-                    break;
-                default:
-                    break;
+            // Проверяем, является ли элемент картриджем
+            if (el.type === "Cartridge") {
+                // Ищем индекс элемента в массиве indexTotals
+                const index = indexTotals.findIndex(item => item.label === el.index
+                    .replace("KRP-ST-", "")
+                    .replace("Q-C-CART-", "")
+                );
+
+                // Если индекс не найден, добавляем новый объект в массив
+                if (index === -1) {
+                    indexTotals.push({
+                        label: el.index
+                            .replace("KRP-ST-", "")
+                            .replace("Q-C-CART-", ""),
+                        value: el.quantity
+                    });
+                } else {
+                    // Если индекс найден, увеличиваем значение для этого индекса
+                    indexTotals[index].value += el.quantity;
+                }
             }
         });
 
-        setBlueCartridge(blueCount);
-        setWhiteCartridge(whiteCount);
-        setGrayCartridge(grayCount);
+        setData(indexTotals)
     }, [items, loading]);
 
-    const totalCartridges = blueCartridge + whiteCartridge + grayCartridge;
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
 
     return (
-        <PieChart
+        <BarChart
+            xAxis={[{ scaleType: 'band', data: data.map(el => el.label) }]} // Преобразуем массив данных с помощью map
+            series={[{ data: data.map(el => el.value) }]} // Передаем данные для серии. Предполагается, что data содержит объекты с полями label и value
+            height={300}
+        />
+        /*<PieChart
+            height={300}
             series={[
                 {
+                    data: data,
                     arcLabel: (item) => `(${item.value.toLocaleString()})`,
-                    arcLabelMinAngle: 25,
-                    data: [
-                        { value: blueCartridge, label: `Blue` },
-                        { value: whiteCartridge, label: `White` },
-                        { value: grayCartridge, label: `Gray` }
-                    ],
+                    arcLabelMinAngle: 75,
                     innerRadius: 15,
                     outerRadius: 75,
                     paddingAngle: 5,
                     cornerRadius: 5,
-                    startAngle: -90
-                }
+                    startAngle: -90,
+                    highlightScope: { faded: 'global', highlighted: 'item' },
+                    faded: { innerRadius: 5, additionalRadius: -5, color: 'gray' },
+                },
             ]}
-            height={250}
-            legendPosition="bottom"
-            legendType="circle"
-            legendLabel="Cartridge Type"
-            title="Cartridge Slots"
-        />
+            slotProps={{
+                legend: { hidden: false },
+            }}
+            sx={{
+                [`& .${pieArcLabelClasses.root}`]: {
+                    fill: 'white',
+                    fontSize: 14
+                },
+                legendTextStyle: {
+                    fontSize: '8px' // Установите желаемый размер текста в пикселях
+                }
+            }}
+            /!*onItemClick={(event, d) => console.log(d)}*!/
+            skipAnimation={false}
+        />*/
     );
 };
 
