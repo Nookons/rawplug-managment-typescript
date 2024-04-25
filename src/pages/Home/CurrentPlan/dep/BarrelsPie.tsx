@@ -9,30 +9,25 @@ const BarrelsPie = () => {
     const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
-        // Создаем объект для сопоставления уникальных индексов с общими значениями
         const indexTotals = [];
 
-        // Проходим по каждому элементу в массиве items
         items.forEach((el: IItem) => {
-            // Проверяем, является ли элемент картриджем
             if (el.type === "Barrel") {
-                // Ищем индекс элемента в массиве indexTotals
-                const index = indexTotals.findIndex(item => item.label === el.index
-                    .replace("Q-CM-", "")
-                    .replace("Q-CMB-", "")
-                );
 
-                // Если индекс не найден, добавляем новый объект в массив
-                if (index === -1) {
-                    indexTotals.push({
-                        label: el.index
-                            .replace("Q-CM-", "")
-                            .replace("Q-CMB-", ""),
-                        value: el.quantity
-                    });
-                } else {
-                    // Если индекс найден, увеличиваем значение для этого индекса
-                    indexTotals[index].value += el.quantity;
+                if (el.status === "Available") {
+                    const index = indexTotals.findIndex(item => item.label === el.index
+                        .replace("Q-CM-", "")
+                    );
+
+                    if (index === -1) {
+                        indexTotals.push({
+                            label: el.index
+                                .replace("Q-CM-", ""),
+                            value: el.quantity
+                        });
+                    } else {
+                        indexTotals[index].value += el.quantity;
+                    }
                 }
             }
         });

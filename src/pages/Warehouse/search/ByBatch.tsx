@@ -45,8 +45,9 @@ const ByBatch = () => {
         <div>
             <TextField
                 id="outlined-basic"
-                label="Outlined"
+                label="Batch"
                 variant="outlined"
+                placeholder="Please write here the batch number for search"
                 type="number"
                 fullWidth={true}
                 value={searchValue}

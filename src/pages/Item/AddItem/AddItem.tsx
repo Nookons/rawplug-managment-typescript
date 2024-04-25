@@ -12,7 +12,7 @@ import {IAddFormData, IItem, IItemTemplate} from "../../../types/Item";
 import {handlingError, onAddItem} from "../../../utils/Items/AddItem";
 import {addItem} from "../../../store/reducers/item/itemsSlice";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {collection, doc, getDocs, onSnapshot, setDoc} from "firebase/firestore";
 import {db} from "../../../firebase";
 import dayjs from "dayjs";
@@ -25,7 +25,6 @@ const AddItem = () => {
     const user = useAppSelector(state => state.user.user)
     const {items, loading, error} = useAppSelector(state => state.items)
 
-    const dispatch = useAppDispatch();
 
     const [isBarrel, setIsBarrel] = useState<boolean>(false);
     const [isAdding, setIsAdding] = useState<boolean>(false);
@@ -177,12 +176,14 @@ const AddItem = () => {
                 <CircularProgress color="inherit"/>
             </Backdrop>
             <>
-                {/*<div style={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                <div style={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                     <article>FAQ</article>
                     <IconButton aria-label="add">
-                            <HelpOutlineIcon color={"info"} onClick={() => onFaqClick('https://telegra.ph/Instrukcje-dotycz%C4%85ce-dodawania-towar%C3%B3w-do-systemu-Rawlplug-Management-03-08')}/>
+                        <Link to={'https://telegra.ph/Instrukcje-dotycz%C4%85ce-dodawania-towar%C3%B3w-do-systemu-Rawlplug-Management-03-08'}>
+                            <HelpOutlineIcon color={"info"}/>
+                        </Link>
                     </IconButton>
-                </div>*/}
+                </div>
             </>
             <div className={styles.Wrapper}>
                 <InputBlock onChangeDataEvent={onChangeDataEvent} formData={formData}/>
@@ -195,7 +196,7 @@ const AddItem = () => {
                         />
                         : null
                 }
-                <MyButton click={onAddItemClick}>Add item</MyButton>
+                <Button variant={"contained"} onClick={onAddItemClick}>Add item</Button>
                 <div>
                     <p style={{color: "gray", margin: '4px 0'}}>From: {user ? user.email : null}</p>
                     {

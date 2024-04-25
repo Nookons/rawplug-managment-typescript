@@ -114,11 +114,15 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, handleClickVariant}) 
                             {currentItem.item?.batchNumber &&
                                 <TableRow>
                                     <TableCell><OilBarrelIcon/> </TableCell>
-                                    <TableCell>
-                                        <p>1) {currentItem.item?.barrel?.first} {currentItem.item?.jm}</p>
-                                        <p>2) {currentItem.item?.barrel?.secondary} {currentItem.item?.jm}</p>
-                                        <p>3) {currentItem.item?.barrel?.third} {currentItem.item?.jm}</p>
-                                        <p>4) {currentItem.item?.barrel?.four} {currentItem.item?.jm}</p>
+                                    <TableCell sx={{
+                                        display: "grid",
+                                        gap: 1,
+                                        gridTemplateColumns: "1fr 1fr"
+                                    }}>
+                                        <p>1️⃣ {currentItem.item?.barrel?.first} {currentItem.item?.jm}</p>
+                                        <p>2️⃣ {currentItem.item?.barrel?.secondary} {currentItem.item?.jm}</p>
+                                        <p>3️⃣ {currentItem.item?.barrel?.third} {currentItem.item?.jm}</p>
+                                        <p>4️⃣ {currentItem.item?.barrel?.four} {currentItem.item?.jm}</p>
                                     </TableCell>
                                 </TableRow>
                             }
