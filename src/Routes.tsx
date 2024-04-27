@@ -67,26 +67,6 @@ export const privateRoutes: PrivateRoutes = [
         label: 'AppPrivateRoute',
     },
     {
-        path: ADD_PLAN_ROUTE,
-        Component: AddPlan,
-        label: 'AppPrivateRoute',
-    },
-    {
-        path: ADD_PALLET_ROUTE,
-        Component: AddPallet,
-        label: 'AppPrivateRoute',
-    },
-    {
-        path: CHECK_PLANS_ROUTE,
-        Component: CheckPlans,
-        label: 'AppPrivateRoute',
-    },
-    {
-        path: PALLET_ROUTE,
-        Component: Pallet,
-        label: 'AppPrivateRoute',
-    },
-    {
         path: ITEM_ROUTE,
         Component: Item,
         label: 'AppPrivateRoute',
@@ -127,23 +107,8 @@ export const privateRoutes: PrivateRoutes = [
         label: 'AppPrivateRoute',
     },
     {
-        path: MIXERS_RECEIPTS_ROUTE,
-        Component: MixerReceipts,
-        label: 'AppPrivateRoute',
-    },
-    {
         path: WAREHOUSE_ROUTE,
         Component: Warehouse,
         label: 'AppPrivateRoute',
-    },
-    {
-        path: NAP02_ROUTE,
-        Component: Nap02,
-        label: 'AppPrivateRoute',
-    },
-    {
-        path: NAP03_ROUTE,
-        Component: Nap03,
-        label: 'AppPrivateRoute',
-    },
+    }
 ];

@@ -1,201 +1,157 @@
-import React, {useEffect, useState} from 'react';
-import {doc, onSnapshot, setDoc, Timestamp} from "firebase/firestore";
-import {db} from "../../../firebase";
-import {
-    Backdrop,
-    Button,
-    Card,
-    CardContent,
-    CircularProgress, Fab,
-    TextField, Typography
-} from "@mui/material";
-import styles from './CreateItem.module.css'
-import Inputs from "./Inputs";
+import React, {useState} from 'react';
 import {SnackbarProvider, VariantType, useSnackbar} from 'notistack';
 
-import data from "../../../assets/ItemsInfo.json"
-import {Link} from "react-router-dom";
-import dayjs from "dayjs";
 import {useAppSelector} from "../../../hooks/storeHooks";
-import Box from "@mui/material/Box";
+import {
+    Box,
+    Button,
+    Step,
+    StepContent,
+    StepLabel,
+    Stepper,
+    Typography
+} from '@mui/material';
+import {IItemTemplate} from "../../../types/Item";
+import FirstStep from "./Steps/FirstStep";
+import SecondaryStep from "./Steps/SecondaryStep";
+import ThirdStep from "./Steps/ThirdStep";
+import FinishStep from "./Steps/FinishStep";
+import {db} from "../../../firebase";
 
-import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
-import SwipeLeftIcon from '@mui/icons-material/SwipeLeft';
+import {doc, getDoc, updateDoc} from "firebase/firestore";
+import dayjs from "dayjs";
 
-interface IIndexData {
-    oldArray: any[],
-    loading: false;
-    error: string | null;
-}
+
+
+const steps = [
+    {
+        label: 'Будь ласка, додайте новий індекс',
+    },
+    {
+        label: 'Тип і кількість на палеті',
+    },
+    {
+        label: 'Опис',
+    },
+    {
+        label: 'Завершальний крок',
+    },
+];
+
 
 const CreateItem = () => {
     const {enqueueSnackbar} = useSnackbar();
     const {user, error, loading} = useAppSelector(state => state.user)
+    const [activeStep, setActiveStep] = React.useState(0);
 
-    const [oldData, setOldData] = useState<IIndexData>({
-        oldArray: [],
-        loading: false,
-        error: null
-    });
-
-    const [isSending, setIsSending] = useState(false);
-
-    const [inputData, setInputData] = useState({
-        jm: "",
+    const [data, setData] = useState<IItemTemplate>({
         myIndex: "",
-        palletQta: 0,
         type: "",
-        description: ""
+        palletQta: 0,
+        jm: "",
+        description: "",
+        status: "",
     });
-
-    useEffect(() => {
-        try {
-            onSnapshot(doc(db, "PWT70", "NotApproved"), (doc) => {
-                setOldData((prevState) => ({...prevState, oldArray: doc.data() ? doc.data().itemTemplate : []})); // Updates oldArray state with data fetched from Firestore
-            });
-        } catch (e) {
-            setOldData((prevState) => ({...prevState, loading: false, error: e})) // Handles error by updating loading state to false and setting the error
-        }
-    }, []);
 
     const handleClickVariant = (variant: VariantType, title: string) => {
         enqueueSnackbar(title, {variant});
     };
 
+    const onAddNewItem = async () => {
+        const docRef = doc(db, "PWT70", "templates");
+        const docSnap = await getDoc(docRef);
 
-    const addTestItem = async () => {
-        setIsSending(true);
+        if (docSnap.exists()) {
+            const oldArray = docSnap.data().templates
 
-        try {
-            const userData = {
-                itemTemplate: [...oldData.oldArray, {
-                    ...inputData,
-                }]
-            };
-            await setDoc(doc(db, "PWT70", "NotApproved"), userData);
-
-            setTimeout(() => {
-                setIsSending(false)
-                handleClickVariant('success', inputData.index + " was sent to leaders, you will be seen this item after we approved him, thanks for your work ❤️");
-            }, 250)
-        } catch (e) {
-            console.error("Error adding document: ", e);
-            handleClickVariant('error', e);
-        } finally {
-            setIsSending(false)
-        }
-    }
-
-    const setItem = async (item) => {
-        try {
-            setDoc(doc(db, "PWT70", "templates"), {
-                templates: [...data, item],
+            await updateDoc(doc(db, "PWT70", "templates"), {
                 lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
-                updateBy: user.email
+                person: user.email,
+                personUid: user.uid,
+                templates: [
+                    ...oldArray,
+                    data
+                ]
             });
-            return
-        } catch (error) {
-            console.log(error);
-            return
+        } else {
+            throw new Error("Document not exists");
         }
-    }
+    };
 
-    const onApproveClick = async (item) => {
-        alert('Not working now...')
-        /*try {
-            onSnapshot(doc(db, "PWT70", "templates"), (doc) => {
-                const data = doc.data().templates
-                const isFind = data.find(el => el.myIndex === item.myIndex)
+    const handleNext = async (event) => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
 
-                if (!isFind) {
-                    setItem(item)
-                    onRejectClick(item.myIndex)
-                    handleClickVariant('success', item.myIndex + " added");
-                } else {
-                    handleClickVariant('error', "This index is existed");
-                }
-            });
-        } catch (e) {
-            setOldData((prevState) => ({...prevState, loading: false, error: e})) // Handles error by updating loading state to false and setting the error
-        }*/
-    }
-
-    const onRejectClick = async (index: number) => {
-        const filter = oldData.oldArray.filter(item => item.myIndex !== index)
-
-        setIsSending(true)
-        try {
-            await setDoc(doc(db, "PWT70", "NotApproved"), {
-                itemTemplate: [...filter],
-                lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
-                updateBy: user.email
-            });
-
-            setTimeout(() => {
-                handleClickVariant('success', "Item was success delete");
-                setIsSending(false);
-            })
-        } catch (error) {
-            handleClickVariant('error', error);
-            setIsSending(false);
+        if (event.target.innerText === "ЗБЕРЕГТИ") {
+            try {
+                await onAddNewItem();
+                setActiveStep(0);
+                handleClickVariant("success", "Item was added");
+            } catch (error) {
+                setActiveStep(0);
+                handleClickVariant("error", error.toString());
+            }
         }
-    }
+    };
+
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
 
     return (
-        <div style={{padding: 14, margin: "0 auto", maxWidth: 900, minHeight: "calc(100dvh - 190px)"}}>
-            <h4>ADD NEW ITEM</h4>
-            <hr/>
-            <article style={{color: "gray"}}>Usually an employee cannot add a new item immediately, but we will review
-                your item and approve it if it is correct.
-            </article>
-            <Backdrop style={{zIndex: 99}} open={isSending}>
-                <CircularProgress color="inherit"/>
-            </Backdrop>
-            <Inputs inputData={inputData} setInputData={setInputData}/>
-            <Button onClick={addTestItem} fullWidth={true} variant="outlined">Send</Button>
+        <div style={{
+            minHeight: "calc(100dvh - 160px)",
+            margin: "0 auto",
+            maxWidth: 1100,
+            padding: 14
+        }}>
+            <Box>
+                <Stepper activeStep={activeStep} orientation="vertical">
+                    {steps.map((step, index) => (
+                        <Step key={step.label}>
+                            <StepLabel>
+                                <p>{step.label}</p>
+                            </StepLabel>
+                            <StepContent>
+                                <Typography>{step.description}</Typography>
 
-            {/*<Button onClick={addData} fullWidth={true} variant="outlined">Add data</Button>*/}
+                                {
+                                    index === 0 && <FirstStep data={data} setData={setData}/>
+                                }
+                                {
+                                    index === 1 && <SecondaryStep data={data} setData={setData}/>
+                                }
+                                {
+                                    index === 2 && <ThirdStep data={data} setData={setData}/>
+                                }
+                                {
+                                    index === steps.length - 1 && <FinishStep data={data} setData={setData}/>
+                                }
 
-            <h5 style={{marginTop: 24}}>Not approved items</h5>
-            <hr/>
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 4
-            }}>
-                {oldData.oldArray.map((el, index) => (
-                    <Card key={index} sx={{minWidth: 240}} variant={"outlined"} raised={true}>
-                        <CardContent
-                            style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                            <div>
-                                <Typography color="text.secondary" variant={"subtitle1"}>
-                                    <Link>{el.myIndex} | {el.type}</Link>
-                                </Typography>
-                                <Typography fontSize={16} color="text.secondary" variant={"subtitle1"}>
-                                    <article>{el.description}</article>
-                                </Typography>
-                                <Typography fontSize={16} color="text.secondary" variant={"subtitle1"}>
-                                    {el.palletQta} | {el.jm}
-                                </Typography>
-                            </div>
-                            <div>
-                                <Box style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 24}}
-                                     fontSize={12}>
-                                    <Fab onClick={() => onApproveClick(el)} variant="extended" size={"medium"} color={"success"}>
-                                        <LibraryAddCheckIcon sx={{mr: 1}}/>
-                                        Approve
-                                    </Fab>
-                                    <Fab onClick={() => onRejectClick(el.myIndex)} variant="extended" size={"medium"}
-                                         color={"error"}>
-                                        <SwipeLeftIcon sx={{mr: 1}}/>
-                                        Reject
-                                    </Fab>
+                                <Box sx={{mb: 2}}>
+                                    <div>
+                                        <Button
+                                            variant="contained"
+                                            onClick={(event) => handleNext(event)}
+                                            sx={{mt: 1, mr: 1}}
+                                        >
+                                            {index === steps.length - 1 ? 'Зберегти' : 'Продовжити'}
+                                        </Button>
+                                        <Button
+                                            disabled={index === 0}
+                                            onClick={handleBack}
+                                            sx={{mt: 1, mr: 1}}
+                                        >
+                                            Назад
+                                        </Button>
+                                    </div>
                                 </Box>
-                            </div>
-                        </CardContent>
-                    </Card>
-                ))}
-            </div>
+                            </StepContent>
+                        </Step>
+                    ))}
+                </Stepper>
+            </Box>
         </div>
     );
 };
