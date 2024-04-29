@@ -1,6 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {Modal, Paper, Slider, Table, TableBody, TableCell, TableContainer, TableRow, TextField} from "@mui/material";
-import MyButton from "../../../../components/MyButton/MyButton";
+import {
+    Button,
+    Modal,
+    Paper,
+    Slider,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableRow,
+    TextField
+} from "@mui/material";
 import {doc, onSnapshot, setDoc} from "firebase/firestore";
 import {db} from "../../../../firebase";
 import {useAppSelector} from "../../../../hooks/storeHooks";
@@ -116,10 +126,10 @@ const UserSettingsInput = () => {
                     <TextField id="outlined-basic" onChange={(event) => onDataChange("displayName", event.target.value)} label={<article>NickName</article>} placeholder={loadData?.displayName} variant="outlined"/>
                     <TextField id="outlined-basic" onChange={(event) => onDataChange("firstName", event.target.value)} label={<article>First Name</article>} placeholder={loadData?.firstName} variant="outlined"/>
                     <TextField id="outlined-basic" onChange={(event) => onDataChange("lastName", event.target.value)} label={<article>Last Name</article>} placeholder={loadData?.lastName} variant="outlined"/>
-                    <MyButton click={addTest}>Save</MyButton>
+                    <Button onClick={addTest}>Save</Button>
                 </div>
             </Modal>
-            <MyButton click={() => setUserDataModal(true)}>Change</MyButton>
+            <Button onClick={() => setUserDataModal(true)}>Change</Button>
         </>
     );
 };

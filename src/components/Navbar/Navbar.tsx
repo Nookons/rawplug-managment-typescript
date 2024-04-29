@@ -6,12 +6,11 @@ import {HOME_ROUTE, PROFILE_ROUTE, SIGN_IN_ROUTE, USER_SETTINGS_ROUTE} from "../
 import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
 import {publicRoutes} from "../../Routes";
 import LoginIcon from '@mui/icons-material/Login';
-import {Button, Skeleton} from "@mui/material";
+import {Backdrop, Button, CircularProgress, Skeleton} from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {mySignOut} from "../../utils/SignOut";
 import { userSignOut } from '../../store/reducers/User/userSlice';
-import MyLoader from "../Loader/MyLoader";
 
 const Navbar = () => {
     const dispatch = useAppDispatch();
@@ -49,17 +48,17 @@ const Navbar = () => {
 
     return (
         <div className={styles.Main}>
-            {isLoading ? <MyLoader isVisible={isLoading} /> : null}
+            {isLoading
+                ?
+                <Backdrop open={isLoading}>
+                    <CircularProgress color="inherit"/>
+                </Backdrop>
+                : null
+            }
             <Button className={styles.LogoPlace} onClick={goHome}>
                 <img src={logo} alt=""/>
-                {/*<p>Rawlplug Managment</p>*/}
             </Button>
             <div className={styles.Wrapper}>
-                {/*<div className={styles.NavBar}>
-                    {publicRoutes.map(({path, label}, index) =>
-                        <Link key={index} to={path}>{label}</Link>
-                    )}
-                </div>*/}
                 <div>
                     {loading
                         ? <Skeleton variant="circular" width={25} height={25}/>

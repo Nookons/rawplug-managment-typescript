@@ -46,9 +46,9 @@ const CartridgePie = () => {
 
     return (
         <BarChart
-            xAxis={[{ scaleType: 'band', data: data.map(el => el.label) }]} // Преобразуем массив данных с помощью map
-            series={[{ data: data.map(el => el.value) }]} // Передаем данные для серии. Предполагается, что data содержит объекты с полями label и value
-            height={300}
+            xAxis={[{scaleType: 'band', data: data.map(el => el.label)}]} // Преобразуем массив данных с помощью map
+            series={[{data: data.map(el => el.value)}]} // Передаем данные для серии. Предполагается, что data содержит объекты с полями label и value
+            height={400}
         />
         /*<PieChart
             height={300}
@@ -58,16 +58,18 @@ const CartridgePie = () => {
                     arcLabel: (item) => `(${item.value.toLocaleString()})`,
                     arcLabelMinAngle: 75,
                     innerRadius: 15,
-                    outerRadius: 75,
+                    outerRadius: 105,
                     paddingAngle: 5,
                     cornerRadius: 5,
                     startAngle: -90,
+                    cx: 150,
+                    cy: 150,
                     highlightScope: { faded: 'global', highlighted: 'item' },
                     faded: { innerRadius: 5, additionalRadius: -5, color: 'gray' },
                 },
             ]}
             slotProps={{
-                legend: { hidden: false },
+                legend: { hidden: false},
             }}
             sx={{
                 [`& .${pieArcLabelClasses.root}`]: {
@@ -76,7 +78,7 @@ const CartridgePie = () => {
                 },
                 legendTextStyle: {
                     fontSize: '8px' // Установите желаемый размер текста в пикселях
-                }
+                },
             }}
             /!*onItemClick={(event, d) => console.log(d)}*!/
             skipAnimation={false}

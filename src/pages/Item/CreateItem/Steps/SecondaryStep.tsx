@@ -25,7 +25,7 @@ const SecondaryStep: FC<FirstStepProps> = ({data, setData}) => {
                 value={data.jm}
                 onChange={(event, value) => onJmChange(value)}
                 options={["Pieces", "kg"]}
-                renderInput={(params) => <TextField {...params} label="Type"/>}
+                renderInput={(params) => <TextField {...params} label="Jm"/>}
             />
             <OutlinedInput
                 fullWidth={true}

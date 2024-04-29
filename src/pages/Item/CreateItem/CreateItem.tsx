@@ -22,7 +22,6 @@ import {doc, getDoc, updateDoc} from "firebase/firestore";
 import dayjs from "dayjs";
 
 
-
 const steps = [
     {
         label: 'Будь ласка, додайте новий індекс',
@@ -61,35 +60,56 @@ const CreateItem = () => {
         const docRef = doc(db, "PWT70", "templates");
         const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists()) {
-            const oldArray = docSnap.data().templates
+        try {
+            if (docSnap.exists()) {
+                const oldArray = docSnap.data().templates
 
-            await updateDoc(doc(db, "PWT70", "templates"), {
-                lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
-                person: user.email,
-                personUid: user.uid,
-                templates: [
-                    ...oldArray,
-                    data
-                ]
-            });
-        } else {
-            throw new Error("Document not exists");
+                const isHave = oldArray.findIndex((item: IItemTemplate) => item.myIndex === data.myIndex)
+
+                if (isHave > -1) {
+                    throw new Error("This element already exists in the system")
+                }
+
+                await updateDoc(doc(db, "PWT70", "templates"), {
+                    lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
+                    person: user.email,
+                    personUid: user.uid,
+                    templates: [
+                        ...oldArray,
+                        data
+                    ]
+                });
+                setActiveStep(0)
+                handleClickVariant("success", "Item was add")
+                setData({
+                    myIndex: "",
+                    type: "",
+                    palletQta: 0,
+                    jm: "",
+                    description: "",
+                    status: "",
+                })
+
+            } else {
+                throw new Error("Document not exists");
+            }
+        } catch (error) {
+            handleClickVariant("error", error.toString())
         }
     };
 
     const handleNext = async (event) => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
-        if (event.target.innerText === "ЗБЕРЕГТИ") {
-            try {
-                await onAddNewItem();
-                setActiveStep(0);
-                handleClickVariant("success", "Item was added");
-            } catch (error) {
-                setActiveStep(0);
-                handleClickVariant("error", error.toString());
+        try {
+            if (activeStep === 0 && !data.myIndex.length && !data.type) {
+                throw new Error("You're trying to add a new item with an empty index or type")
             }
+            if (activeStep === 1 && !data.jm.length ) {
+                throw new Error("You're trying to add a new item with an empty jm.")
+            }
+
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        } catch (error) {
+            handleClickVariant("error", error.toString())
         }
     };
 
@@ -106,6 +126,7 @@ const CreateItem = () => {
             maxWidth: 1100,
             padding: 14
         }}>
+            <Button sx={{my: 2}} variant={"contained"} fullWidth={true}>View all templates</Button>
             <Box>
                 <Stepper activeStep={activeStep} orientation="vertical">
                     {steps.map((step, index) => (
@@ -131,13 +152,25 @@ const CreateItem = () => {
 
                                 <Box sx={{mb: 2}}>
                                     <div>
-                                        <Button
-                                            variant="contained"
-                                            onClick={(event) => handleNext(event)}
-                                            sx={{mt: 1, mr: 1}}
-                                        >
-                                            {index === steps.length - 1 ? 'Зберегти' : 'Продовжити'}
-                                        </Button>
+                                        {index === steps.length - 1
+                                            ?
+                                            <Button
+                                                variant="contained"
+                                                onClick={(event) => onAddNewItem(event)}
+                                                sx={{mt: 1, mr: 1}}
+                                            >
+                                                Зберегти
+                                            </Button>
+                                            :
+                                            <Button
+                                                variant="contained"
+                                                onClick={(event) => handleNext(event)}
+                                                sx={{mt: 1, mr: 1}}
+                                            >
+                                                Продовжити
+                                            </Button>
+                                        }
+
                                         <Button
                                             disabled={index === 0}
                                             onClick={handleBack}

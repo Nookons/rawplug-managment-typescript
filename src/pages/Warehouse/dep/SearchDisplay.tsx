@@ -67,6 +67,7 @@ const SearchDisplay: FC<SearchDisplayProps> = ({data}) => {
             const data = {
                 palletID: selectedItem?.id,
                 palletIndex: selectedItem?.index,
+                palletType: selectedItem?.type,
             }
 
             await addToUse({machine, user, data})
@@ -97,7 +98,8 @@ const SearchDisplay: FC<SearchDisplayProps> = ({data}) => {
                         flexDirection: "column",
                         marginTop: 14
                     }}>
-                        <Button onClick={() => onUseClick('nap03')} fullWidth={true} variant={"contained"}>Nap-02 / Nap-03</Button>
+                        <Button onClick={() => onUseClick('nap03')} fullWidth={true} variant={"contained"}>Nap-03</Button>
+                        <Button onClick={() => onUseClick('nap02')} fullWidth={true} variant={"contained"}>Nap-02</Button>
                         <Button fullWidth={true} variant={"contained"}>Nap-01</Button>
                     </div>
                 </MyModal>

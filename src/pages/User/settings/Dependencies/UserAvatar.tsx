@@ -1,6 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import {Avatar, Backdrop, CircularProgress, Modal, TextField} from "@mui/material";
-import MyButton from "../../../../components/MyButton/MyButton";
+import {Avatar, Backdrop, Button, CircularProgress, Modal, TextField} from "@mui/material";
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../../../firebase";
 import {useAppSelector} from "../../../../hooks/storeHooks";
@@ -66,7 +65,7 @@ const UserAvatar: FC<UserAvatarProps>= () => {
             <Avatar sx={{width: "100%", height: '350px'}} src={imgPath} variant={"rounded"}>
                 {user.email.slice(0, 1).toUpperCase()}
             </Avatar>
-            <MyButton click={() => setImgModal(true)}>Change avatar</MyButton>
+            <Button onClick={() => setImgModal(true)}>Change avatar</Button>
             <Modal
                 open={imgModal}
                 onClose={() => setImgModal(false)}
@@ -91,7 +90,7 @@ const UserAvatar: FC<UserAvatarProps>= () => {
                         type={"file"}
                         onChange={handleFileChange}
                     />
-                    <MyButton click={addImg}>Save</MyButton>
+                    <Button onClick={addImg}>Save</Button>
                 </div>
             </Modal>
         </>

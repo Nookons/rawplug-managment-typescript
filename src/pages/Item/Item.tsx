@@ -22,11 +22,7 @@ import {onDeleteItem} from "../../utils/Items/DeleteItem";
 import {useAppSelector} from "../../hooks/storeHooks";
 import {HOME_ROUTE} from "../../utils/consts";
 import MyModal from "../../components/Modal/MyModal";
-import MyButton from "../../components/MyButton/MyButton";
-import dayjs from "dayjs";
 import {UpdateItem} from "../../utils/Items/UpdateItem";
-import Modal from 'react-modal';
-import ConfirmationPrompt from "../../components/ConfirmationPrompt/ConfirmationPrompt";
 
 export interface ICurrentItem {
     loading: boolean;
@@ -254,7 +250,7 @@ const Item = () => {
                         options={["PWT70", "PWT30", "PWT10", "MSP"]}
                         renderInput={(params) => <TextField {...params} label="To"/>}
                     />
-                    <MyButton click={onAddEditClick}>Save</MyButton>
+                    <Button onClick={onAddEditClick}>Save</Button>
                 </div>
             </MyModal>
             <div className={styles.Wrapper}>

@@ -4,7 +4,6 @@ import { useAppSelector } from "../../../hooks/storeHooks";
 import { IItem } from "../../../types/Item";
 import { Link } from "react-router-dom";
 import { ITEM_ROUTE } from "../../../utils/consts";
-import MyButton from "../../../components/MyButton/MyButton";
 import MyPDFComponent from "./GeneratePdf";
 import { useReactToPrint } from "react-to-print";
 import PrintIcon from '@mui/icons-material/Print';
@@ -100,9 +99,9 @@ const ReceiptReport: FC = () => {
             </div>
             {arrayToDisplay.length || removedArray.length ?
                 <div style={{ margin: "14px 0", display: "flex", justifyContent: "flex-end" }}>
-                    <MyButton click={handlePrint}>
+                    <Button variant={"contained"}  onClick={handlePrint}>
                         <PrintIcon />
-                    </MyButton>
+                    </Button>
                 </div>
                 :
                 <div style={{ marginTop: 24 }}>

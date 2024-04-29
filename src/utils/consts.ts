@@ -10,6 +10,7 @@ export const USER_SETTINGS_ROUTE: string = '/user-settings'
 
 // Item Route
 export const ADD_ITEM_ROUTE: string = '/add-item'
+export const ADD_SOLO_BARREL: string = '/add-barrel'
 export const ITEM_ROUTE: string = '/item'
 export const ITEMS_GRID_ROUTE: string = '/grid-items'
 export const FIND_ITEM_ROUTE: string = '/find-item'
