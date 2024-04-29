@@ -73,19 +73,6 @@ const RemovedList = () => {
                 )
             },
         },
-        {
-            field: 'description',
-            headerName: 'description',
-            width: 600,
-            editable: true,
-            renderCell: (params: GridValueGetterParams) => {
-                return (
-                    <Tooltip placement="left" title={'Removed description'} arrow>
-                        <p>{params.row.item.description}</p>
-                    </Tooltip>
-                )
-            },
-        },
     ];
 
 

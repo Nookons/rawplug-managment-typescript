@@ -1,7 +1,7 @@
 import {
     ADD_ITEM_ROUTE,
     ADD_PALLET_ROUTE,
-    ADD_PLAN_ROUTE,
+    ADD_PLAN_ROUTE, ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
     CHECK_PLANS_ROUTE,
     CREATE_ITEM_ROUTE,
@@ -35,6 +35,7 @@ import Warehouse from "./pages/Warehouse/Warehouse";
 import Nap01 from "./pages/Nap03/Nap03";
 import Nap03 from "./pages/Nap03/Nap03";
 import Nap02 from "./pages/Nap02/Nap02";
+import AddSoloBarrel from "./pages/Item/AddSoloBarrel/AddSoloBarrel";
 
 
 interface Route {
@@ -109,6 +110,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: WAREHOUSE_ROUTE,
         Component: Warehouse,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: ADD_SOLO_BARREL,
+        Component: AddSoloBarrel,
         label: 'AppPrivateRoute',
     }
 ];

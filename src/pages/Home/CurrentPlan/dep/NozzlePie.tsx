@@ -3,7 +3,7 @@ import {BarChart, PieChart} from '@mui/x-charts';
 import {IItem} from '../../../../types/Item';
 import {useAppSelector} from '../../../../hooks/storeHooks';
 
-const CartridgePie = () => {
+const NozzlePie = () => {
     const {items, loading, error} = useAppSelector(state => state.items);
 
     const [data, setData] = useState<any[]>([]);
@@ -41,9 +41,9 @@ const CartridgePie = () => {
         <BarChart
             xAxis={[{scaleType: 'band', data: data.map(el => el.label)}]} // Преобразуем массив данных с помощью map
             series={[{data: data.map(el => el.value)}]} // Передаем данные для серии. Предполагается, что data содержит объекты с полями label и value
-            height={300}
+            height={400}
         />
     );
 };
 
-export default CartridgePie;
+export default NozzlePie;

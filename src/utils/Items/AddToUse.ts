@@ -9,73 +9,50 @@ interface IUpdateItem {
     data?: any;
 }
 
-const nozSlotAdd = async () => {
-    const slot_09 = doc(db, "slots", "slot_09");
-    const slot_10 = doc(db, "slots", "slot_10");
-
-    const slot09Snap = await getDoc(slot_09);
-    const slot10Snap = await getDoc(slot_10);
-
-    if (slot09Snap.exists() && slot10Snap.exists()) {
-        const slot09ID = slot09Snap.data().palletID;
-        const slot10ID = slot10Snap.data().palletID;
-
-        const oldValueDoc09 = await doc(db, "items", "item_" + slot09ID);
-        const oldValueSnap09 = await getDoc(oldValueDoc09);
-
-        const oldValueDoc10 = await doc(db, "items", "item_" + slot10ID);
-        const oldValueSnap10 = await getDoc(oldValueDoc10);
-
-        const answer = prompt("Please write slot for nozzle 9 or 10, that you want to replace")
-
-        if (answer === "9") {
-            return slot_09
-        }
-
-        if (answer === "10") {
-            return slot_10
-        }
-
-        throw new Error("test")
-    }
-
-    if (slot09Snap.exists()) {
-        return slot_10
-    }
-    if (slot10Snap.exists()) {
-        return slot_09
-    }
-
-    return slot_09
-}
 
 
 export const addToUse = async ({machine, user, data}: IUpdateItem) => {
     let slotRef = doc(db, "slots", "slot_02");
     let itemRef = doc(db, "items", "item_" + data.palletID);
 
-    switch (data.palletIndex) {
-        case "OZ-U-255-164-295":
-            slotRef = doc(db, "slots", "slot_02");
-            break;
-        case "KRP-ST-PISTON":
+    console.log(data.palletType);
+
+    switch (data.palletType) {
+        case "Carton":
             slotRef = doc(db, "slots", "slot_03");
+            break;
+        case "Piston":
+            if (data.palletIndex === "KRP-ST-PISTON") {
+                slotRef = doc(db, "slots", "slot_04");
+            } else {
+                slotRef = doc(db, "slots", "slot_06");
+            }
             break
-        case "KRP-ST-CAP-WHI":
-            slotRef = doc(db, "slots", "slot_04");
-            break
-        case "KRP-ST-PISTON-B":
+        case "White":
             slotRef = doc(db, "slots", "slot_05");
             break
-        case "R-NOZ-M〵Z":
-            slotRef = await nozSlotAdd();
+        case "Nozzle":
+            const answer = prompt("Please write slot for nozzle 1 or 2, that you want to replace")
+
+            if (answer === "1") {
+                slotRef = doc(db, "slots", "slot_01");
+            }
+
+            if (answer === "2") {
+                slotRef = doc(db, "slots", "slot_02");
+            }
             break
-        case "R-NOZ-14-M〵Z":
-            slotRef = await nozSlotAdd();
+        case "Cartridge":
+            if (machine === "nap03") {
+                slotRef = doc(db, "slots", "slot_07");
+            } else {
+                slotRef = doc(db, "slots", "slot_08");
+            }
             break
         default:
             return "";
     }
+
 
     const slotSnap = await getDoc(slotRef);
     const itemSnap = await getDoc(itemRef);
@@ -99,14 +76,15 @@ export const addToUse = async ({machine, user, data}: IUpdateItem) => {
         palletID: data.palletID,
         minus: 0,
         palletIndex: data.palletIndex,
+        palletType: data.palletType,
         lastChange: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm"),
         changePerson: user.email
     });
 
-    await updateDoc(itemRef, {
+    /*await updateDoc(itemRef, {
         status: "On Machine",
         quantity: minus !== undefined ? equal : quantity,
         lastChange: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm"),
         changePerson: user.email
-    });
+    });*/
 }

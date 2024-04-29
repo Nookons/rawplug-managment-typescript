@@ -1,14 +1,12 @@
 import React, {FC, ReactEventHandler, useCallback, useEffect, useState} from 'react';
 import styles from './User.module.css';
-import {Button, Link, TextField} from "@mui/material";
+import {Backdrop, Button, CircularProgress, Link, TextField} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
 import {HOME_ROUTE, SIGN_UP_ROUTE} from "../../utils/consts";
 import logo from '../../assets/logo.svg'
-import MyButton from "../../components/MyButton/MyButton";
 import {mySignIn} from "../../utils/SignIn";
 import {userSignIn} from "../../store/reducers/User/userSlice";
-import MyLoader from "../../components/Loader/MyLoader";
 
 const SignIn: FC = () => {
     const dispatch = useAppDispatch();
@@ -81,7 +79,9 @@ const SignIn: FC = () => {
 
     return (
         <div className={styles.Main}>
-            <MyLoader isVisible={loader}/>
+            <Backdrop open={loader}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
             <div className={styles.Wrapper}>
                 <div style={{ display: "flex", alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: 34 }}>
                     <img style={{ maxWidth: 32 }} src={logo} alt="" />
@@ -110,7 +110,7 @@ const SignIn: FC = () => {
                 <div style={{ color: 'red', marginTop: 14 }}>{error}</div>
                 <article style={{ marginTop: 14 }}>Don't have an account? <Link onClick={onFaqClick} style={{ color: "#7272fd", textDecoration: 'underline solid #7272fd', cursor: 'pointer' }}>🙋 FAQ</Link></article>
                 <br/>
-                <MyButton click={signInClick}>Sign In</MyButton>
+                <Button onClick={signInClick}>Sign In</Button>
             </div>
         </div>
     );

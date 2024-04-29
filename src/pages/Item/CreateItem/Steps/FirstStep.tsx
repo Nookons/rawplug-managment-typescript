@@ -26,7 +26,7 @@ const FirstStep: FC<FirstStepProps> = ({data, setData}) => {
                 disablePortal
                 value={data.type}
                 onChange={(event, value) => onTypeChange(value)}
-                options={["Nozzle", "Carton", "Cartridge", "Piston", "White", "Chemical", "Barrel", "Zywica", "Folia", "Barwnik0", "Etykieta"]}
+                options={["Nozzle", "Carton", "Cartridge", "Piston", "White", "Chemical", "Barrel", "Zywica", "Folia", "Barwnik", "Etykieta"]}
                 renderInput={(params) => <TextField {...params} label="Type"/>}
             />
             <OutlinedInput

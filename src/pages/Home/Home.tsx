@@ -5,7 +5,7 @@ import styles from './Home.module.css'
 import Warehouse from "./Warehouse/Warehouse";
 import {Link} from "react-router-dom";
 import {
-    ADD_ITEM_ROUTE,
+    ADD_ITEM_ROUTE, ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
     CREATE_ITEM_ROUTE,
     ITEMS_GRID_ROUTE,
@@ -15,7 +15,6 @@ import {
 } from "../../utils/consts";
 import CurrentPlan from "./CurrentPlan/CurrentPlan";
 import {ExpandMore} from "@mui/icons-material";
-import NotEnough from "./NotEnough/NotEnough";
 
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -26,6 +25,7 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
+import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 
 
 const Home: FC = () => {
@@ -53,6 +53,7 @@ const Home: FC = () => {
                             <Link to={ITEMS_GRID_ROUTE}><Button fullWidth={true} variant={"contained"}><ListIcon /></Button></Link>
                             <Link to={BARREL_STATS_ROUTE}><Button fullWidth={true} variant={"contained"}><FeaturedPlayListIcon /></Button></Link>
                             <Link to={RECEIPT_REPORT_ROUTE}><Button fullWidth={true} variant={"contained"}><ReceiptLongIcon /></Button></Link>
+                            <Link to={ADD_SOLO_BARREL}><Button fullWidth={true} variant={"contained"}><PlaylistAddCircleIcon /></Button></Link>
                         </AccordionDetails>
                     </Accordion>
                 </Stack>
@@ -66,9 +67,6 @@ const Home: FC = () => {
                 </Typography>
                 <hr/>
                 <Warehouse loading={loading} error={error} items={items} />
-            </div>
-            <div style={{filter: user === null ? "blur(5px)" : "", pointerEvents: user === null ? "none" : "auto"}} className={styles.div4}>
-                <NotEnough />
             </div>
         </div>
     );
