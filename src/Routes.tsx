@@ -4,7 +4,7 @@ import {
     ADD_PLAN_ROUTE, ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
     CHECK_PLANS_ROUTE,
-    CREATE_ITEM_ROUTE,
+    CREATE_ITEM_ROUTE, DISPLAY_ROUTE,
     FIND_ITEM_ROUTE,
     HOME_ROUTE, INFO_FULL_ITEM_ROUTE, INFO_READY_PALLET_ROUTE,
     ITEM_ROUTE,
@@ -39,6 +39,7 @@ import AddSoloBarrel from "./pages/Item/AddSoloBarrel/AddSoloBarrel";
 import InfoPage from "./pages/Ready/Info/InfoPage";
 import InfoItem from "./pages/Ready/Info/InfoItem";
 import Add from "./pages/Ready/Add/Add";
+import Display from "./pages/Ready/Display/Display";
 
 
 interface Route {
@@ -133,6 +134,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: ADD_PALLET_ROUTE,
         Component: Add,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: DISPLAY_ROUTE,
+        Component: Display,
         label: 'AppPrivateRoute',
     }
 ];
