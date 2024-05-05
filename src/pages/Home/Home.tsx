@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import {
     ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
-    CREATE_ITEM_ROUTE, INFO_READY_PALLET_ROUTE,
+    CREATE_ITEM_ROUTE, DISPLAY_ROUTE, INFO_READY_PALLET_ROUTE,
     ITEMS_GRID_ROUTE,
     RECEIPT_REPORT_ROUTE,
     REMOVED_ROUTE,
@@ -29,6 +29,7 @@ import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import InfoIcon from '@mui/icons-material/Info';
+import ArtTrackIcon from '@mui/icons-material/ArtTrack';
 
 
 const Home: FC = () => {
@@ -70,6 +71,7 @@ const Home: FC = () => {
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <Link to={INFO_READY_PALLET_ROUTE}><Button fullWidth={true} variant={"contained"}><InfoIcon /></Button></Link>
                             <Link to={ADD_PALLET_ROUTE}><Button fullWidth={true} variant={"contained"}><AddBoxIcon /></Button></Link>
+                            <Link to={DISPLAY_ROUTE}><Button fullWidth={true} variant={"contained"}><ArtTrackIcon /></Button></Link>
                         </AccordionDetails>
                     </Accordion>
                 </Stack>
