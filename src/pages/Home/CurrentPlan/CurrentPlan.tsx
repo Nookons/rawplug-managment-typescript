@@ -24,11 +24,11 @@ const CurrentPlan = () => {
 
     return (
         <>
-            <Box className={styles.MachineBlock}>
+            {/*<Box className={styles.MachineBlock}>
                 <FirstMachine />
                 <SecondaryMachine />
                 <ThirdMachine />
-            </Box>
+            </Box>*/}
 
             <div className={styles.Main}>
                 <div className={styles.PieStyles}>
