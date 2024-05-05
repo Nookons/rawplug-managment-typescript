@@ -13,7 +13,7 @@ font-family: 'Roboto Mono', monospace;*/
 }
 
 root {
-  --bg-color: #FFF6E0;
+  --bg-color: #171717;
   --text-color: #272829;
   --fonts-main: 'Gabarito', cursive;
 }
@@ -21,8 +21,8 @@ root {
 h1,h2,h3,h4,h5,h6,a,span,p,article {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
-  color: rgb(30, 30, 30);
+  font-family: 'Jost', sans-serif;
+  color: #181818;
 }
 
 h1 { font-size: clamp(24px, 6vw, 36px); }

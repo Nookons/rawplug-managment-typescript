@@ -1,0 +1,41 @@
+.Main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1em;
+    min-height: calc(100dvh - 195px);
+}
+
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.InputWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+
+.InputBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 1em;
+}
+
+@media screen and ( max-width: 1000px) {
+
+    .Wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .InputWrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1em;
+    }
+}

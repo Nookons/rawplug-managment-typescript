@@ -6,7 +6,7 @@ import {
     CHECK_PLANS_ROUTE,
     CREATE_ITEM_ROUTE,
     FIND_ITEM_ROUTE,
-    HOME_ROUTE,
+    HOME_ROUTE, INFO_FULL_ITEM_ROUTE, INFO_READY_PALLET_ROUTE,
     ITEM_ROUTE,
     ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE, NAP01_ROUTE, NAP02_ROUTE, NAP03_ROUTE,
     PALLET_ROUTE,
@@ -36,6 +36,9 @@ import Nap01 from "./pages/Nap03/Nap03";
 import Nap03 from "./pages/Nap03/Nap03";
 import Nap02 from "./pages/Nap02/Nap02";
 import AddSoloBarrel from "./pages/Item/AddSoloBarrel/AddSoloBarrel";
+import InfoPage from "./pages/Ready/Info/InfoPage";
+import InfoItem from "./pages/Ready/Info/InfoItem";
+import Add from "./pages/Ready/Add/Add";
 
 
 interface Route {
@@ -115,6 +118,21 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: ADD_SOLO_BARREL,
         Component: AddSoloBarrel,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: INFO_READY_PALLET_ROUTE,
+        Component: InfoPage,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: INFO_FULL_ITEM_ROUTE,
+        Component: InfoItem,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: ADD_PALLET_ROUTE,
+        Component: Add,
         label: 'AppPrivateRoute',
     }
 ];
