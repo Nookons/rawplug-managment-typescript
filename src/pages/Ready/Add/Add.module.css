@@ -8,12 +8,15 @@
 .Wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1em;
 }
 
 .InputWrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
     gap: 1em;
 }
 
