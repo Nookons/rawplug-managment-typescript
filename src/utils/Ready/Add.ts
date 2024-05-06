@@ -3,8 +3,6 @@ import {doc, setDoc} from "firebase/firestore";
 import {db} from "../../firebase";
 
 export const AddPallet = async (data: any, user: any) => {
-    console.log(data);
-
     const id = Date.now();
     const date = dayjs().format('YYYY-MM-DD [at] HH:mm');
 

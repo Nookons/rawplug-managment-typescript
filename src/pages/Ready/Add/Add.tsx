@@ -110,7 +110,7 @@ const Add = () => {
                 />
 
                 <div className={styles.InputWrapper}>
-                    <Avatar sx={{width: "100%", height: "auto", maxWidth: 500}} variant={"rounded"} src={data.imgUrl}>
+                    <Avatar sx={{width: 350, height: 350, maxWidth: 500}} variant={"rounded"} src={data.imgUrl}>
                         N
                     </Avatar>
 
