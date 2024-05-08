@@ -110,23 +110,25 @@ const Add = () => {
                 />
 
                 <div className={styles.InputWrapper}>
-                    <Avatar sx={{width: 350, height: 350, maxWidth: 500}} variant={"rounded"} src={data.imgUrl}>
-                        N
-                    </Avatar>
 
                     <div className={styles.InputBlock}>
-                        <ToggleButtonGroup
-                            color={"success"}
-                            value={data.machine}
-                            exclusive
-                            onChange={handleChange}
-                            aria-label="Platform"
-                            fullWidth={true}
-                        >
-                            <ToggleButton value="nap01">Nap-01</ToggleButton>
-                            <ToggleButton value="nap02">Nap-02</ToggleButton>
-                            <ToggleButton value="nap03">Nap-03</ToggleButton>
-                        </ToggleButtonGroup>
+                        <div className={styles.AvatarBlock}>
+                            <Avatar sx={{width: 106, height: 106}} variant={"rounded"} src={data.imgUrl}>
+                                N
+                            </Avatar>
+                            <ToggleButtonGroup
+                                color={"success"}
+                                value={data.machine}
+                                exclusive
+                                onChange={handleChange}
+                                aria-label="Platform"
+                                fullWidth={true}
+                            >
+                                <ToggleButton value="nap01">Nap-01</ToggleButton>
+                                <ToggleButton value="nap02">Nap-02</ToggleButton>
+                                <ToggleButton value="nap03">Nap-03</ToggleButton>
+                            </ToggleButtonGroup>
+                        </div>
 
                         <TextField
                             id="outlined-basic"

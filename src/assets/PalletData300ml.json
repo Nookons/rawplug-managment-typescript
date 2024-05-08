@@ -1496,6 +1496,1896 @@
                 "quantity": 0.1
             }
         ]
+    },
+    {
+        "id": 38,
+        "index": "KEM-PSF-300-GUT",
+        "description": "Kotwa chemiczna poliestrowa",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-GUT.jpg",
+        "data" : "2024.01.19",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml bialy",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "🙈",
+                "type": "Label",
+                "description": "🙈",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "index": "KEM-PSF-300-ISO",
+        "description": "Żywica wklejana bez styrenu",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-ISO.jpg",
+        "data" : "2024.01.19",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-GR",
+                "type": "Cartridge",
+                "description": "Kartusz 310 szary",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300ISO",
+                "type": "Label",
+                "description": "Etykieta foliowa HP KEM-PSF-300-ISO",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "index": "KEM-PSF-300-JUR",
+        "description": "Żywica wklejana bez styrenu",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-JUR.jpg",
+        "data" : "2023.05.17",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300JUR",
+                "type": "Label",
+                "description": "Etykieta foliowa KEM-PSF-300-JUR",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "index": "KEM-PSF-300-KOE",
+        "description": "Uniwersalna kotwa wklejana",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-KOE.jpg",
+        "data" : "2023.05.17",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300KOE",
+                "type": "Label",
+                "description": "Etykieta foliowa KEM-PSF-300-KOE",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "index": "KEM-PSF-300-KOECS",
+        "description": "Uniwersalna kotwa wklejana",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-KOECS.jpg",
+        "data" : "2023.05.17",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300KOECS",
+                "type": "Label",
+                "description": "Etykieta foliowa KEM-PSF-300-KOE-CS",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "index": "KEM-PSF-300-KOE-P",
+        "description": "Uniwersalna kotwa wklejana",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-KOE-P.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300KOEP",
+                "type": "Label",
+                "description": "Etykieta foliowa KEM-PSF-300-KOE-P",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 2
+            },
+            {
+                "index": "Q-C-COAX-HANGER",
+                "type": "Hanger",
+                "description": "Zawieszka PE do Kartridzy",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "index": "KEM-PSF-300-KOE-W",
+        "description": "Uniwersalna kotwa wklejana",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-KOE-W.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300KOEW",
+                "type": "Label",
+                "description": "Etykieta foliowa KEM-PSF-300-KOE-W",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "index": "KEM-PSF-300-SKF",
+        "description": "Żywica poliestrowa wklejana bez styrenu",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-SKF.jpg",
+        "data" : "2022.10.24",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300SKF",
+                "type": "Label",
+                "description": "Etykieta foliowa HP KEM-PSF-300-SKF",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "index": "KEM-PSF-300-STARFI",
+        "description": "Kotwa wklejana poliestrowa",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-SKF.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 12,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300STARFI",
+                "type": "Label",
+                "description": "Etykieta foliowa KEM-PSF-300-STARFI",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "index": "KEM-PSF-300-VMAX",
+        "description": "Kotwa wklejana poliestrowa",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-VMAX.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300VMAX",
+                "type": "Label",
+                "description": "Etykieta foliowa KEM-PSF-300-VMAX",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "index": "KEM-PSF-300-VPF",
+        "description": "Kotwa wklejana poliestrowa",
+        "imgUrl": "../300ml-Img/KEM-PSF-300-VPF.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KEMPSF300VPF",
+                "type": "Label",
+                "description": "Etykieta foliowa KEM-PSF-300-VPF",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "index": "KER-II-VSF-300-FAS",
+        "description": "Kotwa wklejana poliestrowa",
+        "imgUrl": "../300ml-Img/KER-II-VSF-300-FAS.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml BIAŁY",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KERIIVSF300FAS",
+                "type": "Label",
+                "description": "Etykieta foliowa KER-II-VSF-300-FAS",
+                "quantity": 1
+            },
+            {
+                "index": "Q-C-NOZ-14-G/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 14 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "index": "KER-II-VSF-300-ISO",
+        "description": "Żywica wklejana-bee-styren hybrydowa",
+        "imgUrl": "../300ml-Img/KER-II-VSF-300-ISO.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-GR",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml szary",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-KERIIVSF300ISO",
+                "type": "Label",
+                "description": "Etykieta foliowa HP KER-II-VSF-300-ISO",
+                "quantity": 1
+            },
+            {
+                "index": "Q-C-NOZ-14-G/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 14 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "index": "R-KEM-300-FR",
+        "description": "Żywica wklejana-bee-styren hybrydowa",
+        "imgUrl": "../300ml-Img/R-KEM-300-FR.jpg",
+        "data" : "2023.05.12",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEM300FR",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEM-300-FR",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 14 elementowy z zawieszką",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "index": "R-KEM-300-GREY",
+        "description": "Żywica poliester bez styrenu",
+        "imgUrl": "../300ml-Img/R-KEM-300-GREY.jpg",
+        "data" : "2023.05.12",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEM300GREY",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEM-300-GREY",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "index": "R-KEM-300-M/LPP",
+        "description": "Uniwersalna poliestrowa kotwa wklejana",
+        "imgUrl": "../300ml-Img/R-KEM-300-MLPP.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-BLPPKEM300GREY",
+                "type": "Label",
+                "description": "Etykieta foliowa B-LPP-KEM300GREY",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "index": "R-KEM-300-STONE",
+        "description": "Żywica poliester bez styrenu",
+        "imgUrl": "../300ml-Img/R-KEM-300-STONE.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy biały",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEM300STONE",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEM-300-STONE",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "index": "R-KEM-II-300",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "Q-ET-R-KEMII-300",
+                "type": "Label",
+                "description": "Etykieta foliowa peel-off R-KEM-II-300 150x190",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "index": "R-KEM-II-300-ES",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-ES.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEMI1300ES",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEM-II-300-ES",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "index": "R-KEM-II-300-GREY",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-GREY.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEMI1300GR-FR",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEM-II-300-GREY FR",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 58,
+        "index": "R-KEM-II-300/H",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300H.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEMI1300/H",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEM-II-300/H",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "Q-C-COAX-HANGER",
+                "type": "Hanger",
+                "description": "Zawieszka PE do Kartridzy",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 59,
+        "index": "R-KEM-II-300-IT",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-IT.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEMI300IT",
+                "type": "Label",
+                "description": "Etykieta foliowa HP-RKEMI1300IT",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 60,
+        "index": "R-KEM-II-300-M",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-M.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "Q-ET-R-KEMII-300",
+                "type": "Label",
+                "description": "Etykieta foliowa peel-off R-KEM-II-300 150x190",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "id": 61,
+        "index": "R-KEM-II-300-IT",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-IT.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "Q-ET-R-KEMII-300TF",
+                "type": "Label",
+                "description": "Etykieta foliowa peel-off R-KEM-II-300 150x190 bez kodu kreskowego",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "id": 62,
+        "index": "R-KEM-II-300-PL/H",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-PLH.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEMI1300PL/H",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEM-11-300-PL/H",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "Q-C-COAX-HANGER",
+                "type": "Hanger",
+                "description": "Zawieszka PE do Kartridzy",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 63,
+        "index": "R-KEM-II-300-SL",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-PL/H.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEMI1300SL",
+                "type": "Label",
+                "description": "Etykieta foliowa do R-KEM-11-300-SL",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 64,
+        "index": "R-KEM-II-300-STONE",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-STONE.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKEMII300ST-FR",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEM-II-300-STONE",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 65,
+        "index": "R-KEM-II-300-SV",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-SV.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "Q-ET-RKEMI1300SV",
+                "type": "Label",
+                "description": "Etykieta foliowa peel-off R-KEM-11-300-SV 150x190",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 66,
+        "index": "R-KEM-II-300-W",
+        "description": "KOTWA WKLEJANA POLIESTROWA",
+        "imgUrl": "../300ml-Img/R-KEM-II-300-W.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "Q-ET-KEMII-300-W",
+                "type": "Label",
+                "description": "Etykieta foliowa peel-off R-KEM-11-300-W 150x190",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 67,
+        "index": "R-KER-II-300",
+        "description": "KOTWA WKLEJANA HYBRYDOWA",
+        "imgUrl": "../300ml-Img/R-KER-II-300.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "Q-RKERIIHYBR-300",
+                "type": "Label",
+                "description": "Ładunek foliowy hybrydowy 300ml",
+                "quantity": 1
+            },
+            {
+                "index": "Q-C-NOZ-14-G/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotwy chemiczne 14 elementów z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "Q-C-COAX-HANGER",
+                "type": "Hanger",
+                "description": "Zawieszka PE do Kartridzy",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 68,
+        "index": "R-KER-II-300-S",
+        "description": "Kotwa wklejana hybrydowa w wersji letniej",
+        "imgUrl": "../300ml-Img/R-KER-II-300-S.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKERI1300S",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KER-II-300-S",
+                "quantity": 1
+            },
+            {
+                "index": "Q-C-NOZ-14-G/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotwy chemiczne 14 elementów z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 69,
+        "index": "R-KER-II-300-SV",
+        "description": "Kotwa wklejana hybrydowa",
+        "imgUrl": "../300ml-Img/R-KER-II-300-SV.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "Q-ET-RKERII300SV",
+                "type": "Label",
+                "description": "Etykieta foliowa peel-off R-KER-II-300 150x190mm",
+                "quantity": 1
+            },
+            {
+                "index": "Q-C-NOZ-14-G/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotwy chemiczne 14 elementów z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "Q-C-COAX-HANGER",
+                "type": "Hanger",
+                "description": "Zawieszka PE do Kartridzy",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 70,
+        "index": "R-KER-II-300-W",
+        "description": "Kotwa wklejana hybrydowa",
+        "imgUrl": "../300ml-Img/R-KER-II-300-W.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKERII300W",
+                "type": "Label",
+                "description": "Etykieta foliowa R-KEP-II-300-W",
+                "quantity": 1
+            },
+            {
+                "index": "Q-C-NOZ-14-G/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotwy chemiczne 14 elementów z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 71,
+        "index": "R-KF2-310-GREY-F",
+        "description": "Mieszanka chemiczna PSC grey",
+        "imgUrl": "../300ml-Img/R-KF2-310-GREY-F.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310-B",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON-B",
+                "type": "Piston",
+                "description": "Piston do kartuszy niebieski",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-RKF2310GREYF",
+                "type": "Label",
+                "description": "Etykieta foliowa HP-RKF2310GREYF",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 72,
+        "index": "VSE-R-KEM-II-300",
+        "description": "Mieszanka chemiczna PSC grey",
+        "imgUrl": "../300ml-Img/VSE-R-KEM-II-300.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml bialy",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-VSERKEMI1300NEW",
+                "type": "Label",
+                "description": "Etykieta foliowa VSE-R-KEM-II-300",
+                "quantity": 1
+            },
+            {
+                "index": "R-NOZ-M/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "Q-C-COAX-HANGER",
+                "type": "Hanger",
+                "description": "Zawieszka PE do Kartridzy",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
+    },
+    {
+        "id": 73,
+        "index": "VSE-R-KER-II-300",
+        "description": "Mieszanka chemiczna PSC grey",
+        "imgUrl": "../300ml-Img/VSE-R-KER-II-300.jpg",
+        "data" : "2022.08.22",
+        "capacity" : 300,
+        "palletQta": 84,
+        "pallet": "P-EURO",
+        "bottle": "Blue",
+        "atBox": 10,
+        "weight": 504,
+        "jm": "Pieces",
+        "needItem": [
+            {
+                "index": "KRP-ST-CART-310",
+                "type": "Cartridge",
+                "description": "Kartusz 310 ml bialy",
+                "quantity": 1
+            },
+            {
+                "index": "KRP-ST-PISTON",
+                "type": "Piston",
+                "description": "Piston do kartuszy",
+                "quantity": 1
+            },
+            {
+                "index": "KRN-ST-CAP-WHI",
+                "type": "Cap",
+                "description": "Nakrętka do kartusza biała",
+                "quantity": 1
+            },
+            {
+                "index": "HP-VSERKERI1300",
+                "type": "Label",
+                "description": "Etykieta foliowa VSE-R-KER-II-300",
+                "quantity": 1
+            },
+            {
+                "index": "Q-C-NOZ-14-G/Z",
+                "type": "Nozzle",
+                "description": "Mieszacz do kotew wklejanych 14 elementowy z zawieszką",
+                "quantity": 2
+            },
+            {
+                "index": "Q-C-COAX-HANGER",
+                "type": "Hanger",
+                "description": "Zawieszka PE do Kartridzy",
+                "quantity": 1
+            },
+            {
+                "index": "OZ-U-255-164-295",
+                "type": "Carton",
+                "description": "Opakowanie do chemical injection system 255x165x295mm",
+                "quantity": 0.1
+            }
+        ]
     }
 ]
   

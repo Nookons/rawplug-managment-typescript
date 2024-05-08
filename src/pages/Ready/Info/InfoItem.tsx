@@ -87,16 +87,12 @@ const InfoItem = () => {
                     </TableContainer>
                 </div>
                 <div>
-                    <h5>Need Item for 1 bottle</h5>
                     <hr/>
                     <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableBody>
                                 {data?.needItem.map((el, index) => (
                                     <TableRow>
-                                        <TableCell>
-                                            <article style={{textAlign: 'center'}}>{index + 1})</article>
-                                        </TableCell>
                                         <TableCell>
                                             <div>
                                                 <h6>{el.index}</h6>

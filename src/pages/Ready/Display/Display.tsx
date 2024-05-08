@@ -20,7 +20,7 @@ import {
     List,
     ListItem,
     ListItemButton,
-    ListItemText
+    ListItemText, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 } from "@mui/material";
 import {DeletePallet} from "../../../utils/Ready/Delete";
 import {IItem} from "../../../types/Item";
@@ -99,7 +99,7 @@ const Display = () => {
 
 
             <Drawer open={isStatistic} onClose={() => setIsStatistic(false)}>
-                <Box sx={{ width: 350, p: 2}} role="presentation" onClick={() => setIsStatistic(false)}>
+                <Box sx={{width: 350, p: 2}} role="presentation" onClick={() => setIsStatistic(false)}>
                     {graphicData.length ?
                         <PieChart
                             onItemClick={(event, pieItemIdentifier, item) => event.stopPropagation()}
@@ -116,12 +116,12 @@ const Display = () => {
                                     endAngle: 360,
                                     cx: 165,
                                     cy: 150,
-                                    highlightScope: { faded: 'global', highlighted: 'item' },
-                                    faded: { innerRadius: 30, additionalRadius: -5, color: 'gray' },
+                                    highlightScope: {faded: 'global', highlighted: 'item'},
+                                    faded: {innerRadius: 30, additionalRadius: -5, color: 'gray'},
                                 }
                             ]}
                             slotProps={{
-                                legend: { hidden: true },
+                                legend: {hidden: true},
                             }}
                             width={350}
                             height={300}
@@ -138,7 +138,8 @@ const Display = () => {
                                 <ListItemButton>
                                     <ListItemText
                                         primary={<h5>{el.label}</h5>}
-                                        secondary={<article>All qunatity: {el.value.toLocaleString()} | Pallets: {el.pallets}</article>}
+                                        secondary={<article>All qunatity: {el.value.toLocaleString()} |
+                                            Pallets: {el.pallets}</article>}
                                     />
                                 </ListItemButton>
                             </ListItem>
@@ -151,42 +152,40 @@ const Display = () => {
 
             <Button fullWidth={true} onClick={() => setIsStatistic(true)} variant={"contained"}>Open statistic</Button>
 
-            <Grid item xs={12} md={6}>
-                <Typography sx={{mt: 4, mb: 2}} variant="h6" component="div">
-                    Ready pallets on stock
-                </Typography>
-                <List dense={true}>
-                    {!data.length &&
-                        <Alert severity="info">
-                            <article>It's empty here... 🙈</article>
-                        </Alert>
-                    }
-                    {data.map((item) => (
-                        <ListItem
-                            key={item.id}
-                            sx={{gap: 2}}
-                            secondaryAction={
-                                <IconButton edge="end" aria-label="delete">
-                                    <DeleteIcon onClick={() => onDelete(item.id)}/>
-                                </IconButton>
-                            }
-                        >
-                            <ListItemAvatar>
-                                <Avatar sx={{width: 76, height: 76}} variant={"rounded"} src={item?.imgUrl}>
-                                    <FolderIcon/>
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={<article>{item?.index} <p style={{color: "#737373"}}>{item?.created}</p>
-                                </article> || 'Unnamed Item'}
-                                secondary={<p
-                                    style={{color: "#737373"}}>{item?.quantity.toLocaleString()} (pcs)</p> || 'Unnamed Item'}
-                            />
 
-                        </ListItem>
-                    ))}
-                </List>
-            </Grid>
+            <TableContainer sx={{my: 2}} component={Paper}>
+                <Table aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell><h5>Index</h5></TableCell>
+                            <TableCell><h5>Quantity</h5></TableCell>
+                            <TableCell><h5>Remove</h5></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {data.map((el, index) => (
+                            <TableRow key={index}>
+                                <TableCell>
+                                    <article>{el.index}</article>
+                                    <p style={{color: "#737373"}}>{el.created}</p>
+                                    <p style={{color: "#737373"}}>{el.machine
+                                        .replace("nap03", "Nap-03")
+                                        .replace("nap02", "Nap-02")
+                                        .replace("nap01", "Nap-01")
+                                    }</p>
+                                </TableCell>
+                                <TableCell><p>{el.quantity.toLocaleString()} <span style={{color: "#737373"}}>pcs</span></p></TableCell>
+                                <TableCell>
+                                    <IconButton edge="end" aria-label="delete">
+                                        <DeleteIcon onClick={() => onDelete(el.id)}/>
+                                    </IconButton>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            {!data.length && <Alert severity="info"><article>It's empty here... 🙈</article></Alert> }
         </div>
     );
 };

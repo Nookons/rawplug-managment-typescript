@@ -21,10 +21,18 @@
 }
 
 .InputBlock {
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
+    gap: 1em;
+}
+
+.AvatarBlock {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 1em;
 }
 
