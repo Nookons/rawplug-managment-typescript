@@ -2695,46 +2695,6 @@
     },
     {
         "id": 61,
-        "index": "R-KEM-II-300-IT",
-        "description": "KOTWA WKLEJANA POLIESTROWA",
-        "imgUrl": "../300ml-Img/R-KEM-II-300-IT.jpg",
-        "data" : "2022.08.22",
-        "capacity" : 300,
-        "palletQta": 84,
-        "pallet": "P-EURO",
-        "bottle": "Blue",
-        "atBox": 10,
-        "weight": 504,
-        "jm": "Pieces",
-        "needItem": [
-            {
-                "index": "KRP-ST-CART-310-B",
-                "type": "Cartridge",
-                "description": "Kartusz 310 ml niebieski",
-                "quantity": 1
-            },
-            {
-                "index": "KRP-ST-PISTON-B",
-                "type": "Piston",
-                "description": "Piston do kartuszy niebieski",
-                "quantity": 1
-            },
-            {
-                "index": "KRN-ST-CAP-WHI",
-                "type": "Cap",
-                "description": "Nakrętka do kartusza biała",
-                "quantity": 1
-            },
-            {
-                "index": "Q-ET-R-KEMII-300TF",
-                "type": "Label",
-                "description": "Etykieta foliowa peel-off R-KEM-II-300 150x190 bez kodu kreskowego",
-                "quantity": 1
-            }
-        ]
-    },
-    {
-        "id": 62,
         "index": "R-KEM-II-300-PL/H",
         "description": "KOTWA WKLEJANA POLIESTROWA",
         "imgUrl": "../300ml-Img/R-KEM-II-300-PLH.jpg",
@@ -2792,7 +2752,7 @@
         ]
     },
     {
-        "id": 63,
+        "id": 62,
         "index": "R-KEM-II-300-SL",
         "description": "KOTWA WKLEJANA POLIESTROWA",
         "imgUrl": "../300ml-Img/R-KEM-II-300-PL/H.jpg",
@@ -2844,7 +2804,7 @@
         ]
     },
     {
-        "id": 64,
+        "id": 63,
         "index": "R-KEM-II-300-STONE",
         "description": "KOTWA WKLEJANA POLIESTROWA",
         "imgUrl": "../300ml-Img/R-KEM-II-300-STONE.jpg",
@@ -2896,7 +2856,7 @@
         ]
     },
     {
-        "id": 65,
+        "id": 64,
         "index": "R-KEM-II-300-SV",
         "description": "KOTWA WKLEJANA POLIESTROWA",
         "imgUrl": "../300ml-Img/R-KEM-II-300-SV.jpg",
@@ -2948,7 +2908,7 @@
         ]
     },
     {
-        "id": 66,
+        "id": 65,
         "index": "R-KEM-II-300-W",
         "description": "KOTWA WKLEJANA POLIESTROWA",
         "imgUrl": "../300ml-Img/R-KEM-II-300-W.jpg",
@@ -3000,7 +2960,7 @@
         ]
     },
     {
-        "id": 67,
+        "id": 66,
         "index": "R-KER-II-300",
         "description": "KOTWA WKLEJANA HYBRYDOWA",
         "imgUrl": "../300ml-Img/R-KER-II-300.jpg",
@@ -3058,7 +3018,7 @@
         ]
     },
     {
-        "id": 68,
+        "id": 67,
         "index": "R-KER-II-300-S",
         "description": "Kotwa wklejana hybrydowa w wersji letniej",
         "imgUrl": "../300ml-Img/R-KER-II-300-S.jpg",
@@ -3110,7 +3070,7 @@
         ]
     },
     {
-        "id": 69,
+        "id": 68,
         "index": "R-KER-II-300-SV",
         "description": "Kotwa wklejana hybrydowa",
         "imgUrl": "../300ml-Img/R-KER-II-300-SV.jpg",
@@ -3168,7 +3128,7 @@
         ]
     },
     {
-        "id": 70,
+        "id": 69,
         "index": "R-KER-II-300-W",
         "description": "Kotwa wklejana hybrydowa",
         "imgUrl": "../300ml-Img/R-KER-II-300-W.jpg",
@@ -3220,7 +3180,7 @@
         ]
     },
     {
-        "id": 71,
+        "id": 70,
         "index": "R-KF2-310-GREY-F",
         "description": "Mieszanka chemiczna PSC grey",
         "imgUrl": "../300ml-Img/R-KF2-310-GREY-F.jpg",
@@ -3272,7 +3232,7 @@
         ]
     },
     {
-        "id": 72,
+        "id": 71,
         "index": "VSE-R-KEM-II-300",
         "description": "Mieszanka chemiczna PSC grey",
         "imgUrl": "../300ml-Img/VSE-R-KEM-II-300.jpg",
@@ -3330,7 +3290,7 @@
         ]
     },
     {
-        "id": 73,
+        "id": 72,
         "index": "VSE-R-KER-II-300",
         "description": "Mieszanka chemiczna PSC grey",
         "imgUrl": "../300ml-Img/VSE-R-KER-II-300.jpg",
