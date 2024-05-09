@@ -25,6 +25,9 @@ import {
 import {DeletePallet} from "../../../utils/Ready/Delete";
 import {IItem} from "../../../types/Item";
 import {LineChart, PieChart} from "@mui/x-charts";
+import MyModal from "../../../components/Modal/MyModal";
+import {Link} from "react-router-dom";
+import {DISPLAY_ROUTE, HOME_ROUTE} from "../../../utils/consts";
 
 const Display = () => {
     const currentDate = dayjs().format('YYYY-MM-DD');
@@ -55,16 +58,20 @@ const Display = () => {
         if (data) {
             data.forEach((el) => {
                 const isIndex = indexTotals.findIndex(item => item.label === el.index);
+                const propertyToUpdate = el.quantity < el.maxQuantity ? 'notFull' : 'pallets';
+                const propertyToNotUpdate = el.quantity < el.maxQuantity ? 'pallets' : 'notFull';
 
                 if (isIndex === -1) {
-                    indexTotals.push({
+                    const newEntry = {
                         label: el.index,
                         value: el.quantity,
-                        pallets: 1
-                    });
+                        [propertyToUpdate]: 1,
+                        [propertyToNotUpdate]: 0
+                    };
+                    indexTotals.push(newEntry);
                 } else {
                     indexTotals[isIndex].value += el.quantity;
-                    indexTotals[isIndex].pallets += 1;
+                    indexTotals[isIndex][propertyToUpdate] += 1;
                 }
             });
         }
@@ -75,21 +82,30 @@ const Display = () => {
 
     const [isSending, setIsSending] = useState<boolean>(false);
 
-    const onDelete = async (id: number) => {
+    const [itemToRemove, setItemToRemove] = useState<any>();
+
+    const openModal = (item: number) => {
+        setItemToRemove(item)
+        setConfirmModal(true)
+    }
+
+    const onDelete = async () => {
         try {
             setIsSending(true)
-            const response = await DeletePallet(id)
+            const response = await DeletePallet(itemToRemove)
 
         } catch (error) {
             console.log(error);
         } finally {
             setTimeout(() => {
                 setIsSending(false);
+                setConfirmModal(false);
             }, 250)
         }
     }
 
     const [isStatistic, setIsStatistic] = useState<boolean>(false);
+    const [confirmModal, setConfirmModal] = useState<boolean>(false);
 
     return (
         <div className={styles.Main}>
@@ -138,8 +154,15 @@ const Display = () => {
                                 <ListItemButton>
                                     <ListItemText
                                         primary={<h5>{el.label}</h5>}
-                                        secondary={<article>All qunatity: {el.value.toLocaleString()} |
-                                            Pallets: {el.pallets}</article>}
+                                        secondary={
+                                            <Box sx={{display: "flex", gap: 2, mt: 1}}>
+                                                <article>
+                                                    All qunatity: {el.value.toLocaleString()}
+                                                </article>
+                                                {el.pallets > 0 && <p>🟢 {el.pallets}  </p>}
+                                                {el.notFull > 0 && <p>🟡 {el.notFull}  </p>}
+                                            </Box>
+                                        }
                                     />
                                 </ListItemButton>
                             </ListItem>
@@ -152,8 +175,27 @@ const Display = () => {
 
             <Button fullWidth={true} onClick={() => setIsStatistic(true)} variant={"contained"}>Open statistic</Button>
 
+            <MyModal isActive={confirmModal} setIsActive={setConfirmModal}>
+                <div>
+                    <Typography variant="h5" gutterBottom component="h6" display={"inline-flex"} textAlign={"center"}>
+                        Are you sure you want to remove this item?
+                    </Typography>
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "space-around",
+                        gap: 14
+                    }}>
+                        <Button onClick={onDelete} fullWidth={true} variant="contained" sx={{my: 2}} color={"success"}>
+                            Yes
+                        </Button>
+                        <Button onClick={() => setConfirmModal(false)} fullWidth={true} variant="contained" sx={{my: 2}} color={"error"}>
+                            No
+                        </Button>
+                    </div>
+                </div>
+            </MyModal>
 
-            <TableContainer sx={{my: 2}} component={Paper}>
+            <TableContainer sx={{my: 2}} component={Paper} variant={"outlined"}>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -164,20 +206,19 @@ const Display = () => {
                     </TableHead>
                     <TableBody>
                         {data.map((el, index) => (
-                            <TableRow key={index}>
+                            <TableRow
+                                sx={{ background: el.quantity < el.maxQuantity && "radial-gradient(circle, #ffffff 0%, #ffffdc 100%)",}}
+                                key={index}>
                                 <TableCell>
-                                    <article>{el.index}</article>
+                                    <Link to={DISPLAY_ROUTE} style={{whiteSpace: "nowrap"}}>{el.index}</Link>
                                     <p style={{color: "#737373"}}>{el.created}</p>
-                                    <p style={{color: "#737373"}}>{el.machine
-                                        .replace("nap03", "Nap-03")
-                                        .replace("nap02", "Nap-02")
-                                        .replace("nap01", "Nap-01")
-                                    }</p>
                                 </TableCell>
-                                <TableCell><p>{el.quantity.toLocaleString()} <span style={{color: "#737373"}}>pcs</span></p></TableCell>
-                                <TableCell>
+                                <TableCell sx={{padding: 1, textAlign: "center"}}>
+                                    <p>{el.quantity.toLocaleString()} <span style={{color: "#737373"}}>pcs</span></p>
+                                </TableCell>
+                                <TableCell sx={{padding: 1, textAlign: "center"}}>
                                     <IconButton edge="end" aria-label="delete">
-                                        <DeleteIcon onClick={() => onDelete(el.id)}/>
+                                        <DeleteIcon onClick={() => openModal(el)}/>
                                     </IconButton>
                                 </TableCell>
                             </TableRow>
@@ -185,7 +226,9 @@ const Display = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {!data.length && <Alert severity="info"><article>It's empty here... 🙈</article></Alert> }
+            {!data.length && <Alert severity="info">
+                <article>It's empty here... 🙈</article>
+            </Alert>}
         </div>
     );
 };

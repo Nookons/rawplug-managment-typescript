@@ -94,6 +94,11 @@ const Add = () => {
         }
     }
 
+    const onChangeInput = (event: void) => {
+        const refactored = event.target.value.replace(" ", "-").toUpperCase();
+        setData((prev) => ({...prev, index: refactored}))
+    }
+
     return (
         <div className={styles.Main}>
             <Backdrop sx={{zIndex: 99}} open={isSending}>
@@ -103,6 +108,7 @@ const Add = () => {
                 <Autocomplete
                     disablePortal
                     value={data.index}
+                    onInput={(event) => onChangeInput(event)}
                     onChange={(event, value) => setData((prev) => ({...prev, index: value}))}
                     options={indexesData.map((el) => el.index)}
                     fullWidth={true}
