@@ -1,6 +1,6 @@
 import {
     ADD_ITEM_ROUTE,
-    ADD_PALLET_ROUTE,
+    ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE,
     ADD_PLAN_ROUTE, ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
     CHECK_PLANS_ROUTE,
@@ -40,6 +40,7 @@ import InfoPage from "./pages/Ready/Info/InfoPage";
 import InfoItem from "./pages/Ready/Info/InfoItem";
 import Add from "./pages/Ready/Add/Add";
 import Display from "./pages/Ready/Display/Display";
+import AddTemplate from "./pages/Ready/Add/AddTemplate";
 
 
 interface Route {
@@ -139,6 +140,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: DISPLAY_ROUTE,
         Component: Display,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: ADD_PALLET_TEMPLATE,
+        Component: AddTemplate,
         label: 'AppPrivateRoute',
     }
 ];

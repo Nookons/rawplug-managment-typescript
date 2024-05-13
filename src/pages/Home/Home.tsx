@@ -5,7 +5,7 @@ import styles from './Home.module.css'
 import Warehouse from "./Warehouse/Warehouse";
 import {Link} from "react-router-dom";
 import {
-    ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_SOLO_BARREL,
+    ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE, ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
     CREATE_ITEM_ROUTE, DISPLAY_ROUTE, INFO_READY_PALLET_ROUTE,
     ITEMS_GRID_ROUTE,
@@ -72,6 +72,7 @@ const Home: FC = () => {
                             <Link to={INFO_READY_PALLET_ROUTE}><Button fullWidth={true} variant={"contained"}><InfoIcon /></Button></Link>
                             <Link to={ADD_PALLET_ROUTE}><Button fullWidth={true} variant={"contained"}><AddBoxIcon /></Button></Link>
                             <Link to={DISPLAY_ROUTE}><Button fullWidth={true} variant={"contained"}><ArtTrackIcon /></Button></Link>
+                            <Link to={ADD_PALLET_TEMPLATE}><Button fullWidth={true} variant={"contained"}><NoteAddIcon /></Button></Link>
                         </AccordionDetails>
                     </Accordion>
                 </Stack>
