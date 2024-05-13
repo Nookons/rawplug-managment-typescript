@@ -20,3 +20,14 @@ export const AddPallet = async (data: any, user: any) => {
     });
     return [true, item];
 }
+export const AddPalletTemplate = async (data: any, user: any) => {
+
+    const item = {
+        ...data,
+    };
+
+    await setDoc(doc(db, "palletsTemplate", "template_" + data.id), {
+        ...item
+    });
+    return [true, item];
+}

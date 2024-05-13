@@ -25,6 +25,7 @@ export const INFO_READY_PALLET_ROUTE: string = '/info-ready-pallet'
 export const INFO_FULL_ITEM_ROUTE: string = '/info-full-pallet'
 export const PALLET_ROUTE: string = '/pallet'
 export const DISPLAY_ROUTE: string = '/display-pallet'
+export const ADD_PALLET_TEMPLATE: string = '/add-template-pallet'
 
 // Warehouse Route
 export const WAREHOUSE_ROUTE: string = '/warehouse'
