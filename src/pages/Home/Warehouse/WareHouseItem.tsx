@@ -44,7 +44,7 @@ export const WarehouseItem: FC<WareHouseItemProps> = ({card, tempQta, tempPallet
 
 
     return (
-        <Card style={{minWidth: 100}} key={INDEX} sx={{minWidth: 240}} variant={"outlined"} raised={true}>
+        <Card style={{minWidth: 100}} key={INDEX} sx={{minWidth: 240}} variant={"outlined"}>
             <CardContent>
                 <Typography fontSize={14} variant={"subtitle1"}>
                     <Link to={WAREHOUSE_ROUTE + "?_" + INDEX.toLowerCase()}>{INDEX}</Link>

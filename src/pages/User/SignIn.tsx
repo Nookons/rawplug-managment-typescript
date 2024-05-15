@@ -79,7 +79,7 @@ const SignIn: FC = () => {
 
     return (
         <div className={styles.Main}>
-            <Backdrop open={loader}>
+            <Backdrop sx={{zIndex: 99}} open={loader}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
             <div className={styles.Wrapper}>
@@ -110,7 +110,7 @@ const SignIn: FC = () => {
                 <div style={{ color: 'red', marginTop: 14 }}>{error}</div>
                 <article style={{ marginTop: 14 }}>Don't have an account? <Link onClick={onFaqClick} style={{ color: "#7272fd", textDecoration: 'underline solid #7272fd', cursor: 'pointer' }}>🙋 FAQ</Link></article>
                 <br/>
-                <Button onClick={signInClick}>Sign In</Button>
+                <Button variant={"contained"} onClick={signInClick}>Sign In</Button>
             </div>
         </div>
     );
