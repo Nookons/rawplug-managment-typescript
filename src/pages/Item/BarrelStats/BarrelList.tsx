@@ -1,6 +1,17 @@
 import React, {FC, useEffect, useMemo, useState} from 'react';
 import {IItem} from '../../../types/Item';
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {
+    Box,
+    Divider, Grid,
+    Paper,
+    Stack,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow
+} from "@mui/material";
 import {Link} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
 
@@ -62,21 +73,15 @@ const BarrelList: FC<BarrelListProps> = ({items, searchTags}) => {
 
     return (
         <div>
-            <div style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                margin: "14px 0",
-                gap: 4,
-                justifyContent: "center",
-                alignItems: "center"
-            }}>
-                <div style={{padding: 14, backgroundColor: "#dfffd6"}}>
-                    <article>Available pallets: ({fullArray.length})</article>
-                </div>
-                <div style={{padding: 14, backgroundColor: "#dfffd6"}}>
-                    <article>Total: ({totalQuantity} kg)</article>
-                </div>
-            </div>
+            <Grid container sx={{mb: 2}} spacing={2}>
+                <Grid item xs={6} md={6}>
+                    <Paper sx={{p: 1}}><article>Available pallets: ( {fullArray.length} )</article></Paper>
+                </Grid>
+                <Grid item xs={6} md={6}>
+                    <Paper sx={{p: 1}}><article>Total: ( {totalQuantity.toLocaleString()} kg )</article></Paper>
+                </Grid>
+            </Grid>
+
             <TableContainer component={Paper} variant={"elevation"}>
                 <Table aria-label="simple table" size={"small"} align={"left"} padding={"normal"} cellSpacing={2}
                        cellPadding={15}>
@@ -90,7 +95,8 @@ const BarrelList: FC<BarrelListProps> = ({items, searchTags}) => {
                     </TableHead>
                     <TableBody>
                         {sortedArray.map((el, index) => (
-                            <TableRow style={{backgroundColor: el.quantity < 800 && "rgba(255,213,0,0.25)"}} key={index}>
+                            <TableRow style={{backgroundColor: el.quantity < 800 && "rgba(255,213,0,0.25)"}}
+                                      key={index}>
                                 <TableCell>
                                     <article style={{whiteSpace: "nowrap"}}>
                                         <Link to={ITEM_ROUTE + "?_" + el.id}>

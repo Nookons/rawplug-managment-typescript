@@ -1,46 +1,35 @@
 import {
     ADD_ITEM_ROUTE,
     ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE,
-    ADD_PLAN_ROUTE, ADD_SOLO_BARREL,
+    ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
-    CHECK_PLANS_ROUTE,
     CREATE_ITEM_ROUTE, DISPLAY_ROUTE,
     FIND_ITEM_ROUTE,
     HOME_ROUTE, INFO_FULL_ITEM_ROUTE, INFO_READY_PALLET_ROUTE,
     ITEM_ROUTE,
-    ITEMS_GRID_ROUTE, MIXERS_RECEIPTS_ROUTE, NAP01_ROUTE, NAP02_ROUTE, NAP03_ROUTE,
-    PALLET_ROUTE,
+    ITEMS_GRID_ROUTE,
     RECEIPT_REPORT_ROUTE, REMOVED_ROUTE,
     SIGN_IN_ROUTE,
-    SIGN_UP_ROUTE,
     USER_SETTINGS_ROUTE, WAREHOUSE_ROUTE,
 } from "./utils/consts";
 import Home from "./pages/Home/Home";
-import SignIn from "./pages/User/SignIn";
 import AddItem from "./pages/Item/AddItem/AddItem";
-import AddPlan from "./pages/Plan/AddPlan";
-import AddPallet from "./pages/Pallet/AddPallet/AddPallet";
-import CheckPlans from "./pages/Plan/module/CheckPlans";
-import Pallet from "./pages/Pallet/Pallet";
 import Item from "./pages/Item/Item";
 import ItemsGrid from "./pages/Item/ItemsGrid/ItemsGrid";
 import FindItem from "./pages/Item/FindItem/FindItem";
-import Settings from "./pages/User/settings/Settings";
 import BarrelStats from "./pages/Item/BarrelStats/BarrelStats";
 import ReceiptReport from "./pages/Item/ReceiptReport/ReceiptReport";
 import CreateItem from "./pages/Item/CreateItem/CreateItem";
 import RemovedList from "./pages/Item/RemovedList/RemovedList";
-import MixerReceipts from "./pages/Mixers/MixersReceipts/MixerReceipts";
 import Warehouse from "./pages/Warehouse/Warehouse";
-import Nap01 from "./pages/Nap03/Nap03";
-import Nap03 from "./pages/Nap03/Nap03";
-import Nap02 from "./pages/Nap02/Nap02";
 import AddSoloBarrel from "./pages/Item/AddSoloBarrel/AddSoloBarrel";
 import InfoPage from "./pages/Ready/Info/InfoPage";
 import InfoItem from "./pages/Ready/Info/InfoItem";
 import Add from "./pages/Ready/Add/Add";
 import Display from "./pages/Ready/Display/Display";
 import AddTemplate from "./pages/Ready/Add/AddTemplate";
+import SignIn from "./pages/User/SignIn";
+import UserSettings from "./pages/User/setting/UserSettings";
 
 
 interface Route {
@@ -89,7 +78,7 @@ export const privateRoutes: PrivateRoutes = [
     },
     {
         path: USER_SETTINGS_ROUTE,
-        Component: Settings,
+        Component: UserSettings,
         label: 'AppPrivateRoute',
     },
     {

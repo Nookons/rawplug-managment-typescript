@@ -1,30 +1,15 @@
-interface Io {
-    providerId: string | null;
-    uid: string | null;
-    displayName: string | null;
-    email: string | null;
-    phoneNumber: string | null;
-    photoURL: string | null;
-}
-interface IProviderData {
-    0: Io
+enum positionEnum {
+    leader = 'leader',
+    chemical = 'Chemical worker',
+    machine = 'Machine worker',
 }
 
-interface IStsTokenManager {
-    refreshToken: string;
-    accessToken: string;
-    expirationTime: string;
-}
-
-export interface IUser {
-    uid: string;
+interface IUser {
+    firstName: string;
+    lastName: string;
     email: string;
-    emailVerified: boolean;
-    isAnonymous: boolean;
-    providerData: IProviderData;
-    stsTokenManager: IStsTokenManager;
-    createdAt: string;
-    lastLoginAt: string;
-    apiKey: string;
-    appName: string;
+    avatar: string;
+    phoneNumber: string;
+    experience: string;
+    position: positionEnum;
 }

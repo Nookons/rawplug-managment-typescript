@@ -52,12 +52,12 @@ const Home: FC = () => {
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <Link to={ADD_ITEM_ROUTE}><Button fullWidth={true} variant={"contained"}><AddBoxIcon /></Button></Link>
                             <Link to={CREATE_ITEM_ROUTE}><Button fullWidth={true} variant={"contained"}><NoteAddIcon /></Button></Link>
-                            <Link to={REMOVED_ROUTE}><Button fullWidth={true} variant={"contained"}><PlaylistRemoveIcon /></Button></Link>
+                            {/*<Link to={REMOVED_ROUTE}><Button fullWidth={true} variant={"contained"}><PlaylistRemoveIcon /></Button></Link>*/}
                             <Link to={WAREHOUSE_ROUTE}><Button fullWidth={true} variant={"contained"}><SearchIcon /></Button></Link>
                             <Link to={ITEMS_GRID_ROUTE}><Button fullWidth={true} variant={"contained"}><ListIcon /></Button></Link>
                             <Link to={BARREL_STATS_ROUTE}><Button fullWidth={true} variant={"contained"}><FeaturedPlayListIcon /></Button></Link>
                             <Link to={RECEIPT_REPORT_ROUTE}><Button fullWidth={true} variant={"contained"}><ReceiptLongIcon /></Button></Link>
-                            <Link to={ADD_SOLO_BARREL}><Button fullWidth={true} variant={"contained"}><PlaylistAddCircleIcon /></Button></Link>
+                            {/*<Link to={ADD_SOLO_BARREL}><Button fullWidth={true} variant={"contained"}><PlaylistAddCircleIcon /></Button></Link>*/}
                         </AccordionDetails>
                     </Accordion>
                     <Accordion className={styles.Details} defaultExpanded={false}>

@@ -9,29 +9,18 @@ const CartridgePie = () => {
     const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
-        // Создаем объект для сопоставления уникальных индексов с общими значениями
         const indexTotals = [];
 
-        // Проходим по каждому элементу в массиве items
         items.forEach((el: IItem) => {
-            // Проверяем, является ли элемент картриджем
             if (el.type === "Cartridge") {
-                // Ищем индекс элемента в массиве indexTotals
-                const index = indexTotals.findIndex(item => item.label === el.index
-                    .replace("KRP-ST-", "")
-                    .replace("Q-C-CART-", "")
-                );
+                const index = indexTotals.findIndex(item => item.label === el.index);
 
-                // Если индекс не найден, добавляем новый объект в массив
                 if (index === -1) {
                     indexTotals.push({
-                        label: el.index
-                            .replace("KRP-ST-", "")
-                            .replace("Q-C-CART-", ""),
+                        label: el.index,
                         value: el.quantity
                     });
                 } else {
-                    // Если индекс найден, увеличиваем значение для этого индекса
                     indexTotals[index].value += el.quantity;
                 }
             }
@@ -40,49 +29,12 @@ const CartridgePie = () => {
         setData(indexTotals)
     }, [items, loading]);
 
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
-
     return (
         <BarChart
-            xAxis={[{scaleType: 'band', data: data.map(el => el.label)}]} // Преобразуем массив данных с помощью map
-            series={[{data: data.map(el => el.value)}]} // Передаем данные для серии. Предполагается, что data содержит объекты с полями label и value
+            xAxis={[{scaleType: 'band', data: data.map(el => el.label)}]}
+            series={[{data: data.map(el => el.value)}]}
             height={400}
         />
-        /*<PieChart
-            height={300}
-            series={[
-                {
-                    data: data,
-                    arcLabel: (item) => `(${item.value.toLocaleString()})`,
-                    arcLabelMinAngle: 75,
-                    innerRadius: 15,
-                    outerRadius: 105,
-                    paddingAngle: 5,
-                    cornerRadius: 5,
-                    startAngle: -90,
-                    cx: 150,
-                    cy: 150,
-                    highlightScope: { faded: 'global', highlighted: 'item' },
-                    faded: { innerRadius: 5, additionalRadius: -5, color: 'gray' },
-                },
-            ]}
-            slotProps={{
-                legend: { hidden: false},
-            }}
-            sx={{
-                [`& .${pieArcLabelClasses.root}`]: {
-                    fill: 'white',
-                    fontSize: 14
-                },
-                legendTextStyle: {
-                    fontSize: '8px' // Установите желаемый размер текста в пикселях
-                },
-            }}
-            /!*onItemClick={(event, d) => console.log(d)}*!/
-            skipAnimation={false}
-        />*/
     );
 };
 
