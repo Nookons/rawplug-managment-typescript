@@ -13,7 +13,7 @@ const FirstStep: FC<FirstStepProps> = ({data, setData}) => {
         const split = value.split(" ")
         const join = split.join("-")
 
-        setData((prevState) => ({...prevState, myIndex: join.toUpperCase()}))
+        setData((prevState) => ({...prevState, index: join.toUpperCase()}))
     }
 
     const onTypeChange = (value: string) => {
@@ -34,7 +34,7 @@ const FirstStep: FC<FirstStepProps> = ({data, setData}) => {
                 id="outlined-adornment-weight"
                 startAdornment={<InputAdornment position="start">{data.type}</InputAdornment>}
                 aria-describedby="outlined-weight-helper-text"
-                value={data.myIndex}
+                value={data.index}
                 onChange={(event) => onIndexChange(event.target.value)}
                 placeholder={"Будь ласка, вкажіть новий індекс"}
                 inputProps={{

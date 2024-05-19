@@ -1,10 +1,9 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyDWovHJnpFEvAlr6tqISRzUy9kLmcDsBmA",
-    authDomain: "my-personal-netflix.firebaseapp.com",
-    databaseURL: "https://my-personal-netflix-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "my-personal-netflix",
-    storageBucket: "gs://my-personal-netflix.appspot.com",
-    messagingSenderId: "8775902258",
-    appId: "1:8775902258:web:6f0581b18ac084fb00482b",
-    measurementId: "G-6KEME0WYTF",
-    };
+    apiKey: "AIzaSyBL3ozJzfYYQYrcncrdHpy4YGe_y0x93ko",
+    authDomain: "rawlplug-management.firebaseapp.com",
+    projectId: "rawlplug-management",
+    storageBucket: "rawlplug-management.appspot.com",
+    messagingSenderId: "751013602102",
+    appId: "1:751013602102:web:afb40926f282e4dec94997",
+    measurementId: "G-H5MX2Q447M"
+};

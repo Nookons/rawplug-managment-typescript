@@ -1,14 +1,14 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {useAppSelector} from "../../hooks/storeHooks";
 import {Accordion, AccordionDetails, AccordionSummary, Button, Stack, Typography} from "@mui/material";
 import styles from './Home.module.css'
 import Warehouse from "./Warehouse/Warehouse";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {
-    ADD_ITEM_ROUTE, ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE, ADD_SOLO_BARREL,
+    ADD_ITEM_ROUTE, ADD_NEW_USER_ROUTE, ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE, ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
     CREATE_ITEM_ROUTE, DISPLAY_ROUTE, INFO_READY_PALLET_ROUTE,
-    ITEMS_GRID_ROUTE,
+    ITEMS_GRID_ROUTE, MACHINE_SCREEN_ROUTE,
     RECEIPT_REPORT_ROUTE,
     REMOVED_ROUTE,
     WAREHOUSE_ROUTE
@@ -30,12 +30,40 @@ import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import InfoIcon from '@mui/icons-material/Info';
 import ArtTrackIcon from '@mui/icons-material/ArtTrack';
-
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import {doc, onSnapshot} from "firebase/firestore";
+import {db} from "../../firebase";
+import ScreenSearchDesktopIcon from '@mui/icons-material/ScreenSearchDesktop';
 
 const Home: FC = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
+    const navigate = useNavigate();
     const user = useAppSelector(state => state.user.user)
 
+    const [loadData, setLoadData] = useState();
+
+    useEffect(() => {
+        if (user) {
+            const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
+                const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+                if (doc.exists()) {
+                    setLoadData(doc.data())
+                }
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        if (loadData) {
+            switch (loadData.role) {
+                case "machine":
+                    navigate(MACHINE_SCREEN_ROUTE)
+                    break
+                default:
+                    break
+            }
+        }
+    }, [loadData]);
 
     return (
         <div className={styles.Main}>
@@ -51,6 +79,7 @@ const Home: FC = () => {
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <Link to={ADD_ITEM_ROUTE}><Button fullWidth={true} variant={"contained"}><AddBoxIcon /></Button></Link>
+                            <Link to={ADD_NEW_USER_ROUTE}><Button fullWidth={true} variant={"contained"}><PersonAddIcon /></Button></Link>
                             <Link to={CREATE_ITEM_ROUTE}><Button fullWidth={true} variant={"contained"}><NoteAddIcon /></Button></Link>
                             {/*<Link to={REMOVED_ROUTE}><Button fullWidth={true} variant={"contained"}><PlaylistRemoveIcon /></Button></Link>*/}
                             <Link to={WAREHOUSE_ROUTE}><Button fullWidth={true} variant={"contained"}><SearchIcon /></Button></Link>
@@ -70,6 +99,7 @@ const Home: FC = () => {
                         </AccordionSummary>
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <Link to={INFO_READY_PALLET_ROUTE}><Button fullWidth={true} variant={"contained"}><InfoIcon /></Button></Link>
+                            <Link to={MACHINE_SCREEN_ROUTE}><Button fullWidth={true} variant={"contained"}><ScreenSearchDesktopIcon /></Button></Link>
                             <Link to={ADD_PALLET_ROUTE}><Button fullWidth={true} variant={"contained"}><AddBoxIcon /></Button></Link>
                             <Link to={DISPLAY_ROUTE}><Button fullWidth={true} variant={"contained"}><ArtTrackIcon /></Button></Link>
                             <Link to={ADD_PALLET_TEMPLATE}><Button fullWidth={true} variant={"contained"}><NoteAddIcon /></Button></Link>

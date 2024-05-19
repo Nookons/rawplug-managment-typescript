@@ -15,10 +15,12 @@ import {
 } from "@mui/material";
 import dayjs from "dayjs";
 import {db} from "../../../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import {doc, getDoc, setDoc} from "firebase/firestore";
 import InputBlock from "./AddTemplateDep/InputBlock";
 import NeedItem from "./AddTemplateDep/NeedItem";
 import {AddPalletTemplate} from "../../../utils/Ready/Add";
+
+import dataItems from '../../../assets/ItemsInfo.json'
 
 
 export interface INeedItemTemplate {
@@ -107,12 +109,25 @@ const AddTemplate = () => {
         }
     }
 
+    const migrateDB = async () => {
+        const id = Date.now();
+
+        dataItems.forEach(el => {
+            setDoc(doc(db, "itemsTemplate", el.index.replace("/", "\\")), {
+                ...el
+            });
+        })
+    }
+
 
     return (
         <div className={styles.Main}>
             <Backdrop sx={{zIndex: 99}} open={isSending}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
+            <Button onClick={migrateDB} fullWidth={true} variant="contained" sx={{my: 2}}>
+                Add data to base...
+            </Button>
 
             <InputBlock indexWriting={indexWriting} inputData={inputData} setInputData={setInputData} />
             <hr/>

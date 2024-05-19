@@ -95,9 +95,13 @@ const AddItem = () => {
 
     useEffect(() => {
         try {
-            onSnapshot(doc(db, "PWT70", "templates"), (doc) => {
-                const data = doc.data().templates
-                setDataTemplates(data)
+            const q = query(collection(db, "itemsTemplate"));
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                const tempArray = []
+                querySnapshot.forEach((doc) => {
+                    tempArray.push(doc.data())
+                });
+                setDataTemplates(tempArray);
             });
         } catch (e) {
             console.log(e)
@@ -108,18 +112,20 @@ const AddItem = () => {
     const onChangeDataEvent = useCallback((type: string, value: any) => {
 
         if (type === "index") {
-            const tempItem = dataTemplates.find(el => el.myIndex === value);
+            const tempItem = dataTemplates.find(el => el.index === value);
+
+            console.log(value);
             console.log(tempItem);
 
             if (tempItem) {
-                const statusCheck = tempItem.myIndex.split('-')[1];
+                const statusCheck = tempItem.index.split('-')[1];
                 const fromDepartment = tempItem.type.toLowerCase() !== 'barrel' ? 'MSP' : 'PWT70';
                 const status = statusCheck === 'CMB' && tempItem.type.toLowerCase() === 'barrel' ? 'Odzysk' : 'Available';
 
                 setFormData(prevState => ({
                     ...prevState,
                     type: tempItem.type,
-                    index: tempItem.myIndex,
+                    index: tempItem.index,
                     jm: tempItem.jm,
                     description: tempItem.description,
                     fromDepartment,

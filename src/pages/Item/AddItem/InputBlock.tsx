@@ -1,20 +1,17 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from "./AddItem.module.css";
 import {
     Alert,
     Autocomplete,
-    Backdrop,
     CircularProgress,
     FormControl,
     InputAdornment,
     OutlinedInput,
     TextField
 } from "@mui/material";
-import {doc, onSnapshot, setDoc} from "firebase/firestore";
-import {db} from "../../../firebase";
-import {IItem, IItemTemplate} from "../../../types/Item";
-
-import data from '../../../assets/ItemsInfo.json'
+import { collection, query, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { IItem, IItemTemplate } from "../../../types/Item";
 
 interface InputBlockProps {
     onChangeDataEvent: (type: string, value: any) => void;
@@ -22,68 +19,65 @@ interface InputBlockProps {
 }
 
 interface IIndexData {
-    indexArray: any[],
-    loading: false;
+    indexArray: any[];
+    loading: boolean;
     error: string | null;
 }
 
-
-function sleep(duration: number): Promise<void> {
-    return new Promise<void>((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, duration);
-    });
-}
-
-const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
-    const [open, setOpen] = React.useState(false);
-
-    const [indexData, setIndexData] = useState<IIndexData>({
-        indexArray: [],
-        loading: false,
-        error: null
-    });
+const InputBlock: FC<InputBlockProps> = ({ onChangeDataEvent, formData }) => {
+    const [open, setOpen] = useState(false);
+    const [indexData, setIndexData] = useState<IIndexData>({ indexArray: [], loading: false, error: null });
 
     const departmentsIndex = [
-        {title: 'PWT10'},
-        {title: 'PWT30'},
-        {title: 'PWT70'},
-        {title: 'MSP'},
+        { title: 'PWT10' },
+        { title: 'PWT30' },
+        { title: 'PWT70' },
+        { title: 'MSP' },
     ];
 
     const statusIndex = [
-        {title: 'Available'},
-        {title: 'Hold'},
-        {title: 'Odzysk'},
+        { title: 'Available' },
+        { title: 'Hold' },
+        { title: 'Odzysk' },
     ];
 
-    const loadIndexes = async () => {
-        (async () => {
-            setIndexData((prevState) => ({...prevState, loading: true}))
-            await sleep(250);
-
-            try {
-                onSnapshot(doc(db, "PWT70", "templates"), (doc) => {
-                    if (doc.exists()) {
-                        setIndexData((prevState) => ({...prevState, indexArray: doc.data().templates}));
-                    }
-                });
-            } catch (error) {
-                setIndexData((prevState) => ({...prevState, loading: false, error: error.toString()}))
-            } finally {
-                setIndexData((prevState) => ({...prevState, loading: false}))
-            }
-        })();
-    }
-
-
     useEffect(() => {
-        if (!open) {
-            setIndexData((prevState) => ({...prevState, indexArray: []}))
+        const loadIndexes = async () => {
+            setIndexData((prevState) => ({ ...prevState, loading: true }));
+            try {
+                const q = query(collection(db, "itemsTemplate"));
+                const querySnapshot = await getDocs(q);
+                const tempArray = querySnapshot.docs.map(doc => doc.data());
+                setIndexData({ indexArray: tempArray, loading: false, error: null });
+            } catch (error) {
+                setIndexData({ indexArray: [], loading: false, error: error.message });
+            }
+        };
+
+        if (open) {
+            loadIndexes();
         }
     }, [open]);
 
+    const renderAutocomplete = (label: string, value: string, options: any[], onChange: (value: string) => void) => (
+        <Autocomplete
+            freeSolo
+            disableClearable
+            value={value}
+            onChange={(event, newValue) => onChange(newValue)}
+            options={options.map(option => option.title)}
+            renderInput={params => (
+                <TextField
+                    {...params}
+                    label={label}
+                    InputProps={{
+                        ...params.InputProps,
+                        type: 'search',
+                    }}
+                />
+            )}
+        />
+    );
 
     return (
         <div className={styles.AutoCompleteWrapper}>
@@ -92,121 +86,45 @@ const InputBlock: FC<InputBlockProps> = ({onChangeDataEvent, formData}) => {
                 <Autocomplete
                     id="asynchronous-demo"
                     open={open}
-                    onOpen={() => {
-                        setOpen(true);
-                        loadIndexes();
-                    }}
-                    onClose={() => {
-                        setOpen(false);
-                    }}
-                    getOptionLabel={(option) => option.myIndex}
-                    fullWidth={true}
+                    onOpen={() => setOpen(true)}
+                    onClose={() => setOpen(false)}
+                    getOptionLabel={(option) => option.index || ""}
+                    fullWidth
                     options={indexData.indexArray}
                     loading={indexData.loading}
-                    loadingText={"#️⃣ loading... "}
-                    onChange={(event, value) => onChangeDataEvent('index', value?.myIndex ? value.myIndex : "")}
-                    renderInput={(params) => (
+                    loadingText="🔄 Loading..."
+                    onChange={(event, value) => onChangeDataEvent('index', value?.index || "")}
+                    renderInput={params => (
                         <TextField
                             {...params}
                             label="Index"
                             InputProps={{
                                 ...params.InputProps,
                                 endAdornment: (
-                                    <React.Fragment>
-                                        {indexData.loading ? <CircularProgress color="inherit" size={20}/> : null}
+                                    <>
+                                        {indexData.loading && <CircularProgress color="inherit" size={20} />}
                                         {params.InputProps.endAdornment}
-                                    </React.Fragment>
+                                    </>
                                 ),
                             }}
                         />
                     )}
                 />
-                {/*<Autocomplete
-                    freeSolo
-                    id="free-solo-2-demo"
-                    disableClearable
-                    value={formData.index}
-                    onChange={(event, value) => onChangeDataEvent('index', value)}
-                    options={indexData.indexArray.map((option: IItemTemplate) => option.myIndex)}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            label="Index"
-                            InputProps={{
-                                ...params.InputProps,
-                                type: 'search',
-                            }}
-                            required={true}
-                        />
-                    )}
-                />*/}
             </div>
-            <Autocomplete
-                freeSolo
-                id="free-solo-2-demo"
-                disableClearable
-                value={formData.fromDepartment}
-                onChange={(event, value) => onChangeDataEvent('fromDepartment', value)}
-                options={departmentsIndex.map((option) => option.title)}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label='From'
-                        InputProps={{
-                            ...params.InputProps,
-                            type: 'search',
-                        }}
-                    />
-                )}
-            />
-            <Autocomplete
-                freeSolo
-                id="free-solo-2-demo"
-                disableClearable
-                value={formData.toDepartment}
-                onChange={(event, value) => onChangeDataEvent('toDepartment', value)}
-                options={departmentsIndex.map((option) => option.title)}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="To"
-                        InputProps={{
-                            ...params.InputProps,
-                            type: 'search',
-                        }}
-                    />
-                )}
-            />
-            <Autocomplete
-                freeSolo
-                id="free-solo-2-demo"
-                disableClearable
-                value={formData.status}
-                onChange={(event, value) => onChangeDataEvent('status', value)}
-                options={statusIndex.map((option) => option.title)}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Status"
-                        InputProps={{
-                            ...params.InputProps,
-                            type: 'search',
-                        }}
-                    />
-                )}
-            />
-            <FormControl variant="outlined">
+
+            {renderAutocomplete('From', formData.fromDepartment, departmentsIndex, value => onChangeDataEvent('fromDepartment', value))}
+            {renderAutocomplete('To', formData.toDepartment, departmentsIndex, value => onChangeDataEvent('toDepartment', value))}
+            {renderAutocomplete('Status', formData.status, statusIndex, value => onChangeDataEvent('status', value))}
+
+            <FormControl variant="outlined" fullWidth>
                 <OutlinedInput
-                    required={true}
-                    id="outlined-adornment-weight"
-                    type={'Number'}
+                    required
+                    id="outlined-adornment-quantity"
+                    type="number"
                     value={formData.quantity}
                     onChange={(event) => onChangeDataEvent('quantity', Number(event.target.value))}
                     endAdornment={<InputAdornment position="end">{formData.JM}</InputAdornment>}
-                    aria-describedby="outlined-weight-helper-text"
-                    inputProps={{
-                        'aria-label': 'Quantity',
-                    }}
+                    inputProps={{ 'aria-label': 'Quantity' }}
                 />
             </FormControl>
         </div>

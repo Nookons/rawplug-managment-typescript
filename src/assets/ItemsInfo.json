@@ -1,321 +1,321 @@
 [
   {
-    "myIndex": "R-NOZ-M〵Z",
+    "index": "R-NOZ-M/Z",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "Pieces",
+    "description": "Mieszacz do kotew wklejanych 10 elementowy z zawieszką"
+  },
+  {
+    "index": "R-NOZ-M",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "Pieces",
+    "description": "Mieszacz do kotew wklejanych 10 elementowy"
+  },
+  {
+    "index": "R-NOZ-14-M/Z",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
-    "myIndex": "R-NOZ-M",
+    "index": "R-NOZ-14-M",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
-    "myIndex": "R-NOZ-14-M〵Z",
+    "index": "Q-C-NOZ-14-G",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "Pieces",
+    "description": "Mieszacz do kotew wklejanych 14 elementowy z zawieszką"
+  },
+  {
+    "index": "Q-C-NOZ-14-G/Z",
+    "type": "Nozzle",
+    "palletQta": 9000,
+    "jm": "Pieces",
+    "description": "Mieszacz do kotwy chemiczne 14 elementów z zawieszką"
+  },
+  {
+    "index": "R-NOZ-16-M/Z",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
-    "myIndex": "R-NOZ-14-M",
+    "index": "R-NOZ-16-M",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
     "description": "Nozzle for products"
   },
   {
-    "myIndex": "Q-C-NOZ-14-G",
-    "type": "Nozzle",
-    "palletQta": 9000,
-    "jm": "Pieces",
-    "description": "Nozzle for products"
-  },
-  {
-    "myIndex": "Q-C-NOZ-14-G〵Z",
-    "type": "Nozzle",
-    "palletQta": 9000,
-    "jm": "Pieces",
-    "description": "Nozzle for products"
-  },
-  {
-    "myIndex": "R-NOZ-16-M〵Z",
-    "type": "Nozzle",
-    "palletQta": 9000,
-    "jm": "Pieces",
-    "description": "Nozzle for products"
-  },
-  {
-    "myIndex": "R-NOZ-16-M",
-    "type": "Nozzle",
-    "palletQta": 9000,
-    "jm": "Pieces",
-    "description": "Nozzle for products"
-  },
-  {
-    "myIndex": "KRP-R-NOZ-100",
+    "index": "KRP-R-NOZ-100",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
-    "myIndex": "KRP-R-NOZ-100-Z",
+    "index": "KRP-R-NOZ-100-Z",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
-    "myIndex": "KRP-R-NOZ-140",
+    "index": "KRP-R-NOZ-140",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
-    "myIndex": "KRP-R-NOZ-140-Z",
+    "index": "KRP-R-NOZ-140-Z",
     "type": "Nozzle",
     "palletQta": 9000,
     "jm": "Pieces",
     "description": "Dusza nozzle nowy typ 140mm do 10 14 16"
   },
   {
-    "myIndex": "X-CFS-MIXER-N",
+    "index": "X-CFS-MIXER-N",
     "type": "Nozzle",
     "palletQta": 48000,
     "jm": "Pieces",
     "description": "Mixer wyciskacza do mas nowa wersja"
   },
   {
-    "myIndex": "OZ-U-255-164-295",
+    "index": "OZ-U-255-164-295",
     "type": "Carton",
     "palletQta": 880,
     "jm": "Pieces",
     "description": "Packaging for Chemical injection system 255X165X295MM, 5-layer cardboard"
   },
   {
-    "myIndex": "OJ-CIS-380",
+    "index": "OJ-CIS-380",
     "type": "Carton",
     "palletQta": 800,
     "jm": "Pieces",
     "description": "Opakowanie do chemical injection system"
   },
   {
-    "myIndex": "OZ-P-1150-750",
+    "index": "OZ-P-1150-750",
     "type": "Carton",
     "palletQta": 1900,
     "jm": "Pieces",
     "description": "Przekladki paletowe 1150 mmx750 mm"
   },
   {
-    "myIndex": "KRP-ST-CART-310-B",
+    "index": "KRP-ST-CART-310-B",
     "type": "Cartridge",
     "palletQta": 936,
     "jm": "Pieces",
     "description": "Blue cartridges for products"
   },
   {
-    "myIndex": "Q-C-CART-345ML",
+    "index": "Q-C-CART-345ML",
     "type": "Cartridge",
     "palletQta": 1000,
     "jm": "Pieces",
     "description": "Blue cartridges for products"
   },
   {
-    "myIndex": "KRP-ST-CART-310-G",
+    "index": "KRP-ST-CART-310-GR",
     "type": "Cartridge",
     "palletQta": 936,
     "jm": "Pieces",
-    "description": "Gray cartridges for products"
+    "description": "Kartusz 310 ml szary"
   },
   {
-    "myIndex": "KRP-ST-CART-310",
+    "index": "KRP-ST-CART-310",
     "type": "Cartridge",
     "palletQta": 936,
     "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
-    "myIndex": "KRP-ST-CART-175",
+    "index": "KRP-ST-CART-175",
     "type": "Cartridge",
     "palletQta": 1320,
     "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
-    "myIndex": "KRP-ST-CART-175-B",
+    "index": "KRP-ST-CART-175-B",
     "type": "Cartridge",
     "palletQta": 1320,
     "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
-    "myIndex": "KRP-ST-CART-175-G",
+    "index": "KRP-ST-CART-175-GR",
     "type": "Cartridge",
     "palletQta": 1320,
     "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
-    "myIndex": "KRN-ST-CART-600CAP",
+    "index": "KRN-ST-CART-600CAP",
     "type": "Cartridge",
     "palletQta": 472,
     "jm": "Pieces",
     "description": "Kartusz SBS 600ml bialy nylon z nakretka"
   },
   {
-    "myIndex": "KRN-ST-CART-600",
+    "index": "KRN-ST-CART-600",
     "type": "Cartridge",
     "palletQta": 472,
     "jm": "Pieces",
     "description": "Kartusz SBS 600ml bialy nylon"
   },
   {
-    "myIndex": "KRP-ST-PISTON-B",
+    "index": "KRP-ST-PISTON-B",
     "type": "Piston",
     "palletQta": 15400,
     "jm": "Pieces",
     "description": "Blue pistons for products"
   },
   {
-    "myIndex": "KRP-ST-PISTON",
+    "index": "KRP-ST-PISTON",
     "type": "Piston",
     "palletQta": 13200,
     "jm": "Pieces",
     "description": "Pistons for products"
   },
   {
-    "myIndex": "KRP-ST-CAP-WHI",
+    "index": "KRP-ST-CAP-WHI",
     "type": "White",
     "palletQta": 32952,
     "jm": "Pieces",
     "description": "Bottle corks"
   },
   {
-    "myIndex": "Q-C-CART-ZKK-385ML",
+    "index": "Q-C-CART-ZKK-385ML",
     "type": "Cartridge",
     "palletQta": 1065,
     "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
-    "myIndex": "Q-C-CART-380ML-S",
+    "index": "Q-C-CART-380ML-S",
     "type": "Cartridge",
     "palletQta": 1944,
     "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
-    "myIndex": "Q-C-CART-SBS-600ML",
+    "index": "Q-C-CART-SBS-600ML",
     "type": "Cartridge",
     "palletQta": 1224,
     "jm": "Pieces",
     "description": "Cartridges for products"
   },
   {
-    "myIndex": "Q-C-CAP-COAX-380",
+    "index": "Q-C-CAP-COAX-380",
     "type": "Piston",
     "palletQta": 24300,
     "jm": "Pieces",
     "description": "Piston for products"
   },
   {
-    "myIndex": "Q-C-DOLGRAN63",
+    "index": "Q-C-DOLGRAN63",
     "type": "Chemical",
     "palletQta": 1065,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-HDK-S13",
+    "index": "Q-C-HDK-S13",
     "type": "Chemical",
     "palletQta": 160,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-HDK-H18",
+    "index": "Q-C-HDK-H18",
     "type": "Chemical",
     "palletQta": 160,
     "jm": "kg",
     "description": "White colloidal powder of high purity"
   },
   {
-    "myIndex": "Q-C-HDK-N20",
+    "index": "Q-C-HDK-N20",
     "type": "Chemical",
     "palletQta": 160,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-HSH-200NA",
+    "index": "Q-C-HSH-200NA",
     "type": "Chemical",
     "palletQta": 160,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-BN-20-SE",
+    "index": "Q-C-BN-20-SE",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Utwardach"
   },
   {
-    "myIndex": "Q-C-EPOXY-EP320",
+    "index": "Q-C-EPOXY-EP320",
     "type": "Zywica",
     "palletQta": 1000,
     "jm": "kg",
     "description": "Zywica poksydowa EP 320"
   },
   {
-    "myIndex": "Q-C-SBND-W-12-MST",
+    "index": "Q-C-SBND-W-12-MST",
     "type": "Chemical",
     "palletQta": 1000,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-PRKQ-A150",
+    "index": "Q-C-PRKQ-A150",
     "type": "Chemical",
     "palletQta": 30,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-CM-PSF-STAND-V3",
+    "index": "Q-CM-PSF-STAND-V3",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF Standardowy wersja 3"
   },
   {
-    "myIndex": "Q-CM-PSF-ZIMA",
+    "index": "Q-CM-PSF-ZIMA",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF ZIMA"
   },
   {
-    "myIndex": "Q-CM-PSF-LATO",
+    "index": "Q-CM-PSF-LATO",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF LATO"
   },
   {
-    "myIndex": "Q-CM-PSF-STONE",
+    "index": "Q-CM-PSF-STONE",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF STONE"
   },
   {
-    "myIndex": "Q-CM-PSF-GREY",
+    "index": "Q-CM-PSF-GREY",
     "type": "Barrel",
     "palletQta": 0,
     "status": "Available",
@@ -323,276 +323,367 @@
     "description": "Meszanka chemiczna PSF GREY"
   },
   {
-    "myIndex": "Q-CM-EPOXID-A",
+    "index": "Q-CM-EPOXID-A",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna EPOXID-A"
   },
   {
-    "myIndex": "Q-CM-EPOXID-B",
+    "index": "Q-CM-EPOXID-B",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna EPOXID-B"
   },
   {
-    "myIndex": "Q-CM-HYBRYDA-STANDART",
+    "index": "Q-CM-HYBRYDA-STANDART",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna HYBRYDA STANDART"
   },
   {
-    "myIndex": "Q-CM-HYBRYDA-LATO",
+    "index": "Q-CM-HYBRYDA-LATO",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna HYBRYDA LATO"
   },
   {
-    "myIndex": "Q-CM-HYBRYDA-ZIMA",
+    "index": "Q-CM-HYBRYDA-ZIMA",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna HYBRYDA ZIMA"
   },
   {
-    "myIndex": "Q-CMB-PSF-STAND-V3",
+    "index": "Q-CMB-PSF-STAND-V3",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF Standardowy wersja 3"
   },
   {
-    "myIndex": "Q-CMB-PSF-ZIMA",
+    "index": "Q-CMB-PSF-ZIMA",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF ZIMA"
   },
   {
-    "myIndex": "Q-CMB-PSF-LATO",
+    "index": "Q-CMB-PSF-LATO",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF LATO"
   },
   {
-    "myIndex": "Q-CMB-PSF-STONE",
+    "index": "Q-CMB-PSF-STONE",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF STONE"
   },
   {
-    "myIndex": "Q-CMB-PSF-GREY",
+    "index": "Q-CMB-PSF-GREY",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna PSF GREY"
   },
   {
-    "myIndex": "Q-CMB-EPOXID-A",
+    "index": "Q-CMB-EPOXID-A",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna EPOXID-A"
   },
   {
-    "myIndex": "Q-CMB-EPOXID-B",
+    "index": "Q-CMB-EPOXID-B",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna EPOXID-B"
   },
   {
-    "myIndex": "Q-CMB-HYBRYDA-STANDART",
+    "index": "Q-CMB-HYBRYDA-STANDART",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna HYBRYDA STANDART"
   },
   {
-    "myIndex": "Q-CMB-HYBRYDA-LATO",
+    "index": "Q-CMB-HYBRYDA-LATO",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna HYBRYDA LATO"
   },
   {
-    "myIndex": "Q-CMB-HYBRYDA-ZIMA",
+    "index": "Q-CMB-HYBRYDA-ZIMA",
     "type": "Barrel",
     "palletQta": 0,
     "jm": "kg",
     "description": "Meszanka chemiczna HYBRYDA ZIMA"
   },
   {
-    "myIndex": "Q-C-BYK-D-142",
+    "index": "Q-C-BYK-D-142",
     "type": "Chemical",
     "palletQta": 800,
     "jm": "kg",
     "description": "Barrel on a rack"
   },
   {
-    "myIndex": "Q-C-BYK-D-410",
+    "index": "Q-C-BYK-D-410",
     "type": "Chemical",
     "palletQta": 200,
     "jm": "kg",
     "description": "Barrel on a rack"
   },
   {
-    "myIndex": "Q-C-SOCAL-P2",
+    "index": "Q-C-SOCAL-P2",
     "type": "Chemical",
     "palletQta": 555,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-SOCAL-N2R",
+    "index": "Q-C-SOCAL-N2R",
     "type": "Chemical",
     "palletQta": 1050,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-P-POLIMAL-PX",
+    "index": "Q-C-P-POLIMAL-PX",
     "type": "Zywica",
     "palletQta": 1100,
     "jm": "kg",
     "description": "Zywica poliestrowa polimal px"
   },
   {
-    "myIndex": "Q-C-P164-T",
+    "index": "Q-C-P164-T",
     "type": "Zywica",
     "palletQta": 1100,
     "jm": "kg",
     "description": "Zywica poliestrowa polimal px"
   },
   {
-    "myIndex": "Q-C-P164",
+    "index": "Q-C-P164",
     "type": "Zywica",
     "palletQta": 1100,
     "jm": "kg",
     "description": "Zywica vinyloestrowa bez styrenu P164-HYBRYDA"
   },
   {
-    "myIndex": "Q-C-P-120",
+    "index": "Q-C-P-120",
     "type": "Zywica",
     "palletQta": 1100,
     "jm": "kg",
     "description": "Zywica poliestrowa bez styrenu"
   },
   {
-    "myIndex": "Q-C-VP-1570-29-H",
+    "index": "Q-C-VP-1570-29-H",
     "type": "Zywica",
     "palletQta": 1000,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-P-602ABP",
+    "index": "Q-C-P-602ABP",
     "type": "Zywica",
     "palletQta": 1100,
     "jm": "kg",
     "description": "Zywica poliestrowa polimal px"
   },
   {
-    "myIndex": "Q-C-P-GARAMITE",
+    "index": "Q-C-P-GARAMITE",
     "type": "Zywica",
     "palletQta": 1100,
     "jm": "kg",
     "description": "Dodatek reologiczny Garamite 1958"
   },
   {
-    "myIndex": "Q-C-FILM-BE-DL-95",
+    "index": "Q-C-FILM-BE-DL-95",
     "type": "Folia",
     "palletQta": 0,
     "jm": "kg",
     "description": "Folia do kielbasekbe DL95"
   },
   {
-    "myIndex": "Q-C-DTINT-GREY",
+    "index": "Q-C-DTINT-GREY",
     "type": "Barwnik",
     "palletQta": 20,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-DTINT-STONE",
+    "index": "Q-C-DTINT-STONE",
     "type": "Barwnik",
     "palletQta": 20,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-D20",
+    "index": "Q-C-D20",
     "type": "Chemical",
     "palletQta": 600,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "HP-RKERII300W",
+    "index": "HP-RKERII300W",
     "type": "Etykieta",
     "palletQta": 1000,
     "jm": "Pieces",
     "description": "Etykieta to R-KER II 300ml"
   },
   {
-    "myIndex": "HP-KEMPSF300ISO",
+    "index": "HP-KEMPSF300ISO",
     "type": "Etykieta",
     "palletQta": 1000,
     "jm": "Pieces",
     "description": "Etykieta to R-KEM-ISO II 300ml "
   },
   {
-    "myIndex": "HP-PROB-P-40",
+    "index": "HP-PROB-P-40",
     "type": "Etykieta",
     "palletQta": 1000,
     "jm": "Pieces",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-ET-R-KEXII-600",
+    "index": "Q-ET-R-KEXII-600",
     "type": "Etykieta",
     "palletQta": 1000,
     "jm": "Pieces",
     "description": "Etykieta foliowa peel-off R-KEX-II-600 150x190"
   },
   {
-    "myIndex": "Q-ET-RKERII300",
+    "index": "Q-ET-RKERII300",
     "type": "Etykieta",
     "palletQta": 1000,
     "jm": "Pieces",
     "description": "Etykieta foliowa peel-off R-KER-II-300 150x190"
   },
   {
-    "myIndex": "Q-ET-RKEMII410N",
+    "index": "Q-ET-RKEMII410N",
     "type": "Etykieta",
     "palletQta": 1000,
     "jm": "Pieces",
     "description": "ETYKIETA FOLIOWA PEEL-OFF R-KEM-II-410 NOWY WYKROJNIK 189X164MM"
   },
   {
-    "myIndex": "Q-C-OS30-SILO",
+    "index": "Q-C-OS30-SILO",
     "type": "Etykieta",
     "palletQta": 1000,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-C-RHEO-EFKA-1920",
+    "index": "Q-C-RHEO-EFKA-1920",
     "type": "\uD83D\uDE30",
     "palletQta": 560,
     "jm": "kg",
     "description": "\uD83D\uDE30"
   },
   {
-    "myIndex": "Q-ET-R-KEMII-300",
-    "type": "\uD83D\uDE30",
+    "index": "Q-ET-R-KEMII-300",
+    "type": "Etykieta",
     "palletQta": 50650,
     "jm": "kg",
     "description": "Etykieta foliowa peel-off R-KEM-II-300 150x190"
+  },
+  {
+    "index": "Q-C-CFX-F-250",
+    "type": "Chemical",
+    "palletQta": 1000,
+    "jm": "kg",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "Q-C-BENATIX",
+    "type": "Chemical",
+    "palletQta": 500,
+    "jm": "kg",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "Q-TA-B/N-66Y",
+    "type": "Etykieta",
+    "palletQta": 500,
+    "jm": "Pieces",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "Q-C-SBND-W-12-EST",
+    "type": "Chemical",
+    "palletQta": 1050,
+    "jm": "kg",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "Q-C-COAX-HANGER",
+    "type": "Hanger",
+    "palletQta": 52800,
+    "jm": "Pieces",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "Q-C-P-VE-1063",
+    "type": "Zywica",
+    "palletQta": 1000,
+    "jm": "kg",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "Q-C-CAB-O-SIL",
+    "type": "Chemical",
+    "palletQta": 180,
+    "jm": "kg",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "Q-C-ACC-400",
+    "type": "Chemical",
+    "palletQta": 872,
+    "jm": "kg",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "OF-250-300",
+    "type": "Folia",
+    "palletQta": 1000,
+    "jm": "Pieces",
+    "description": "\uD83D\uDE30"
+  },
+  {
+    "index": "Q-C-GFFM",
+    "type": "Chemical",
+    "palletQta": 400,
+    "jm": "kg",
+    "description": "\uD83D\uDE08"
+  },
+  {
+    "index": "OF-KAPTUR-SZARY",
+    "type": "Folia",
+    "palletQta": 500,
+    "jm": "Pieces",
+    "description": "Na mieszalne"
+  },
+  {
+    "index": "Q-C-BYK-7410ET",
+    "type": "Zywica",
+    "palletQta": 200,
+    "jm": "kg",
+    "description": "\uD83D\uDE43"
+  },
+  {
+    "index": "Q-C-CAB-M5",
+    "type": "Chemical",
+    "palletQta": 180,
+    "jm": "kg",
+    "description": "\uD83D\uDE0A"
   }
 ]

@@ -54,7 +54,7 @@ export interface IStatsItem {
 
 
 export interface IItemTemplate {
-    myIndex: string,
+    index: string,
     type: string,
     palletQta: number,
     jm: string,

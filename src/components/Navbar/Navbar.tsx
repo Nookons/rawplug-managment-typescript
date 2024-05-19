@@ -10,7 +10,7 @@ import {Backdrop, Button, CircularProgress, Skeleton} from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {mySignOut} from "../../utils/SignOut";
-import { userSignOut } from '../../store/reducers/User/userSlice';
+import {signOutUser, userSignOut} from '../../store/reducers/User/userSlice';
 
 const Navbar = () => {
     const dispatch = useAppDispatch();
@@ -32,11 +32,7 @@ const Navbar = () => {
     const logOut = async () => {
         setIsLoading(true)
         try {
-            const response = await mySignOut();
-
-            if (response) {
-                dispatch(userSignOut(false))
-            }
+            dispatch(signOutUser())
         }catch (e) {
             console.log(e);
         } finally {

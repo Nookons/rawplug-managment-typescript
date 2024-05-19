@@ -3,10 +3,28 @@ import styles from './User.module.css';
 import {Backdrop, Button, CircularProgress, Link, TextField} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/storeHooks";
-import {HOME_ROUTE, SIGN_UP_ROUTE} from "../../utils/consts";
+import {HOME_ROUTE, MACHINE_SCREEN_ROUTE, SIGN_UP_ROUTE} from "../../utils/consts";
 import logo from '../../assets/logo.svg'
 import {mySignIn} from "../../utils/SignIn";
 import {userSignIn} from "../../store/reducers/User/userSlice";
+import {doc, getDoc, updateDoc} from "firebase/firestore";
+import {db} from "../../firebase";
+
+
+async function getRedirect  (user: any) {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        const role = docSnap.data().role
+        switch (role) {
+            case "machine":
+                return MACHINE_SCREEN_ROUTE
+            default:
+                return HOME_ROUTE
+        }
+    }
+}
 
 const SignIn: FC = () => {
     const dispatch = useAppDispatch();
@@ -51,11 +69,13 @@ const SignIn: FC = () => {
         try {
             const response = await mySignIn({ nickName, password });
 
-            console.log(response);
-
-            if (response) {
+            if (response.emailVerified) {
                 dispatch(userSignIn(response))
-                navigate(HOME_ROUTE)
+
+                const path = await getRedirect(response)
+                navigate(path)
+            } else {
+                setError("Your email address has not been verified, please check your mailbox");
             }
         } catch (error) {
             handleErrors(error);
@@ -70,12 +90,12 @@ const SignIn: FC = () => {
     }, [])
 
 
-    useEffect(() => {
+    /*useEffect(() => {
         // If the user is authenticated, redirect to home
         if (user && user.uid) {
             navigate(HOME_ROUTE);
         }
-    }, [user, navigate]);
+    }, [user, navigate]);*/
 
     return (
         <div className={styles.Main}>

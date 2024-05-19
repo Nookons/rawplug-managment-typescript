@@ -18,8 +18,9 @@ import ThirdStep from "./Steps/ThirdStep";
 import FinishStep from "./Steps/FinishStep";
 import {db} from "../../../firebase";
 
-import {doc, getDoc, updateDoc} from "firebase/firestore";
+import {collection, doc, getDoc, onSnapshot, query, setDoc, updateDoc, where} from "firebase/firestore";
 import dayjs from "dayjs";
+import {IMachine} from "../../MachineScreen/MachineScreen";
 
 
 const steps = [
@@ -40,11 +41,12 @@ const steps = [
 
 const CreateItem = () => {
     const {enqueueSnackbar} = useSnackbar();
-    const {user, error, loading} = useAppSelector(state => state.user)
-    const [activeStep, setActiveStep] = React.useState(0);
+    const {user, error, loading} = useAppSelector(state => state.user);
+
+    const [activeStep, setActiveStep] = useState(0);
 
     const [data, setData] = useState<IItemTemplate>({
-        myIndex: "",
+        index: "",
         type: "",
         palletQta: 0,
         jm: "",
@@ -56,54 +58,36 @@ const CreateItem = () => {
         enqueueSnackbar(title, {variant});
     };
 
+    const [oldArray, setOldArray] = useState();
+
     const onAddNewItem = async () => {
-        const docRef = doc(db, "PWT70", "templates");
-        const docSnap = await getDoc(docRef);
-
         try {
-            if (docSnap.exists()) {
-                const oldArray = docSnap.data().templates
+            await setDoc(doc(db, "itemsTemplate", data.index.replace("/", "\\")), {
+                createDate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
+                ...data
+            });
 
-                const isHave = oldArray.findIndex((item: IItemTemplate) => item.myIndex === data.myIndex)
-
-                if (isHave > -1) {
-                    throw new Error("This element already exists in the system")
-                }
-
-                await updateDoc(doc(db, "PWT70", "templates"), {
-                    lastUpdate: dayjs().format("YYYY-MM-DD [at] HH:mm"),
-                    person: user.email,
-                    personUid: user.uid,
-                    templates: [
-                        ...oldArray,
-                        data
-                    ]
-                });
-                setActiveStep(0)
-                handleClickVariant("success", "Item was add")
-                setData({
-                    myIndex: "",
-                    type: "",
-                    palletQta: 0,
-                    jm: "",
-                    description: "",
-                    status: "",
-                })
-
-            } else {
-                throw new Error("Document not exists");
-            }
+            setActiveStep(0);
+            handleClickVariant("success", "Item was added");
+            setData({
+                index: "",
+                type: "",
+                palletQta: 0,
+                jm: "",
+                description: "",
+                status: "",
+            });
         } catch (error) {
-            handleClickVariant("error", error.toString())
+            handleClickVariant("error", error.toString());
         }
     };
 
     const handleNext = async (event) => {
         try {
-            if (activeStep === 0 && !data.myIndex.length && !data.type) {
+            if (activeStep === 0 && !data.index.length && !data.type) {
                 throw new Error("You're trying to add a new item with an empty index or type")
             }
-            if (activeStep === 1 && !data.jm.length ) {
+            if (activeStep === 1 && !data.jm.length) {
                 throw new Error("You're trying to add a new item with an empty jm.")
             }
 

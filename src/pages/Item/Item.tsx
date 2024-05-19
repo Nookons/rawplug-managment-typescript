@@ -174,7 +174,7 @@ const Item = () => {
             const response = await onDeleteItem(currentItem.item, user)
             if (response) {
                 handleClickVariant("success", "Item was removed success")
-                navigate(HOME_ROUTE);
+                navigate(-1);
             } else {
                 handleClickVariant("error", 'Not correctly input for remove')
             }

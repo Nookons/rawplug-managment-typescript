@@ -8,6 +8,7 @@ export async function mySignOut() {
     const auth = getAuth();
     let status = false;
 
+
     await signOut(auth).then(() => {
         status = true
     }).catch((error) => {
