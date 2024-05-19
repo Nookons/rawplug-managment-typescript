@@ -4,12 +4,29 @@ enum positionEnum {
     machine = 'Machine worker',
 }
 
-interface IUser {
-    firstName: string;
-    lastName: string;
+interface IStsTokenManager {
+    refreshToken: string;
+    accessToken: string;
+    expirationTime: number;
+}
+interface IProviderData {
+    providerId: string;
+    uid: string;
+    displayName: string | null;
     email: string;
-    avatar: string;
-    phoneNumber: string;
-    experience: string;
-    position: positionEnum;
+    phoneNumber: string | null;
+    photoURL: string | null;
+}
+
+export interface IUser {
+    uid: string;
+    email: string;
+    emailVerified: boolean;
+    isAnonymous: boolean;
+    createdAt: string;
+    lastLoginAt: string;
+    apiKey: string;
+    appName: string;
+    stsTokenManager: IStsTokenManager;
+    providerData: [IProviderData]
 }

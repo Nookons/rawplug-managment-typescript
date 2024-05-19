@@ -36,7 +36,7 @@ const FinishStep: FC<FirstStepProps> = ({data, setData}) => {
             <Card sx={{minWidth: 240}} variant={"outlined"} raised={true}>
                 <CardContent>
                     <Typography variant="h6" gutterBottom component="h6">
-                        {data.myIndex} | {data.type}
+                        {data.index} | {data.type}
                     </Typography>
 
                     <Typography fontSize={12} color="text.secondary" variant={"subtitle1"}>

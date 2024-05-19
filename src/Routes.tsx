@@ -1,5 +1,5 @@
 import {
-    ADD_ITEM_ROUTE,
+    ADD_ITEM_ROUTE, ADD_NEW_USER_ROUTE,
     ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE,
     ADD_SOLO_BARREL,
     BARREL_STATS_ROUTE,
@@ -7,7 +7,7 @@ import {
     FIND_ITEM_ROUTE,
     HOME_ROUTE, INFO_FULL_ITEM_ROUTE, INFO_READY_PALLET_ROUTE,
     ITEM_ROUTE,
-    ITEMS_GRID_ROUTE,
+    ITEMS_GRID_ROUTE, MACHINE_SCREEN_ROUTE,
     RECEIPT_REPORT_ROUTE, REMOVED_ROUTE,
     SIGN_IN_ROUTE,
     USER_SETTINGS_ROUTE, WAREHOUSE_ROUTE,
@@ -30,6 +30,8 @@ import Display from "./pages/Ready/Display/Display";
 import AddTemplate from "./pages/Ready/Add/AddTemplate";
 import SignIn from "./pages/User/SignIn";
 import UserSettings from "./pages/User/setting/UserSettings";
+import AddNewUser from "./pages/User/AddNewUser/AddNewUser";
+import MachineScreen from "./pages/MachineScreen/MachineScreen";
 
 
 interface Route {
@@ -54,6 +56,16 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: SIGN_IN_ROUTE,
         Component: SignIn,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: ADD_NEW_USER_ROUTE,
+        Component: AddNewUser,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: MACHINE_SCREEN_ROUTE,
+        Component: MachineScreen,
         label: 'AppPrivateRoute',
     },
     {

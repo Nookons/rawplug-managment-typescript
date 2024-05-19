@@ -7,6 +7,7 @@ export const PROFILE_ROUTE: string = '/user'
 export const SIGN_IN_ROUTE: string = '/sign-in'
 export const SIGN_UP_ROUTE: string = '/sign-up'
 export const USER_SETTINGS_ROUTE: string = '/user-settings'
+export const ADD_NEW_USER_ROUTE: string = '/create-user'
 
 // Item Route
 export const ADD_ITEM_ROUTE: string = '/add-item'
@@ -38,5 +39,4 @@ export const CHECK_PLANS_ROUTE: string = '/check-plans'
 export const MIXERS_RECEIPTS_ROUTE: string = '/mixers-receipts'
 
 //Machine Route
-export const NAP02_ROUTE: string = '/nap-02'
-export const NAP03_ROUTE: string = '/nap-03'
+export const MACHINE_SCREEN_ROUTE: string = '/machine-screen'

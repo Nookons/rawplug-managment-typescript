@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useMemo, useState} from 'react';
 import {IItem} from '../../../types/Item';
 import {
-    Box,
+    Box, Button,
     Divider, Grid,
     Paper,
     Stack,
@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import {Link} from "react-router-dom";
 import {ITEM_ROUTE} from "../../../utils/consts";
+import barrelCheck from "../../../utils/PDF/BarrelCheck";
 
 interface BarrelListProps {
     items: IItem[];
@@ -70,19 +71,36 @@ const BarrelList: FC<BarrelListProps> = ({items, searchTags}) => {
         setTotalQuantity(totalQuantity);
     }, [fullArray]);
 
+    const handleGeneratePDF = async () => {
+        setTimeout(async () => {
+            await barrelCheck(sortedArray);
+        }, 250);
+    };
 
     return (
         <div>
+            <Button
+                fullWidth={true}
+                onClick={handleGeneratePDF}
+                variant={"contained"}
+                sx={{mb: 2}}
+            >
+                Create check list
+            </Button>
             <Grid container sx={{mb: 2}} spacing={2}>
                 <Grid item xs={6} md={6}>
-                    <Paper sx={{p: 1}}><article>Available pallets: ( {fullArray.length} )</article></Paper>
+                    <Paper sx={{p: 1}}>
+                        <article>Available pallets: ( {fullArray.length} )</article>
+                    </Paper>
                 </Grid>
                 <Grid item xs={6} md={6}>
-                    <Paper sx={{p: 1}}><article>Total: ( {totalQuantity.toLocaleString()} kg )</article></Paper>
+                    <Paper sx={{p: 1}}>
+                        <article>Total: ( {totalQuantity.toLocaleString()} kg )</article>
+                    </Paper>
                 </Grid>
             </Grid>
 
-            <TableContainer component={Paper} variant={"elevation"}>
+            <TableContainer id="pdf-content" component={Paper} variant={"elevation"}>
                 <Table aria-label="simple table" size={"small"} align={"left"} padding={"normal"} cellSpacing={2}
                        cellPadding={15}>
                     <TableHead>
