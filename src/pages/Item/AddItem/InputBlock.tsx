@@ -120,7 +120,7 @@ const InputBlock: FC<InputBlockProps> = ({ onChangeDataEvent, formData }) => {
                 <OutlinedInput
                     required
                     id="outlined-adornment-quantity"
-                    type="number"
+                    type="Number"
                     value={formData.quantity}
                     onChange={(event) => onChangeDataEvent('quantity', Number(event.target.value))}
                     endAdornment={<InputAdornment position="end">{formData.JM}</InputAdornment>}
