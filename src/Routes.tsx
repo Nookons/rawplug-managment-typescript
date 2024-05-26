@@ -1,7 +1,7 @@
 import {
     ADD_ITEM_ROUTE, ADD_NEW_USER_ROUTE,
-    ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE,
-    ADD_SOLO_BARREL,
+    ADD_PALLET_TEMPLATE,
+    ADD_SOLO_BARREL, ADMIN_DISPLAY_ROUTE,
     BARREL_STATS_ROUTE,
     CREATE_ITEM_ROUTE, DISPLAY_ROUTE,
     FIND_ITEM_ROUTE,
@@ -24,14 +24,14 @@ import RemovedList from "./pages/Item/RemovedList/RemovedList";
 import Warehouse from "./pages/Warehouse/Warehouse";
 import AddSoloBarrel from "./pages/Item/AddSoloBarrel/AddSoloBarrel";
 import InfoPage from "./pages/Ready/Info/InfoPage";
-import InfoItem from "./pages/Ready/Info/InfoItem";
-import Add from "./pages/Ready/Add/Add";
 import Display from "./pages/Ready/Display/Display";
 import AddTemplate from "./pages/Ready/Add/AddTemplate";
 import SignIn from "./pages/User/SignIn";
 import UserSettings from "./pages/User/setting/UserSettings";
 import AddNewUser from "./pages/User/AddNewUser/AddNewUser";
 import MachineScreen from "./pages/MachineScreen/MachineScreen";
+import AdminDisplay from "./pages/Ready/AdminDisplay/AdminDisplay";
+import InfoPallet from "./pages/Ready/Info/InfoPallet";
 
 
 interface Route {
@@ -61,6 +61,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: ADD_NEW_USER_ROUTE,
         Component: AddNewUser,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: ADMIN_DISPLAY_ROUTE,
+        Component: AdminDisplay,
         label: 'AppPrivateRoute',
     },
     {
@@ -124,18 +129,13 @@ export const privateRoutes: PrivateRoutes = [
         label: 'AppPrivateRoute',
     },
     {
+        path: INFO_FULL_ITEM_ROUTE,
+        Component: InfoPallet,
+        label: 'AppPrivateRoute',
+    },
+    {
         path: INFO_READY_PALLET_ROUTE,
         Component: InfoPage,
-        label: 'AppPrivateRoute',
-    },
-    {
-        path: INFO_FULL_ITEM_ROUTE,
-        Component: InfoItem,
-        label: 'AppPrivateRoute',
-    },
-    {
-        path: ADD_PALLET_ROUTE,
-        Component: Add,
         label: 'AppPrivateRoute',
     },
     {

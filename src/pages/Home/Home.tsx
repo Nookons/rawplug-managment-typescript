@@ -5,7 +5,7 @@ import styles from './Home.module.css'
 import Warehouse from "./Warehouse/Warehouse";
 import {Link, useNavigate} from "react-router-dom";
 import {
-    ADD_ITEM_ROUTE, ADD_NEW_USER_ROUTE, ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE, ADD_SOLO_BARREL,
+    ADD_ITEM_ROUTE, ADD_NEW_USER_ROUTE, ADD_PALLET_ROUTE, ADD_PALLET_TEMPLATE, ADD_SOLO_BARREL, ADMIN_DISPLAY_ROUTE,
     BARREL_STATS_ROUTE,
     CREATE_ITEM_ROUTE, DISPLAY_ROUTE, INFO_READY_PALLET_ROUTE,
     ITEMS_GRID_ROUTE, MACHINE_SCREEN_ROUTE,
@@ -26,6 +26,7 @@ import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
+import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import InfoIcon from '@mui/icons-material/Info';
@@ -53,7 +54,7 @@ const Home: FC = () => {
         }
     }, []);
 
-    useEffect(() => {
+   /* useEffect(() => {
         if (loadData) {
             switch (loadData.role) {
                 case "machine":
@@ -63,7 +64,7 @@ const Home: FC = () => {
                     break
             }
         }
-    }, [loadData]);
+    }, [loadData]);*/
 
     return (
         <div className={styles.Main}>
@@ -100,7 +101,7 @@ const Home: FC = () => {
                         <AccordionDetails className={styles.DetailsWrapper}>
                             <Link to={INFO_READY_PALLET_ROUTE}><Button fullWidth={true} variant={"contained"}><InfoIcon /></Button></Link>
                             <Link to={MACHINE_SCREEN_ROUTE}><Button fullWidth={true} variant={"contained"}><ScreenSearchDesktopIcon /></Button></Link>
-                            <Link to={ADD_PALLET_ROUTE}><Button fullWidth={true} variant={"contained"}><AddBoxIcon /></Button></Link>
+                            <Link to={ADMIN_DISPLAY_ROUTE}><Button fullWidth={true} variant={"contained"}><AirplaneTicketIcon /></Button></Link>
                             <Link to={DISPLAY_ROUTE}><Button fullWidth={true} variant={"contained"}><ArtTrackIcon /></Button></Link>
                             <Link to={ADD_PALLET_TEMPLATE}><Button fullWidth={true} variant={"contained"}><NoteAddIcon /></Button></Link>
                         </AccordionDetails>

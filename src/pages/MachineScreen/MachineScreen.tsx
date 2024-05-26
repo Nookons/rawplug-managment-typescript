@@ -280,15 +280,6 @@ const MachineScreen = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Paper sx={{p: 2, mb: 2}}>
-                        <Typography variant="h5" gutterBottom component="h5">
-                            Pallets
-                        </Typography>
-                        <p>
-                            Нижче ви знайдете всі палети за номером квитанції {plan.id}
-                        </p>
-                    </Paper>
-
                     <LastPallets id={plan.id}/>
                 </Grid>
                 <Grid item xs={12} md={8}>
@@ -316,7 +307,7 @@ const MachineScreen = () => {
 
                                     return (
                                         <TableRow>
-                                            <TableCell><p>{el.index}</p></TableCell>
+                                            <TableCell><p style={{whiteSpace: "nowrap"}}>{el.index}</p></TableCell>
                                             <TableCell><p>{el.type}</p></TableCell>
                                             <TableCell><p>{need.toLocaleString()}</p></TableCell>
                                         </TableRow>

@@ -1,6 +1,6 @@
 import {getCurrentUser} from "../utils/plans/AddPallet";
 
-interface INeededItem {
+export interface INeededItem {
     index?: string;
     quantity?: number;
 }
@@ -35,5 +35,4 @@ export interface IPalletItem {
     jm: string;
     description: string;
     needItem?: INeededItem[]
-
 }

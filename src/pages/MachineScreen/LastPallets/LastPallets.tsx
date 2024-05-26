@@ -43,7 +43,7 @@ const LastPallets: FC<LastPalletsProps> = ({id}) => {
         return (
             <TableContainer component={Paper}>
                 <IconButton onClick={generatePalletsPdf} sx={{mx: 1}} aria-label="add">
-                    <PictureAsPdfIcon/>
+                    <article># {id}</article><PictureAsPdfIcon sx={{mx: 2}}/>
                 </IconButton>
                 <Table aria-label="simple table">
                     <TableHead>
