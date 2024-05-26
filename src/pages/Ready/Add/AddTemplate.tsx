@@ -1,168 +1,188 @@
 import React, {useEffect, useState} from 'react';
-import styles from './Add.module.css'
 import {
     Autocomplete, Backdrop,
     Box,
-    Button,
-    ButtonGroup,
-    CircularProgress,
+    Button, CircularProgress,
+    Container,
     Divider,
-    Grid,
+    Grid, IconButton,
     Paper,
     Slider,
     Stack,
+    Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     TextField
 } from "@mui/material";
-import dayjs from "dayjs";
+import {IOSSlider} from "../../../components/SliderStyle";
+import {IItemTemplate} from "../../../types/Item";
+import {collection, query, where, onSnapshot, setDoc, doc} from "firebase/firestore";
 import {db} from "../../../firebase";
-import {doc, getDoc, setDoc} from "firebase/firestore";
-import InputBlock from "./AddTemplateDep/InputBlock";
-import NeedItem from "./AddTemplateDep/NeedItem";
-import {AddPalletTemplate} from "../../../utils/Ready/Add";
-
-import dataItems from '../../../assets/ItemsInfo.json'
-
-
-export interface INeedItemTemplate {
-    index: string;
-    type: string;
-    description: string;
-    quantity: number;
-}
-
-export interface IAddPalletTemplate {
-    id: number;
-    index: string;
-    description: string;
-    imgUrl: string;
-    data: string;
-    capacity: number;
-    palletQta: number;
-    pallet: string;
-    atBox: number;
-    weight: number;
-    jm: string;
-    needItem: INeedItemTemplate[];
-}
+import NeedItem from "./NeedItem";
+import {Add} from "@mui/icons-material";
+import dayjs from "dayjs";
 
 const AddTemplate = () => {
+    const [isSending, setIsSending] = useState<boolean>(false);
 
-    const [needItemCount, setNeedItemCount] = useState<number>(0);
-    const [dataTemplates, setDataTemplates] = useState<any[]>([]);
-
-    const [needItemArray, setNeedItemArray] = useState<INeedItemTemplate[]>([]);
-
-    const [isSending, setIsSending] = useState(false);
-
-    const [inputData, setInputData] = useState<IAddPalletTemplate>({
-        id: Date.now(),
+    const [data, setData] = useState({
         index: "",
         description: "",
-        imgUrl: "",
-        data: dayjs().format("YYYY-MM-DD"),
-        capacity: 0,
-        palletQta: 0,
-        pallet: "",
-        atBox: 0,
-        weight: 0,
-        jm: "Pieces",
-        needItem: [],
+        atBox: 10,
+        palletQta: 84,
     });
 
+    const [itemsTemplate, setItemsTemplate] = useState<any>([]);
+
+
+    const [needItemsCount, setNeedItemsCount] = useState<number>(1);
+    const [needItem, setNeedItem] = useState<IItemTemplate[]>([]);
+
     useEffect(() => {
-        setInputData((prev) => ({...prev, needItem: needItemArray}))
-    }, [needItemArray]);
+        setItemsTemplate([])
 
-    const indexWriting = (value: string) => {
-        const refactoredString = value.toUpperCase().replace(" ", "-")
-        setInputData((prev) => ({...prev, index: refactoredString}))
-    }
+        const q = query(collection(db, "itemsTemplate"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                setItemsTemplate((prev) => [...prev, doc.data()])
+            });
+        });
+    }, []);
 
-    const onSave = async () => {
-        try {
-            setIsSending(true)
-            const response = await AddPalletTemplate(inputData)
 
-            if (response[0]) {
-                setInputData({
-                    id: Date.now(),
-                    index: "",
-                    description: "",
-                    imgUrl: "",
-                    data: dayjs().format("YYYY-MM-DD"),
-                    capacity: 0,
-                    palletQta: 0,
-                    pallet: "",
-                    atBox: 0,
-                    weight: 0,
-                    jm: "Pieces",
-                    needItem: [],
-                })
-                setNeedItemCount(0)
-            }
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setTimeout(() => {
-                setIsSending(false)
-            }, 250)
+
+    const onInput = (value: any, type: string) => {
+        if (type === "index") {
+            const newString = value.toUpperCase().replace(" ", "-")
+            setData((prev) => ({...prev, index: newString}))
+        } else {
+            setData((prev) => ({...prev, [type]: value}))
         }
     }
 
-    const migrateDB = async () => {
-        const id = Date.now();
+    const onAddTemplate = async () => {
+        try {
+            setIsSending(true)
+            const template = {
+                ...data,
+                data: dayjs().format("dddd, MMMM DD, YYYY [at] HH:mm"),
+                jm: "Pieces",
+                needItem: [...needItem]
+            }
 
-        dataItems.forEach(el => {
-            setDoc(doc(db, "itemsTemplate", el.index.replace("/", "\\")), {
-                ...el
+            await setDoc(doc(db, "palletsTemplate", data.index.replace("/", "\\")), {
+                ...template
             });
-        })
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsSending(false)
+        }
     }
 
-
     return (
-        <div className={styles.Main}>
-            <Backdrop sx={{zIndex: 99}} open={isSending}>
-                <CircularProgress color="inherit"/>
-            </Backdrop>
-            <Button onClick={migrateDB} fullWidth={true} variant="contained" sx={{my: 2}}>
-                Add data to base...
-            </Button>
-
-            <InputBlock indexWriting={indexWriting} inputData={inputData} setInputData={setInputData} />
-            <hr/>
+        <Container sx={{p: 2, minHeight: 'calc(100dvh - 162px)'}} maxWidth="md">
             <Grid container spacing={2}>
+
+                <Backdrop sx={{zIndex: 99}} open={isSending}>
+                    <CircularProgress color="inherit"/>
+                </Backdrop>
+
                 <Grid item xs={12} md={12}>
-
-                    <Box sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 2,
-                        justifyContent: "flex-end"
-                    }}>
-                        <h5>Need item: {needItemCount} pcs</h5>
-                        <ButtonGroup variant="contained" aria-label="text button group">
-                            <Button onClick={() => setNeedItemCount(prevState => prevState + 1)}>+</Button>
-                            <Button onClick={() => setNeedItemCount(prevState => prevState - 1)}>-</Button>
-                        </ButtonGroup>
-                    </Box>
-
-                    <Grid sx={{my: 2}} container spacing={2}>
-                        {Array.from({ length: needItemCount }).map((_, index) => {
-
-                            return (
-                                <NeedItem needItemArray={needItemArray}  setNeedItemArray={setNeedItemArray}/>
-                            )
-                        })}
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} md={12}>
-                    <Button onClick={onSave} fullWidth={true} variant="contained" sx={{my: 2}}>
-                        Save
+                    <Button onClick={onAddTemplate} fullWidth={true} variant="contained" sx={{my: 2}}>
+                        Add new template
                     </Button>
                 </Grid>
+
+                <Grid item xs={12} md={12}>
+                    <Paper sx={{p: 2}}>
+                        <TextField
+                            value={data.index}
+                            onInput={(event) => onInput(event.target.value, 'index')}
+                            fullWidth={true}
+                            id="standard-basic"
+                            label="New Index"
+                            variant="standard"
+                        />
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={12}>
+                    <Paper sx={{p: 2}}>
+                        <TextField
+                            value={data.description}
+                            onInput={(event) => onInput(event.target.value, 'description')}
+                            fullWidth={true}
+                            id="standard-basic"
+                            label="New Description"
+                            variant="standard"
+                        />
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Paper sx={{p: 2}}>
+                        <Stack my={1} spacing={2}>
+                            <article style={{whiteSpace: 'nowrap'}}>At Box {data.atBox}</article>
+                            <IOSSlider
+                                value={data.atBox}
+                                onChange={(event) => onInput(event.target.value, 'atBox')}
+                                step={1}
+                                max={12}
+                                marks
+                                aria-label="Slider"
+                            />
+                        </Stack>
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Paper sx={{p: 2}}>
+                        <Stack my={1} spacing={2}>
+                            <article style={{whiteSpace: 'nowrap'}}>At Pallet {data.palletQta}</article>
+                            <IOSSlider
+                                value={data.palletQta}
+                                onChange={(event) => onInput(event.target.value, 'palletQta')}
+                                step={1}
+                                max={84}
+                                aria-label="Slider"
+                            />
+                        </Stack>
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Stack my={1} spacing={2}>
+                        <article>
+                            Need items screen
+                        </article>
+
+                        <TableContainer component={Paper}>
+                            <Table aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Index</TableCell>
+                                        <TableCell>Quantity</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {needItem.map((el, index) => (
+                                        <TableRow key={index}>
+                                            <TableCell>{el.index}</TableCell>
+                                            <TableCell>{el.quantity}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Stack>
+                </Grid>
+
+
+                {Array.from({length: needItemsCount}).map((el, index) => (
+                    <NeedItem
+                        setNeedItemsCount={setNeedItemsCount}
+                        setNeedItem={setNeedItem}
+                        itemsTemplate={itemsTemplate}
+                        key={index}
+                    />
+                ))}
             </Grid>
-        </div>
+        </Container>
     );
 };
 

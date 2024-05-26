@@ -1,8 +1,8 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
-    Autocomplete,
+    Autocomplete, Backdrop,
     Button,
-    Checkbox,
+    Checkbox, CircularProgress,
     FormControlLabel,
     FormGroup,
     Grid, IconButton,
@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import dataIndexes from "../../../assets/PalletData300ml.json";
 import dayjs from "dayjs";
-import {doc, setDoc} from "firebase/firestore";
+import {collection, doc, onSnapshot, query, setDoc} from "firebase/firestore";
 import {db} from "../../../firebase";
 import {Add, Favorite, FavoriteBorder} from "@mui/icons-material";
 import StartWork from "../StartWork/StartWork";
@@ -25,22 +25,57 @@ interface AddPlanProps {
 const AddPlan:FC <AddPlanProps> = ({machine, setMachine}) => {
     const [isCheck, setIsCheck] = useState(false);
 
+    const [palletTemplates, setPalletTemplates] = useState([]);
+
+    useEffect(() => {
+        setPalletTemplates([])
+
+        const q = query(collection(db, "palletsTemplate"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                setPalletTemplates((prev) => [...prev, doc.data()])
+            });
+        });
+    }, []);
+
     const [data, setData] = useState({
         index: "",
         quantity: 0
     });
 
+    const [isSending, setIsSending] = useState<boolean>(false);
+
     const addNewPlan = async () => {
-        const template = {
-            id: Date.now(),
-            createDate: dayjs().format("YYYY-MM-DD"),
-            machine: machine,
-            ...data
-        }
-        await setDoc(doc(db, machine, "plan_" + template.id.toString()), {
-            ...template
-        });
+       try {
+           setIsSending(true)
+           const template = {
+               id: Date.now(),
+               createDate: dayjs().format("YYYY-MM-DD"),
+               isCurrent: false,
+               machine: machine,
+               ...data
+           }
+           await setDoc(doc(db, machine, "plan_" + template.id.toString()), {
+               ...template
+           });
+           setData({
+               index: "",
+               quantity: 0
+           })
+       } catch (error) {
+           console.log(error);
+       } finally {
+           setTimeout(() => {
+               setIsSending(false)
+           }, 250)
+       }
     }
+
+    const onInput = (value: string) => {
+        const newString = value.toUpperCase().replace(" ", "-")
+        setData((prev) => ({...prev, index: newString}))
+    }
+
     if (!isCheck) {
         return (
             <>
@@ -75,14 +110,20 @@ const AddPlan:FC <AddPlanProps> = ({machine, setMachine}) => {
                     label={<p>Щоб повернутися назад, встановіть цей прапорець</p>}
                 />
             </FormGroup>
-            <Grid sx={{alignItems: "center"}} container spacing={2}>
+
+            <Backdrop sx={{zIndex: 99}} open={isSending}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
+
+            <Grid sx={{alignItems: "center", mb: 8}} container spacing={2}>
                 <Grid item xs={12} md={8}>
                     <Autocomplete
                         disablePortal
                         fullWidth={true}
                         value={data.index}
+                        onInput={(event) => onInput(event.target.value)}
                         onChange={(event, value) => setData((prev) => ({...prev, index: value ? value.toString() : ""}))}
-                        options={dataIndexes ? dataIndexes.map(el => el.index) : []}
+                        options={palletTemplates ? palletTemplates.map(el => el.index) : []}
                         renderInput={(params) => <TextField {...params} label="Index"/>}
                     />
                 </Grid>

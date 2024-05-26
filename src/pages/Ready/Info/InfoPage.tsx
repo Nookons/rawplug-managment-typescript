@@ -1,100 +1,71 @@
-import React, {useEffect, useState} from 'react';
-import PalletData175 from '../../../assets/PalletData175ml.json';
-import PalletData300 from '../../../assets/PalletData300ml.json';
-import {
-    Accordion, AccordionDetails, AccordionSummary, Alert,
-    Avatar,
-    Box,
-    Card,
-    CardContent,
-    Paper, Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow, TextField, Typography,
-} from '@mui/material';
-import {ExpandMore} from "@mui/icons-material";
-import {Link} from "react-router-dom";
-import {HOME_ROUTE, INFO_FULL_ITEM_ROUTE} from "../../../utils/consts"; // If you have styles, import them here
-import styles from './InfoPage.module.css'
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import { Autocomplete, Container, Grid, Paper, Stack, TextField } from "@mui/material";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { IPalletItem } from "../../../types/Pallet";
+import { Link } from "react-router-dom";
+import {INFO_FULL_ITEM_ROUTE} from "../../../utils/consts";
 
-const InfoPage = () => {
-    const [value, setValue] = useState<string>("");
-
-    const [data175, setData175] = useState<any[]>([]);
-    const [data300, setData300] = useState<any[]>([]);
+const InfoPage: React.FC = () => {
+    const [searchValue, setSearchValue] = useState<string>("");
+    const [palletTemplates, setPalletTemplates] = useState<IPalletItem[]>([]);
 
     useEffect(() => {
-        const filtered175 = PalletData175.filter(item => item.index?.toString().includes(value.toUpperCase()));
-        const filtered300 = PalletData300.filter(item => item.index?.toString().includes(value.toUpperCase()));
+        const q = query(collection(db, "palletsTemplate"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const templates: IPalletItem[] = querySnapshot.docs.map(doc => doc.data() as IPalletItem);
+            setPalletTemplates(templates);
+        });
 
-        setData175(filtered175);
-        setData300(filtered300);
+        return () => unsubscribe(); // Cleanup the subscription on unmount
+    }, []);
 
-    }, [value]);
+    const onInput = (value: string | null) => {
+        if (value) {
+            const newString = value.toUpperCase().replace(" ", "-");
+            setSearchValue(newString);
+        } else {
+            setSearchValue("");
+        }
+    };
+
+    const filtered = useMemo(() => {
+        return searchValue
+            ? palletTemplates.filter((item) =>
+                item.index.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            : palletTemplates;
+    }, [searchValue, palletTemplates]);
 
     return (
-        <div className={styles.Main}>
-            <div>
-                <TextField
-                    id="outlined-basic"
-                    label="Search..."
-                    variant="outlined"
-                    value={value}
-                    onChange={(event) => setValue(event.target.value)}
-                    fullWidth={true}
-                    sx={{my: 2}}
-                />
-            </div>
-            <div className={styles.Wrapper}>
-                <TableContainer component={Paper}>
-                    <div>
-                        <Alert severity="info"><article>We have {data175.length} template for (175) ml</article></Alert>
-                    </div>
-                    <Table aria-label="simple table">
-                        {data175.map((el, index) => (
-                            <TableBody>
-                                <TableCell><article>{index + 1}</article></TableCell>
-                                <TableCell>
-                                    <Avatar
-                                        sx={{ width: 56, height: 56 }}
-                                        src={`${el?.imgUrl}`} // Use template literals for string concatenation
-                                        variant="rounded"
-                                    >
-                                        R
-                                    </Avatar>
-                                </TableCell>
-                                <TableCell><Link to={INFO_FULL_ITEM_ROUTE + "?_" + el.id}>{el.index}</Link></TableCell>
-                            </TableBody>
-                        ))}
-                    </Table>
-                </TableContainer>
-                <TableContainer component={Paper}>
-                    <div>
-                        <Alert severity="info"><article>We have {data300.length} template for (300) ml</article></Alert>
-                    </div>
-                    <Table aria-label="simple table">
-                        {data300.map((el, index) => (
-                            <TableBody>
-                                <TableCell><article>{index + 1}</article></TableCell>
-                                <TableCell>
-                                    <Avatar
-                                        sx={{ width: 56, height: 56 }}
-                                        src={`${el?.imgUrl}`} // Use template literals for string concatenation
-                                        variant="rounded"
-                                    >
-                                        R
-                                    </Avatar>
-                                </TableCell>
-                                <TableCell><Link to={INFO_FULL_ITEM_ROUTE + "?_" + el.id}>{el.index}</Link></TableCell>
-                            </TableBody>
-                        ))}
-                    </Table>
-                </TableContainer>
-            </div>
-        </div>
+        <Container sx={{ p: 2, minHeight: 'calc(100vh - 162px)' }} maxWidth="xl">
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Autocomplete
+                        disablePortal
+                        inputValue={searchValue}
+                        onInputChange={(event, value) => onInput(value)}
+                        options={palletTemplates.map(el => el.index)}
+                        fullWidth
+                        renderInput={(params) => <TextField {...params} label="Search" />}
+                    />
+                </Grid>
+                {filtered.map((el, index) => (
+                    <Grid item xs={12} md={4} key={index}>
+                        <Paper sx={{ p: 1 }}>
+                            <Stack my={1} spacing={1}>
+                                <Link style={{ fontSize: 22 }} to={INFO_FULL_ITEM_ROUTE + "?_" + el.index.replace("/", "\\")}>
+                                    {el.index}
+                                </Link>
+                                <p style={{ color: "gray", fontSize: 12 }}>{el.description} | {el.data}</p>
+                                <p>On pallet: {el.palletQta}</p>
+                                <p>In box: {el.atBox}</p>
+                            </Stack>
+                        </Paper>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container>
     );
 };
 
