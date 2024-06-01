@@ -23,11 +23,11 @@ const Navbar = () => {
         navigate(HOME_ROUTE)
     };
 
-    /*useEffect(() => {
+    useEffect(() => {
         if (!loading && user === null) {
             navigate(SIGN_IN_ROUTE)
         }
-    }, [user, loading]);*/
+    }, [user, loading]);
 
     const logOut = async () => {
         setIsLoading(true)
@@ -46,7 +46,7 @@ const Navbar = () => {
         <div className={styles.Main}>
             {isLoading
                 ?
-                <Backdrop open={isLoading}>
+                <Backdrop sx={{zIndex: 99}} open={isLoading}>
                     <CircularProgress color="inherit"/>
                 </Backdrop>
                 : null

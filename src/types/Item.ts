@@ -17,6 +17,7 @@ export interface IItem {
     batchNumber?: number;
     barrel?: IBarrelObject;
     remarks: string;
+    removed?: boolean;
 }
 interface IBarrelTarget {
     first: 0,
