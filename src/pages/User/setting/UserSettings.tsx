@@ -16,6 +16,9 @@ import {doc, onSnapshot} from "firebase/firestore";
 
 import DiamondIcon from '@mui/icons-material/Diamond';
 import {db} from "../../../firebase";
+import ChangePassword from "./ChangePassword/ChangePassword";
+import {useNavigate} from "react-router-dom";
+import {SIGN_IN_ROUTE} from "../../../utils/consts";
 
 function roleReducer(role: string) {
     switch (role) {
@@ -45,6 +48,8 @@ const UserSettings = () => {
             });
         }
     }, [user]);
+
+
 
 
     const experience = loadedData.experience !== undefined ? loadedData.experience : 0;
@@ -88,6 +93,9 @@ const UserSettings = () => {
                         <Typography sx={{my: 2}} variant="h5" gutterBottom component="h5">
                             Це сторінка вашого профілю {user?.email}
                         </Typography>
+
+
+                        <ChangePassword />
                     </Paper>
                 </Grid>
             </Grid>

@@ -19,6 +19,7 @@ export const BARREL_STATS_ROUTE: string = '/grid-items/barrel_stats'
 export const RECEIPT_REPORT_ROUTE: string = '/grid-items/receipt_report'
 export const CREATE_ITEM_ROUTE: string = '/create-item'
 export const REMOVED_ROUTE: string = '/grid-items/removed'
+export const ITEMS_STATS_ROUTE: string = '/items-stats'
 
 // Pallet Route
 export const ADD_PALLET_ROUTE: string = '/add-pallet'

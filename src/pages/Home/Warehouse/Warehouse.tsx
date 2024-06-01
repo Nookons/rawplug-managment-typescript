@@ -1,62 +1,62 @@
-import React, {FC} from 'react';
-import styles from "./Warehouse.module.css";
-import data from "../../../assets/ItemsInfo.json";
-import {ICardItem, IItem} from "../../../types/Item";
-import {WarehouseItem} from "./WareHouseItem";
-import {Alert, Skeleton} from "@mui/material";
+import React, {useEffect, useState} from 'react';
+import {collection, onSnapshot, query} from "firebase/firestore";
+import {db} from "../../../firebase";
+import {IItem, IItemTemplate} from "../../../types/Item";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {useAppSelector} from "../../../hooks/storeHooks";
+import {Link} from "react-router-dom";
+import {HOME_ROUTE, ITEMS_STATS_ROUTE} from "../../../utils/consts";
 
-interface WarehouseProps {
-    loading: boolean;
-    error: string | undefined;
-    items: IItem[];
-}
+const Warehouse = () => {
+    const {items, loading, error} = useAppSelector(state => state.items)
+    const [itemsTemplate, setItemsTemplate] = useState<IItemTemplate[]>([]);
 
-const Warehouse: FC<WarehouseProps> = ({loading, error, items}) => {
+    useEffect(() => {
+        setItemsTemplate([])
+
+        const q = query(collection(db, "itemsTemplate"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                setItemsTemplate((prev) => [...prev, doc.data()])
+            });
+        });
+    }, []);
+
+
+
     return (
-        <div className={styles.Main}>
-            {!loading
-                ? <div>
-                    {!error
-                        ?
-                        <div className={styles.WarehouseWrapper}>
-                            {data.map((cardItem: ICardItem, index: number) => {
+        <TableContainer component={Paper}>
+            <Table aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell><p>Index</p></TableCell>
+                        <TableCell><p>Quantity</p></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {itemsTemplate.map((el, index) => {
+                        let pallets = 0;
+                        let value = 0;
 
-                                let tempQta : number            = 0;
-                                let tempPalletsQta : number     = 0;
-                                let tempLast  : IItem[]     = []
+                        items.forEach((i: IItem) => {
+                            if (i.index === el.index) {
+                                pallets += 1
+                                value += i.quantity
+                            }
+                        })
 
-                                items.map((item: IItem ) => {
-                                    if (item.index === cardItem.myIndex) {
-                                        tempQta = tempQta + item.quantity
-                                        tempPalletsQta++
-                                        tempLast.push(item)
-                                    }
-                                })
-
-                                if (tempPalletsQta > 0) {
-                                    return (
-                                        <WarehouseItem
-                                            key={index}
-                                            card={cardItem}
-                                            tempQta={tempQta}
-                                            tempPalletsQta={tempPalletsQta}
-                                            tempLast={tempLast}
-                                        />
-                                    )
-                                }
-                            })}
-                        </div>
-                        :
-                        <Alert severity="error">{error}</Alert>
-
-
-                    }
-                </div>
-                : <div style={{display: 'flex', gap: 14, flexDirection: 'column'}}>
-                    <Skeleton variant="rectangular" width={'100%'} height={'50dvh'} />
-                </div>
-            }
-        </div>
+                        if (value > 0) {
+                            return (
+                                <TableRow>
+                                    <TableCell><Link to={ITEMS_STATS_ROUTE + "?_" + el.index}>{el.index}</Link></TableCell>
+                                    <TableCell><article>{value.toLocaleString()}</article></TableCell>
+                                </TableRow>
+                            )
+                        }
+                    })}
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
 };
 

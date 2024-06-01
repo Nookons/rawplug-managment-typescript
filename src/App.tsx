@@ -11,8 +11,11 @@ import {fetchActions} from "./store/reducers/Actions/ActionsSlice";
 import {fetchRemoved} from "./store/reducers/Removed/RemovedSlice";
 import {collection, doc, onSnapshot, query} from "firebase/firestore";
 import {db} from "./firebase";
+import {SIGN_IN_ROUTE} from "./utils/consts";
 
 const App = () => {
+    const {user, loading, error} = useAppSelector(state => state.user)
+
     const dispatch = useAppDispatch();
 
     const [myVersion, setMyVersion] = useState("");

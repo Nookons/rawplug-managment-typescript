@@ -7,7 +7,7 @@ import {
     FIND_ITEM_ROUTE,
     HOME_ROUTE, INFO_FULL_ITEM_ROUTE, INFO_READY_PALLET_ROUTE,
     ITEM_ROUTE,
-    ITEMS_GRID_ROUTE, MACHINE_SCREEN_ROUTE,
+    ITEMS_GRID_ROUTE, ITEMS_STATS_ROUTE, MACHINE_SCREEN_ROUTE,
     RECEIPT_REPORT_ROUTE, REMOVED_ROUTE,
     SIGN_IN_ROUTE,
     USER_SETTINGS_ROUTE, WAREHOUSE_ROUTE,
@@ -32,6 +32,7 @@ import AddNewUser from "./pages/User/AddNewUser/AddNewUser";
 import MachineScreen from "./pages/MachineScreen/MachineScreen";
 import AdminDisplay from "./pages/Ready/AdminDisplay/AdminDisplay";
 import InfoPallet from "./pages/Ready/Info/InfoPallet";
+import ItemsStats from "./pages/Item/ItemStats/ItemsStats";
 
 
 interface Route {
@@ -61,6 +62,11 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: ADD_NEW_USER_ROUTE,
         Component: AddNewUser,
+        label: 'AppPrivateRoute',
+    },
+    {
+        path: ITEMS_STATS_ROUTE,
+        Component: ItemsStats,
         label: 'AppPrivateRoute',
     },
     {
