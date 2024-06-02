@@ -9,6 +9,7 @@ export async function onAddItem(data: IAddFormData, user: any) {
     }
 
     let updateRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(updateRef);
 
     const id = Date.now();
     const date = dayjs().format('YYYY-MM-DD [at] HH:mm');
@@ -25,12 +26,10 @@ export async function onAddItem(data: IAddFormData, user: any) {
         batchNumber: data.type.toLowerCase() === "barrel" ? data.batchNumber : null
     };
 
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
         const data = docSnap.data()
-        if (data.experience + (10 * data.level) > data.nextLevel) {
+        if (data.experience + (20 * data.level) > data.nextLevel) {
 
             await updateDoc(updateRef, {
                 level:data.level + 1,

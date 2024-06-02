@@ -19,6 +19,7 @@ import {db} from "../../../firebase";
 import ChangePassword from "./ChangePassword/ChangePassword";
 import {useNavigate} from "react-router-dom";
 import {SIGN_IN_ROUTE} from "../../../utils/consts";
+import UserAvatar from "./Avatar/Avatar";
 
 function roleReducer(role: string) {
     switch (role) {
@@ -59,7 +60,7 @@ const UserSettings = () => {
         <Container sx={{minHeight: 'calc(100dvh - 162px)', p: 2}} maxWidth="xl">
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
-                    <Avatar variant={"rounded"} sx={{width: "100%", height: "20vw"}}>N</Avatar>
+                    <UserAvatar />
                 </Grid>
                 <Grid item xs={12} md={8}>
                     <Paper sx={{p: 2, mb: 2}}>

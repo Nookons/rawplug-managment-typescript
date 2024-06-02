@@ -20,7 +20,6 @@ import FindItem from "./pages/Item/FindItem/FindItem";
 import BarrelStats from "./pages/Item/BarrelStats/BarrelStats";
 import ReceiptReport from "./pages/Item/ReceiptReport/ReceiptReport";
 import CreateItem from "./pages/Item/CreateItem/CreateItem";
-import RemovedList from "./pages/Item/RemovedList/RemovedList";
 import Warehouse from "./pages/Warehouse/Warehouse";
 import AddSoloBarrel from "./pages/Item/AddSoloBarrel/AddSoloBarrel";
 import InfoPage from "./pages/Ready/Info/InfoPage";
@@ -117,11 +116,6 @@ export const privateRoutes: PrivateRoutes = [
     {
         path: CREATE_ITEM_ROUTE,
         Component: CreateItem,
-        label: 'AppPrivateRoute',
-    },
-    {
-        path: REMOVED_ROUTE,
-        Component: RemovedList,
         label: 'AppPrivateRoute',
     },
     {

@@ -26,42 +26,16 @@ import {useAppSelector} from "../../../hooks/storeHooks";
 
 const ItemsStats = () => {
     const {user, loading, error} = useAppSelector(state => state.user)
+
+    const data = useAppSelector(state => state.items.items)
+    const removedData = useAppSelector(state => state.removed.removed)
+
     const currentIndex = window.location.href.split("_")[1]
 
-    const [data, setData] = useState<IItem[]>([]);
-    const [removedData, setRemovedData] = useState<IItem[]>([]);
 
     const [totalArray, setTotalArray] = useState<IItem[]>([]);
 
 
-    useEffect(() => {
-        setData([])
-        setRemovedData([])
-
-        const q = query(collection(db, "items"));
-        const r = query(collection(db, "removed"));
-
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            const items: IItem[] = [];
-            querySnapshot.forEach((doc) => {
-                if (doc.data().index === currentIndex) {
-                    items.push(doc.data() as IItem);
-                }
-            });
-            setData(items);
-        });
-
-        const rUnsubscribe = onSnapshot(r, (querySnapshot) => {
-            const removedItems: IItem[] = [];
-            querySnapshot.forEach((doc) => {
-                if (doc.data().item.index === currentIndex) {
-                    removedItems.push(doc.data().item as IItem);
-                }
-            });
-            setRemovedData(removedItems);
-        });
-
-    }, [currentIndex]);
     useEffect(() => {
         let tempArray: IItem[] = [];
 
@@ -118,25 +92,13 @@ const ItemsStats = () => {
                     />
                 </Grid>
                 <Grid item xs={12} md={12}>
-                    <Stack
-                        my={2}
-                        direction="row"
-                        divider={<Divider orientation="vertical" flexItem/>}
-                        spacing={2}
-                    >
-                        <Box sx={{border: "1px solid grey", px: 2, py: 1}}>
-                            <article>Available pallets ▶️ {data.length}</article>
-                        </Box>
-                        <Box sx={{border: "1px solid grey", px: 2, py: 1}}>
-                            <article>All pallets ▶️ {totalArray.length}</article>
-                        </Box>
-                    </Stack>
                     <TableContainer component={Paper}>
                         <Table aria-label="simple table" size={"small"}>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Index</TableCell>
-                                    <TableCell>Qta</TableCell>
+                                    <TableCell><article>N</article></TableCell>
+                                    <TableCell><article>Index</article></TableCell>
+                                    <TableCell><article>Qta</article></TableCell>
                                     <TableCell><article>Actions</article></TableCell>
                                 </TableRow>
                             </TableHead>
@@ -146,6 +108,9 @@ const ItemsStats = () => {
 
                                     return (
                                         <TableRow sx={{backgroundColor: el.removed && "#eeeeee"}}>
+                                            <TableCell>
+                                                <p>{index + 1}</p>
+                                            </TableCell>
                                             <TableCell>
                                                 <Link style={{whiteSpace: "nowrap"}} to={ITEM_ROUTE + "?_" + el.id}>{el.index}</Link>
                                             </TableCell>

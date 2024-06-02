@@ -1,24 +1,29 @@
-import React, {FC} from 'react';
-import styles from './Item.module.css'; // Corrected import path
-
+import React, {FC, useEffect, useState} from 'react';
+import styles from './Item.module.css';
+import {doc, getDoc} from "firebase/firestore";
 import {VariantType} from "notistack";
 import {ICurrentItem} from "./Item";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-import OilBarrelIcon from '@mui/icons-material/OilBarrel';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import BlurCircularIcon from '@mui/icons-material/BlurCircular';
-import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import TagIcon from '@mui/icons-material/Tag';
+import {
+    Avatar, Badge, Box, Divider,
+    Paper, Slider, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography
+} from "@mui/material";
+import {
+    ArrowCircleRight as ArrowCircleRightIcon,
+    AccessTimeFilled as AccessTimeFilledIcon,
+    AddCircle as AddCircleIcon,
+    OilBarrel as OilBarrelIcon,
+    AccountCircle as AccountCircleIcon,
+    BlurCircular as BlurCircularIcon,
+    SystemUpdateAlt as SystemUpdateAltIcon,
+    Bookmark as BookmarkIcon,
+    Tag as TagIcon,
+    QrCode as QrCodeIcon
+} from '@mui/icons-material';
 import Barcode from "react-barcode";
-import QrCodeIcon from '@mui/icons-material/QrCode';
 import {getMovement} from "../../utils/GetMovement";
-
+import {db} from "../../firebase";
+import {IOSSliderMachine} from "../../components/SliderStyle";
+import DiamondIcon from "@mui/icons-material/Diamond";
 
 const getSmileType = (type: string | undefined) => {
     switch (type?.toLowerCase()) {
@@ -33,8 +38,7 @@ const getSmileType = (type: string | undefined) => {
         default:
             return '';
     }
-}
-
+};
 
 interface SettingsItemProps {
     currentItem: ICurrentItem;
@@ -42,102 +46,135 @@ interface SettingsItemProps {
 }
 
 const SettingsItem: FC<SettingsItemProps> = ({currentItem, handleClickVariant}) => {
+    const [user, setUser] = useState<any>(null);
 
-    if (currentItem.item?.quantity) {
-        return (
-            <div className={styles.Settings}>
-                <TableContainer component={Paper}>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell><h3>{getSmileType(currentItem.item?.type)}</h3></TableCell>
-                                <TableCell><h5>{currentItem.item?.index}</h5> <p style={{color: "gray"}}>{currentItem.item?.description}</p></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {currentItem.item?.remarks ?
-                                <TableRow>
-                                    <TableCell><BookmarkIcon/> </TableCell>
-                                    <TableCell>
-                                        <article>{currentItem.item?.remarks}</article>
-                                    </TableCell>
-                                </TableRow>
-                                : null
-                            }
-                            {currentItem.item?.batchNumber
-                                ? <TableRow>
-                                    <TableCell><TagIcon /></TableCell>
-                                    <TableCell>
-                                        <article style={{letterSpacing: "2.5px"}}>{currentItem.item?.batchNumber} <Barcode fontSize={0} height={30} value={currentItem.item?.batchNumber} /></article>
-                                    </TableCell>
-                                </TableRow>
-                                : null
-                            }
-                            <TableRow>
-                                <TableCell><AddCircleIcon/></TableCell>
-                                <TableCell>
-                                    <p>{currentItem.item?.quantity.toLocaleString()} {currentItem.item?.jm}</p>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><BlurCircularIcon/></TableCell>
-                                <TableCell>
-                                    <p>{currentItem.item?.status}</p>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><AccountCircleIcon/></TableCell>
-                                <TableCell>
-                                    <p>{currentItem.item?.Created}</p>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><AccessTimeFilledIcon/></TableCell>
-                                <TableCell>
-                                    <p>{currentItem.item?.createdDate}
-                                        {currentItem.item?.lastChange && <p style={{color: "gray"}}>Changed: {currentItem.item?.lastChange} by {currentItem.item?.changePerson}</p>}
-                                    </p>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><ArrowCircleRightIcon/> </TableCell>
-                                <TableCell>
-                                    <p>{getMovement(currentItem.item?.fromDepartment)}</p>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><SystemUpdateAltIcon/> </TableCell>
-                                <TableCell>
-                                    <p>{getMovement(currentItem.item?.toDepartment)}</p>
-                                </TableCell>
-                            </TableRow>
-                            {currentItem.item?.batchNumber &&
-                                <TableRow>
-                                    <TableCell><OilBarrelIcon/> </TableCell>
-                                    <TableCell sx={{
-                                        display: "grid",
-                                        gap: 1,
-                                        gridTemplateColumns: "1fr 1fr"
-                                    }}>
-                                        <p>1️⃣ {currentItem.item?.barrel?.first} {currentItem.item?.jm}</p>
-                                        <p>2️⃣ {currentItem.item?.barrel?.secondary} {currentItem.item?.jm}</p>
-                                        <p>3️⃣ {currentItem.item?.barrel?.third} {currentItem.item?.jm}</p>
-                                        <p>4️⃣ {currentItem.item?.barrel?.four} {currentItem.item?.jm}</p>
-                                    </TableCell>
-                                </TableRow>
-                            }
-                            <TableRow>
-                                <TableCell><QrCodeIcon/> </TableCell>
-                                <TableCell>
-                                    <p><Barcode fontSize={14} width={1.15} height={30} value={currentItem.item?.PalletReceipt} /></p>
-                                </TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
-        );
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                if (currentItem.item) {
+                    const docRef = doc(db, "users", currentItem?.item.userUid);
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        setUser(docSnap.data());
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching document:", error);
+            }
+        };
+
+        fetchUser();
+    }, [currentItem]);
+
+
+    if (!currentItem.item?.quantity) {
+        return null;
     }
+
+
+    const renderTableRow = (icon: React.ReactNode, content: React.ReactNode, key?: string | number) => (
+        <TableRow key={key}>
+            <TableCell>{icon}</TableCell>
+            <TableCell>{content}</TableCell>
+        </TableRow>
+    );
+
+    return (
+        <div className={styles.Settings}>
+
+            <Stack
+                my={1}
+                direction="row"
+                sx={{backgroundColor: "white", p: 2}}
+                divider={<Divider orientation="vertical" flexItem/>}
+                spacing={2}
+            >
+                <Avatar
+                    sx={{width: 98, height: 98}}
+                    variant={"rounded"}
+                    src={user?.photoUrl}>
+                    {user?.email.slice(0,1)}
+                </Avatar>
+                <Box sx={{width: "100%"}}>
+                    <article>
+                        {currentItem.item.Created}
+                    </article>
+                    <hr/>
+                    <Stack spacing={2} direction="row" sx={{mt: 2}} alignItems="center">
+                        <Badge sx={{zIndex: 0}} badgeContent={<p style={{color: "white"}}>{user?.level}</p>} color="primary">
+                            <DiamondIcon/>
+                        </Badge>
+                        {user &&
+                            <IOSSliderMachine
+                                max={user?.nextLevel}
+                                disabled={true}
+                                aria-label="Volume"
+                                value={user?.experience}
+                            />
+                        }
+                    </Stack>
+                </Box>
+            </Stack>
+            <TableContainer component={Paper}>
+                <Table aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>
+                                <Typography variant="h3">{getSmileType(currentItem.item?.type)}</Typography>
+                            </TableCell>
+                            <TableCell>
+                                <Typography variant="h5">{currentItem.item?.index}</Typography>
+                                <Typography variant="body2"
+                                            color="textSecondary">{currentItem.item?.description}</Typography>
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {currentItem.item?.remarks && renderTableRow(<BookmarkIcon/>, <Typography
+                            component="article">{currentItem.item?.remarks}</Typography>)}
+                        {currentItem.item?.batchNumber && renderTableRow(
+                            <TagIcon/>,
+                            <Typography component="article" style={{letterSpacing: "2.5px"}}>
+                                {currentItem.item.batchNumber} <Barcode fontSize={0} height={30}
+                                                                        value={currentItem.item.batchNumber}/>
+                            </Typography>
+                        )}
+                        {renderTableRow(<AddCircleIcon/>,
+                            <Typography>{currentItem.item.quantity.toLocaleString()} {currentItem.item.jm}</Typography>)}
+                        {renderTableRow(<BlurCircularIcon/>, <Typography>{currentItem.item.status}</Typography>)}
+                        {renderTableRow(
+                            <AccessTimeFilledIcon/>,
+                            <Typography>
+                                {currentItem.item.createdDate}
+                                {currentItem.item.lastChange && (
+                                    <Typography variant="body2" color="textSecondary">
+                                        Changed: {currentItem.item.lastChange} by {currentItem.item.changePerson}
+                                    </Typography>
+                                )}
+                            </Typography>
+                        )}
+                        {renderTableRow(<ArrowCircleRightIcon/>,
+                            <Typography>{getMovement(currentItem.item.fromDepartment)}</Typography>)}
+                        {renderTableRow(<SystemUpdateAltIcon/>,
+                            <Typography>{getMovement(currentItem.item.toDepartment)}</Typography>)}
+                        {currentItem.item?.batchNumber && renderTableRow(
+                            <OilBarrelIcon/>,
+                            <div style={{display: "grid", gap: 1, gridTemplateColumns: "1fr 1fr"}}>
+                                <Typography>1️⃣ {currentItem.item.barrel?.first} {currentItem.item.jm}</Typography>
+                                <Typography>2️⃣ {currentItem.item.barrel?.secondary} {currentItem.item.jm}</Typography>
+                                <Typography>3️⃣ {currentItem.item.barrel?.third} {currentItem.item.jm}</Typography>
+                                <Typography>4️⃣ {currentItem.item.barrel?.four} {currentItem.item.jm}</Typography>
+                            </div>
+                        )}
+                        {renderTableRow(<QrCodeIcon/>, <Barcode fontSize={14} width={1.15} height={30}
+                                                                value={currentItem.item?.PalletReceipt}/>)}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
+    );
 };
 
 export default SettingsItem;

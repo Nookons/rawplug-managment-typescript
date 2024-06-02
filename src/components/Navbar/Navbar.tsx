@@ -24,10 +24,16 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        if (!loading && user === null) {
-            navigate(SIGN_IN_ROUTE)
+        if (!loading) {
+            const timeoutId = setTimeout(() => {
+                if (user === null) {
+                    console.log("user null...");
+                    navigate(SIGN_IN_ROUTE);
+                }
+            }, 250);
+            return () => clearTimeout(timeoutId);
         }
-    }, [user, loading]);
+    }, [user, loading, navigate]);
 
     const logOut = async () => {
         setIsLoading(true)

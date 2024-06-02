@@ -81,6 +81,9 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = undefined;
         },
+        userChangeAvatar(state, action: PayloadAction<string>) {
+            state.user.photoURL = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -107,5 +110,5 @@ const userSlice = createSlice({
     },
 });
 
-export const { userSignIn } = userSlice.actions;
+export const { userSignIn, userChangeAvatar } = userSlice.actions;
 export default userSlice.reducer;
