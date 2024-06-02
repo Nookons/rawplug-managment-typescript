@@ -91,6 +91,7 @@ const ChangePassword = () => {
             </Backdrop>
 
             <article>Нижче ви можете змінити свій пароль</article>
+            <hr/>
 
             <Grid
                 sx={{alignItems: "center"}}
@@ -101,9 +102,8 @@ const ChangePassword = () => {
                     <TextField
                         value={currentPassword}
                         onChange={(event) => setCurrentPassword(event.target.value)}
-                        sx={{my: 2}}
+                        type={"password"}
                         fullWidth={true}
-                        id="outlined-basic"
                         label="Старый пароль"
                         variant="outlined"
                     />
@@ -113,9 +113,8 @@ const ChangePassword = () => {
                         value={newPassword}
                         error={passwordError.error}
                         onChange={(event) => setNewPassword(event.target.value)}
-                        sx={{my: 2}}
+                        type={"password"}
                         fullWidth={true}
-                        id="outlined-basic"
                         label="Новий пароль"
                         variant="outlined"
                     />
@@ -125,9 +124,8 @@ const ChangePassword = () => {
                         value={checkPassword}
                         error={passwordError.error}
                         onChange={(event) => setCheckPassword(event.target.value)}
-                        sx={{my: 2}}
+                        type={"password"}
                         fullWidth={true}
-                        id="outlined-basic"
                         label="Перевірка нового пароля"
                         variant="outlined"
                     />

@@ -14,17 +14,10 @@ import {db} from "./firebase";
 import {SIGN_IN_ROUTE} from "./utils/consts";
 
 const App = () => {
-    const {user, loading, error} = useAppSelector(state => state.user)
-
     const dispatch = useAppDispatch();
-
-    const [myVersion, setMyVersion] = useState("");
-    const [lastUpdate, setLastUpdate] = useState("");
-
 
     useEffect(() => {
         const items = query(collection(db, "items"));
-        const actions = query(collection(db, "actions"));
         const removed = query(collection(db, "removed"));
 
         dispatch(fetchUser());
@@ -33,45 +26,11 @@ const App = () => {
             dispatch(fetchItems());
         });
 
-        onSnapshot(actions, (querySnapshot) => {
-            dispatch(fetchActions());
-        });
-
         onSnapshot(removed, (querySnapshot) => {
             dispatch(fetchRemoved());
         });
     }, []);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                onSnapshot(doc(db, "main", "config"), (doc) => {
-                    if (doc.exists()) {
-                        setMyVersion(doc.data().version)
-                        setLastUpdate(doc.data().lastUpdate)
-                    }
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        })();
-    }, []);
-
-    useEffect(() => {
-        const localVersion = localStorage.getItem('version');
-
-        if (myVersion) {
-            if (localVersion !== myVersion) {
-                localStorage.setItem('version', myVersion)
-                alert("Hey there, we have new version app for you.We will reload this page to set update >" +
-                    "Привіт, у нас є нова версія програми для вас.Ми перезавантажимо цю сторінку, щоб встановити оновлення")
-                setTimeout(() => {
-                    window.location.reload();
-                }, 500)
-            }
-        }
-
-    }, [myVersion]);
 
 
     return (
@@ -85,7 +44,7 @@ const App = () => {
                             Nookon ™
                         </a>
                     </p>
-                    <p>version {myVersion} | ({lastUpdate})</p>
+                    <p>version 0.2.5 | (02-06-2024)</p>
                 </div>
         </BrowserRouter>
     );

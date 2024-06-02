@@ -10,7 +10,7 @@ import {HOME_ROUTE, ITEMS_STATS_ROUTE} from "../../../utils/consts";
 const Warehouse = () => {
     const {items, loading, error} = useAppSelector(state => state.items)
     const [itemsTemplate, setItemsTemplate] = useState<IItemTemplate[]>([]);
-
+/*
     useEffect(() => {
         setItemsTemplate([])
 
@@ -20,7 +20,7 @@ const Warehouse = () => {
                 setItemsTemplate((prev) => [...prev, doc.data()])
             });
         });
-    }, []);
+    }, []);*/
 
 
 
