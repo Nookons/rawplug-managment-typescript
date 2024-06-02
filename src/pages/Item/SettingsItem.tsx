@@ -22,7 +22,7 @@ import {
 import Barcode from "react-barcode";
 import {getMovement} from "../../utils/GetMovement";
 import {db} from "../../firebase";
-import {IOSSliderMachine} from "../../components/SliderStyle";
+import {IOSSlider, IOSSliderMachine} from "../../components/SliderStyle";
 import DiamondIcon from "@mui/icons-material/Diamond";
 
 const getSmileType = (type: string | undefined) => {
@@ -76,8 +76,8 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, handleClickVariant}) 
 
     const renderTableRow = (icon: React.ReactNode, content: React.ReactNode, key?: string | number) => (
         <TableRow key={key}>
-            <TableCell>{icon}</TableCell>
-            <TableCell>{content}</TableCell>
+            <TableCell><p>{icon}</p></TableCell>
+            <TableCell><p>{content}</p></TableCell>
         </TableRow>
     );
 
@@ -107,7 +107,7 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, handleClickVariant}) 
                             <DiamondIcon/>
                         </Badge>
                         {user &&
-                            <IOSSliderMachine
+                            <IOSSlider
                                 max={user?.nextLevel}
                                 disabled={true}
                                 aria-label="Volume"
@@ -122,12 +122,15 @@ const SettingsItem: FC<SettingsItemProps> = ({currentItem, handleClickVariant}) 
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                <Typography variant="h3">{getSmileType(currentItem.item?.type)}</Typography>
+                                <h1>{getSmileType(currentItem.item?.type)}</h1>
                             </TableCell>
                             <TableCell>
-                                <Typography variant="h5">{currentItem.item?.index}</Typography>
-                                <Typography variant="body2"
-                                            color="textSecondary">{currentItem.item?.description}</Typography>
+                                <Typography variant="h5" gutterBottom component="h5">
+                                    {currentItem.item?.index}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary">
+                                    {currentItem.item?.description}
+                                </Typography>
                             </TableCell>
                         </TableRow>
                     </TableHead>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import { Autocomplete, Container, Grid, Paper, Stack, TextField } from "@mui/material";
+import {Autocomplete, Avatar, Container, Grid, Paper, Stack, TextField} from "@mui/material";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { IPalletItem } from "../../../types/Pallet";
@@ -54,6 +54,7 @@ const InfoPage: React.FC = () => {
                     <Grid item xs={12} md={4} key={index}>
                         <Paper sx={{ p: 1 }}>
                             <Stack my={1} spacing={1}>
+                                <Avatar>N</Avatar>
                                 <Link style={{ fontSize: 22 }} to={INFO_FULL_ITEM_ROUTE + "?_" + el.index.replace("/", "\\")}>
                                     {el.index}
                                 </Link>
